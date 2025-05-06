@@ -1,0 +1,27 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'emergency_contact.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$EmergnecyContactImpl _$$EmergnecyContactImplFromJson(
+  Map<String, dynamic> json,
+) => _$EmergnecyContactImpl(
+  name: json['name'] as String,
+  relation: json['relation'] as String,
+  phoneNumber: PhoneNumberModel.fromJson(
+    json['phoneNumber'] as Map<String, dynamic>,
+  ),
+  address: AddressModel.fromJson(json['address'] as Map<String, dynamic>),
+);
+
+Map<String, dynamic> _$$EmergnecyContactImplToJson(
+  _$EmergnecyContactImpl instance,
+) => <String, dynamic>{
+  'name': instance.name,
+  'relation': instance.relation,
+  'phoneNumber': instance.phoneNumber,
+  'address': instance.address,
+};

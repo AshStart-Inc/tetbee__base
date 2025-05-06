@@ -1,0 +1,23 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'preset_schedule_time.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$PresetScheduleTimeImpl _$$PresetScheduleTimeImplFromJson(
+  Map<String, dynamic> json,
+) => _$PresetScheduleTimeImpl(
+  ordinal: (json['ordinal'] as num).toInt(),
+  startTime: json['startTime'] as String,
+  endTime: json['endTime'] as String?,
+);
+
+Map<String, dynamic> _$$PresetScheduleTimeImplToJson(
+  _$PresetScheduleTimeImpl instance,
+) => <String, dynamic>{
+  'ordinal': instance.ordinal,
+  'startTime': instance.startTime,
+  'endTime': instance.endTime,
+};

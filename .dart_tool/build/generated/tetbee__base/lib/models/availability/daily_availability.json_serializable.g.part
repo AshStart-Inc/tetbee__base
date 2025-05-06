@@ -1,0 +1,24 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$DailyAvailabilityImpl _$$DailyAvailabilityImplFromJson(
+  Map<String, dynamic> json,
+) => _$DailyAvailabilityImpl(
+  userId: json['userId'] as String,
+  weekDay: (json['weekDay'] as num).toInt(),
+  comment: json['comment'] as String?,
+  canWorkButNotPreferToWork:
+      json['canWorkButNotPreferToWork'] as bool? ?? false,
+  time: RangedTimeModel.fromJson(json['time'] as Map<String, dynamic>),
+);
+
+Map<String, dynamic> _$$DailyAvailabilityImplToJson(
+  _$DailyAvailabilityImpl instance,
+) => <String, dynamic>{
+  'userId': instance.userId,
+  'weekDay': instance.weekDay,
+  'comment': instance.comment,
+  'canWorkButNotPreferToWork': instance.canWorkButNotPreferToWork,
+  'time': instance.time,
+};

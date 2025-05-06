@@ -1,0 +1,23 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'work_place_type.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$WorkPlaceTypeImpl _$$WorkPlaceTypeImplFromJson(Map<String, dynamic> json) =>
+    _$WorkPlaceTypeImpl(
+      id: json['id'] as String,
+      name: json['name'] as String,
+      ordinal: (json['ordinal'] as num).toInt(),
+      iconModel: IconModel.fromJson(json['iconModel'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$WorkPlaceTypeImplToJson(_$WorkPlaceTypeImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'ordinal': instance.ordinal,
+      'iconModel': instance.iconModel,
+    };

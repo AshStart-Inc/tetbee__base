@@ -1,0 +1,35 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'work_place_membership.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$WorkPlaceMembershipImpl _$$WorkPlaceMembershipImplFromJson(
+  Map<String, dynamic> json,
+) => _$WorkPlaceMembershipImpl(
+  id: json['id'] as String,
+  workPlaceId: json['workPlaceId'] as String,
+  membershipId: json['membershipId'] as String,
+  createdAt: Helpers.dateFromJson((json['createdAt'] as num?)?.toInt()),
+  createdBy: json['createdBy'] as String,
+  updatedAt: Helpers.dateFromJson((json['updatedAt'] as num?)?.toInt()),
+  startsAt: Helpers.dateFromJson((json['startsAt'] as num?)?.toInt()),
+  endsAt: Helpers.dateFromJson((json['endsAt'] as num?)?.toInt()),
+  isActive: json['isActive'] ?? false,
+);
+
+Map<String, dynamic> _$$WorkPlaceMembershipImplToJson(
+  _$WorkPlaceMembershipImpl instance,
+) => <String, dynamic>{
+  'id': instance.id,
+  'workPlaceId': instance.workPlaceId,
+  'membershipId': instance.membershipId,
+  'createdAt': Helpers.dateToJson(instance.createdAt),
+  'createdBy': instance.createdBy,
+  'updatedAt': Helpers.dateToJson(instance.updatedAt),
+  'startsAt': Helpers.dateToJson(instance.startsAt),
+  'endsAt': Helpers.dateToJson(instance.endsAt),
+  'isActive': instance.isActive,
+};

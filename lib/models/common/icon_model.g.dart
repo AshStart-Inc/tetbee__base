@@ -1,0 +1,25 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'icon_model.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$IconModelImpl _$$IconModelImplFromJson(Map<String, dynamic> json) =>
+    _$IconModelImpl(
+      id: (json['id'] as num).toInt(),
+      unicode: json['unicode'] as String,
+      style: json['style'] as String,
+      name: json['name'] as String?,
+      family: json['family'] as String?,
+    );
+
+Map<String, dynamic> _$$IconModelImplToJson(_$IconModelImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'unicode': instance.unicode,
+      'style': instance.style,
+      'name': instance.name,
+      'family': instance.family,
+    };

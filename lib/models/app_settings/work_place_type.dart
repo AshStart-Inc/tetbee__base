@@ -1,0 +1,18 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:tetbee__base/models/common/icon_model.dart';
+
+part 'work_place_type.freezed.dart';
+part 'work_place_type.g.dart';
+
+@freezed
+class WorkPlaceType with _$WorkPlaceType {
+  const factory WorkPlaceType({
+    required String id,
+    required String name,
+    required int ordinal,
+    required IconModel iconModel,
+  }) = _WorkPlaceType;
+
+  factory WorkPlaceType.fromJson(Map<String, dynamic> json) =>
+      _$WorkPlaceTypeFromJson(json);
+}
