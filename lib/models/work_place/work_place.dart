@@ -2,11 +2,12 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:tetbee__base/models/availability/availability_receiver_setting.dart';
+import 'package:tetbee__base/models/common/address_model.dart';
 import 'package:tetbee__base/models/common/phone_number_model.dart';
+import 'package:tetbee__base/models/common/ranged_time_model.dart';
 import 'package:tetbee__base/models/common/time_zone_model.dart';
 import 'package:tetbee__base/models/work_place/google_place_model.dart';
 import 'package:tetbee__base/models/work_place/position_model.dart';
-import 'package:tetbee__base/models/work_place/work_place_opening_time.dart';
 import 'package:tetbee__base/utils/helper.dart';
 
 part 'work_place.freezed.dart';
@@ -14,36 +15,58 @@ part 'work_place.g.dart';
 
 @freezed
 class WorkPlace with _$WorkPlace {
+  @JsonSerializable(explicitToJson: true)
   const factory WorkPlace({
-    required String id,
+    String? id,
+    @Default('') String name,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     DateTime? createdAt,
-    required String createdBy,
+    @Default('') String createdBy,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     DateTime? updatedAt,
+    @Default('') String updatedBy,
+    @Default([]) List<String> filters,
     @Default(false) bool deleted,
-    required String placeOwnerId,
-    required String currentMembershipId,
-    required int startWeekDay,
-    required GooglePlaceModel googlePlaceModel,
+    @Default('') String placeOwnerId,
+    @Default('') String currentMembershipId,
+    @Default(1) int startWeekDay,
+    @Default(GooglePlaceModel(googlePlaceId: ''))
+    GooglePlaceModel googlePlaceModel,
+    @Default(AddressModel()) AddressModel? addressModel,
     String? email1,
     String? email2,
     String? website,
     String? defaultProfilePictureUrl,
     @Default(false) isOpened,
     @Default(false) isVerified,
-    PhoneNumberModel? primaryPhoneNumber,
+    @Default(PhoneNumberModel(isoCode: '')) PhoneNumberModel primaryPhoneNumber,
     PhoneNumberModel? secondaryPhoneNumber,
-    required String workPlaceTypeId,
-    required TimeZoneModel timeZone,
-    required List<String> ownersIds,
-    required Map<String, int> joinedUsersOrdinal,
-    required List<PositionModel> positions,
-    required List<WorkPlaceOpeningTime> openingTimes,
-    required AvailabilityReceiverSetting availabilityReceiverDefaultSetting,
-    List<WorkPlaceOpeningTime>? availabilityTimes,
+    @Default('') String workPlaceTypeId,
+    @Default(TimeZoneModel()) TimeZoneModel timeZone,
+    @Default([]) List<String> ownersIds,
+    @Default({}) Map<String, int> joinedUsersOrdinal,
+    @Default([]) List<PositionModel> positions,
+    @Default([]) List<RangedTimeModel> openingTimes,
+    @Default(AvailabilityReceiverSetting())
+    AvailabilityReceiverSetting availabilityReceiverDefaultSetting,
+    @Default([]) List<RangedTimeModel> availabilityTimes,
   }) = _WorkPlace;
 
   factory WorkPlace.fromJson(Map<String, dynamic> json) =>
       _$WorkPlaceFromJson(json);
+}
+
+extension WorkPlaceExtension on WorkPlace {
+  List<PositionModel> sortedPositions({bool withOwner = true}) {
+    List<PositionModel> p =
+        withOwner
+            ? [...positions]
+            : [...positions.where((position) => !position.isOwner)];
+    p.sort((a, b) => a.ordinal.compareTo(b.ordinal));
+    return p;
+  }
+
+  String getOwnerId() {
+    return positions.where((p) => p.isOwner).first.id!;
+  }
 }

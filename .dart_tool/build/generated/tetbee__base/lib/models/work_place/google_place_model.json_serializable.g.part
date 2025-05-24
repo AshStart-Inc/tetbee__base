@@ -5,21 +5,19 @@
 _$GooglePlaceModelImpl _$$GooglePlaceModelImplFromJson(
   Map<String, dynamic> json,
 ) => _$GooglePlaceModelImpl(
-  address: json['address'] as String,
-  countryCode: json['countryCode'] as String,
-  latitude: json['latitude'] as String,
-  longitude: json['longitude'] as String,
-  name: json['name'] as String,
   googlePlaceId: json['googlePlaceId'] as String,
+  name: json['name'] as String?,
+  latitude: (json['latitude'] as num?)?.toDouble(),
+  longitude: (json['longitude'] as num?)?.toDouble(),
+  description: json['description'] as String?,
 );
 
 Map<String, dynamic> _$$GooglePlaceModelImplToJson(
   _$GooglePlaceModelImpl instance,
 ) => <String, dynamic>{
-  'address': instance.address,
-  'countryCode': instance.countryCode,
+  'googlePlaceId': instance.googlePlaceId,
+  'name': instance.name,
   'latitude': instance.latitude,
   'longitude': instance.longitude,
-  'name': instance.name,
-  'googlePlaceId': instance.googlePlaceId,
+  'description': instance.description,
 };

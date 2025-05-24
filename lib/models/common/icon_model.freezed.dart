@@ -21,7 +21,6 @@ IconModel _$IconModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$IconModel {
-  int get id => throw _privateConstructorUsedError;
   String get unicode => throw _privateConstructorUsedError;
   String get style => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
@@ -42,13 +41,7 @@ abstract class $IconModelCopyWith<$Res> {
   factory $IconModelCopyWith(IconModel value, $Res Function(IconModel) then) =
       _$IconModelCopyWithImpl<$Res, IconModel>;
   @useResult
-  $Res call({
-    int id,
-    String unicode,
-    String style,
-    String? name,
-    String? family,
-  });
+  $Res call({String unicode, String style, String? name, String? family});
 }
 
 /// @nodoc
@@ -66,7 +59,6 @@ class _$IconModelCopyWithImpl<$Res, $Val extends IconModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? unicode = null,
     Object? style = null,
     Object? name = freezed,
@@ -74,11 +66,6 @@ class _$IconModelCopyWithImpl<$Res, $Val extends IconModel>
   }) {
     return _then(
       _value.copyWith(
-            id:
-                null == id
-                    ? _value.id
-                    : id // ignore: cast_nullable_to_non_nullable
-                        as int,
             unicode:
                 null == unicode
                     ? _value.unicode
@@ -114,13 +101,7 @@ abstract class _$$IconModelImplCopyWith<$Res>
   ) = __$$IconModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    int id,
-    String unicode,
-    String style,
-    String? name,
-    String? family,
-  });
+  $Res call({String unicode, String style, String? name, String? family});
 }
 
 /// @nodoc
@@ -137,7 +118,6 @@ class __$$IconModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? unicode = null,
     Object? style = null,
     Object? name = freezed,
@@ -145,11 +125,6 @@ class __$$IconModelImplCopyWithImpl<$Res>
   }) {
     return _then(
       _$IconModelImpl(
-        id:
-            null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                    as int,
         unicode:
             null == unicode
                 ? _value.unicode
@@ -179,7 +154,6 @@ class __$$IconModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$IconModelImpl extends _IconModel {
   const _$IconModelImpl({
-    required this.id,
     required this.unicode,
     required this.style,
     this.name,
@@ -189,8 +163,6 @@ class _$IconModelImpl extends _IconModel {
   factory _$IconModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$IconModelImplFromJson(json);
 
-  @override
-  final int id;
   @override
   final String unicode;
   @override
@@ -202,7 +174,7 @@ class _$IconModelImpl extends _IconModel {
 
   @override
   String toString() {
-    return 'IconModel(id: $id, unicode: $unicode, style: $style, name: $name, family: $family)';
+    return 'IconModel(unicode: $unicode, style: $style, name: $name, family: $family)';
   }
 
   @override
@@ -210,7 +182,6 @@ class _$IconModelImpl extends _IconModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$IconModelImpl &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.unicode, unicode) || other.unicode == unicode) &&
             (identical(other.style, style) || other.style == style) &&
             (identical(other.name, name) || other.name == name) &&
@@ -219,8 +190,7 @@ class _$IconModelImpl extends _IconModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, unicode, style, name, family);
+  int get hashCode => Object.hash(runtimeType, unicode, style, name, family);
 
   /// Create a copy of IconModel
   /// with the given fields replaced by the non-null parameter values.
@@ -238,7 +208,6 @@ class _$IconModelImpl extends _IconModel {
 
 abstract class _IconModel extends IconModel {
   const factory _IconModel({
-    required final int id,
     required final String unicode,
     required final String style,
     final String? name,
@@ -249,8 +218,6 @@ abstract class _IconModel extends IconModel {
   factory _IconModel.fromJson(Map<String, dynamic> json) =
       _$IconModelImpl.fromJson;
 
-  @override
-  int get id;
   @override
   String get unicode;
   @override

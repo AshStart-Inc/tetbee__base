@@ -6,10 +6,10 @@ part 'time_zone_model.g.dart';
 @freezed
 class TimeZoneModel with _$TimeZoneModel {
   const factory TimeZoneModel({
-    required String location,
-    required String timeZoneName,
-    required int offsetMilliseconds,
-    required bool isDst,
+    @Default('') String location,
+    @Default('') String timeZoneName,
+    @Default(0) int offsetMilliseconds,
+    @Default(false) bool isDst,
   }) = _TimeZoneModel;
 
   factory TimeZoneModel.fromJson(Map<String, dynamic> json) =>

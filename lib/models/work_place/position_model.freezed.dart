@@ -21,10 +21,14 @@ PositionModel _$PositionModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PositionModel {
-  String get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   bool get isOwner => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   int get ordinal => throw _privateConstructorUsedError;
+  @JsonKey(toJson: Helpers.colorToInt, fromJson: Helpers.colorFromInt)
+  Color? get color => throw _privateConstructorUsedError;
+  bool get deleted => throw _privateConstructorUsedError;
+  bool get archived => throw _privateConstructorUsedError;
   bool get managePlaceAccess => throw _privateConstructorUsedError;
   bool get positionViewAccess => throw _privateConstructorUsedError;
   bool get contactAccess => throw _privateConstructorUsedError;
@@ -32,6 +36,8 @@ mixin _$PositionModel {
   bool get scheduleAccess => throw _privateConstructorUsedError;
   bool get scheduleReviewAccess => throw _privateConstructorUsedError;
   bool get userInfoUpdateAccess => throw _privateConstructorUsedError;
+  bool get chatRoomAccess => throw _privateConstructorUsedError;
+  bool get dailyScheduleReviewPermission => throw _privateConstructorUsedError;
 
   /// Serializes this PositionModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -51,10 +57,14 @@ abstract class $PositionModelCopyWith<$Res> {
   ) = _$PositionModelCopyWithImpl<$Res, PositionModel>;
   @useResult
   $Res call({
-    String id,
+    String? id,
     bool isOwner,
     String name,
     int ordinal,
+    @JsonKey(toJson: Helpers.colorToInt, fromJson: Helpers.colorFromInt)
+    Color? color,
+    bool deleted,
+    bool archived,
     bool managePlaceAccess,
     bool positionViewAccess,
     bool contactAccess,
@@ -62,6 +72,8 @@ abstract class $PositionModelCopyWith<$Res> {
     bool scheduleAccess,
     bool scheduleReviewAccess,
     bool userInfoUpdateAccess,
+    bool chatRoomAccess,
+    bool dailyScheduleReviewPermission,
   });
 }
 
@@ -80,10 +92,13 @@ class _$PositionModelCopyWithImpl<$Res, $Val extends PositionModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? isOwner = null,
     Object? name = null,
     Object? ordinal = null,
+    Object? color = freezed,
+    Object? deleted = null,
+    Object? archived = null,
     Object? managePlaceAccess = null,
     Object? positionViewAccess = null,
     Object? contactAccess = null,
@@ -91,14 +106,16 @@ class _$PositionModelCopyWithImpl<$Res, $Val extends PositionModel>
     Object? scheduleAccess = null,
     Object? scheduleReviewAccess = null,
     Object? userInfoUpdateAccess = null,
+    Object? chatRoomAccess = null,
+    Object? dailyScheduleReviewPermission = null,
   }) {
     return _then(
       _value.copyWith(
             id:
-                null == id
+                freezed == id
                     ? _value.id
                     : id // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as String?,
             isOwner:
                 null == isOwner
                     ? _value.isOwner
@@ -114,6 +131,21 @@ class _$PositionModelCopyWithImpl<$Res, $Val extends PositionModel>
                     ? _value.ordinal
                     : ordinal // ignore: cast_nullable_to_non_nullable
                         as int,
+            color:
+                freezed == color
+                    ? _value.color
+                    : color // ignore: cast_nullable_to_non_nullable
+                        as Color?,
+            deleted:
+                null == deleted
+                    ? _value.deleted
+                    : deleted // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            archived:
+                null == archived
+                    ? _value.archived
+                    : archived // ignore: cast_nullable_to_non_nullable
+                        as bool,
             managePlaceAccess:
                 null == managePlaceAccess
                     ? _value.managePlaceAccess
@@ -149,6 +181,16 @@ class _$PositionModelCopyWithImpl<$Res, $Val extends PositionModel>
                     ? _value.userInfoUpdateAccess
                     : userInfoUpdateAccess // ignore: cast_nullable_to_non_nullable
                         as bool,
+            chatRoomAccess:
+                null == chatRoomAccess
+                    ? _value.chatRoomAccess
+                    : chatRoomAccess // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            dailyScheduleReviewPermission:
+                null == dailyScheduleReviewPermission
+                    ? _value.dailyScheduleReviewPermission
+                    : dailyScheduleReviewPermission // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -165,10 +207,14 @@ abstract class _$$PositionModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    String id,
+    String? id,
     bool isOwner,
     String name,
     int ordinal,
+    @JsonKey(toJson: Helpers.colorToInt, fromJson: Helpers.colorFromInt)
+    Color? color,
+    bool deleted,
+    bool archived,
     bool managePlaceAccess,
     bool positionViewAccess,
     bool contactAccess,
@@ -176,6 +222,8 @@ abstract class _$$PositionModelImplCopyWith<$Res>
     bool scheduleAccess,
     bool scheduleReviewAccess,
     bool userInfoUpdateAccess,
+    bool chatRoomAccess,
+    bool dailyScheduleReviewPermission,
   });
 }
 
@@ -193,10 +241,13 @@ class __$$PositionModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? isOwner = null,
     Object? name = null,
     Object? ordinal = null,
+    Object? color = freezed,
+    Object? deleted = null,
+    Object? archived = null,
     Object? managePlaceAccess = null,
     Object? positionViewAccess = null,
     Object? contactAccess = null,
@@ -204,14 +255,16 @@ class __$$PositionModelImplCopyWithImpl<$Res>
     Object? scheduleAccess = null,
     Object? scheduleReviewAccess = null,
     Object? userInfoUpdateAccess = null,
+    Object? chatRoomAccess = null,
+    Object? dailyScheduleReviewPermission = null,
   }) {
     return _then(
       _$PositionModelImpl(
         id:
-            null == id
+            freezed == id
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
         isOwner:
             null == isOwner
                 ? _value.isOwner
@@ -227,6 +280,21 @@ class __$$PositionModelImplCopyWithImpl<$Res>
                 ? _value.ordinal
                 : ordinal // ignore: cast_nullable_to_non_nullable
                     as int,
+        color:
+            freezed == color
+                ? _value.color
+                : color // ignore: cast_nullable_to_non_nullable
+                    as Color?,
+        deleted:
+            null == deleted
+                ? _value.deleted
+                : deleted // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        archived:
+            null == archived
+                ? _value.archived
+                : archived // ignore: cast_nullable_to_non_nullable
+                    as bool,
         managePlaceAccess:
             null == managePlaceAccess
                 ? _value.managePlaceAccess
@@ -262,6 +330,16 @@ class __$$PositionModelImplCopyWithImpl<$Res>
                 ? _value.userInfoUpdateAccess
                 : userInfoUpdateAccess // ignore: cast_nullable_to_non_nullable
                     as bool,
+        chatRoomAccess:
+            null == chatRoomAccess
+                ? _value.chatRoomAccess
+                : chatRoomAccess // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        dailyScheduleReviewPermission:
+            null == dailyScheduleReviewPermission
+                ? _value.dailyScheduleReviewPermission
+                : dailyScheduleReviewPermission // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -271,10 +349,14 @@ class __$$PositionModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PositionModelImpl implements _PositionModel {
   const _$PositionModelImpl({
-    required this.id,
-    required this.isOwner,
+    this.id,
+    this.isOwner = false,
     required this.name,
-    required this.ordinal,
+    this.ordinal = 0,
+    @JsonKey(toJson: Helpers.colorToInt, fromJson: Helpers.colorFromInt)
+    this.color,
+    this.deleted = false,
+    this.archived = false,
     this.managePlaceAccess = false,
     this.positionViewAccess = false,
     this.contactAccess = false,
@@ -282,19 +364,32 @@ class _$PositionModelImpl implements _PositionModel {
     this.scheduleAccess = false,
     this.scheduleReviewAccess = false,
     this.userInfoUpdateAccess = false,
+    this.chatRoomAccess = false,
+    this.dailyScheduleReviewPermission = false,
   });
 
   factory _$PositionModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PositionModelImplFromJson(json);
 
   @override
-  final String id;
+  final String? id;
   @override
+  @JsonKey()
   final bool isOwner;
   @override
   final String name;
   @override
+  @JsonKey()
   final int ordinal;
+  @override
+  @JsonKey(toJson: Helpers.colorToInt, fromJson: Helpers.colorFromInt)
+  final Color? color;
+  @override
+  @JsonKey()
+  final bool deleted;
+  @override
+  @JsonKey()
+  final bool archived;
   @override
   @JsonKey()
   final bool managePlaceAccess;
@@ -316,10 +411,16 @@ class _$PositionModelImpl implements _PositionModel {
   @override
   @JsonKey()
   final bool userInfoUpdateAccess;
+  @override
+  @JsonKey()
+  final bool chatRoomAccess;
+  @override
+  @JsonKey()
+  final bool dailyScheduleReviewPermission;
 
   @override
   String toString() {
-    return 'PositionModel(id: $id, isOwner: $isOwner, name: $name, ordinal: $ordinal, managePlaceAccess: $managePlaceAccess, positionViewAccess: $positionViewAccess, contactAccess: $contactAccess, postingAccess: $postingAccess, scheduleAccess: $scheduleAccess, scheduleReviewAccess: $scheduleReviewAccess, userInfoUpdateAccess: $userInfoUpdateAccess)';
+    return 'PositionModel(id: $id, isOwner: $isOwner, name: $name, ordinal: $ordinal, color: $color, deleted: $deleted, archived: $archived, managePlaceAccess: $managePlaceAccess, positionViewAccess: $positionViewAccess, contactAccess: $contactAccess, postingAccess: $postingAccess, scheduleAccess: $scheduleAccess, scheduleReviewAccess: $scheduleReviewAccess, userInfoUpdateAccess: $userInfoUpdateAccess, chatRoomAccess: $chatRoomAccess, dailyScheduleReviewPermission: $dailyScheduleReviewPermission)';
   }
 
   @override
@@ -331,6 +432,10 @@ class _$PositionModelImpl implements _PositionModel {
             (identical(other.isOwner, isOwner) || other.isOwner == isOwner) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.ordinal, ordinal) || other.ordinal == ordinal) &&
+            (identical(other.color, color) || other.color == color) &&
+            (identical(other.deleted, deleted) || other.deleted == deleted) &&
+            (identical(other.archived, archived) ||
+                other.archived == archived) &&
             (identical(other.managePlaceAccess, managePlaceAccess) ||
                 other.managePlaceAccess == managePlaceAccess) &&
             (identical(other.positionViewAccess, positionViewAccess) ||
@@ -344,7 +449,15 @@ class _$PositionModelImpl implements _PositionModel {
             (identical(other.scheduleReviewAccess, scheduleReviewAccess) ||
                 other.scheduleReviewAccess == scheduleReviewAccess) &&
             (identical(other.userInfoUpdateAccess, userInfoUpdateAccess) ||
-                other.userInfoUpdateAccess == userInfoUpdateAccess));
+                other.userInfoUpdateAccess == userInfoUpdateAccess) &&
+            (identical(other.chatRoomAccess, chatRoomAccess) ||
+                other.chatRoomAccess == chatRoomAccess) &&
+            (identical(
+                  other.dailyScheduleReviewPermission,
+                  dailyScheduleReviewPermission,
+                ) ||
+                other.dailyScheduleReviewPermission ==
+                    dailyScheduleReviewPermission));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -355,6 +468,9 @@ class _$PositionModelImpl implements _PositionModel {
     isOwner,
     name,
     ordinal,
+    color,
+    deleted,
+    archived,
     managePlaceAccess,
     positionViewAccess,
     contactAccess,
@@ -362,6 +478,8 @@ class _$PositionModelImpl implements _PositionModel {
     scheduleAccess,
     scheduleReviewAccess,
     userInfoUpdateAccess,
+    chatRoomAccess,
+    dailyScheduleReviewPermission,
   );
 
   /// Create a copy of PositionModel
@@ -380,10 +498,14 @@ class _$PositionModelImpl implements _PositionModel {
 
 abstract class _PositionModel implements PositionModel {
   const factory _PositionModel({
-    required final String id,
-    required final bool isOwner,
+    final String? id,
+    final bool isOwner,
     required final String name,
-    required final int ordinal,
+    final int ordinal,
+    @JsonKey(toJson: Helpers.colorToInt, fromJson: Helpers.colorFromInt)
+    final Color? color,
+    final bool deleted,
+    final bool archived,
     final bool managePlaceAccess,
     final bool positionViewAccess,
     final bool contactAccess,
@@ -391,19 +513,28 @@ abstract class _PositionModel implements PositionModel {
     final bool scheduleAccess,
     final bool scheduleReviewAccess,
     final bool userInfoUpdateAccess,
+    final bool chatRoomAccess,
+    final bool dailyScheduleReviewPermission,
   }) = _$PositionModelImpl;
 
   factory _PositionModel.fromJson(Map<String, dynamic> json) =
       _$PositionModelImpl.fromJson;
 
   @override
-  String get id;
+  String? get id;
   @override
   bool get isOwner;
   @override
   String get name;
   @override
   int get ordinal;
+  @override
+  @JsonKey(toJson: Helpers.colorToInt, fromJson: Helpers.colorFromInt)
+  Color? get color;
+  @override
+  bool get deleted;
+  @override
+  bool get archived;
   @override
   bool get managePlaceAccess;
   @override
@@ -418,6 +549,10 @@ abstract class _PositionModel implements PositionModel {
   bool get scheduleReviewAccess;
   @override
   bool get userInfoUpdateAccess;
+  @override
+  bool get chatRoomAccess;
+  @override
+  bool get dailyScheduleReviewPermission;
 
   /// Create a copy of PositionModel
   /// with the given fields replaced by the non-null parameter values.

@@ -21,6 +21,7 @@ RangedTimeModel _$RangedTimeModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$RangedTimeModel {
+  int? get weekDay => throw _privateConstructorUsedError;
   @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
   DateTime? get startTime => throw _privateConstructorUsedError;
   @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
@@ -44,6 +45,7 @@ abstract class $RangedTimeModelCopyWith<$Res> {
   ) = _$RangedTimeModelCopyWithImpl<$Res, RangedTimeModel>;
   @useResult
   $Res call({
+    int? weekDay,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     DateTime? startTime,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
@@ -65,9 +67,18 @@ class _$RangedTimeModelCopyWithImpl<$Res, $Val extends RangedTimeModel>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? startTime = freezed, Object? endTime = freezed}) {
+  $Res call({
+    Object? weekDay = freezed,
+    Object? startTime = freezed,
+    Object? endTime = freezed,
+  }) {
     return _then(
       _value.copyWith(
+            weekDay:
+                freezed == weekDay
+                    ? _value.weekDay
+                    : weekDay // ignore: cast_nullable_to_non_nullable
+                        as int?,
             startTime:
                 freezed == startTime
                     ? _value.startTime
@@ -94,6 +105,7 @@ abstract class _$$RangedTimeModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
+    int? weekDay,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     DateTime? startTime,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
@@ -114,9 +126,18 @@ class __$$RangedTimeModelImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? startTime = freezed, Object? endTime = freezed}) {
+  $Res call({
+    Object? weekDay = freezed,
+    Object? startTime = freezed,
+    Object? endTime = freezed,
+  }) {
     return _then(
       _$RangedTimeModelImpl(
+        weekDay:
+            freezed == weekDay
+                ? _value.weekDay
+                : weekDay // ignore: cast_nullable_to_non_nullable
+                    as int?,
         startTime:
             freezed == startTime
                 ? _value.startTime
@@ -136,6 +157,7 @@ class __$$RangedTimeModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$RangedTimeModelImpl implements _RangedTimeModel {
   const _$RangedTimeModelImpl({
+    this.weekDay,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     this.startTime,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
@@ -146,6 +168,8 @@ class _$RangedTimeModelImpl implements _RangedTimeModel {
       _$$RangedTimeModelImplFromJson(json);
 
   @override
+  final int? weekDay;
+  @override
   @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
   final DateTime? startTime;
   @override
@@ -154,7 +178,7 @@ class _$RangedTimeModelImpl implements _RangedTimeModel {
 
   @override
   String toString() {
-    return 'RangedTimeModel(startTime: $startTime, endTime: $endTime)';
+    return 'RangedTimeModel(weekDay: $weekDay, startTime: $startTime, endTime: $endTime)';
   }
 
   @override
@@ -162,6 +186,7 @@ class _$RangedTimeModelImpl implements _RangedTimeModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RangedTimeModelImpl &&
+            (identical(other.weekDay, weekDay) || other.weekDay == weekDay) &&
             (identical(other.startTime, startTime) ||
                 other.startTime == startTime) &&
             (identical(other.endTime, endTime) || other.endTime == endTime));
@@ -169,7 +194,7 @@ class _$RangedTimeModelImpl implements _RangedTimeModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, startTime, endTime);
+  int get hashCode => Object.hash(runtimeType, weekDay, startTime, endTime);
 
   /// Create a copy of RangedTimeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -190,6 +215,7 @@ class _$RangedTimeModelImpl implements _RangedTimeModel {
 
 abstract class _RangedTimeModel implements RangedTimeModel {
   const factory _RangedTimeModel({
+    final int? weekDay,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     final DateTime? startTime,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
@@ -199,6 +225,8 @@ abstract class _RangedTimeModel implements RangedTimeModel {
   factory _RangedTimeModel.fromJson(Map<String, dynamic> json) =
       _$RangedTimeModelImpl.fromJson;
 
+  @override
+  int? get weekDay;
   @override
   @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
   DateTime? get startTime;

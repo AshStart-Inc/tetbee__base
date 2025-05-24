@@ -21,11 +21,12 @@ DailyAvailability _$DailyAvailabilityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DailyAvailability {
-  String get userId => throw _privateConstructorUsedError;
   int get weekDay => throw _privateConstructorUsedError;
+  DateTime? get date =>
+      throw _privateConstructorUsedError; //this value will be used for ranged date availaibility type
   String? get comment => throw _privateConstructorUsedError;
   bool? get canWorkButNotPreferToWork => throw _privateConstructorUsedError;
-  RangedTimeModel get time => throw _privateConstructorUsedError;
+  RangedTimeModel get timeRange => throw _privateConstructorUsedError;
 
   /// Serializes this DailyAvailability to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,14 +46,14 @@ abstract class $DailyAvailabilityCopyWith<$Res> {
   ) = _$DailyAvailabilityCopyWithImpl<$Res, DailyAvailability>;
   @useResult
   $Res call({
-    String userId,
     int weekDay,
+    DateTime? date,
     String? comment,
     bool? canWorkButNotPreferToWork,
-    RangedTimeModel time,
+    RangedTimeModel timeRange,
   });
 
-  $RangedTimeModelCopyWith<$Res> get time;
+  $RangedTimeModelCopyWith<$Res> get timeRange;
 }
 
 /// @nodoc
@@ -70,24 +71,24 @@ class _$DailyAvailabilityCopyWithImpl<$Res, $Val extends DailyAvailability>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = null,
     Object? weekDay = null,
+    Object? date = freezed,
     Object? comment = freezed,
     Object? canWorkButNotPreferToWork = freezed,
-    Object? time = null,
+    Object? timeRange = null,
   }) {
     return _then(
       _value.copyWith(
-            userId:
-                null == userId
-                    ? _value.userId
-                    : userId // ignore: cast_nullable_to_non_nullable
-                        as String,
             weekDay:
                 null == weekDay
                     ? _value.weekDay
                     : weekDay // ignore: cast_nullable_to_non_nullable
                         as int,
+            date:
+                freezed == date
+                    ? _value.date
+                    : date // ignore: cast_nullable_to_non_nullable
+                        as DateTime?,
             comment:
                 freezed == comment
                     ? _value.comment
@@ -98,10 +99,10 @@ class _$DailyAvailabilityCopyWithImpl<$Res, $Val extends DailyAvailability>
                     ? _value.canWorkButNotPreferToWork
                     : canWorkButNotPreferToWork // ignore: cast_nullable_to_non_nullable
                         as bool?,
-            time:
-                null == time
-                    ? _value.time
-                    : time // ignore: cast_nullable_to_non_nullable
+            timeRange:
+                null == timeRange
+                    ? _value.timeRange
+                    : timeRange // ignore: cast_nullable_to_non_nullable
                         as RangedTimeModel,
           )
           as $Val,
@@ -112,9 +113,9 @@ class _$DailyAvailabilityCopyWithImpl<$Res, $Val extends DailyAvailability>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $RangedTimeModelCopyWith<$Res> get time {
-    return $RangedTimeModelCopyWith<$Res>(_value.time, (value) {
-      return _then(_value.copyWith(time: value) as $Val);
+  $RangedTimeModelCopyWith<$Res> get timeRange {
+    return $RangedTimeModelCopyWith<$Res>(_value.timeRange, (value) {
+      return _then(_value.copyWith(timeRange: value) as $Val);
     });
   }
 }
@@ -129,15 +130,15 @@ abstract class _$$DailyAvailabilityImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    String userId,
     int weekDay,
+    DateTime? date,
     String? comment,
     bool? canWorkButNotPreferToWork,
-    RangedTimeModel time,
+    RangedTimeModel timeRange,
   });
 
   @override
-  $RangedTimeModelCopyWith<$Res> get time;
+  $RangedTimeModelCopyWith<$Res> get timeRange;
 }
 
 /// @nodoc
@@ -154,24 +155,24 @@ class __$$DailyAvailabilityImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = null,
     Object? weekDay = null,
+    Object? date = freezed,
     Object? comment = freezed,
     Object? canWorkButNotPreferToWork = freezed,
-    Object? time = null,
+    Object? timeRange = null,
   }) {
     return _then(
       _$DailyAvailabilityImpl(
-        userId:
-            null == userId
-                ? _value.userId
-                : userId // ignore: cast_nullable_to_non_nullable
-                    as String,
         weekDay:
             null == weekDay
                 ? _value.weekDay
                 : weekDay // ignore: cast_nullable_to_non_nullable
                     as int,
+        date:
+            freezed == date
+                ? _value.date
+                : date // ignore: cast_nullable_to_non_nullable
+                    as DateTime?,
         comment:
             freezed == comment
                 ? _value.comment
@@ -182,10 +183,10 @@ class __$$DailyAvailabilityImplCopyWithImpl<$Res>
                 ? _value.canWorkButNotPreferToWork
                 : canWorkButNotPreferToWork // ignore: cast_nullable_to_non_nullable
                     as bool?,
-        time:
-            null == time
-                ? _value.time
-                : time // ignore: cast_nullable_to_non_nullable
+        timeRange:
+            null == timeRange
+                ? _value.timeRange
+                : timeRange // ignore: cast_nullable_to_non_nullable
                     as RangedTimeModel,
       ),
     );
@@ -193,34 +194,36 @@ class __$$DailyAvailabilityImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$DailyAvailabilityImpl implements _DailyAvailability {
   const _$DailyAvailabilityImpl({
-    required this.userId,
     required this.weekDay,
+    this.date,
     this.comment,
     this.canWorkButNotPreferToWork = false,
-    required this.time,
+    required this.timeRange,
   });
 
   factory _$DailyAvailabilityImpl.fromJson(Map<String, dynamic> json) =>
       _$$DailyAvailabilityImplFromJson(json);
 
   @override
-  final String userId;
-  @override
   final int weekDay;
+  @override
+  final DateTime? date;
+  //this value will be used for ranged date availaibility type
   @override
   final String? comment;
   @override
   @JsonKey()
   final bool? canWorkButNotPreferToWork;
   @override
-  final RangedTimeModel time;
+  final RangedTimeModel timeRange;
 
   @override
   String toString() {
-    return 'DailyAvailability(userId: $userId, weekDay: $weekDay, comment: $comment, canWorkButNotPreferToWork: $canWorkButNotPreferToWork, time: $time)';
+    return 'DailyAvailability(weekDay: $weekDay, date: $date, comment: $comment, canWorkButNotPreferToWork: $canWorkButNotPreferToWork, timeRange: $timeRange)';
   }
 
   @override
@@ -228,26 +231,27 @@ class _$DailyAvailabilityImpl implements _DailyAvailability {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DailyAvailabilityImpl &&
-            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.weekDay, weekDay) || other.weekDay == weekDay) &&
+            (identical(other.date, date) || other.date == date) &&
             (identical(other.comment, comment) || other.comment == comment) &&
             (identical(
                   other.canWorkButNotPreferToWork,
                   canWorkButNotPreferToWork,
                 ) ||
                 other.canWorkButNotPreferToWork == canWorkButNotPreferToWork) &&
-            (identical(other.time, time) || other.time == time));
+            (identical(other.timeRange, timeRange) ||
+                other.timeRange == timeRange));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
     runtimeType,
-    userId,
     weekDay,
+    date,
     comment,
     canWorkButNotPreferToWork,
-    time,
+    timeRange,
   );
 
   /// Create a copy of DailyAvailability
@@ -269,26 +273,26 @@ class _$DailyAvailabilityImpl implements _DailyAvailability {
 
 abstract class _DailyAvailability implements DailyAvailability {
   const factory _DailyAvailability({
-    required final String userId,
     required final int weekDay,
+    final DateTime? date,
     final String? comment,
     final bool? canWorkButNotPreferToWork,
-    required final RangedTimeModel time,
+    required final RangedTimeModel timeRange,
   }) = _$DailyAvailabilityImpl;
 
   factory _DailyAvailability.fromJson(Map<String, dynamic> json) =
       _$DailyAvailabilityImpl.fromJson;
 
   @override
-  String get userId;
-  @override
   int get weekDay;
+  @override
+  DateTime? get date; //this value will be used for ranged date availaibility type
   @override
   String? get comment;
   @override
   bool? get canWorkButNotPreferToWork;
   @override
-  RangedTimeModel get time;
+  RangedTimeModel get timeRange;
 
   /// Create a copy of DailyAvailability
   /// with the given fields replaced by the non-null parameter values.

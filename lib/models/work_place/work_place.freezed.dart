@@ -21,25 +21,28 @@ WorkPlace _$WorkPlaceFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$WorkPlace {
-  String get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
   DateTime? get createdAt => throw _privateConstructorUsedError;
   String get createdBy => throw _privateConstructorUsedError;
   @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
   DateTime? get updatedAt => throw _privateConstructorUsedError;
+  String get updatedBy => throw _privateConstructorUsedError;
+  List<String> get filters => throw _privateConstructorUsedError;
   bool get deleted => throw _privateConstructorUsedError;
   String get placeOwnerId => throw _privateConstructorUsedError;
   String get currentMembershipId => throw _privateConstructorUsedError;
   int get startWeekDay => throw _privateConstructorUsedError;
   GooglePlaceModel get googlePlaceModel => throw _privateConstructorUsedError;
+  AddressModel? get addressModel => throw _privateConstructorUsedError;
   String? get email1 => throw _privateConstructorUsedError;
   String? get email2 => throw _privateConstructorUsedError;
   String? get website => throw _privateConstructorUsedError;
   String? get defaultProfilePictureUrl => throw _privateConstructorUsedError;
   dynamic get isOpened => throw _privateConstructorUsedError;
   dynamic get isVerified => throw _privateConstructorUsedError;
-  PhoneNumberModel? get primaryPhoneNumber =>
-      throw _privateConstructorUsedError;
+  PhoneNumberModel get primaryPhoneNumber => throw _privateConstructorUsedError;
   PhoneNumberModel? get secondaryPhoneNumber =>
       throw _privateConstructorUsedError;
   String get workPlaceTypeId => throw _privateConstructorUsedError;
@@ -47,11 +50,10 @@ mixin _$WorkPlace {
   List<String> get ownersIds => throw _privateConstructorUsedError;
   Map<String, int> get joinedUsersOrdinal => throw _privateConstructorUsedError;
   List<PositionModel> get positions => throw _privateConstructorUsedError;
-  List<WorkPlaceOpeningTime> get openingTimes =>
-      throw _privateConstructorUsedError;
+  List<RangedTimeModel> get openingTimes => throw _privateConstructorUsedError;
   AvailabilityReceiverSetting get availabilityReceiverDefaultSetting =>
       throw _privateConstructorUsedError;
-  List<WorkPlaceOpeningTime>? get availabilityTimes =>
+  List<RangedTimeModel> get availabilityTimes =>
       throw _privateConstructorUsedError;
 
   /// Serializes this WorkPlace to a JSON map.
@@ -70,37 +72,42 @@ abstract class $WorkPlaceCopyWith<$Res> {
       _$WorkPlaceCopyWithImpl<$Res, WorkPlace>;
   @useResult
   $Res call({
-    String id,
+    String? id,
+    String name,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     DateTime? createdAt,
     String createdBy,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     DateTime? updatedAt,
+    String updatedBy,
+    List<String> filters,
     bool deleted,
     String placeOwnerId,
     String currentMembershipId,
     int startWeekDay,
     GooglePlaceModel googlePlaceModel,
+    AddressModel? addressModel,
     String? email1,
     String? email2,
     String? website,
     String? defaultProfilePictureUrl,
     dynamic isOpened,
     dynamic isVerified,
-    PhoneNumberModel? primaryPhoneNumber,
+    PhoneNumberModel primaryPhoneNumber,
     PhoneNumberModel? secondaryPhoneNumber,
     String workPlaceTypeId,
     TimeZoneModel timeZone,
     List<String> ownersIds,
     Map<String, int> joinedUsersOrdinal,
     List<PositionModel> positions,
-    List<WorkPlaceOpeningTime> openingTimes,
+    List<RangedTimeModel> openingTimes,
     AvailabilityReceiverSetting availabilityReceiverDefaultSetting,
-    List<WorkPlaceOpeningTime>? availabilityTimes,
+    List<RangedTimeModel> availabilityTimes,
   });
 
   $GooglePlaceModelCopyWith<$Res> get googlePlaceModel;
-  $PhoneNumberModelCopyWith<$Res>? get primaryPhoneNumber;
+  $AddressModelCopyWith<$Res>? get addressModel;
+  $PhoneNumberModelCopyWith<$Res> get primaryPhoneNumber;
   $PhoneNumberModelCopyWith<$Res>? get secondaryPhoneNumber;
   $TimeZoneModelCopyWith<$Res> get timeZone;
   $AvailabilityReceiverSettingCopyWith<$Res>
@@ -122,22 +129,26 @@ class _$WorkPlaceCopyWithImpl<$Res, $Val extends WorkPlace>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
+    Object? name = null,
     Object? createdAt = freezed,
     Object? createdBy = null,
     Object? updatedAt = freezed,
+    Object? updatedBy = null,
+    Object? filters = null,
     Object? deleted = null,
     Object? placeOwnerId = null,
     Object? currentMembershipId = null,
     Object? startWeekDay = null,
     Object? googlePlaceModel = null,
+    Object? addressModel = freezed,
     Object? email1 = freezed,
     Object? email2 = freezed,
     Object? website = freezed,
     Object? defaultProfilePictureUrl = freezed,
     Object? isOpened = freezed,
     Object? isVerified = freezed,
-    Object? primaryPhoneNumber = freezed,
+    Object? primaryPhoneNumber = null,
     Object? secondaryPhoneNumber = freezed,
     Object? workPlaceTypeId = null,
     Object? timeZone = null,
@@ -146,14 +157,19 @@ class _$WorkPlaceCopyWithImpl<$Res, $Val extends WorkPlace>
     Object? positions = null,
     Object? openingTimes = null,
     Object? availabilityReceiverDefaultSetting = null,
-    Object? availabilityTimes = freezed,
+    Object? availabilityTimes = null,
   }) {
     return _then(
       _value.copyWith(
             id:
-                null == id
+                freezed == id
                     ? _value.id
                     : id // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            name:
+                null == name
+                    ? _value.name
+                    : name // ignore: cast_nullable_to_non_nullable
                         as String,
             createdAt:
                 freezed == createdAt
@@ -170,6 +186,16 @@ class _$WorkPlaceCopyWithImpl<$Res, $Val extends WorkPlace>
                     ? _value.updatedAt
                     : updatedAt // ignore: cast_nullable_to_non_nullable
                         as DateTime?,
+            updatedBy:
+                null == updatedBy
+                    ? _value.updatedBy
+                    : updatedBy // ignore: cast_nullable_to_non_nullable
+                        as String,
+            filters:
+                null == filters
+                    ? _value.filters
+                    : filters // ignore: cast_nullable_to_non_nullable
+                        as List<String>,
             deleted:
                 null == deleted
                     ? _value.deleted
@@ -195,6 +221,11 @@ class _$WorkPlaceCopyWithImpl<$Res, $Val extends WorkPlace>
                     ? _value.googlePlaceModel
                     : googlePlaceModel // ignore: cast_nullable_to_non_nullable
                         as GooglePlaceModel,
+            addressModel:
+                freezed == addressModel
+                    ? _value.addressModel
+                    : addressModel // ignore: cast_nullable_to_non_nullable
+                        as AddressModel?,
             email1:
                 freezed == email1
                     ? _value.email1
@@ -226,10 +257,10 @@ class _$WorkPlaceCopyWithImpl<$Res, $Val extends WorkPlace>
                     : isVerified // ignore: cast_nullable_to_non_nullable
                         as dynamic,
             primaryPhoneNumber:
-                freezed == primaryPhoneNumber
+                null == primaryPhoneNumber
                     ? _value.primaryPhoneNumber
                     : primaryPhoneNumber // ignore: cast_nullable_to_non_nullable
-                        as PhoneNumberModel?,
+                        as PhoneNumberModel,
             secondaryPhoneNumber:
                 freezed == secondaryPhoneNumber
                     ? _value.secondaryPhoneNumber
@@ -264,17 +295,17 @@ class _$WorkPlaceCopyWithImpl<$Res, $Val extends WorkPlace>
                 null == openingTimes
                     ? _value.openingTimes
                     : openingTimes // ignore: cast_nullable_to_non_nullable
-                        as List<WorkPlaceOpeningTime>,
+                        as List<RangedTimeModel>,
             availabilityReceiverDefaultSetting:
                 null == availabilityReceiverDefaultSetting
                     ? _value.availabilityReceiverDefaultSetting
                     : availabilityReceiverDefaultSetting // ignore: cast_nullable_to_non_nullable
                         as AvailabilityReceiverSetting,
             availabilityTimes:
-                freezed == availabilityTimes
+                null == availabilityTimes
                     ? _value.availabilityTimes
                     : availabilityTimes // ignore: cast_nullable_to_non_nullable
-                        as List<WorkPlaceOpeningTime>?,
+                        as List<RangedTimeModel>,
           )
           as $Val,
     );
@@ -294,12 +325,22 @@ class _$WorkPlaceCopyWithImpl<$Res, $Val extends WorkPlace>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $PhoneNumberModelCopyWith<$Res>? get primaryPhoneNumber {
-    if (_value.primaryPhoneNumber == null) {
+  $AddressModelCopyWith<$Res>? get addressModel {
+    if (_value.addressModel == null) {
       return null;
     }
 
-    return $PhoneNumberModelCopyWith<$Res>(_value.primaryPhoneNumber!, (value) {
+    return $AddressModelCopyWith<$Res>(_value.addressModel!, (value) {
+      return _then(_value.copyWith(addressModel: value) as $Val);
+    });
+  }
+
+  /// Create a copy of WorkPlace
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PhoneNumberModelCopyWith<$Res> get primaryPhoneNumber {
+    return $PhoneNumberModelCopyWith<$Res>(_value.primaryPhoneNumber, (value) {
       return _then(_value.copyWith(primaryPhoneNumber: value) as $Val);
     });
   }
@@ -357,39 +398,45 @@ abstract class _$$WorkPlaceImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    String id,
+    String? id,
+    String name,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     DateTime? createdAt,
     String createdBy,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     DateTime? updatedAt,
+    String updatedBy,
+    List<String> filters,
     bool deleted,
     String placeOwnerId,
     String currentMembershipId,
     int startWeekDay,
     GooglePlaceModel googlePlaceModel,
+    AddressModel? addressModel,
     String? email1,
     String? email2,
     String? website,
     String? defaultProfilePictureUrl,
     dynamic isOpened,
     dynamic isVerified,
-    PhoneNumberModel? primaryPhoneNumber,
+    PhoneNumberModel primaryPhoneNumber,
     PhoneNumberModel? secondaryPhoneNumber,
     String workPlaceTypeId,
     TimeZoneModel timeZone,
     List<String> ownersIds,
     Map<String, int> joinedUsersOrdinal,
     List<PositionModel> positions,
-    List<WorkPlaceOpeningTime> openingTimes,
+    List<RangedTimeModel> openingTimes,
     AvailabilityReceiverSetting availabilityReceiverDefaultSetting,
-    List<WorkPlaceOpeningTime>? availabilityTimes,
+    List<RangedTimeModel> availabilityTimes,
   });
 
   @override
   $GooglePlaceModelCopyWith<$Res> get googlePlaceModel;
   @override
-  $PhoneNumberModelCopyWith<$Res>? get primaryPhoneNumber;
+  $AddressModelCopyWith<$Res>? get addressModel;
+  @override
+  $PhoneNumberModelCopyWith<$Res> get primaryPhoneNumber;
   @override
   $PhoneNumberModelCopyWith<$Res>? get secondaryPhoneNumber;
   @override
@@ -413,22 +460,26 @@ class __$$WorkPlaceImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
+    Object? name = null,
     Object? createdAt = freezed,
     Object? createdBy = null,
     Object? updatedAt = freezed,
+    Object? updatedBy = null,
+    Object? filters = null,
     Object? deleted = null,
     Object? placeOwnerId = null,
     Object? currentMembershipId = null,
     Object? startWeekDay = null,
     Object? googlePlaceModel = null,
+    Object? addressModel = freezed,
     Object? email1 = freezed,
     Object? email2 = freezed,
     Object? website = freezed,
     Object? defaultProfilePictureUrl = freezed,
     Object? isOpened = freezed,
     Object? isVerified = freezed,
-    Object? primaryPhoneNumber = freezed,
+    Object? primaryPhoneNumber = null,
     Object? secondaryPhoneNumber = freezed,
     Object? workPlaceTypeId = null,
     Object? timeZone = null,
@@ -437,14 +488,19 @@ class __$$WorkPlaceImplCopyWithImpl<$Res>
     Object? positions = null,
     Object? openingTimes = null,
     Object? availabilityReceiverDefaultSetting = null,
-    Object? availabilityTimes = freezed,
+    Object? availabilityTimes = null,
   }) {
     return _then(
       _$WorkPlaceImpl(
         id:
-            null == id
+            freezed == id
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        name:
+            null == name
+                ? _value.name
+                : name // ignore: cast_nullable_to_non_nullable
                     as String,
         createdAt:
             freezed == createdAt
@@ -461,6 +517,16 @@ class __$$WorkPlaceImplCopyWithImpl<$Res>
                 ? _value.updatedAt
                 : updatedAt // ignore: cast_nullable_to_non_nullable
                     as DateTime?,
+        updatedBy:
+            null == updatedBy
+                ? _value.updatedBy
+                : updatedBy // ignore: cast_nullable_to_non_nullable
+                    as String,
+        filters:
+            null == filters
+                ? _value._filters
+                : filters // ignore: cast_nullable_to_non_nullable
+                    as List<String>,
         deleted:
             null == deleted
                 ? _value.deleted
@@ -486,6 +552,11 @@ class __$$WorkPlaceImplCopyWithImpl<$Res>
                 ? _value.googlePlaceModel
                 : googlePlaceModel // ignore: cast_nullable_to_non_nullable
                     as GooglePlaceModel,
+        addressModel:
+            freezed == addressModel
+                ? _value.addressModel
+                : addressModel // ignore: cast_nullable_to_non_nullable
+                    as AddressModel?,
         email1:
             freezed == email1
                 ? _value.email1
@@ -509,10 +580,10 @@ class __$$WorkPlaceImplCopyWithImpl<$Res>
         isOpened: freezed == isOpened ? _value.isOpened! : isOpened,
         isVerified: freezed == isVerified ? _value.isVerified! : isVerified,
         primaryPhoneNumber:
-            freezed == primaryPhoneNumber
+            null == primaryPhoneNumber
                 ? _value.primaryPhoneNumber
                 : primaryPhoneNumber // ignore: cast_nullable_to_non_nullable
-                    as PhoneNumberModel?,
+                    as PhoneNumberModel,
         secondaryPhoneNumber:
             freezed == secondaryPhoneNumber
                 ? _value.secondaryPhoneNumber
@@ -547,54 +618,61 @@ class __$$WorkPlaceImplCopyWithImpl<$Res>
             null == openingTimes
                 ? _value._openingTimes
                 : openingTimes // ignore: cast_nullable_to_non_nullable
-                    as List<WorkPlaceOpeningTime>,
+                    as List<RangedTimeModel>,
         availabilityReceiverDefaultSetting:
             null == availabilityReceiverDefaultSetting
                 ? _value.availabilityReceiverDefaultSetting
                 : availabilityReceiverDefaultSetting // ignore: cast_nullable_to_non_nullable
                     as AvailabilityReceiverSetting,
         availabilityTimes:
-            freezed == availabilityTimes
+            null == availabilityTimes
                 ? _value._availabilityTimes
                 : availabilityTimes // ignore: cast_nullable_to_non_nullable
-                    as List<WorkPlaceOpeningTime>?,
+                    as List<RangedTimeModel>,
       ),
     );
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$WorkPlaceImpl implements _WorkPlace {
   const _$WorkPlaceImpl({
-    required this.id,
+    this.id,
+    this.name = '',
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     this.createdAt,
-    required this.createdBy,
+    this.createdBy = '',
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     this.updatedAt,
+    this.updatedBy = '',
+    final List<String> filters = const [],
     this.deleted = false,
-    required this.placeOwnerId,
-    required this.currentMembershipId,
-    required this.startWeekDay,
-    required this.googlePlaceModel,
+    this.placeOwnerId = '',
+    this.currentMembershipId = '',
+    this.startWeekDay = 1,
+    this.googlePlaceModel = const GooglePlaceModel(googlePlaceId: ''),
+    this.addressModel = const AddressModel(),
     this.email1,
     this.email2,
     this.website,
     this.defaultProfilePictureUrl,
     this.isOpened = false,
     this.isVerified = false,
-    this.primaryPhoneNumber,
+    this.primaryPhoneNumber = const PhoneNumberModel(isoCode: ''),
     this.secondaryPhoneNumber,
-    required this.workPlaceTypeId,
-    required this.timeZone,
-    required final List<String> ownersIds,
-    required final Map<String, int> joinedUsersOrdinal,
-    required final List<PositionModel> positions,
-    required final List<WorkPlaceOpeningTime> openingTimes,
-    required this.availabilityReceiverDefaultSetting,
-    final List<WorkPlaceOpeningTime>? availabilityTimes,
-  }) : _ownersIds = ownersIds,
+    this.workPlaceTypeId = '',
+    this.timeZone = const TimeZoneModel(),
+    final List<String> ownersIds = const [],
+    final Map<String, int> joinedUsersOrdinal = const {},
+    final List<PositionModel> positions = const [],
+    final List<RangedTimeModel> openingTimes = const [],
+    this.availabilityReceiverDefaultSetting =
+        const AvailabilityReceiverSetting(),
+    final List<RangedTimeModel> availabilityTimes = const [],
+  }) : _filters = filters,
+       _ownersIds = ownersIds,
        _joinedUsersOrdinal = joinedUsersOrdinal,
        _positions = positions,
        _openingTimes = openingTimes,
@@ -604,26 +682,49 @@ class _$WorkPlaceImpl implements _WorkPlace {
       _$$WorkPlaceImplFromJson(json);
 
   @override
-  final String id;
+  final String? id;
+  @override
+  @JsonKey()
+  final String name;
   @override
   @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
   final DateTime? createdAt;
   @override
+  @JsonKey()
   final String createdBy;
   @override
   @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
   final DateTime? updatedAt;
   @override
   @JsonKey()
+  final String updatedBy;
+  final List<String> _filters;
+  @override
+  @JsonKey()
+  List<String> get filters {
+    if (_filters is EqualUnmodifiableListView) return _filters;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_filters);
+  }
+
+  @override
+  @JsonKey()
   final bool deleted;
   @override
+  @JsonKey()
   final String placeOwnerId;
   @override
+  @JsonKey()
   final String currentMembershipId;
   @override
+  @JsonKey()
   final int startWeekDay;
   @override
+  @JsonKey()
   final GooglePlaceModel googlePlaceModel;
+  @override
+  @JsonKey()
+  final AddressModel? addressModel;
   @override
   final String? email1;
   @override
@@ -639,15 +740,19 @@ class _$WorkPlaceImpl implements _WorkPlace {
   @JsonKey()
   final dynamic isVerified;
   @override
-  final PhoneNumberModel? primaryPhoneNumber;
+  @JsonKey()
+  final PhoneNumberModel primaryPhoneNumber;
   @override
   final PhoneNumberModel? secondaryPhoneNumber;
   @override
+  @JsonKey()
   final String workPlaceTypeId;
   @override
+  @JsonKey()
   final TimeZoneModel timeZone;
   final List<String> _ownersIds;
   @override
+  @JsonKey()
   List<String> get ownersIds {
     if (_ownersIds is EqualUnmodifiableListView) return _ownersIds;
     // ignore: implicit_dynamic_type
@@ -656,6 +761,7 @@ class _$WorkPlaceImpl implements _WorkPlace {
 
   final Map<String, int> _joinedUsersOrdinal;
   @override
+  @JsonKey()
   Map<String, int> get joinedUsersOrdinal {
     if (_joinedUsersOrdinal is EqualUnmodifiableMapView)
       return _joinedUsersOrdinal;
@@ -665,36 +771,38 @@ class _$WorkPlaceImpl implements _WorkPlace {
 
   final List<PositionModel> _positions;
   @override
+  @JsonKey()
   List<PositionModel> get positions {
     if (_positions is EqualUnmodifiableListView) return _positions;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_positions);
   }
 
-  final List<WorkPlaceOpeningTime> _openingTimes;
+  final List<RangedTimeModel> _openingTimes;
   @override
-  List<WorkPlaceOpeningTime> get openingTimes {
+  @JsonKey()
+  List<RangedTimeModel> get openingTimes {
     if (_openingTimes is EqualUnmodifiableListView) return _openingTimes;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_openingTimes);
   }
 
   @override
+  @JsonKey()
   final AvailabilityReceiverSetting availabilityReceiverDefaultSetting;
-  final List<WorkPlaceOpeningTime>? _availabilityTimes;
+  final List<RangedTimeModel> _availabilityTimes;
   @override
-  List<WorkPlaceOpeningTime>? get availabilityTimes {
-    final value = _availabilityTimes;
-    if (value == null) return null;
+  @JsonKey()
+  List<RangedTimeModel> get availabilityTimes {
     if (_availabilityTimes is EqualUnmodifiableListView)
       return _availabilityTimes;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_availabilityTimes);
   }
 
   @override
   String toString() {
-    return 'WorkPlace(id: $id, createdAt: $createdAt, createdBy: $createdBy, updatedAt: $updatedAt, deleted: $deleted, placeOwnerId: $placeOwnerId, currentMembershipId: $currentMembershipId, startWeekDay: $startWeekDay, googlePlaceModel: $googlePlaceModel, email1: $email1, email2: $email2, website: $website, defaultProfilePictureUrl: $defaultProfilePictureUrl, isOpened: $isOpened, isVerified: $isVerified, primaryPhoneNumber: $primaryPhoneNumber, secondaryPhoneNumber: $secondaryPhoneNumber, workPlaceTypeId: $workPlaceTypeId, timeZone: $timeZone, ownersIds: $ownersIds, joinedUsersOrdinal: $joinedUsersOrdinal, positions: $positions, openingTimes: $openingTimes, availabilityReceiverDefaultSetting: $availabilityReceiverDefaultSetting, availabilityTimes: $availabilityTimes)';
+    return 'WorkPlace(id: $id, name: $name, createdAt: $createdAt, createdBy: $createdBy, updatedAt: $updatedAt, updatedBy: $updatedBy, filters: $filters, deleted: $deleted, placeOwnerId: $placeOwnerId, currentMembershipId: $currentMembershipId, startWeekDay: $startWeekDay, googlePlaceModel: $googlePlaceModel, addressModel: $addressModel, email1: $email1, email2: $email2, website: $website, defaultProfilePictureUrl: $defaultProfilePictureUrl, isOpened: $isOpened, isVerified: $isVerified, primaryPhoneNumber: $primaryPhoneNumber, secondaryPhoneNumber: $secondaryPhoneNumber, workPlaceTypeId: $workPlaceTypeId, timeZone: $timeZone, ownersIds: $ownersIds, joinedUsersOrdinal: $joinedUsersOrdinal, positions: $positions, openingTimes: $openingTimes, availabilityReceiverDefaultSetting: $availabilityReceiverDefaultSetting, availabilityTimes: $availabilityTimes)';
   }
 
   @override
@@ -703,12 +811,16 @@ class _$WorkPlaceImpl implements _WorkPlace {
         (other.runtimeType == runtimeType &&
             other is _$WorkPlaceImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.createdBy, createdBy) ||
                 other.createdBy == createdBy) &&
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            const DeepCollectionEquality().equals(other._filters, _filters) &&
             (identical(other.deleted, deleted) || other.deleted == deleted) &&
             (identical(other.placeOwnerId, placeOwnerId) ||
                 other.placeOwnerId == placeOwnerId) &&
@@ -718,6 +830,8 @@ class _$WorkPlaceImpl implements _WorkPlace {
                 other.startWeekDay == startWeekDay) &&
             (identical(other.googlePlaceModel, googlePlaceModel) ||
                 other.googlePlaceModel == googlePlaceModel) &&
+            (identical(other.addressModel, addressModel) ||
+                other.addressModel == addressModel) &&
             (identical(other.email1, email1) || other.email1 == email1) &&
             (identical(other.email2, email2) || other.email2 == email2) &&
             (identical(other.website, website) || other.website == website) &&
@@ -772,14 +886,18 @@ class _$WorkPlaceImpl implements _WorkPlace {
   int get hashCode => Object.hashAll([
     runtimeType,
     id,
+    name,
     createdAt,
     createdBy,
     updatedAt,
+    updatedBy,
+    const DeepCollectionEquality().hash(_filters),
     deleted,
     placeOwnerId,
     currentMembershipId,
     startWeekDay,
     googlePlaceModel,
+    addressModel,
     email1,
     email2,
     website,
@@ -814,41 +932,46 @@ class _$WorkPlaceImpl implements _WorkPlace {
 
 abstract class _WorkPlace implements WorkPlace {
   const factory _WorkPlace({
-    required final String id,
+    final String? id,
+    final String name,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     final DateTime? createdAt,
-    required final String createdBy,
+    final String createdBy,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     final DateTime? updatedAt,
+    final String updatedBy,
+    final List<String> filters,
     final bool deleted,
-    required final String placeOwnerId,
-    required final String currentMembershipId,
-    required final int startWeekDay,
-    required final GooglePlaceModel googlePlaceModel,
+    final String placeOwnerId,
+    final String currentMembershipId,
+    final int startWeekDay,
+    final GooglePlaceModel googlePlaceModel,
+    final AddressModel? addressModel,
     final String? email1,
     final String? email2,
     final String? website,
     final String? defaultProfilePictureUrl,
     final dynamic isOpened,
     final dynamic isVerified,
-    final PhoneNumberModel? primaryPhoneNumber,
+    final PhoneNumberModel primaryPhoneNumber,
     final PhoneNumberModel? secondaryPhoneNumber,
-    required final String workPlaceTypeId,
-    required final TimeZoneModel timeZone,
-    required final List<String> ownersIds,
-    required final Map<String, int> joinedUsersOrdinal,
-    required final List<PositionModel> positions,
-    required final List<WorkPlaceOpeningTime> openingTimes,
-    required final AvailabilityReceiverSetting
-    availabilityReceiverDefaultSetting,
-    final List<WorkPlaceOpeningTime>? availabilityTimes,
+    final String workPlaceTypeId,
+    final TimeZoneModel timeZone,
+    final List<String> ownersIds,
+    final Map<String, int> joinedUsersOrdinal,
+    final List<PositionModel> positions,
+    final List<RangedTimeModel> openingTimes,
+    final AvailabilityReceiverSetting availabilityReceiverDefaultSetting,
+    final List<RangedTimeModel> availabilityTimes,
   }) = _$WorkPlaceImpl;
 
   factory _WorkPlace.fromJson(Map<String, dynamic> json) =
       _$WorkPlaceImpl.fromJson;
 
   @override
-  String get id;
+  String? get id;
+  @override
+  String get name;
   @override
   @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
   DateTime? get createdAt;
@@ -857,6 +980,10 @@ abstract class _WorkPlace implements WorkPlace {
   @override
   @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
   DateTime? get updatedAt;
+  @override
+  String get updatedBy;
+  @override
+  List<String> get filters;
   @override
   bool get deleted;
   @override
@@ -867,6 +994,8 @@ abstract class _WorkPlace implements WorkPlace {
   int get startWeekDay;
   @override
   GooglePlaceModel get googlePlaceModel;
+  @override
+  AddressModel? get addressModel;
   @override
   String? get email1;
   @override
@@ -880,7 +1009,7 @@ abstract class _WorkPlace implements WorkPlace {
   @override
   dynamic get isVerified;
   @override
-  PhoneNumberModel? get primaryPhoneNumber;
+  PhoneNumberModel get primaryPhoneNumber;
   @override
   PhoneNumberModel? get secondaryPhoneNumber;
   @override
@@ -894,11 +1023,11 @@ abstract class _WorkPlace implements WorkPlace {
   @override
   List<PositionModel> get positions;
   @override
-  List<WorkPlaceOpeningTime> get openingTimes;
+  List<RangedTimeModel> get openingTimes;
   @override
   AvailabilityReceiverSetting get availabilityReceiverDefaultSetting;
   @override
-  List<WorkPlaceOpeningTime>? get availabilityTimes;
+  List<RangedTimeModel> get availabilityTimes;
 
   /// Create a copy of WorkPlace
   /// with the given fields replaced by the non-null parameter values.

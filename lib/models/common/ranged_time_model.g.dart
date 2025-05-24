@@ -9,6 +9,7 @@ part of 'ranged_time_model.dart';
 _$RangedTimeModelImpl _$$RangedTimeModelImplFromJson(
   Map<String, dynamic> json,
 ) => _$RangedTimeModelImpl(
+  weekDay: (json['weekDay'] as num?)?.toInt(),
   startTime: Helpers.dateFromJson((json['startTime'] as num?)?.toInt()),
   endTime: Helpers.dateFromJson((json['endTime'] as num?)?.toInt()),
 );
@@ -16,6 +17,7 @@ _$RangedTimeModelImpl _$$RangedTimeModelImplFromJson(
 Map<String, dynamic> _$$RangedTimeModelImplToJson(
   _$RangedTimeModelImpl instance,
 ) => <String, dynamic>{
+  'weekDay': instance.weekDay,
   'startTime': Helpers.dateToJson(instance.startTime),
   'endTime': Helpers.dateToJson(instance.endTime),
 };

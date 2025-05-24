@@ -168,7 +168,8 @@ class __$$WorkPlaceTypeImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$WorkPlaceTypeImpl implements _WorkPlaceType {
   const _$WorkPlaceTypeImpl({
     required this.id,

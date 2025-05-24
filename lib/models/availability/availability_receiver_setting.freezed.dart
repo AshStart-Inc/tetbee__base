@@ -23,9 +23,12 @@ AvailabilityReceiverSetting _$AvailabilityReceiverSettingFromJson(
 
 /// @nodoc
 mixin _$AvailabilityReceiverSetting {
+  DateRangeType get type => throw _privateConstructorUsedError;
   bool get showNotPreferedDayChecker => throw _privateConstructorUsedError;
   bool get useDailyComment => throw _privateConstructorUsedError;
   int get timeInterval => throw _privateConstructorUsedError;
+  List<DailyAvailability> get dailyAvailabilityTimeRange =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this AvailabilityReceiverSetting to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -49,9 +52,11 @@ abstract class $AvailabilityReceiverSettingCopyWith<$Res> {
       >;
   @useResult
   $Res call({
+    DateRangeType type,
     bool showNotPreferedDayChecker,
     bool useDailyComment,
     int timeInterval,
+    List<DailyAvailability> dailyAvailabilityTimeRange,
   });
 }
 
@@ -73,12 +78,19 @@ class _$AvailabilityReceiverSettingCopyWithImpl<
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? type = null,
     Object? showNotPreferedDayChecker = null,
     Object? useDailyComment = null,
     Object? timeInterval = null,
+    Object? dailyAvailabilityTimeRange = null,
   }) {
     return _then(
       _value.copyWith(
+            type:
+                null == type
+                    ? _value.type
+                    : type // ignore: cast_nullable_to_non_nullable
+                        as DateRangeType,
             showNotPreferedDayChecker:
                 null == showNotPreferedDayChecker
                     ? _value.showNotPreferedDayChecker
@@ -94,6 +106,11 @@ class _$AvailabilityReceiverSettingCopyWithImpl<
                     ? _value.timeInterval
                     : timeInterval // ignore: cast_nullable_to_non_nullable
                         as int,
+            dailyAvailabilityTimeRange:
+                null == dailyAvailabilityTimeRange
+                    ? _value.dailyAvailabilityTimeRange
+                    : dailyAvailabilityTimeRange // ignore: cast_nullable_to_non_nullable
+                        as List<DailyAvailability>,
           )
           as $Val,
     );
@@ -110,9 +127,11 @@ abstract class _$$AvailabilityReceiverSettingImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
+    DateRangeType type,
     bool showNotPreferedDayChecker,
     bool useDailyComment,
     int timeInterval,
+    List<DailyAvailability> dailyAvailabilityTimeRange,
   });
 }
 
@@ -134,12 +153,19 @@ class __$$AvailabilityReceiverSettingImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? type = null,
     Object? showNotPreferedDayChecker = null,
     Object? useDailyComment = null,
     Object? timeInterval = null,
+    Object? dailyAvailabilityTimeRange = null,
   }) {
     return _then(
       _$AvailabilityReceiverSettingImpl(
+        type:
+            null == type
+                ? _value.type
+                : type // ignore: cast_nullable_to_non_nullable
+                    as DateRangeType,
         showNotPreferedDayChecker:
             null == showNotPreferedDayChecker
                 ? _value.showNotPreferedDayChecker
@@ -155,35 +181,58 @@ class __$$AvailabilityReceiverSettingImplCopyWithImpl<$Res>
                 ? _value.timeInterval
                 : timeInterval // ignore: cast_nullable_to_non_nullable
                     as int,
+        dailyAvailabilityTimeRange:
+            null == dailyAvailabilityTimeRange
+                ? _value._dailyAvailabilityTimeRange
+                : dailyAvailabilityTimeRange // ignore: cast_nullable_to_non_nullable
+                    as List<DailyAvailability>,
       ),
     );
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$AvailabilityReceiverSettingImpl
     implements _AvailabilityReceiverSetting {
   const _$AvailabilityReceiverSettingImpl({
-    required this.showNotPreferedDayChecker,
-    required this.useDailyComment,
-    required this.timeInterval,
-  });
+    this.type = DateRangeType.rangedDate,
+    this.showNotPreferedDayChecker = true,
+    this.useDailyComment = true,
+    this.timeInterval = 15,
+    final List<DailyAvailability> dailyAvailabilityTimeRange = const [],
+  }) : _dailyAvailabilityTimeRange = dailyAvailabilityTimeRange;
 
   factory _$AvailabilityReceiverSettingImpl.fromJson(
     Map<String, dynamic> json,
   ) => _$$AvailabilityReceiverSettingImplFromJson(json);
 
   @override
+  @JsonKey()
+  final DateRangeType type;
+  @override
+  @JsonKey()
   final bool showNotPreferedDayChecker;
   @override
+  @JsonKey()
   final bool useDailyComment;
   @override
+  @JsonKey()
   final int timeInterval;
+  final List<DailyAvailability> _dailyAvailabilityTimeRange;
+  @override
+  @JsonKey()
+  List<DailyAvailability> get dailyAvailabilityTimeRange {
+    if (_dailyAvailabilityTimeRange is EqualUnmodifiableListView)
+      return _dailyAvailabilityTimeRange;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_dailyAvailabilityTimeRange);
+  }
 
   @override
   String toString() {
-    return 'AvailabilityReceiverSetting(showNotPreferedDayChecker: $showNotPreferedDayChecker, useDailyComment: $useDailyComment, timeInterval: $timeInterval)';
+    return 'AvailabilityReceiverSetting(type: $type, showNotPreferedDayChecker: $showNotPreferedDayChecker, useDailyComment: $useDailyComment, timeInterval: $timeInterval, dailyAvailabilityTimeRange: $dailyAvailabilityTimeRange)';
   }
 
   @override
@@ -191,6 +240,7 @@ class _$AvailabilityReceiverSettingImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AvailabilityReceiverSettingImpl &&
+            (identical(other.type, type) || other.type == type) &&
             (identical(
                   other.showNotPreferedDayChecker,
                   showNotPreferedDayChecker,
@@ -199,16 +249,22 @@ class _$AvailabilityReceiverSettingImpl
             (identical(other.useDailyComment, useDailyComment) ||
                 other.useDailyComment == useDailyComment) &&
             (identical(other.timeInterval, timeInterval) ||
-                other.timeInterval == timeInterval));
+                other.timeInterval == timeInterval) &&
+            const DeepCollectionEquality().equals(
+              other._dailyAvailabilityTimeRange,
+              _dailyAvailabilityTimeRange,
+            ));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
     runtimeType,
+    type,
     showNotPreferedDayChecker,
     useDailyComment,
     timeInterval,
+    const DeepCollectionEquality().hash(_dailyAvailabilityTimeRange),
   );
 
   /// Create a copy of AvailabilityReceiverSetting
@@ -230,20 +286,26 @@ class _$AvailabilityReceiverSettingImpl
 abstract class _AvailabilityReceiverSetting
     implements AvailabilityReceiverSetting {
   const factory _AvailabilityReceiverSetting({
-    required final bool showNotPreferedDayChecker,
-    required final bool useDailyComment,
-    required final int timeInterval,
+    final DateRangeType type,
+    final bool showNotPreferedDayChecker,
+    final bool useDailyComment,
+    final int timeInterval,
+    final List<DailyAvailability> dailyAvailabilityTimeRange,
   }) = _$AvailabilityReceiverSettingImpl;
 
   factory _AvailabilityReceiverSetting.fromJson(Map<String, dynamic> json) =
       _$AvailabilityReceiverSettingImpl.fromJson;
 
   @override
+  DateRangeType get type;
+  @override
   bool get showNotPreferedDayChecker;
   @override
   bool get useDailyComment;
   @override
   int get timeInterval;
+  @override
+  List<DailyAvailability> get dailyAvailabilityTimeRange;
 
   /// Create a copy of AvailabilityReceiverSetting
   /// with the given fields replaced by the non-null parameter values.

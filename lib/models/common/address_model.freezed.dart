@@ -21,12 +21,12 @@ AddressModel _$AddressModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AddressModel {
-  String get address1 => throw _privateConstructorUsedError;
-  String get address2 => throw _privateConstructorUsedError;
-  String get city => throw _privateConstructorUsedError;
-  String get country => throw _privateConstructorUsedError;
-  String get postalCode => throw _privateConstructorUsedError;
-  String get province => throw _privateConstructorUsedError;
+  String? get address1 => throw _privateConstructorUsedError;
+  String? get address2 => throw _privateConstructorUsedError;
+  String? get city => throw _privateConstructorUsedError;
+  String? get isoCode => throw _privateConstructorUsedError;
+  String? get postalCode => throw _privateConstructorUsedError;
+  String? get province => throw _privateConstructorUsedError;
 
   /// Serializes this AddressModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,12 +46,12 @@ abstract class $AddressModelCopyWith<$Res> {
   ) = _$AddressModelCopyWithImpl<$Res, AddressModel>;
   @useResult
   $Res call({
-    String address1,
-    String address2,
-    String city,
-    String country,
-    String postalCode,
-    String province,
+    String? address1,
+    String? address2,
+    String? city,
+    String? isoCode,
+    String? postalCode,
+    String? province,
   });
 }
 
@@ -70,45 +70,45 @@ class _$AddressModelCopyWithImpl<$Res, $Val extends AddressModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? address1 = null,
-    Object? address2 = null,
-    Object? city = null,
-    Object? country = null,
-    Object? postalCode = null,
-    Object? province = null,
+    Object? address1 = freezed,
+    Object? address2 = freezed,
+    Object? city = freezed,
+    Object? isoCode = freezed,
+    Object? postalCode = freezed,
+    Object? province = freezed,
   }) {
     return _then(
       _value.copyWith(
             address1:
-                null == address1
+                freezed == address1
                     ? _value.address1
                     : address1 // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as String?,
             address2:
-                null == address2
+                freezed == address2
                     ? _value.address2
                     : address2 // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as String?,
             city:
-                null == city
+                freezed == city
                     ? _value.city
                     : city // ignore: cast_nullable_to_non_nullable
-                        as String,
-            country:
-                null == country
-                    ? _value.country
-                    : country // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as String?,
+            isoCode:
+                freezed == isoCode
+                    ? _value.isoCode
+                    : isoCode // ignore: cast_nullable_to_non_nullable
+                        as String?,
             postalCode:
-                null == postalCode
+                freezed == postalCode
                     ? _value.postalCode
                     : postalCode // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as String?,
             province:
-                null == province
+                freezed == province
                     ? _value.province
                     : province // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as String?,
           )
           as $Val,
     );
@@ -125,12 +125,12 @@ abstract class _$$AddressModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    String address1,
-    String address2,
-    String city,
-    String country,
-    String postalCode,
-    String province,
+    String? address1,
+    String? address2,
+    String? city,
+    String? isoCode,
+    String? postalCode,
+    String? province,
   });
 }
 
@@ -148,45 +148,45 @@ class __$$AddressModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? address1 = null,
-    Object? address2 = null,
-    Object? city = null,
-    Object? country = null,
-    Object? postalCode = null,
-    Object? province = null,
+    Object? address1 = freezed,
+    Object? address2 = freezed,
+    Object? city = freezed,
+    Object? isoCode = freezed,
+    Object? postalCode = freezed,
+    Object? province = freezed,
   }) {
     return _then(
       _$AddressModelImpl(
         address1:
-            null == address1
+            freezed == address1
                 ? _value.address1
                 : address1 // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
         address2:
-            null == address2
+            freezed == address2
                 ? _value.address2
                 : address2 // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
         city:
-            null == city
+            freezed == city
                 ? _value.city
                 : city // ignore: cast_nullable_to_non_nullable
-                    as String,
-        country:
-            null == country
-                ? _value.country
-                : country // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
+        isoCode:
+            freezed == isoCode
+                ? _value.isoCode
+                : isoCode // ignore: cast_nullable_to_non_nullable
+                    as String?,
         postalCode:
-            null == postalCode
+            freezed == postalCode
                 ? _value.postalCode
                 : postalCode // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
         province:
-            null == province
+            freezed == province
                 ? _value.province
                 : province // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
       ),
     );
   }
@@ -196,33 +196,33 @@ class __$$AddressModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AddressModelImpl implements _AddressModel {
   const _$AddressModelImpl({
-    required this.address1,
-    required this.address2,
-    required this.city,
-    required this.country,
-    required this.postalCode,
-    required this.province,
+    this.address1,
+    this.address2,
+    this.city,
+    this.isoCode,
+    this.postalCode,
+    this.province,
   });
 
   factory _$AddressModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$AddressModelImplFromJson(json);
 
   @override
-  final String address1;
+  final String? address1;
   @override
-  final String address2;
+  final String? address2;
   @override
-  final String city;
+  final String? city;
   @override
-  final String country;
+  final String? isoCode;
   @override
-  final String postalCode;
+  final String? postalCode;
   @override
-  final String province;
+  final String? province;
 
   @override
   String toString() {
-    return 'AddressModel(address1: $address1, address2: $address2, city: $city, country: $country, postalCode: $postalCode, province: $province)';
+    return 'AddressModel(address1: $address1, address2: $address2, city: $city, isoCode: $isoCode, postalCode: $postalCode, province: $province)';
   }
 
   @override
@@ -235,7 +235,7 @@ class _$AddressModelImpl implements _AddressModel {
             (identical(other.address2, address2) ||
                 other.address2 == address2) &&
             (identical(other.city, city) || other.city == city) &&
-            (identical(other.country, country) || other.country == country) &&
+            (identical(other.isoCode, isoCode) || other.isoCode == isoCode) &&
             (identical(other.postalCode, postalCode) ||
                 other.postalCode == postalCode) &&
             (identical(other.province, province) ||
@@ -249,7 +249,7 @@ class _$AddressModelImpl implements _AddressModel {
     address1,
     address2,
     city,
-    country,
+    isoCode,
     postalCode,
     province,
   );
@@ -270,29 +270,29 @@ class _$AddressModelImpl implements _AddressModel {
 
 abstract class _AddressModel implements AddressModel {
   const factory _AddressModel({
-    required final String address1,
-    required final String address2,
-    required final String city,
-    required final String country,
-    required final String postalCode,
-    required final String province,
+    final String? address1,
+    final String? address2,
+    final String? city,
+    final String? isoCode,
+    final String? postalCode,
+    final String? province,
   }) = _$AddressModelImpl;
 
   factory _AddressModel.fromJson(Map<String, dynamic> json) =
       _$AddressModelImpl.fromJson;
 
   @override
-  String get address1;
+  String? get address1;
   @override
-  String get address2;
+  String? get address2;
   @override
-  String get city;
+  String? get city;
   @override
-  String get country;
+  String? get isoCode;
   @override
-  String get postalCode;
+  String? get postalCode;
   @override
-  String get province;
+  String? get province;
 
   /// Create a copy of AddressModel
   /// with the given fields replaced by the non-null parameter values.

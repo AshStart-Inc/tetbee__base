@@ -13,7 +13,6 @@ const IconData _errorIcon = FontAwesomeIcons.circleExclamation;
 @freezed
 class IconModel with _$IconModel {
   const factory IconModel({
-    required int id,
     required String unicode,
     required String style,
     String? name,

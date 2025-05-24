@@ -6,6 +6,7 @@ part 'work_place_type.g.dart';
 
 @freezed
 class WorkPlaceType with _$WorkPlaceType {
+  @JsonSerializable(explicitToJson: true)
   const factory WorkPlaceType({
     required String id,
     required String name,

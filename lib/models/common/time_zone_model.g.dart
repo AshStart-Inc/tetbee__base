@@ -8,10 +8,10 @@ part of 'time_zone_model.dart';
 
 _$TimeZoneModelImpl _$$TimeZoneModelImplFromJson(Map<String, dynamic> json) =>
     _$TimeZoneModelImpl(
-      location: json['location'] as String,
-      timeZoneName: json['timeZoneName'] as String,
-      offsetMilliseconds: (json['offsetMilliseconds'] as num).toInt(),
-      isDst: json['isDst'] as bool,
+      location: json['location'] as String? ?? '',
+      timeZoneName: json['timeZoneName'] as String? ?? '',
+      offsetMilliseconds: (json['offsetMilliseconds'] as num?)?.toInt() ?? 0,
+      isDst: json['isDst'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$TimeZoneModelImplToJson(_$TimeZoneModelImpl instance) =>

@@ -31,6 +31,7 @@ mixin _$UserSettings {
   bool get showProfileInfo => throw _privateConstructorUsedError;
   bool get showWorkHistory => throw _privateConstructorUsedError;
   bool get showWorkPlaceList => throw _privateConstructorUsedError;
+  bool get use24HourFormat => throw _privateConstructorUsedError;
 
   /// Serializes this UserSettings to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -60,6 +61,7 @@ abstract class $UserSettingsCopyWith<$Res> {
     bool showProfileInfo,
     bool showWorkHistory,
     bool showWorkPlaceList,
+    bool use24HourFormat,
   });
 }
 
@@ -88,6 +90,7 @@ class _$UserSettingsCopyWithImpl<$Res, $Val extends UserSettings>
     Object? showProfileInfo = null,
     Object? showWorkHistory = null,
     Object? showWorkPlaceList = null,
+    Object? use24HourFormat = null,
   }) {
     return _then(
       _value.copyWith(
@@ -141,6 +144,11 @@ class _$UserSettingsCopyWithImpl<$Res, $Val extends UserSettings>
                     ? _value.showWorkPlaceList
                     : showWorkPlaceList // ignore: cast_nullable_to_non_nullable
                         as bool,
+            use24HourFormat:
+                null == use24HourFormat
+                    ? _value.use24HourFormat
+                    : use24HourFormat // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -167,6 +175,7 @@ abstract class _$$UserSettingsImplCopyWith<$Res>
     bool showProfileInfo,
     bool showWorkHistory,
     bool showWorkPlaceList,
+    bool use24HourFormat,
   });
 }
 
@@ -194,6 +203,7 @@ class __$$UserSettingsImplCopyWithImpl<$Res>
     Object? showProfileInfo = null,
     Object? showWorkHistory = null,
     Object? showWorkPlaceList = null,
+    Object? use24HourFormat = null,
   }) {
     return _then(
       _$UserSettingsImpl(
@@ -247,6 +257,11 @@ class __$$UserSettingsImplCopyWithImpl<$Res>
                 ? _value.showWorkPlaceList
                 : showWorkPlaceList // ignore: cast_nullable_to_non_nullable
                     as bool,
+        use24HourFormat:
+            null == use24HourFormat
+                ? _value.use24HourFormat
+                : use24HourFormat // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -266,6 +281,7 @@ class _$UserSettingsImpl implements _UserSettings {
     this.showProfileInfo = true,
     this.showWorkHistory = true,
     this.showWorkPlaceList = true,
+    this.use24HourFormat = true,
   });
 
   factory _$UserSettingsImpl.fromJson(Map<String, dynamic> json) =>
@@ -301,10 +317,13 @@ class _$UserSettingsImpl implements _UserSettings {
   @override
   @JsonKey()
   final bool showWorkPlaceList;
+  @override
+  @JsonKey()
+  final bool use24HourFormat;
 
   @override
   String toString() {
-    return 'UserSettings(timeFormat: $timeFormat, appTheme: $appTheme, baseFontSize: $baseFontSize, homeScreenShowMySchedule: $homeScreenShowMySchedule, didRateApp: $didRateApp, showAddress: $showAddress, showCV: $showCV, showProfileInfo: $showProfileInfo, showWorkHistory: $showWorkHistory, showWorkPlaceList: $showWorkPlaceList)';
+    return 'UserSettings(timeFormat: $timeFormat, appTheme: $appTheme, baseFontSize: $baseFontSize, homeScreenShowMySchedule: $homeScreenShowMySchedule, didRateApp: $didRateApp, showAddress: $showAddress, showCV: $showCV, showProfileInfo: $showProfileInfo, showWorkHistory: $showWorkHistory, showWorkPlaceList: $showWorkPlaceList, use24HourFormat: $use24HourFormat)';
   }
 
   @override
@@ -333,7 +352,9 @@ class _$UserSettingsImpl implements _UserSettings {
             (identical(other.showWorkHistory, showWorkHistory) ||
                 other.showWorkHistory == showWorkHistory) &&
             (identical(other.showWorkPlaceList, showWorkPlaceList) ||
-                other.showWorkPlaceList == showWorkPlaceList));
+                other.showWorkPlaceList == showWorkPlaceList) &&
+            (identical(other.use24HourFormat, use24HourFormat) ||
+                other.use24HourFormat == use24HourFormat));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -350,6 +371,7 @@ class _$UserSettingsImpl implements _UserSettings {
     showProfileInfo,
     showWorkHistory,
     showWorkPlaceList,
+    use24HourFormat,
   );
 
   /// Create a copy of UserSettings
@@ -378,6 +400,7 @@ abstract class _UserSettings implements UserSettings {
     final bool showProfileInfo,
     final bool showWorkHistory,
     final bool showWorkPlaceList,
+    final bool use24HourFormat,
   }) = _$UserSettingsImpl;
 
   factory _UserSettings.fromJson(Map<String, dynamic> json) =
@@ -403,6 +426,8 @@ abstract class _UserSettings implements UserSettings {
   bool get showWorkHistory;
   @override
   bool get showWorkPlaceList;
+  @override
+  bool get use24HourFormat;
 
   /// Create a copy of UserSettings
   /// with the given fields replaced by the non-null parameter values.

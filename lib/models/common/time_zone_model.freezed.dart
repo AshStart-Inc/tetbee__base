@@ -166,22 +166,26 @@ class __$$TimeZoneModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TimeZoneModelImpl implements _TimeZoneModel {
   const _$TimeZoneModelImpl({
-    required this.location,
-    required this.timeZoneName,
-    required this.offsetMilliseconds,
-    required this.isDst,
+    this.location = '',
+    this.timeZoneName = '',
+    this.offsetMilliseconds = 0,
+    this.isDst = false,
   });
 
   factory _$TimeZoneModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$TimeZoneModelImplFromJson(json);
 
   @override
+  @JsonKey()
   final String location;
   @override
+  @JsonKey()
   final String timeZoneName;
   @override
+  @JsonKey()
   final int offsetMilliseconds;
   @override
+  @JsonKey()
   final bool isDst;
 
   @override
@@ -229,10 +233,10 @@ class _$TimeZoneModelImpl implements _TimeZoneModel {
 
 abstract class _TimeZoneModel implements TimeZoneModel {
   const factory _TimeZoneModel({
-    required final String location,
-    required final String timeZoneName,
-    required final int offsetMilliseconds,
-    required final bool isDst,
+    final String location,
+    final String timeZoneName,
+    final int offsetMilliseconds,
+    final bool isDst,
   }) = _$TimeZoneModelImpl;
 
   factory _TimeZoneModel.fromJson(Map<String, dynamic> json) =

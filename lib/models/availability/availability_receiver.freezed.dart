@@ -21,18 +21,22 @@ AvailabilityReceiver _$AvailabilityReceiverFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AvailabilityReceiver {
-  String get id => throw _privateConstructorUsedError;
-  String get workPlaceId => throw _privateConstructorUsedError;
-  String get workPlaceNickName => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
   DateTime? get createdAt => throw _privateConstructorUsedError;
   String get createdBy => throw _privateConstructorUsedError;
   @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
   DateTime? get updatedAt => throw _privateConstructorUsedError;
+  bool get deleted => throw _privateConstructorUsedError;
+  List<String> get excludedUserList => throw _privateConstructorUsedError;
   String get updatedBy => throw _privateConstructorUsedError;
-  List<String> get userList => throw _privateConstructorUsedError;
   bool get isOpened => throw _privateConstructorUsedError;
-  String get startDate => throw _privateConstructorUsedError;
+  @JsonKey(toJson: Helpers.listDateToJson, fromJson: Helpers.listDateFromJson)
+  List<DateTime> get dateTimes => throw _privateConstructorUsedError;
+  Map<String, UserAvailabilitySubmissionInfo> get userSubmissionInfo =>
+      throw _privateConstructorUsedError;
+  AvailabilityReceiverSetting get availabilityReceiverSetting =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this AvailabilityReceiver to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -52,19 +56,23 @@ abstract class $AvailabilityReceiverCopyWith<$Res> {
   ) = _$AvailabilityReceiverCopyWithImpl<$Res, AvailabilityReceiver>;
   @useResult
   $Res call({
-    String id,
-    String workPlaceId,
-    String workPlaceNickName,
+    String? id,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     DateTime? createdAt,
     String createdBy,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     DateTime? updatedAt,
+    bool deleted,
+    List<String> excludedUserList,
     String updatedBy,
-    List<String> userList,
     bool isOpened,
-    String startDate,
+    @JsonKey(toJson: Helpers.listDateToJson, fromJson: Helpers.listDateFromJson)
+    List<DateTime> dateTimes,
+    Map<String, UserAvailabilitySubmissionInfo> userSubmissionInfo,
+    AvailabilityReceiverSetting availabilityReceiverSetting,
   });
+
+  $AvailabilityReceiverSettingCopyWith<$Res> get availabilityReceiverSetting;
 }
 
 /// @nodoc
@@ -85,34 +93,25 @@ class _$AvailabilityReceiverCopyWithImpl<
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? workPlaceId = null,
-    Object? workPlaceNickName = null,
+    Object? id = freezed,
     Object? createdAt = freezed,
     Object? createdBy = null,
     Object? updatedAt = freezed,
+    Object? deleted = null,
+    Object? excludedUserList = null,
     Object? updatedBy = null,
-    Object? userList = null,
     Object? isOpened = null,
-    Object? startDate = null,
+    Object? dateTimes = null,
+    Object? userSubmissionInfo = null,
+    Object? availabilityReceiverSetting = null,
   }) {
     return _then(
       _value.copyWith(
             id:
-                null == id
+                freezed == id
                     ? _value.id
                     : id // ignore: cast_nullable_to_non_nullable
-                        as String,
-            workPlaceId:
-                null == workPlaceId
-                    ? _value.workPlaceId
-                    : workPlaceId // ignore: cast_nullable_to_non_nullable
-                        as String,
-            workPlaceNickName:
-                null == workPlaceNickName
-                    ? _value.workPlaceNickName
-                    : workPlaceNickName // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as String?,
             createdAt:
                 freezed == createdAt
                     ? _value.createdAt
@@ -128,28 +127,58 @@ class _$AvailabilityReceiverCopyWithImpl<
                     ? _value.updatedAt
                     : updatedAt // ignore: cast_nullable_to_non_nullable
                         as DateTime?,
+            deleted:
+                null == deleted
+                    ? _value.deleted
+                    : deleted // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            excludedUserList:
+                null == excludedUserList
+                    ? _value.excludedUserList
+                    : excludedUserList // ignore: cast_nullable_to_non_nullable
+                        as List<String>,
             updatedBy:
                 null == updatedBy
                     ? _value.updatedBy
                     : updatedBy // ignore: cast_nullable_to_non_nullable
                         as String,
-            userList:
-                null == userList
-                    ? _value.userList
-                    : userList // ignore: cast_nullable_to_non_nullable
-                        as List<String>,
             isOpened:
                 null == isOpened
                     ? _value.isOpened
                     : isOpened // ignore: cast_nullable_to_non_nullable
                         as bool,
-            startDate:
-                null == startDate
-                    ? _value.startDate
-                    : startDate // ignore: cast_nullable_to_non_nullable
-                        as String,
+            dateTimes:
+                null == dateTimes
+                    ? _value.dateTimes
+                    : dateTimes // ignore: cast_nullable_to_non_nullable
+                        as List<DateTime>,
+            userSubmissionInfo:
+                null == userSubmissionInfo
+                    ? _value.userSubmissionInfo
+                    : userSubmissionInfo // ignore: cast_nullable_to_non_nullable
+                        as Map<String, UserAvailabilitySubmissionInfo>,
+            availabilityReceiverSetting:
+                null == availabilityReceiverSetting
+                    ? _value.availabilityReceiverSetting
+                    : availabilityReceiverSetting // ignore: cast_nullable_to_non_nullable
+                        as AvailabilityReceiverSetting,
           )
           as $Val,
+    );
+  }
+
+  /// Create a copy of AvailabilityReceiver
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AvailabilityReceiverSettingCopyWith<$Res> get availabilityReceiverSetting {
+    return $AvailabilityReceiverSettingCopyWith<$Res>(
+      _value.availabilityReceiverSetting,
+      (value) {
+        return _then(
+          _value.copyWith(availabilityReceiverSetting: value) as $Val,
+        );
+      },
     );
   }
 }
@@ -164,19 +193,24 @@ abstract class _$$AavailabilityReceiverImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    String id,
-    String workPlaceId,
-    String workPlaceNickName,
+    String? id,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     DateTime? createdAt,
     String createdBy,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     DateTime? updatedAt,
+    bool deleted,
+    List<String> excludedUserList,
     String updatedBy,
-    List<String> userList,
     bool isOpened,
-    String startDate,
+    @JsonKey(toJson: Helpers.listDateToJson, fromJson: Helpers.listDateFromJson)
+    List<DateTime> dateTimes,
+    Map<String, UserAvailabilitySubmissionInfo> userSubmissionInfo,
+    AvailabilityReceiverSetting availabilityReceiverSetting,
   });
+
+  @override
+  $AvailabilityReceiverSettingCopyWith<$Res> get availabilityReceiverSetting;
 }
 
 /// @nodoc
@@ -194,34 +228,25 @@ class __$$AavailabilityReceiverImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? workPlaceId = null,
-    Object? workPlaceNickName = null,
+    Object? id = freezed,
     Object? createdAt = freezed,
     Object? createdBy = null,
     Object? updatedAt = freezed,
+    Object? deleted = null,
+    Object? excludedUserList = null,
     Object? updatedBy = null,
-    Object? userList = null,
     Object? isOpened = null,
-    Object? startDate = null,
+    Object? dateTimes = null,
+    Object? userSubmissionInfo = null,
+    Object? availabilityReceiverSetting = null,
   }) {
     return _then(
       _$AavailabilityReceiverImpl(
         id:
-            null == id
+            freezed == id
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
-                    as String,
-        workPlaceId:
-            null == workPlaceId
-                ? _value.workPlaceId
-                : workPlaceId // ignore: cast_nullable_to_non_nullable
-                    as String,
-        workPlaceNickName:
-            null == workPlaceNickName
-                ? _value.workPlaceNickName
-                : workPlaceNickName // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
         createdAt:
             freezed == createdAt
                 ? _value.createdAt
@@ -237,84 +262,129 @@ class __$$AavailabilityReceiverImplCopyWithImpl<$Res>
                 ? _value.updatedAt
                 : updatedAt // ignore: cast_nullable_to_non_nullable
                     as DateTime?,
+        deleted:
+            null == deleted
+                ? _value.deleted
+                : deleted // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        excludedUserList:
+            null == excludedUserList
+                ? _value._excludedUserList
+                : excludedUserList // ignore: cast_nullable_to_non_nullable
+                    as List<String>,
         updatedBy:
             null == updatedBy
                 ? _value.updatedBy
                 : updatedBy // ignore: cast_nullable_to_non_nullable
                     as String,
-        userList:
-            null == userList
-                ? _value._userList
-                : userList // ignore: cast_nullable_to_non_nullable
-                    as List<String>,
         isOpened:
             null == isOpened
                 ? _value.isOpened
                 : isOpened // ignore: cast_nullable_to_non_nullable
                     as bool,
-        startDate:
-            null == startDate
-                ? _value.startDate
-                : startDate // ignore: cast_nullable_to_non_nullable
-                    as String,
+        dateTimes:
+            null == dateTimes
+                ? _value._dateTimes
+                : dateTimes // ignore: cast_nullable_to_non_nullable
+                    as List<DateTime>,
+        userSubmissionInfo:
+            null == userSubmissionInfo
+                ? _value._userSubmissionInfo
+                : userSubmissionInfo // ignore: cast_nullable_to_non_nullable
+                    as Map<String, UserAvailabilitySubmissionInfo>,
+        availabilityReceiverSetting:
+            null == availabilityReceiverSetting
+                ? _value.availabilityReceiverSetting
+                : availabilityReceiverSetting // ignore: cast_nullable_to_non_nullable
+                    as AvailabilityReceiverSetting,
       ),
     );
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$AavailabilityReceiverImpl implements AavailabilityReceiver {
   const _$AavailabilityReceiverImpl({
-    required this.id,
-    required this.workPlaceId,
-    required this.workPlaceNickName,
+    this.id,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     this.createdAt,
-    required this.createdBy,
+    this.createdBy = '',
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     this.updatedAt,
-    required this.updatedBy,
-    required final List<String> userList,
-    required this.isOpened,
-    required this.startDate,
-  }) : _userList = userList;
+    this.deleted = false,
+    final List<String> excludedUserList = const [],
+    this.updatedBy = '',
+    this.isOpened = false,
+    @JsonKey(toJson: Helpers.listDateToJson, fromJson: Helpers.listDateFromJson)
+    final List<DateTime> dateTimes = const [],
+    final Map<String, UserAvailabilitySubmissionInfo> userSubmissionInfo =
+        const {},
+    this.availabilityReceiverSetting = const AvailabilityReceiverSetting(),
+  }) : _excludedUserList = excludedUserList,
+       _dateTimes = dateTimes,
+       _userSubmissionInfo = userSubmissionInfo;
 
   factory _$AavailabilityReceiverImpl.fromJson(Map<String, dynamic> json) =>
       _$$AavailabilityReceiverImplFromJson(json);
 
   @override
-  final String id;
-  @override
-  final String workPlaceId;
-  @override
-  final String workPlaceNickName;
+  final String? id;
   @override
   @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
   final DateTime? createdAt;
   @override
+  @JsonKey()
   final String createdBy;
   @override
   @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
   final DateTime? updatedAt;
   @override
-  final String updatedBy;
-  final List<String> _userList;
+  @JsonKey()
+  final bool deleted;
+  final List<String> _excludedUserList;
   @override
-  List<String> get userList {
-    if (_userList is EqualUnmodifiableListView) return _userList;
+  @JsonKey()
+  List<String> get excludedUserList {
+    if (_excludedUserList is EqualUnmodifiableListView)
+      return _excludedUserList;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_userList);
+    return EqualUnmodifiableListView(_excludedUserList);
   }
 
   @override
-  final bool isOpened;
+  @JsonKey()
+  final String updatedBy;
   @override
-  final String startDate;
+  @JsonKey()
+  final bool isOpened;
+  final List<DateTime> _dateTimes;
+  @override
+  @JsonKey(toJson: Helpers.listDateToJson, fromJson: Helpers.listDateFromJson)
+  List<DateTime> get dateTimes {
+    if (_dateTimes is EqualUnmodifiableListView) return _dateTimes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_dateTimes);
+  }
+
+  final Map<String, UserAvailabilitySubmissionInfo> _userSubmissionInfo;
+  @override
+  @JsonKey()
+  Map<String, UserAvailabilitySubmissionInfo> get userSubmissionInfo {
+    if (_userSubmissionInfo is EqualUnmodifiableMapView)
+      return _userSubmissionInfo;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_userSubmissionInfo);
+  }
+
+  @override
+  @JsonKey()
+  final AvailabilityReceiverSetting availabilityReceiverSetting;
 
   @override
   String toString() {
-    return 'AvailabilityReceiver(id: $id, workPlaceId: $workPlaceId, workPlaceNickName: $workPlaceNickName, createdAt: $createdAt, createdBy: $createdBy, updatedAt: $updatedAt, updatedBy: $updatedBy, userList: $userList, isOpened: $isOpened, startDate: $startDate)';
+    return 'AvailabilityReceiver(id: $id, createdAt: $createdAt, createdBy: $createdBy, updatedAt: $updatedAt, deleted: $deleted, excludedUserList: $excludedUserList, updatedBy: $updatedBy, isOpened: $isOpened, dateTimes: $dateTimes, userSubmissionInfo: $userSubmissionInfo, availabilityReceiverSetting: $availabilityReceiverSetting)';
   }
 
   @override
@@ -323,23 +393,35 @@ class _$AavailabilityReceiverImpl implements AavailabilityReceiver {
         (other.runtimeType == runtimeType &&
             other is _$AavailabilityReceiverImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.workPlaceId, workPlaceId) ||
-                other.workPlaceId == workPlaceId) &&
-            (identical(other.workPlaceNickName, workPlaceNickName) ||
-                other.workPlaceNickName == workPlaceNickName) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.createdBy, createdBy) ||
                 other.createdBy == createdBy) &&
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt) &&
+            (identical(other.deleted, deleted) || other.deleted == deleted) &&
+            const DeepCollectionEquality().equals(
+              other._excludedUserList,
+              _excludedUserList,
+            ) &&
             (identical(other.updatedBy, updatedBy) ||
                 other.updatedBy == updatedBy) &&
-            const DeepCollectionEquality().equals(other._userList, _userList) &&
             (identical(other.isOpened, isOpened) ||
                 other.isOpened == isOpened) &&
-            (identical(other.startDate, startDate) ||
-                other.startDate == startDate));
+            const DeepCollectionEquality().equals(
+              other._dateTimes,
+              _dateTimes,
+            ) &&
+            const DeepCollectionEquality().equals(
+              other._userSubmissionInfo,
+              _userSubmissionInfo,
+            ) &&
+            (identical(
+                  other.availabilityReceiverSetting,
+                  availabilityReceiverSetting,
+                ) ||
+                other.availabilityReceiverSetting ==
+                    availabilityReceiverSetting));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -347,15 +429,16 @@ class _$AavailabilityReceiverImpl implements AavailabilityReceiver {
   int get hashCode => Object.hash(
     runtimeType,
     id,
-    workPlaceId,
-    workPlaceNickName,
     createdAt,
     createdBy,
     updatedAt,
+    deleted,
+    const DeepCollectionEquality().hash(_excludedUserList),
     updatedBy,
-    const DeepCollectionEquality().hash(_userList),
     isOpened,
-    startDate,
+    const DeepCollectionEquality().hash(_dateTimes),
+    const DeepCollectionEquality().hash(_userSubmissionInfo),
+    availabilityReceiverSetting,
   );
 
   /// Create a copy of AvailabilityReceiver
@@ -378,29 +461,27 @@ class _$AavailabilityReceiverImpl implements AavailabilityReceiver {
 
 abstract class AavailabilityReceiver implements AvailabilityReceiver {
   const factory AavailabilityReceiver({
-    required final String id,
-    required final String workPlaceId,
-    required final String workPlaceNickName,
+    final String? id,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     final DateTime? createdAt,
-    required final String createdBy,
+    final String createdBy,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     final DateTime? updatedAt,
-    required final String updatedBy,
-    required final List<String> userList,
-    required final bool isOpened,
-    required final String startDate,
+    final bool deleted,
+    final List<String> excludedUserList,
+    final String updatedBy,
+    final bool isOpened,
+    @JsonKey(toJson: Helpers.listDateToJson, fromJson: Helpers.listDateFromJson)
+    final List<DateTime> dateTimes,
+    final Map<String, UserAvailabilitySubmissionInfo> userSubmissionInfo,
+    final AvailabilityReceiverSetting availabilityReceiverSetting,
   }) = _$AavailabilityReceiverImpl;
 
   factory AavailabilityReceiver.fromJson(Map<String, dynamic> json) =
       _$AavailabilityReceiverImpl.fromJson;
 
   @override
-  String get id;
-  @override
-  String get workPlaceId;
-  @override
-  String get workPlaceNickName;
+  String? get id;
   @override
   @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
   DateTime? get createdAt;
@@ -410,13 +491,20 @@ abstract class AavailabilityReceiver implements AvailabilityReceiver {
   @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
   DateTime? get updatedAt;
   @override
-  String get updatedBy;
+  bool get deleted;
   @override
-  List<String> get userList;
+  List<String> get excludedUserList;
+  @override
+  String get updatedBy;
   @override
   bool get isOpened;
   @override
-  String get startDate;
+  @JsonKey(toJson: Helpers.listDateToJson, fromJson: Helpers.listDateFromJson)
+  List<DateTime> get dateTimes;
+  @override
+  Map<String, UserAvailabilitySubmissionInfo> get userSubmissionInfo;
+  @override
+  AvailabilityReceiverSetting get availabilityReceiverSetting;
 
   /// Create a copy of AvailabilityReceiver
   /// with the given fields replaced by the non-null parameter values.

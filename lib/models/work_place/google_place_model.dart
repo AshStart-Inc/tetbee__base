@@ -6,12 +6,11 @@ part 'google_place_model.g.dart';
 @freezed
 class GooglePlaceModel with _$GooglePlaceModel {
   const factory GooglePlaceModel({
-    required String address,
-    required String countryCode,
-    required String latitude,
-    required String longitude,
-    required String name,
     required String googlePlaceId,
+    String? name,
+    double? latitude,
+    double? longitude,
+    String? description,
   }) = _GooglePlaceModel;
 
   factory GooglePlaceModel.fromJson(Map<String, dynamic> json) =>

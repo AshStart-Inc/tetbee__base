@@ -21,9 +21,8 @@ PhoneNumberModel _$PhoneNumberModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PhoneNumberModel {
-  String get dialCode => throw _privateConstructorUsedError;
   String get isoCode => throw _privateConstructorUsedError;
-  String get phoneNumber => throw _privateConstructorUsedError;
+  String? get phoneNumber => throw _privateConstructorUsedError;
 
   /// Serializes this PhoneNumberModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,7 +41,7 @@ abstract class $PhoneNumberModelCopyWith<$Res> {
     $Res Function(PhoneNumberModel) then,
   ) = _$PhoneNumberModelCopyWithImpl<$Res, PhoneNumberModel>;
   @useResult
-  $Res call({String dialCode, String isoCode, String phoneNumber});
+  $Res call({String isoCode, String? phoneNumber});
 }
 
 /// @nodoc
@@ -59,28 +58,19 @@ class _$PhoneNumberModelCopyWithImpl<$Res, $Val extends PhoneNumberModel>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? dialCode = null,
-    Object? isoCode = null,
-    Object? phoneNumber = null,
-  }) {
+  $Res call({Object? isoCode = null, Object? phoneNumber = freezed}) {
     return _then(
       _value.copyWith(
-            dialCode:
-                null == dialCode
-                    ? _value.dialCode
-                    : dialCode // ignore: cast_nullable_to_non_nullable
-                        as String,
             isoCode:
                 null == isoCode
                     ? _value.isoCode
                     : isoCode // ignore: cast_nullable_to_non_nullable
                         as String,
             phoneNumber:
-                null == phoneNumber
+                freezed == phoneNumber
                     ? _value.phoneNumber
                     : phoneNumber // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as String?,
           )
           as $Val,
     );
@@ -96,7 +86,7 @@ abstract class _$$PhoneNumberModelImplCopyWith<$Res>
   ) = __$$PhoneNumberModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String dialCode, String isoCode, String phoneNumber});
+  $Res call({String isoCode, String? phoneNumber});
 }
 
 /// @nodoc
@@ -112,28 +102,19 @@ class __$$PhoneNumberModelImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? dialCode = null,
-    Object? isoCode = null,
-    Object? phoneNumber = null,
-  }) {
+  $Res call({Object? isoCode = null, Object? phoneNumber = freezed}) {
     return _then(
       _$PhoneNumberModelImpl(
-        dialCode:
-            null == dialCode
-                ? _value.dialCode
-                : dialCode // ignore: cast_nullable_to_non_nullable
-                    as String,
         isoCode:
             null == isoCode
                 ? _value.isoCode
                 : isoCode // ignore: cast_nullable_to_non_nullable
                     as String,
         phoneNumber:
-            null == phoneNumber
+            freezed == phoneNumber
                 ? _value.phoneNumber
                 : phoneNumber // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
       ),
     );
   }
@@ -142,25 +123,19 @@ class __$$PhoneNumberModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PhoneNumberModelImpl implements _PhoneNumberModel {
-  const _$PhoneNumberModelImpl({
-    required this.dialCode,
-    required this.isoCode,
-    required this.phoneNumber,
-  });
+  const _$PhoneNumberModelImpl({required this.isoCode, this.phoneNumber});
 
   factory _$PhoneNumberModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PhoneNumberModelImplFromJson(json);
 
   @override
-  final String dialCode;
-  @override
   final String isoCode;
   @override
-  final String phoneNumber;
+  final String? phoneNumber;
 
   @override
   String toString() {
-    return 'PhoneNumberModel(dialCode: $dialCode, isoCode: $isoCode, phoneNumber: $phoneNumber)';
+    return 'PhoneNumberModel(isoCode: $isoCode, phoneNumber: $phoneNumber)';
   }
 
   @override
@@ -168,8 +143,6 @@ class _$PhoneNumberModelImpl implements _PhoneNumberModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PhoneNumberModelImpl &&
-            (identical(other.dialCode, dialCode) ||
-                other.dialCode == dialCode) &&
             (identical(other.isoCode, isoCode) || other.isoCode == isoCode) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber));
@@ -177,7 +150,7 @@ class _$PhoneNumberModelImpl implements _PhoneNumberModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, dialCode, isoCode, phoneNumber);
+  int get hashCode => Object.hash(runtimeType, isoCode, phoneNumber);
 
   /// Create a copy of PhoneNumberModel
   /// with the given fields replaced by the non-null parameter values.
@@ -198,20 +171,17 @@ class _$PhoneNumberModelImpl implements _PhoneNumberModel {
 
 abstract class _PhoneNumberModel implements PhoneNumberModel {
   const factory _PhoneNumberModel({
-    required final String dialCode,
     required final String isoCode,
-    required final String phoneNumber,
+    final String? phoneNumber,
   }) = _$PhoneNumberModelImpl;
 
   factory _PhoneNumberModel.fromJson(Map<String, dynamic> json) =
       _$PhoneNumberModelImpl.fromJson;
 
   @override
-  String get dialCode;
-  @override
   String get isoCode;
   @override
-  String get phoneNumber;
+  String? get phoneNumber;
 
   /// Create a copy of PhoneNumberModel
   /// with the given fields replaced by the non-null parameter values.

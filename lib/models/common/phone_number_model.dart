@@ -6,9 +6,8 @@ part 'phone_number_model.g.dart';
 @freezed
 class PhoneNumberModel with _$PhoneNumberModel {
   const factory PhoneNumberModel({
-    required String dialCode,
     required String isoCode,
-    required String phoneNumber,
+    String? phoneNumber,
   }) = _PhoneNumberModel;
 
   factory PhoneNumberModel.fromJson(Map<String, dynamic> json) =>

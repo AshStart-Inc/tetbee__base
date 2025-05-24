@@ -4,6 +4,7 @@ import 'package:tetbee__base/utils/enums.dart';
 part 'user_settings.freezed.dart';
 part 'user_settings.g.dart';
 
+// @JsonSerializable()
 @freezed
 class UserSettings with _$UserSettings {
   const factory UserSettings({
@@ -17,6 +18,7 @@ class UserSettings with _$UserSettings {
     @Default(true) bool showProfileInfo,
     @Default(true) bool showWorkHistory,
     @Default(true) bool showWorkPlaceList,
+    @Default(true) bool use24HourFormat,
   }) = _UserSettings;
 
   factory UserSettings.fromJson(Map<String, dynamic> json) =>

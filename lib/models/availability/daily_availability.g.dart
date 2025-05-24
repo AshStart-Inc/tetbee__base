@@ -9,20 +9,22 @@ part of 'daily_availability.dart';
 _$DailyAvailabilityImpl _$$DailyAvailabilityImplFromJson(
   Map<String, dynamic> json,
 ) => _$DailyAvailabilityImpl(
-  userId: json['userId'] as String,
   weekDay: (json['weekDay'] as num).toInt(),
+  date: json['date'] == null ? null : DateTime.parse(json['date'] as String),
   comment: json['comment'] as String?,
   canWorkButNotPreferToWork:
       json['canWorkButNotPreferToWork'] as bool? ?? false,
-  time: RangedTimeModel.fromJson(json['time'] as Map<String, dynamic>),
+  timeRange: RangedTimeModel.fromJson(
+    json['timeRange'] as Map<String, dynamic>,
+  ),
 );
 
 Map<String, dynamic> _$$DailyAvailabilityImplToJson(
   _$DailyAvailabilityImpl instance,
 ) => <String, dynamic>{
-  'userId': instance.userId,
   'weekDay': instance.weekDay,
+  'date': instance.date?.toIso8601String(),
   'comment': instance.comment,
   'canWorkButNotPreferToWork': instance.canWorkButNotPreferToWork,
-  'time': instance.time,
+  'timeRange': instance.timeRange.toJson(),
 };

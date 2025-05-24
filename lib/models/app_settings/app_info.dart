@@ -7,15 +7,16 @@ part 'app_info.g.dart';
 
 @freezed
 class AppInfo with _$AppInfo {
+  @JsonSerializable(explicitToJson: true)
   const factory AppInfo({
     required List<Membership> memberships,
+    required List<WorkPlaceType> workPlaceType,
     String? androidBannerId,
     String? iosBannerId,
     required bool isCreateUserAllowed,
     required bool isCreatePlaceAllowed,
     required bool showAds,
     String? versionCode,
-    required List<WorkPlaceType> workPlaceType,
   }) = _AppInfo;
 
   factory AppInfo.fromJson(Map<String, dynamic> json) =>

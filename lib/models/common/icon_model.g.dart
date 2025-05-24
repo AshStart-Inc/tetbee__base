@@ -8,7 +8,6 @@ part of 'icon_model.dart';
 
 _$IconModelImpl _$$IconModelImplFromJson(Map<String, dynamic> json) =>
     _$IconModelImpl(
-      id: (json['id'] as num).toInt(),
       unicode: json['unicode'] as String,
       style: json['style'] as String,
       name: json['name'] as String?,
@@ -17,7 +16,6 @@ _$IconModelImpl _$$IconModelImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$IconModelImplToJson(_$IconModelImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
       'unicode': instance.unicode,
       'style': instance.style,
       'name': instance.name,

@@ -9,15 +9,31 @@ part of 'availability_receiver_setting.dart';
 _$AvailabilityReceiverSettingImpl _$$AvailabilityReceiverSettingImplFromJson(
   Map<String, dynamic> json,
 ) => _$AvailabilityReceiverSettingImpl(
-  showNotPreferedDayChecker: json['showNotPreferedDayChecker'] as bool,
-  useDailyComment: json['useDailyComment'] as bool,
-  timeInterval: (json['timeInterval'] as num).toInt(),
+  type:
+      $enumDecodeNullable(_$DateRangeTypeEnumMap, json['type']) ??
+      DateRangeType.rangedDate,
+  showNotPreferedDayChecker: json['showNotPreferedDayChecker'] as bool? ?? true,
+  useDailyComment: json['useDailyComment'] as bool? ?? true,
+  timeInterval: (json['timeInterval'] as num?)?.toInt() ?? 15,
+  dailyAvailabilityTimeRange:
+      (json['dailyAvailabilityTimeRange'] as List<dynamic>?)
+          ?.map((e) => DailyAvailability.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      const [],
 );
 
 Map<String, dynamic> _$$AvailabilityReceiverSettingImplToJson(
   _$AvailabilityReceiverSettingImpl instance,
 ) => <String, dynamic>{
+  'type': _$DateRangeTypeEnumMap[instance.type]!,
   'showNotPreferedDayChecker': instance.showNotPreferedDayChecker,
   'useDailyComment': instance.useDailyComment,
   'timeInterval': instance.timeInterval,
+  'dailyAvailabilityTimeRange':
+      instance.dailyAvailabilityTimeRange.map((e) => e.toJson()).toList(),
+};
+
+const _$DateRangeTypeEnumMap = {
+  DateRangeType.multipleDates: 'multipleDates',
+  DateRangeType.rangedDate: 'rangedDate',
 };

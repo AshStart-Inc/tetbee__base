@@ -9,30 +9,52 @@ part of 'availability_receiver.dart';
 _$AavailabilityReceiverImpl _$$AavailabilityReceiverImplFromJson(
   Map<String, dynamic> json,
 ) => _$AavailabilityReceiverImpl(
-  id: json['id'] as String,
-  workPlaceId: json['workPlaceId'] as String,
-  workPlaceNickName: json['workPlaceNickName'] as String,
+  id: json['id'] as String?,
   createdAt: Helpers.dateFromJson((json['createdAt'] as num?)?.toInt()),
-  createdBy: json['createdBy'] as String,
+  createdBy: json['createdBy'] as String? ?? '',
   updatedAt: Helpers.dateFromJson((json['updatedAt'] as num?)?.toInt()),
-  updatedBy: json['updatedBy'] as String,
-  userList:
-      (json['userList'] as List<dynamic>).map((e) => e as String).toList(),
-  isOpened: json['isOpened'] as bool,
-  startDate: json['startDate'] as String,
+  deleted: json['deleted'] as bool? ?? false,
+  excludedUserList:
+      (json['excludedUserList'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      const [],
+  updatedBy: json['updatedBy'] as String? ?? '',
+  isOpened: json['isOpened'] as bool? ?? false,
+  dateTimes:
+      json['dateTimes'] == null
+          ? const []
+          : Helpers.listDateFromJson(json['dateTimes'] as List),
+  userSubmissionInfo:
+      (json['userSubmissionInfo'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(
+          k,
+          UserAvailabilitySubmissionInfo.fromJson(e as Map<String, dynamic>),
+        ),
+      ) ??
+      const {},
+  availabilityReceiverSetting:
+      json['availabilityReceiverSetting'] == null
+          ? const AvailabilityReceiverSetting()
+          : AvailabilityReceiverSetting.fromJson(
+            json['availabilityReceiverSetting'] as Map<String, dynamic>,
+          ),
 );
 
 Map<String, dynamic> _$$AavailabilityReceiverImplToJson(
   _$AavailabilityReceiverImpl instance,
 ) => <String, dynamic>{
   'id': instance.id,
-  'workPlaceId': instance.workPlaceId,
-  'workPlaceNickName': instance.workPlaceNickName,
   'createdAt': Helpers.dateToJson(instance.createdAt),
   'createdBy': instance.createdBy,
   'updatedAt': Helpers.dateToJson(instance.updatedAt),
+  'deleted': instance.deleted,
+  'excludedUserList': instance.excludedUserList,
   'updatedBy': instance.updatedBy,
-  'userList': instance.userList,
   'isOpened': instance.isOpened,
-  'startDate': instance.startDate,
+  'dateTimes': Helpers.listDateToJson(instance.dateTimes),
+  'userSubmissionInfo': instance.userSubmissionInfo.map(
+    (k, e) => MapEntry(k, e.toJson()),
+  ),
+  'availabilityReceiverSetting': instance.availabilityReceiverSetting.toJson(),
 };

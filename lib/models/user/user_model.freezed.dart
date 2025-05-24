@@ -21,18 +21,18 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserModel {
-  String get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
   DateTime? get createdAt => throw _privateConstructorUsedError;
   String get createdBy => throw _privateConstructorUsedError;
   @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
   DateTime? get updatedAt => throw _privateConstructorUsedError;
-  String get updatedBy => throw _privateConstructorUsedError;
+  String? get updatedBy => throw _privateConstructorUsedError;
+  List<String> get filters => throw _privateConstructorUsedError;
   bool get deleted => throw _privateConstructorUsedError;
   bool get isTempUser => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String? get firstName => throw _privateConstructorUsedError;
-  String? get lastName => throw _privateConstructorUsedError;
+  String get firstName => throw _privateConstructorUsedError;
+  String get lastName => throw _privateConstructorUsedError;
   String get nickName => throw _privateConstructorUsedError;
   bool get preferShowNickName => throw _privateConstructorUsedError;
   PhoneNumberModel? get primaryPhoneNumber =>
@@ -40,12 +40,12 @@ mixin _$UserModel {
   PhoneNumberModel? get secondaryPhoneNumber =>
       throw _privateConstructorUsedError;
   EmergnecyContact? get emergencyContact => throw _privateConstructorUsedError;
+  AddressModel? get addressModel => throw _privateConstructorUsedError;
   Gender get gender => throw _privateConstructorUsedError;
   String? get defaultProfilePictureUrl => throw _privateConstructorUsedError;
-  String? get currentWorkPlaceId => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get dateOfBirth => throw _privateConstructorUsedError;
-  List<UserWorkPlace>? get userWorkPlaceRelation =>
+  List<UserWorkPlaceRelation> get userWorkPlaceRelation =>
       throw _privateConstructorUsedError;
   UserSettings get userSettings => throw _privateConstructorUsedError;
 
@@ -65,35 +65,36 @@ abstract class $UserModelCopyWith<$Res> {
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
   $Res call({
-    String id,
+    String? id,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     DateTime? createdAt,
     String createdBy,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     DateTime? updatedAt,
-    String updatedBy,
+    String? updatedBy,
+    List<String> filters,
     bool deleted,
     bool isTempUser,
-    String name,
-    String? firstName,
-    String? lastName,
+    String firstName,
+    String lastName,
     String nickName,
     bool preferShowNickName,
     PhoneNumberModel? primaryPhoneNumber,
     PhoneNumberModel? secondaryPhoneNumber,
     EmergnecyContact? emergencyContact,
+    AddressModel? addressModel,
     Gender gender,
     String? defaultProfilePictureUrl,
-    String? currentWorkPlaceId,
     String? email,
     String? dateOfBirth,
-    List<UserWorkPlace>? userWorkPlaceRelation,
+    List<UserWorkPlaceRelation> userWorkPlaceRelation,
     UserSettings userSettings,
   });
 
   $PhoneNumberModelCopyWith<$Res>? get primaryPhoneNumber;
   $PhoneNumberModelCopyWith<$Res>? get secondaryPhoneNumber;
   $EmergnecyContactCopyWith<$Res>? get emergencyContact;
+  $AddressModelCopyWith<$Res>? get addressModel;
   $UserSettingsCopyWith<$Res> get userSettings;
 }
 
@@ -112,36 +113,36 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? createdAt = freezed,
     Object? createdBy = null,
     Object? updatedAt = freezed,
-    Object? updatedBy = null,
+    Object? updatedBy = freezed,
+    Object? filters = null,
     Object? deleted = null,
     Object? isTempUser = null,
-    Object? name = null,
-    Object? firstName = freezed,
-    Object? lastName = freezed,
+    Object? firstName = null,
+    Object? lastName = null,
     Object? nickName = null,
     Object? preferShowNickName = null,
     Object? primaryPhoneNumber = freezed,
     Object? secondaryPhoneNumber = freezed,
     Object? emergencyContact = freezed,
+    Object? addressModel = freezed,
     Object? gender = null,
     Object? defaultProfilePictureUrl = freezed,
-    Object? currentWorkPlaceId = freezed,
     Object? email = freezed,
     Object? dateOfBirth = freezed,
-    Object? userWorkPlaceRelation = freezed,
+    Object? userWorkPlaceRelation = null,
     Object? userSettings = null,
   }) {
     return _then(
       _value.copyWith(
             id:
-                null == id
+                freezed == id
                     ? _value.id
                     : id // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as String?,
             createdAt:
                 freezed == createdAt
                     ? _value.createdAt
@@ -158,10 +159,15 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     : updatedAt // ignore: cast_nullable_to_non_nullable
                         as DateTime?,
             updatedBy:
-                null == updatedBy
+                freezed == updatedBy
                     ? _value.updatedBy
                     : updatedBy // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as String?,
+            filters:
+                null == filters
+                    ? _value.filters
+                    : filters // ignore: cast_nullable_to_non_nullable
+                        as List<String>,
             deleted:
                 null == deleted
                     ? _value.deleted
@@ -172,21 +178,16 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     ? _value.isTempUser
                     : isTempUser // ignore: cast_nullable_to_non_nullable
                         as bool,
-            name:
-                null == name
-                    ? _value.name
-                    : name // ignore: cast_nullable_to_non_nullable
-                        as String,
             firstName:
-                freezed == firstName
+                null == firstName
                     ? _value.firstName
                     : firstName // ignore: cast_nullable_to_non_nullable
-                        as String?,
+                        as String,
             lastName:
-                freezed == lastName
+                null == lastName
                     ? _value.lastName
                     : lastName // ignore: cast_nullable_to_non_nullable
-                        as String?,
+                        as String,
             nickName:
                 null == nickName
                     ? _value.nickName
@@ -212,6 +213,11 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     ? _value.emergencyContact
                     : emergencyContact // ignore: cast_nullable_to_non_nullable
                         as EmergnecyContact?,
+            addressModel:
+                freezed == addressModel
+                    ? _value.addressModel
+                    : addressModel // ignore: cast_nullable_to_non_nullable
+                        as AddressModel?,
             gender:
                 null == gender
                     ? _value.gender
@@ -221,11 +227,6 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                 freezed == defaultProfilePictureUrl
                     ? _value.defaultProfilePictureUrl
                     : defaultProfilePictureUrl // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            currentWorkPlaceId:
-                freezed == currentWorkPlaceId
-                    ? _value.currentWorkPlaceId
-                    : currentWorkPlaceId // ignore: cast_nullable_to_non_nullable
                         as String?,
             email:
                 freezed == email
@@ -238,10 +239,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     : dateOfBirth // ignore: cast_nullable_to_non_nullable
                         as String?,
             userWorkPlaceRelation:
-                freezed == userWorkPlaceRelation
+                null == userWorkPlaceRelation
                     ? _value.userWorkPlaceRelation
                     : userWorkPlaceRelation // ignore: cast_nullable_to_non_nullable
-                        as List<UserWorkPlace>?,
+                        as List<UserWorkPlaceRelation>,
             userSettings:
                 null == userSettings
                     ? _value.userSettings
@@ -300,6 +301,20 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
+  $AddressModelCopyWith<$Res>? get addressModel {
+    if (_value.addressModel == null) {
+      return null;
+    }
+
+    return $AddressModelCopyWith<$Res>(_value.addressModel!, (value) {
+      return _then(_value.copyWith(addressModel: value) as $Val);
+    });
+  }
+
+  /// Create a copy of UserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
   $UserSettingsCopyWith<$Res> get userSettings {
     return $UserSettingsCopyWith<$Res>(_value.userSettings, (value) {
       return _then(_value.copyWith(userSettings: value) as $Val);
@@ -317,29 +332,29 @@ abstract class _$$UserModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    String id,
+    String? id,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     DateTime? createdAt,
     String createdBy,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     DateTime? updatedAt,
-    String updatedBy,
+    String? updatedBy,
+    List<String> filters,
     bool deleted,
     bool isTempUser,
-    String name,
-    String? firstName,
-    String? lastName,
+    String firstName,
+    String lastName,
     String nickName,
     bool preferShowNickName,
     PhoneNumberModel? primaryPhoneNumber,
     PhoneNumberModel? secondaryPhoneNumber,
     EmergnecyContact? emergencyContact,
+    AddressModel? addressModel,
     Gender gender,
     String? defaultProfilePictureUrl,
-    String? currentWorkPlaceId,
     String? email,
     String? dateOfBirth,
-    List<UserWorkPlace>? userWorkPlaceRelation,
+    List<UserWorkPlaceRelation> userWorkPlaceRelation,
     UserSettings userSettings,
   });
 
@@ -349,6 +364,8 @@ abstract class _$$UserModelImplCopyWith<$Res>
   $PhoneNumberModelCopyWith<$Res>? get secondaryPhoneNumber;
   @override
   $EmergnecyContactCopyWith<$Res>? get emergencyContact;
+  @override
+  $AddressModelCopyWith<$Res>? get addressModel;
   @override
   $UserSettingsCopyWith<$Res> get userSettings;
 }
@@ -367,36 +384,36 @@ class __$$UserModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? createdAt = freezed,
     Object? createdBy = null,
     Object? updatedAt = freezed,
-    Object? updatedBy = null,
+    Object? updatedBy = freezed,
+    Object? filters = null,
     Object? deleted = null,
     Object? isTempUser = null,
-    Object? name = null,
-    Object? firstName = freezed,
-    Object? lastName = freezed,
+    Object? firstName = null,
+    Object? lastName = null,
     Object? nickName = null,
     Object? preferShowNickName = null,
     Object? primaryPhoneNumber = freezed,
     Object? secondaryPhoneNumber = freezed,
     Object? emergencyContact = freezed,
+    Object? addressModel = freezed,
     Object? gender = null,
     Object? defaultProfilePictureUrl = freezed,
-    Object? currentWorkPlaceId = freezed,
     Object? email = freezed,
     Object? dateOfBirth = freezed,
-    Object? userWorkPlaceRelation = freezed,
+    Object? userWorkPlaceRelation = null,
     Object? userSettings = null,
   }) {
     return _then(
       _$UserModelImpl(
         id:
-            null == id
+            freezed == id
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
         createdAt:
             freezed == createdAt
                 ? _value.createdAt
@@ -413,10 +430,15 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 : updatedAt // ignore: cast_nullable_to_non_nullable
                     as DateTime?,
         updatedBy:
-            null == updatedBy
+            freezed == updatedBy
                 ? _value.updatedBy
                 : updatedBy // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
+        filters:
+            null == filters
+                ? _value._filters
+                : filters // ignore: cast_nullable_to_non_nullable
+                    as List<String>,
         deleted:
             null == deleted
                 ? _value.deleted
@@ -427,21 +449,16 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 ? _value.isTempUser
                 : isTempUser // ignore: cast_nullable_to_non_nullable
                     as bool,
-        name:
-            null == name
-                ? _value.name
-                : name // ignore: cast_nullable_to_non_nullable
-                    as String,
         firstName:
-            freezed == firstName
+            null == firstName
                 ? _value.firstName
                 : firstName // ignore: cast_nullable_to_non_nullable
-                    as String?,
+                    as String,
         lastName:
-            freezed == lastName
+            null == lastName
                 ? _value.lastName
                 : lastName // ignore: cast_nullable_to_non_nullable
-                    as String?,
+                    as String,
         nickName:
             null == nickName
                 ? _value.nickName
@@ -467,6 +484,11 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 ? _value.emergencyContact
                 : emergencyContact // ignore: cast_nullable_to_non_nullable
                     as EmergnecyContact?,
+        addressModel:
+            freezed == addressModel
+                ? _value.addressModel
+                : addressModel // ignore: cast_nullable_to_non_nullable
+                    as AddressModel?,
         gender:
             null == gender
                 ? _value.gender
@@ -476,11 +498,6 @@ class __$$UserModelImplCopyWithImpl<$Res>
             freezed == defaultProfilePictureUrl
                 ? _value.defaultProfilePictureUrl
                 : defaultProfilePictureUrl // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        currentWorkPlaceId:
-            freezed == currentWorkPlaceId
-                ? _value.currentWorkPlaceId
-                : currentWorkPlaceId // ignore: cast_nullable_to_non_nullable
                     as String?,
         email:
             freezed == email
@@ -493,10 +510,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 : dateOfBirth // ignore: cast_nullable_to_non_nullable
                     as String?,
         userWorkPlaceRelation:
-            freezed == userWorkPlaceRelation
+            null == userWorkPlaceRelation
                 ? _value._userWorkPlaceRelation
                 : userWorkPlaceRelation // ignore: cast_nullable_to_non_nullable
-                    as List<UserWorkPlace>?,
+                    as List<UserWorkPlaceRelation>,
         userSettings:
             null == userSettings
                 ? _value.userSettings
@@ -508,50 +525,63 @@ class __$$UserModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$UserModelImpl implements _UserModel {
   const _$UserModelImpl({
-    required this.id,
+    this.id,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     this.createdAt,
-    required this.createdBy,
+    this.createdBy = '',
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     this.updatedAt,
-    required this.updatedBy,
+    this.updatedBy = '',
+    final List<String> filters = const [],
     this.deleted = false,
     this.isTempUser = false,
-    required this.name,
-    this.firstName,
-    this.lastName,
+    this.firstName = '',
+    this.lastName = '',
     required this.nickName,
     this.preferShowNickName = true,
     this.primaryPhoneNumber,
     this.secondaryPhoneNumber,
     this.emergencyContact,
+    this.addressModel,
     this.gender = Gender.male,
     this.defaultProfilePictureUrl,
-    this.currentWorkPlaceId,
     this.email,
     this.dateOfBirth,
-    final List<UserWorkPlace>? userWorkPlaceRelation,
+    final List<UserWorkPlaceRelation> userWorkPlaceRelation = const [],
     required this.userSettings,
-  }) : _userWorkPlaceRelation = userWorkPlaceRelation;
+  }) : _filters = filters,
+       _userWorkPlaceRelation = userWorkPlaceRelation;
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
 
   @override
-  final String id;
+  final String? id;
   @override
   @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
   final DateTime? createdAt;
   @override
+  @JsonKey()
   final String createdBy;
   @override
   @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
   final DateTime? updatedAt;
   @override
-  final String updatedBy;
+  @JsonKey()
+  final String? updatedBy;
+  final List<String> _filters;
+  @override
+  @JsonKey()
+  List<String> get filters {
+    if (_filters is EqualUnmodifiableListView) return _filters;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_filters);
+  }
+
   @override
   @JsonKey()
   final bool deleted;
@@ -559,11 +589,11 @@ class _$UserModelImpl implements _UserModel {
   @JsonKey()
   final bool isTempUser;
   @override
-  final String name;
+  @JsonKey()
+  final String firstName;
   @override
-  final String? firstName;
-  @override
-  final String? lastName;
+  @JsonKey()
+  final String lastName;
   @override
   final String nickName;
   @override
@@ -576,25 +606,24 @@ class _$UserModelImpl implements _UserModel {
   @override
   final EmergnecyContact? emergencyContact;
   @override
+  final AddressModel? addressModel;
+  @override
   @JsonKey()
   final Gender gender;
   @override
   final String? defaultProfilePictureUrl;
   @override
-  final String? currentWorkPlaceId;
-  @override
   final String? email;
   @override
   final String? dateOfBirth;
-  final List<UserWorkPlace>? _userWorkPlaceRelation;
+  final List<UserWorkPlaceRelation> _userWorkPlaceRelation;
   @override
-  List<UserWorkPlace>? get userWorkPlaceRelation {
-    final value = _userWorkPlaceRelation;
-    if (value == null) return null;
+  @JsonKey()
+  List<UserWorkPlaceRelation> get userWorkPlaceRelation {
     if (_userWorkPlaceRelation is EqualUnmodifiableListView)
       return _userWorkPlaceRelation;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_userWorkPlaceRelation);
   }
 
   @override
@@ -602,7 +631,7 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, createdAt: $createdAt, createdBy: $createdBy, updatedAt: $updatedAt, updatedBy: $updatedBy, deleted: $deleted, isTempUser: $isTempUser, name: $name, firstName: $firstName, lastName: $lastName, nickName: $nickName, preferShowNickName: $preferShowNickName, primaryPhoneNumber: $primaryPhoneNumber, secondaryPhoneNumber: $secondaryPhoneNumber, emergencyContact: $emergencyContact, gender: $gender, defaultProfilePictureUrl: $defaultProfilePictureUrl, currentWorkPlaceId: $currentWorkPlaceId, email: $email, dateOfBirth: $dateOfBirth, userWorkPlaceRelation: $userWorkPlaceRelation, userSettings: $userSettings)';
+    return 'UserModel(id: $id, createdAt: $createdAt, createdBy: $createdBy, updatedAt: $updatedAt, updatedBy: $updatedBy, filters: $filters, deleted: $deleted, isTempUser: $isTempUser, firstName: $firstName, lastName: $lastName, nickName: $nickName, preferShowNickName: $preferShowNickName, primaryPhoneNumber: $primaryPhoneNumber, secondaryPhoneNumber: $secondaryPhoneNumber, emergencyContact: $emergencyContact, addressModel: $addressModel, gender: $gender, defaultProfilePictureUrl: $defaultProfilePictureUrl, email: $email, dateOfBirth: $dateOfBirth, userWorkPlaceRelation: $userWorkPlaceRelation, userSettings: $userSettings)';
   }
 
   @override
@@ -619,10 +648,10 @@ class _$UserModelImpl implements _UserModel {
                 other.updatedAt == updatedAt) &&
             (identical(other.updatedBy, updatedBy) ||
                 other.updatedBy == updatedBy) &&
+            const DeepCollectionEquality().equals(other._filters, _filters) &&
             (identical(other.deleted, deleted) || other.deleted == deleted) &&
             (identical(other.isTempUser, isTempUser) ||
                 other.isTempUser == isTempUser) &&
-            (identical(other.name, name) || other.name == name) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
@@ -637,14 +666,14 @@ class _$UserModelImpl implements _UserModel {
                 other.secondaryPhoneNumber == secondaryPhoneNumber) &&
             (identical(other.emergencyContact, emergencyContact) ||
                 other.emergencyContact == emergencyContact) &&
+            (identical(other.addressModel, addressModel) ||
+                other.addressModel == addressModel) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(
                   other.defaultProfilePictureUrl,
                   defaultProfilePictureUrl,
                 ) ||
                 other.defaultProfilePictureUrl == defaultProfilePictureUrl) &&
-            (identical(other.currentWorkPlaceId, currentWorkPlaceId) ||
-                other.currentWorkPlaceId == currentWorkPlaceId) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.dateOfBirth, dateOfBirth) ||
                 other.dateOfBirth == dateOfBirth) &&
@@ -665,9 +694,9 @@ class _$UserModelImpl implements _UserModel {
     createdBy,
     updatedAt,
     updatedBy,
+    const DeepCollectionEquality().hash(_filters),
     deleted,
     isTempUser,
-    name,
     firstName,
     lastName,
     nickName,
@@ -675,9 +704,9 @@ class _$UserModelImpl implements _UserModel {
     primaryPhoneNumber,
     secondaryPhoneNumber,
     emergencyContact,
+    addressModel,
     gender,
     defaultProfilePictureUrl,
-    currentWorkPlaceId,
     email,
     dateOfBirth,
     const DeepCollectionEquality().hash(_userWorkPlaceRelation),
@@ -700,29 +729,29 @@ class _$UserModelImpl implements _UserModel {
 
 abstract class _UserModel implements UserModel {
   const factory _UserModel({
-    required final String id,
+    final String? id,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     final DateTime? createdAt,
-    required final String createdBy,
+    final String createdBy,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     final DateTime? updatedAt,
-    required final String updatedBy,
+    final String? updatedBy,
+    final List<String> filters,
     final bool deleted,
     final bool isTempUser,
-    required final String name,
-    final String? firstName,
-    final String? lastName,
+    final String firstName,
+    final String lastName,
     required final String nickName,
     final bool preferShowNickName,
     final PhoneNumberModel? primaryPhoneNumber,
     final PhoneNumberModel? secondaryPhoneNumber,
     final EmergnecyContact? emergencyContact,
+    final AddressModel? addressModel,
     final Gender gender,
     final String? defaultProfilePictureUrl,
-    final String? currentWorkPlaceId,
     final String? email,
     final String? dateOfBirth,
-    final List<UserWorkPlace>? userWorkPlaceRelation,
+    final List<UserWorkPlaceRelation> userWorkPlaceRelation,
     required final UserSettings userSettings,
   }) = _$UserModelImpl;
 
@@ -730,7 +759,7 @@ abstract class _UserModel implements UserModel {
       _$UserModelImpl.fromJson;
 
   @override
-  String get id;
+  String? get id;
   @override
   @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
   DateTime? get createdAt;
@@ -740,17 +769,17 @@ abstract class _UserModel implements UserModel {
   @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
   DateTime? get updatedAt;
   @override
-  String get updatedBy;
+  String? get updatedBy;
+  @override
+  List<String> get filters;
   @override
   bool get deleted;
   @override
   bool get isTempUser;
   @override
-  String get name;
+  String get firstName;
   @override
-  String? get firstName;
-  @override
-  String? get lastName;
+  String get lastName;
   @override
   String get nickName;
   @override
@@ -762,17 +791,17 @@ abstract class _UserModel implements UserModel {
   @override
   EmergnecyContact? get emergencyContact;
   @override
+  AddressModel? get addressModel;
+  @override
   Gender get gender;
   @override
   String? get defaultProfilePictureUrl;
-  @override
-  String? get currentWorkPlaceId;
   @override
   String? get email;
   @override
   String? get dateOfBirth;
   @override
-  List<UserWorkPlace>? get userWorkPlaceRelation;
+  List<UserWorkPlaceRelation> get userWorkPlaceRelation;
   @override
   UserSettings get userSettings;
 

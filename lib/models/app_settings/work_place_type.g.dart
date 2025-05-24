@@ -19,5 +19,5 @@ Map<String, dynamic> _$$WorkPlaceTypeImplToJson(_$WorkPlaceTypeImpl instance) =>
       'id': instance.id,
       'name': instance.name,
       'ordinal': instance.ordinal,
-      'iconModel': instance.iconModel,
+      'iconModel': instance.iconModel.toJson(),
     };

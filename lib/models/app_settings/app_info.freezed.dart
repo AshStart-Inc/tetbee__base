@@ -22,13 +22,13 @@ AppInfo _$AppInfoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$AppInfo {
   List<Membership> get memberships => throw _privateConstructorUsedError;
+  List<WorkPlaceType> get workPlaceType => throw _privateConstructorUsedError;
   String? get androidBannerId => throw _privateConstructorUsedError;
   String? get iosBannerId => throw _privateConstructorUsedError;
   bool get isCreateUserAllowed => throw _privateConstructorUsedError;
   bool get isCreatePlaceAllowed => throw _privateConstructorUsedError;
   bool get showAds => throw _privateConstructorUsedError;
   String? get versionCode => throw _privateConstructorUsedError;
-  List<WorkPlaceType> get workPlaceType => throw _privateConstructorUsedError;
 
   /// Serializes this AppInfo to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,13 +46,13 @@ abstract class $AppInfoCopyWith<$Res> {
   @useResult
   $Res call({
     List<Membership> memberships,
+    List<WorkPlaceType> workPlaceType,
     String? androidBannerId,
     String? iosBannerId,
     bool isCreateUserAllowed,
     bool isCreatePlaceAllowed,
     bool showAds,
     String? versionCode,
-    List<WorkPlaceType> workPlaceType,
   });
 }
 
@@ -72,13 +72,13 @@ class _$AppInfoCopyWithImpl<$Res, $Val extends AppInfo>
   @override
   $Res call({
     Object? memberships = null,
+    Object? workPlaceType = null,
     Object? androidBannerId = freezed,
     Object? iosBannerId = freezed,
     Object? isCreateUserAllowed = null,
     Object? isCreatePlaceAllowed = null,
     Object? showAds = null,
     Object? versionCode = freezed,
-    Object? workPlaceType = null,
   }) {
     return _then(
       _value.copyWith(
@@ -87,6 +87,11 @@ class _$AppInfoCopyWithImpl<$Res, $Val extends AppInfo>
                     ? _value.memberships
                     : memberships // ignore: cast_nullable_to_non_nullable
                         as List<Membership>,
+            workPlaceType:
+                null == workPlaceType
+                    ? _value.workPlaceType
+                    : workPlaceType // ignore: cast_nullable_to_non_nullable
+                        as List<WorkPlaceType>,
             androidBannerId:
                 freezed == androidBannerId
                     ? _value.androidBannerId
@@ -117,11 +122,6 @@ class _$AppInfoCopyWithImpl<$Res, $Val extends AppInfo>
                     ? _value.versionCode
                     : versionCode // ignore: cast_nullable_to_non_nullable
                         as String?,
-            workPlaceType:
-                null == workPlaceType
-                    ? _value.workPlaceType
-                    : workPlaceType // ignore: cast_nullable_to_non_nullable
-                        as List<WorkPlaceType>,
           )
           as $Val,
     );
@@ -138,13 +138,13 @@ abstract class _$$AppInfoImplCopyWith<$Res> implements $AppInfoCopyWith<$Res> {
   @useResult
   $Res call({
     List<Membership> memberships,
+    List<WorkPlaceType> workPlaceType,
     String? androidBannerId,
     String? iosBannerId,
     bool isCreateUserAllowed,
     bool isCreatePlaceAllowed,
     bool showAds,
     String? versionCode,
-    List<WorkPlaceType> workPlaceType,
   });
 }
 
@@ -163,13 +163,13 @@ class __$$AppInfoImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? memberships = null,
+    Object? workPlaceType = null,
     Object? androidBannerId = freezed,
     Object? iosBannerId = freezed,
     Object? isCreateUserAllowed = null,
     Object? isCreatePlaceAllowed = null,
     Object? showAds = null,
     Object? versionCode = freezed,
-    Object? workPlaceType = null,
   }) {
     return _then(
       _$AppInfoImpl(
@@ -178,6 +178,11 @@ class __$$AppInfoImplCopyWithImpl<$Res>
                 ? _value._memberships
                 : memberships // ignore: cast_nullable_to_non_nullable
                     as List<Membership>,
+        workPlaceType:
+            null == workPlaceType
+                ? _value._workPlaceType
+                : workPlaceType // ignore: cast_nullable_to_non_nullable
+                    as List<WorkPlaceType>,
         androidBannerId:
             freezed == androidBannerId
                 ? _value.androidBannerId
@@ -208,28 +213,24 @@ class __$$AppInfoImplCopyWithImpl<$Res>
                 ? _value.versionCode
                 : versionCode // ignore: cast_nullable_to_non_nullable
                     as String?,
-        workPlaceType:
-            null == workPlaceType
-                ? _value._workPlaceType
-                : workPlaceType // ignore: cast_nullable_to_non_nullable
-                    as List<WorkPlaceType>,
       ),
     );
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$AppInfoImpl implements _AppInfo {
   const _$AppInfoImpl({
     required final List<Membership> memberships,
+    required final List<WorkPlaceType> workPlaceType,
     this.androidBannerId,
     this.iosBannerId,
     required this.isCreateUserAllowed,
     required this.isCreatePlaceAllowed,
     required this.showAds,
     this.versionCode,
-    required final List<WorkPlaceType> workPlaceType,
   }) : _memberships = memberships,
        _workPlaceType = workPlaceType;
 
@@ -244,6 +245,14 @@ class _$AppInfoImpl implements _AppInfo {
     return EqualUnmodifiableListView(_memberships);
   }
 
+  final List<WorkPlaceType> _workPlaceType;
+  @override
+  List<WorkPlaceType> get workPlaceType {
+    if (_workPlaceType is EqualUnmodifiableListView) return _workPlaceType;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_workPlaceType);
+  }
+
   @override
   final String? androidBannerId;
   @override
@@ -256,17 +265,10 @@ class _$AppInfoImpl implements _AppInfo {
   final bool showAds;
   @override
   final String? versionCode;
-  final List<WorkPlaceType> _workPlaceType;
-  @override
-  List<WorkPlaceType> get workPlaceType {
-    if (_workPlaceType is EqualUnmodifiableListView) return _workPlaceType;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_workPlaceType);
-  }
 
   @override
   String toString() {
-    return 'AppInfo(memberships: $memberships, androidBannerId: $androidBannerId, iosBannerId: $iosBannerId, isCreateUserAllowed: $isCreateUserAllowed, isCreatePlaceAllowed: $isCreatePlaceAllowed, showAds: $showAds, versionCode: $versionCode, workPlaceType: $workPlaceType)';
+    return 'AppInfo(memberships: $memberships, workPlaceType: $workPlaceType, androidBannerId: $androidBannerId, iosBannerId: $iosBannerId, isCreateUserAllowed: $isCreateUserAllowed, isCreatePlaceAllowed: $isCreatePlaceAllowed, showAds: $showAds, versionCode: $versionCode)';
   }
 
   @override
@@ -278,6 +280,10 @@ class _$AppInfoImpl implements _AppInfo {
               other._memberships,
               _memberships,
             ) &&
+            const DeepCollectionEquality().equals(
+              other._workPlaceType,
+              _workPlaceType,
+            ) &&
             (identical(other.androidBannerId, androidBannerId) ||
                 other.androidBannerId == androidBannerId) &&
             (identical(other.iosBannerId, iosBannerId) ||
@@ -288,11 +294,7 @@ class _$AppInfoImpl implements _AppInfo {
                 other.isCreatePlaceAllowed == isCreatePlaceAllowed) &&
             (identical(other.showAds, showAds) || other.showAds == showAds) &&
             (identical(other.versionCode, versionCode) ||
-                other.versionCode == versionCode) &&
-            const DeepCollectionEquality().equals(
-              other._workPlaceType,
-              _workPlaceType,
-            ));
+                other.versionCode == versionCode));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -300,13 +302,13 @@ class _$AppInfoImpl implements _AppInfo {
   int get hashCode => Object.hash(
     runtimeType,
     const DeepCollectionEquality().hash(_memberships),
+    const DeepCollectionEquality().hash(_workPlaceType),
     androidBannerId,
     iosBannerId,
     isCreateUserAllowed,
     isCreatePlaceAllowed,
     showAds,
     versionCode,
-    const DeepCollectionEquality().hash(_workPlaceType),
   );
 
   /// Create a copy of AppInfo
@@ -326,19 +328,21 @@ class _$AppInfoImpl implements _AppInfo {
 abstract class _AppInfo implements AppInfo {
   const factory _AppInfo({
     required final List<Membership> memberships,
+    required final List<WorkPlaceType> workPlaceType,
     final String? androidBannerId,
     final String? iosBannerId,
     required final bool isCreateUserAllowed,
     required final bool isCreatePlaceAllowed,
     required final bool showAds,
     final String? versionCode,
-    required final List<WorkPlaceType> workPlaceType,
   }) = _$AppInfoImpl;
 
   factory _AppInfo.fromJson(Map<String, dynamic> json) = _$AppInfoImpl.fromJson;
 
   @override
   List<Membership> get memberships;
+  @override
+  List<WorkPlaceType> get workPlaceType;
   @override
   String? get androidBannerId;
   @override
@@ -351,8 +355,6 @@ abstract class _AppInfo implements AppInfo {
   bool get showAds;
   @override
   String? get versionCode;
-  @override
-  List<WorkPlaceType> get workPlaceType;
 
   /// Create a copy of AppInfo
   /// with the given fields replaced by the non-null parameter values.
