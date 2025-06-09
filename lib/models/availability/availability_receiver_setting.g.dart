@@ -14,7 +14,9 @@ _$AvailabilityReceiverSettingImpl _$$AvailabilityReceiverSettingImplFromJson(
       DateRangeType.rangedDate,
   showNotPreferedDayChecker: json['showNotPreferedDayChecker'] as bool? ?? true,
   useDailyComment: json['useDailyComment'] as bool? ?? true,
-  timeInterval: (json['timeInterval'] as num?)?.toInt() ?? 15,
+  timeInterval:
+      $enumDecodeNullable(_$TimeIntervalEnumMap, json['timeInterval']) ??
+      TimeInterval.fifteen,
   dailyAvailabilityTimeRange:
       (json['dailyAvailabilityTimeRange'] as List<dynamic>?)
           ?.map((e) => DailyAvailability.fromJson(e as Map<String, dynamic>))
@@ -28,7 +30,7 @@ Map<String, dynamic> _$$AvailabilityReceiverSettingImplToJson(
   'type': _$DateRangeTypeEnumMap[instance.type]!,
   'showNotPreferedDayChecker': instance.showNotPreferedDayChecker,
   'useDailyComment': instance.useDailyComment,
-  'timeInterval': instance.timeInterval,
+  'timeInterval': _$TimeIntervalEnumMap[instance.timeInterval]!,
   'dailyAvailabilityTimeRange':
       instance.dailyAvailabilityTimeRange.map((e) => e.toJson()).toList(),
 };
@@ -36,4 +38,10 @@ Map<String, dynamic> _$$AvailabilityReceiverSettingImplToJson(
 const _$DateRangeTypeEnumMap = {
   DateRangeType.multipleDates: 'multipleDates',
   DateRangeType.rangedDate: 'rangedDate',
+};
+
+const _$TimeIntervalEnumMap = {
+  TimeInterval.fifteen: 'fifteen',
+  TimeInterval.thirty: 'thirty',
+  TimeInterval.oneHour: 'oneHour',
 };

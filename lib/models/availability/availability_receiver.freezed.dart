@@ -27,12 +27,14 @@ mixin _$AvailabilityReceiver {
   String get createdBy => throw _privateConstructorUsedError;
   @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
   DateTime? get updatedAt => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
   bool get deleted => throw _privateConstructorUsedError;
-  List<String> get excludedUserList => throw _privateConstructorUsedError;
   String get updatedBy => throw _privateConstructorUsedError;
   bool get isOpened => throw _privateConstructorUsedError;
   @JsonKey(toJson: Helpers.listDateToJson, fromJson: Helpers.listDateFromJson)
   List<DateTime> get dateTimes => throw _privateConstructorUsedError;
+  List<String> get selectedUserList => throw _privateConstructorUsedError;
   Map<String, UserAvailabilitySubmissionInfo> get userSubmissionInfo =>
       throw _privateConstructorUsedError;
   AvailabilityReceiverSetting get availabilityReceiverSetting =>
@@ -62,12 +64,14 @@ abstract class $AvailabilityReceiverCopyWith<$Res> {
     String createdBy,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     DateTime? updatedAt,
+    String title,
+    String description,
     bool deleted,
-    List<String> excludedUserList,
     String updatedBy,
     bool isOpened,
     @JsonKey(toJson: Helpers.listDateToJson, fromJson: Helpers.listDateFromJson)
     List<DateTime> dateTimes,
+    List<String> selectedUserList,
     Map<String, UserAvailabilitySubmissionInfo> userSubmissionInfo,
     AvailabilityReceiverSetting availabilityReceiverSetting,
   });
@@ -97,11 +101,13 @@ class _$AvailabilityReceiverCopyWithImpl<
     Object? createdAt = freezed,
     Object? createdBy = null,
     Object? updatedAt = freezed,
+    Object? title = null,
+    Object? description = null,
     Object? deleted = null,
-    Object? excludedUserList = null,
     Object? updatedBy = null,
     Object? isOpened = null,
     Object? dateTimes = null,
+    Object? selectedUserList = null,
     Object? userSubmissionInfo = null,
     Object? availabilityReceiverSetting = null,
   }) {
@@ -127,16 +133,21 @@ class _$AvailabilityReceiverCopyWithImpl<
                     ? _value.updatedAt
                     : updatedAt // ignore: cast_nullable_to_non_nullable
                         as DateTime?,
+            title:
+                null == title
+                    ? _value.title
+                    : title // ignore: cast_nullable_to_non_nullable
+                        as String,
+            description:
+                null == description
+                    ? _value.description
+                    : description // ignore: cast_nullable_to_non_nullable
+                        as String,
             deleted:
                 null == deleted
                     ? _value.deleted
                     : deleted // ignore: cast_nullable_to_non_nullable
                         as bool,
-            excludedUserList:
-                null == excludedUserList
-                    ? _value.excludedUserList
-                    : excludedUserList // ignore: cast_nullable_to_non_nullable
-                        as List<String>,
             updatedBy:
                 null == updatedBy
                     ? _value.updatedBy
@@ -152,6 +163,11 @@ class _$AvailabilityReceiverCopyWithImpl<
                     ? _value.dateTimes
                     : dateTimes // ignore: cast_nullable_to_non_nullable
                         as List<DateTime>,
+            selectedUserList:
+                null == selectedUserList
+                    ? _value.selectedUserList
+                    : selectedUserList // ignore: cast_nullable_to_non_nullable
+                        as List<String>,
             userSubmissionInfo:
                 null == userSubmissionInfo
                     ? _value.userSubmissionInfo
@@ -199,12 +215,14 @@ abstract class _$$AavailabilityReceiverImplCopyWith<$Res>
     String createdBy,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     DateTime? updatedAt,
+    String title,
+    String description,
     bool deleted,
-    List<String> excludedUserList,
     String updatedBy,
     bool isOpened,
     @JsonKey(toJson: Helpers.listDateToJson, fromJson: Helpers.listDateFromJson)
     List<DateTime> dateTimes,
+    List<String> selectedUserList,
     Map<String, UserAvailabilitySubmissionInfo> userSubmissionInfo,
     AvailabilityReceiverSetting availabilityReceiverSetting,
   });
@@ -232,11 +250,13 @@ class __$$AavailabilityReceiverImplCopyWithImpl<$Res>
     Object? createdAt = freezed,
     Object? createdBy = null,
     Object? updatedAt = freezed,
+    Object? title = null,
+    Object? description = null,
     Object? deleted = null,
-    Object? excludedUserList = null,
     Object? updatedBy = null,
     Object? isOpened = null,
     Object? dateTimes = null,
+    Object? selectedUserList = null,
     Object? userSubmissionInfo = null,
     Object? availabilityReceiverSetting = null,
   }) {
@@ -262,16 +282,21 @@ class __$$AavailabilityReceiverImplCopyWithImpl<$Res>
                 ? _value.updatedAt
                 : updatedAt // ignore: cast_nullable_to_non_nullable
                     as DateTime?,
+        title:
+            null == title
+                ? _value.title
+                : title // ignore: cast_nullable_to_non_nullable
+                    as String,
+        description:
+            null == description
+                ? _value.description
+                : description // ignore: cast_nullable_to_non_nullable
+                    as String,
         deleted:
             null == deleted
                 ? _value.deleted
                 : deleted // ignore: cast_nullable_to_non_nullable
                     as bool,
-        excludedUserList:
-            null == excludedUserList
-                ? _value._excludedUserList
-                : excludedUserList // ignore: cast_nullable_to_non_nullable
-                    as List<String>,
         updatedBy:
             null == updatedBy
                 ? _value.updatedBy
@@ -287,6 +312,11 @@ class __$$AavailabilityReceiverImplCopyWithImpl<$Res>
                 ? _value._dateTimes
                 : dateTimes // ignore: cast_nullable_to_non_nullable
                     as List<DateTime>,
+        selectedUserList:
+            null == selectedUserList
+                ? _value._selectedUserList
+                : selectedUserList // ignore: cast_nullable_to_non_nullable
+                    as List<String>,
         userSubmissionInfo:
             null == userSubmissionInfo
                 ? _value._userSubmissionInfo
@@ -313,17 +343,19 @@ class _$AavailabilityReceiverImpl implements AavailabilityReceiver {
     this.createdBy = '',
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     this.updatedAt,
+    this.title = '',
+    this.description = '',
     this.deleted = false,
-    final List<String> excludedUserList = const [],
     this.updatedBy = '',
     this.isOpened = false,
     @JsonKey(toJson: Helpers.listDateToJson, fromJson: Helpers.listDateFromJson)
     final List<DateTime> dateTimes = const [],
+    final List<String> selectedUserList = const [],
     final Map<String, UserAvailabilitySubmissionInfo> userSubmissionInfo =
         const {},
     this.availabilityReceiverSetting = const AvailabilityReceiverSetting(),
-  }) : _excludedUserList = excludedUserList,
-       _dateTimes = dateTimes,
+  }) : _dateTimes = dateTimes,
+       _selectedUserList = selectedUserList,
        _userSubmissionInfo = userSubmissionInfo;
 
   factory _$AavailabilityReceiverImpl.fromJson(Map<String, dynamic> json) =>
@@ -342,17 +374,13 @@ class _$AavailabilityReceiverImpl implements AavailabilityReceiver {
   final DateTime? updatedAt;
   @override
   @JsonKey()
-  final bool deleted;
-  final List<String> _excludedUserList;
+  final String title;
   @override
   @JsonKey()
-  List<String> get excludedUserList {
-    if (_excludedUserList is EqualUnmodifiableListView)
-      return _excludedUserList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_excludedUserList);
-  }
-
+  final String description;
+  @override
+  @JsonKey()
+  final bool deleted;
   @override
   @JsonKey()
   final String updatedBy;
@@ -366,6 +394,16 @@ class _$AavailabilityReceiverImpl implements AavailabilityReceiver {
     if (_dateTimes is EqualUnmodifiableListView) return _dateTimes;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_dateTimes);
+  }
+
+  final List<String> _selectedUserList;
+  @override
+  @JsonKey()
+  List<String> get selectedUserList {
+    if (_selectedUserList is EqualUnmodifiableListView)
+      return _selectedUserList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_selectedUserList);
   }
 
   final Map<String, UserAvailabilitySubmissionInfo> _userSubmissionInfo;
@@ -384,7 +422,7 @@ class _$AavailabilityReceiverImpl implements AavailabilityReceiver {
 
   @override
   String toString() {
-    return 'AvailabilityReceiver(id: $id, createdAt: $createdAt, createdBy: $createdBy, updatedAt: $updatedAt, deleted: $deleted, excludedUserList: $excludedUserList, updatedBy: $updatedBy, isOpened: $isOpened, dateTimes: $dateTimes, userSubmissionInfo: $userSubmissionInfo, availabilityReceiverSetting: $availabilityReceiverSetting)';
+    return 'AvailabilityReceiver(id: $id, createdAt: $createdAt, createdBy: $createdBy, updatedAt: $updatedAt, title: $title, description: $description, deleted: $deleted, updatedBy: $updatedBy, isOpened: $isOpened, dateTimes: $dateTimes, selectedUserList: $selectedUserList, userSubmissionInfo: $userSubmissionInfo, availabilityReceiverSetting: $availabilityReceiverSetting)';
   }
 
   @override
@@ -399,11 +437,10 @@ class _$AavailabilityReceiverImpl implements AavailabilityReceiver {
                 other.createdBy == createdBy) &&
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
             (identical(other.deleted, deleted) || other.deleted == deleted) &&
-            const DeepCollectionEquality().equals(
-              other._excludedUserList,
-              _excludedUserList,
-            ) &&
             (identical(other.updatedBy, updatedBy) ||
                 other.updatedBy == updatedBy) &&
             (identical(other.isOpened, isOpened) ||
@@ -411,6 +448,10 @@ class _$AavailabilityReceiverImpl implements AavailabilityReceiver {
             const DeepCollectionEquality().equals(
               other._dateTimes,
               _dateTimes,
+            ) &&
+            const DeepCollectionEquality().equals(
+              other._selectedUserList,
+              _selectedUserList,
             ) &&
             const DeepCollectionEquality().equals(
               other._userSubmissionInfo,
@@ -432,11 +473,13 @@ class _$AavailabilityReceiverImpl implements AavailabilityReceiver {
     createdAt,
     createdBy,
     updatedAt,
+    title,
+    description,
     deleted,
-    const DeepCollectionEquality().hash(_excludedUserList),
     updatedBy,
     isOpened,
     const DeepCollectionEquality().hash(_dateTimes),
+    const DeepCollectionEquality().hash(_selectedUserList),
     const DeepCollectionEquality().hash(_userSubmissionInfo),
     availabilityReceiverSetting,
   );
@@ -467,12 +510,14 @@ abstract class AavailabilityReceiver implements AvailabilityReceiver {
     final String createdBy,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     final DateTime? updatedAt,
+    final String title,
+    final String description,
     final bool deleted,
-    final List<String> excludedUserList,
     final String updatedBy,
     final bool isOpened,
     @JsonKey(toJson: Helpers.listDateToJson, fromJson: Helpers.listDateFromJson)
     final List<DateTime> dateTimes,
+    final List<String> selectedUserList,
     final Map<String, UserAvailabilitySubmissionInfo> userSubmissionInfo,
     final AvailabilityReceiverSetting availabilityReceiverSetting,
   }) = _$AavailabilityReceiverImpl;
@@ -491,9 +536,11 @@ abstract class AavailabilityReceiver implements AvailabilityReceiver {
   @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
   DateTime? get updatedAt;
   @override
-  bool get deleted;
+  String get title;
   @override
-  List<String> get excludedUserList;
+  String get description;
+  @override
+  bool get deleted;
   @override
   String get updatedBy;
   @override
@@ -501,6 +548,8 @@ abstract class AavailabilityReceiver implements AvailabilityReceiver {
   @override
   @JsonKey(toJson: Helpers.listDateToJson, fromJson: Helpers.listDateFromJson)
   List<DateTime> get dateTimes;
+  @override
+  List<String> get selectedUserList;
   @override
   Map<String, UserAvailabilitySubmissionInfo> get userSubmissionInfo;
   @override

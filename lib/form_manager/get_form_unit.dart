@@ -6,7 +6,7 @@ import 'package:tetbee__base/form_manager/form_fields/item_picker_form_unit.dart
 import 'package:tetbee__base/form_manager/form_fields/media_picker_form_unit.dart';
 import 'package:tetbee__base/form_manager/form_fields/phone_number_form_unit.dart';
 import 'package:tetbee__base/form_manager/form_fields/ranged_date_form_unit.dart';
-import 'package:tetbee__base/form_manager/form_fields/ranged_time_form_unit.dart';
+import 'package:tetbee__base/form_manager/form_fields/ranged_time_form_unit/ranged_time_form_unit.dart';
 import 'package:tetbee__base/form_manager/form_fields/ranged_time_slider_form_unit.dart';
 import 'package:tetbee__base/form_manager/form_fields/text_form_unit.dart';
 import 'package:tetbee__base/form_manager/form_unit/form_unit.dart';
@@ -33,6 +33,11 @@ Widget getFormUnit(MapEntry<String, FormUnit> entry, dynamic initialValue) {
     case FormUnitType.datePicker:
       return DatePickerFormUnit(formUnit: entry);
     case FormUnitType.rangedTimeSlider:
-      return RangedTimeSliderFormUnit(formUnit: entry);
+      return RangedTimeSliderFormUnit(
+        key: ValueKey('RangedTimeSliderFormUnit/${entry.key}'),
+        formUnit: entry,
+      );
+    case FormUnitType.customWidget:
+      return entry.value.widget!;
   }
 }

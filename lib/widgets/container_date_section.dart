@@ -22,16 +22,16 @@ class ContainerDateSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 5, top: 2),
-          child: Text(
-            startDate.year.toString(),
-            style: TextStyle(
-              fontSize: yearFontSize,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
+        // Padding(
+        //   padding: const EdgeInsets.only(left: 5, top: 2),
+        //   child: Text(
+        //     startDate.year.toString(),
+        //     style: TextStyle(
+        //       fontSize: yearFontSize,
+        //       fontWeight: FontWeight.bold,
+        //     ),
+        //   ),
+        // ),
         NewCustomDateRange(
           dateColor: dateColor,
           startDate: startDate,

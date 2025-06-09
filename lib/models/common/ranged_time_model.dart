@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
+import 'package:tetbee__base/tetbee__base.dart';
 import 'package:tetbee__base/utils/helper.dart';
 
 part 'ranged_time_model.freezed.dart';
@@ -21,6 +22,11 @@ class RangedTimeModel with _$RangedTimeModel {
 }
 
 extension RangedTimeModelExtension on RangedTimeModel {
+  RangedTimeModel get convertToLocalRangedTimeModel => RangedTimeModel(
+    startTime: DateHelpers.timeToLocalTime(startTime),
+    endTime: DateHelpers.timeToLocalTime(endTime),
+  );
+
   String getTimeFormat(
     bool show24Hour, {
     bool isStartTime = true,

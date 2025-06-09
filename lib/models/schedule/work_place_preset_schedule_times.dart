@@ -5,11 +5,13 @@ part 'work_place_preset_schedule_times.freezed.dart';
 part 'work_place_preset_schedule_times.g.dart';
 
 @freezed
-class WorkPlaceScheduleTimes with _$WorkPlaceScheduleTimes {
-  const factory WorkPlaceScheduleTimes({
-    List<PresetScheduleTime>? presetTimes,
-  }) = _WorkPlaceScheduleTimes;
+class WorkPlaceSchedulePresetTimes with _$WorkPlaceSchedulePresetTimes {
+  @JsonSerializable(explicitToJson: true)
+  const factory WorkPlaceSchedulePresetTimes({
+    String? id,
+    List<SchedulePresetTime>? presetTimes,
+  }) = _WorkPlaceSchedulePresetTimes;
 
-  factory WorkPlaceScheduleTimes.fromJson(Map<String, dynamic> json) =>
-      _$WorkPlaceScheduleTimesFromJson(json);
+  factory WorkPlaceSchedulePresetTimes.fromJson(Map<String, dynamic> json) =>
+      _$WorkPlaceSchedulePresetTimesFromJson(json);
 }

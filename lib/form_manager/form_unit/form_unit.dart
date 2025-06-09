@@ -82,6 +82,7 @@ class FormUnit extends FormUnitBase {
     this.isRanged = true,
     this.minumumTimeRange = 5,
   }) : super(formUnitType: FormUnitType.rangedDatePicker);
+
   FormUnit.rangedTimePicker({
     required super.label,
     super.defaultValue,
@@ -176,15 +177,23 @@ class FormUnit extends FormUnitBase {
     this.minimumHour,
     this.labelWidget,
     required this.baseTimeRange,
-    required this.baseTime,
     this.dailyAvailabilityTimeInterval = TimeInterval.thirty,
     this.useNotPreferedDay,
     this.withPadding = true,
     this.show24Hour = false,
+    this.useDailyComment = true,
   }) : super(formUnitType: FormUnitType.rangedTimeSlider);
   bool? show24Hour;
   int? minimumHour;
   RangedTimeModel? baseTimeRange;
   bool? useNotPreferedDay;
+  bool? useDailyComment;
   bool? withPadding;
+
+  FormUnit.customWidget({
+    super.label = '',
+    //
+    required this.widget,
+  }) : super(formUnitType: FormUnitType.customWidget);
+  Widget? widget;
 }

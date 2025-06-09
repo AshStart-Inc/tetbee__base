@@ -2,6 +2,7 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:tetbee__base/models/availability/daily_availability.dart';
+import 'package:tetbee__base/utils/enums.dart';
 import 'package:tetbee__base/utils/helper.dart';
 
 part 'user_availabilities.freezed.dart';
@@ -17,9 +18,33 @@ class UserAvailabilities with _$UserAvailabilities {
     @Default('') String createdBy,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     DateTime? updatedAt,
-    required List<DailyAvailability> dailyAvailability,
+    @Default('') String updatedBy,
+    required List<DailyAvailability> dailyAvailabilities,
+    @Default('') String weekComment,
+    int? prefferedHours,
   }) = AUserAvailabilities;
 
   factory UserAvailabilities.fromJson(Map<String, dynamic> json) =>
       _$UserAvailabilitiesFromJson(json);
+}
+
+extension UserAvailabilitiesExtension on UserAvailabilities {
+  DailyAvailability? getDailyAvailability(DateTime date, DateRangeType type) {
+    List<DailyAvailability>? davs;
+    switch (type) {
+      case DateRangeType.multipleDates:
+        davs =
+            dailyAvailabilities
+                .where(
+                  (dav) => dav.date?.toIsoDateString == date.toIsoDateString,
+                )
+                .toList();
+      case DateRangeType.rangedDate:
+        davs =
+            dailyAvailabilities
+                .where((dav) => dav.weekDay == date.weekday)
+                .toList();
+    }
+    return davs.isEmpty ? null : davs.first;
+  }
 }

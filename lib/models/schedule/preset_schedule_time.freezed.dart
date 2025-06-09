@@ -15,55 +15,52 @@ final _privateConstructorUsedError = UnsupportedError(
   'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
 );
 
-PresetScheduleTime _$PresetScheduleTimeFromJson(Map<String, dynamic> json) {
-  return _PresetScheduleTime.fromJson(json);
+SchedulePresetTime _$SchedulePresetTimeFromJson(Map<String, dynamic> json) {
+  return _SchedulePresetTime.fromJson(json);
 }
 
 /// @nodoc
-mixin _$PresetScheduleTime {
+mixin _$SchedulePresetTime {
   int get ordinal => throw _privateConstructorUsedError;
-  String get startTime => throw _privateConstructorUsedError;
-  String? get endTime => throw _privateConstructorUsedError;
+  RangedTimeModel get timeRange => throw _privateConstructorUsedError;
 
-  /// Serializes this PresetScheduleTime to a JSON map.
+  /// Serializes this SchedulePresetTime to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of PresetScheduleTime
+  /// Create a copy of SchedulePresetTime
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $PresetScheduleTimeCopyWith<PresetScheduleTime> get copyWith =>
+  $SchedulePresetTimeCopyWith<SchedulePresetTime> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PresetScheduleTimeCopyWith<$Res> {
-  factory $PresetScheduleTimeCopyWith(
-    PresetScheduleTime value,
-    $Res Function(PresetScheduleTime) then,
-  ) = _$PresetScheduleTimeCopyWithImpl<$Res, PresetScheduleTime>;
+abstract class $SchedulePresetTimeCopyWith<$Res> {
+  factory $SchedulePresetTimeCopyWith(
+    SchedulePresetTime value,
+    $Res Function(SchedulePresetTime) then,
+  ) = _$SchedulePresetTimeCopyWithImpl<$Res, SchedulePresetTime>;
   @useResult
-  $Res call({int ordinal, String startTime, String? endTime});
+  $Res call({int ordinal, RangedTimeModel timeRange});
+
+  $RangedTimeModelCopyWith<$Res> get timeRange;
 }
 
 /// @nodoc
-class _$PresetScheduleTimeCopyWithImpl<$Res, $Val extends PresetScheduleTime>
-    implements $PresetScheduleTimeCopyWith<$Res> {
-  _$PresetScheduleTimeCopyWithImpl(this._value, this._then);
+class _$SchedulePresetTimeCopyWithImpl<$Res, $Val extends SchedulePresetTime>
+    implements $SchedulePresetTimeCopyWith<$Res> {
+  _$SchedulePresetTimeCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of PresetScheduleTime
+  /// Create a copy of SchedulePresetTime
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? ordinal = null,
-    Object? startTime = null,
-    Object? endTime = freezed,
-  }) {
+  $Res call({Object? ordinal = null, Object? timeRange = null}) {
     return _then(
       _value.copyWith(
             ordinal:
@@ -71,151 +68,144 @@ class _$PresetScheduleTimeCopyWithImpl<$Res, $Val extends PresetScheduleTime>
                     ? _value.ordinal
                     : ordinal // ignore: cast_nullable_to_non_nullable
                         as int,
-            startTime:
-                null == startTime
-                    ? _value.startTime
-                    : startTime // ignore: cast_nullable_to_non_nullable
-                        as String,
-            endTime:
-                freezed == endTime
-                    ? _value.endTime
-                    : endTime // ignore: cast_nullable_to_non_nullable
-                        as String?,
+            timeRange:
+                null == timeRange
+                    ? _value.timeRange
+                    : timeRange // ignore: cast_nullable_to_non_nullable
+                        as RangedTimeModel,
           )
           as $Val,
     );
   }
+
+  /// Create a copy of SchedulePresetTime
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $RangedTimeModelCopyWith<$Res> get timeRange {
+    return $RangedTimeModelCopyWith<$Res>(_value.timeRange, (value) {
+      return _then(_value.copyWith(timeRange: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$PresetScheduleTimeImplCopyWith<$Res>
-    implements $PresetScheduleTimeCopyWith<$Res> {
-  factory _$$PresetScheduleTimeImplCopyWith(
-    _$PresetScheduleTimeImpl value,
-    $Res Function(_$PresetScheduleTimeImpl) then,
-  ) = __$$PresetScheduleTimeImplCopyWithImpl<$Res>;
+abstract class _$$SchedulePresetTimeImplCopyWith<$Res>
+    implements $SchedulePresetTimeCopyWith<$Res> {
+  factory _$$SchedulePresetTimeImplCopyWith(
+    _$SchedulePresetTimeImpl value,
+    $Res Function(_$SchedulePresetTimeImpl) then,
+  ) = __$$SchedulePresetTimeImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int ordinal, String startTime, String? endTime});
+  $Res call({int ordinal, RangedTimeModel timeRange});
+
+  @override
+  $RangedTimeModelCopyWith<$Res> get timeRange;
 }
 
 /// @nodoc
-class __$$PresetScheduleTimeImplCopyWithImpl<$Res>
-    extends _$PresetScheduleTimeCopyWithImpl<$Res, _$PresetScheduleTimeImpl>
-    implements _$$PresetScheduleTimeImplCopyWith<$Res> {
-  __$$PresetScheduleTimeImplCopyWithImpl(
-    _$PresetScheduleTimeImpl _value,
-    $Res Function(_$PresetScheduleTimeImpl) _then,
+class __$$SchedulePresetTimeImplCopyWithImpl<$Res>
+    extends _$SchedulePresetTimeCopyWithImpl<$Res, _$SchedulePresetTimeImpl>
+    implements _$$SchedulePresetTimeImplCopyWith<$Res> {
+  __$$SchedulePresetTimeImplCopyWithImpl(
+    _$SchedulePresetTimeImpl _value,
+    $Res Function(_$SchedulePresetTimeImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of PresetScheduleTime
+  /// Create a copy of SchedulePresetTime
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? ordinal = null,
-    Object? startTime = null,
-    Object? endTime = freezed,
-  }) {
+  $Res call({Object? ordinal = null, Object? timeRange = null}) {
     return _then(
-      _$PresetScheduleTimeImpl(
+      _$SchedulePresetTimeImpl(
         ordinal:
             null == ordinal
                 ? _value.ordinal
                 : ordinal // ignore: cast_nullable_to_non_nullable
                     as int,
-        startTime:
-            null == startTime
-                ? _value.startTime
-                : startTime // ignore: cast_nullable_to_non_nullable
-                    as String,
-        endTime:
-            freezed == endTime
-                ? _value.endTime
-                : endTime // ignore: cast_nullable_to_non_nullable
-                    as String?,
+        timeRange:
+            null == timeRange
+                ? _value.timeRange
+                : timeRange // ignore: cast_nullable_to_non_nullable
+                    as RangedTimeModel,
       ),
     );
   }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$PresetScheduleTimeImpl implements _PresetScheduleTime {
-  const _$PresetScheduleTimeImpl({
+
+@JsonSerializable(explicitToJson: true)
+class _$SchedulePresetTimeImpl implements _SchedulePresetTime {
+  const _$SchedulePresetTimeImpl({
     required this.ordinal,
-    required this.startTime,
-    this.endTime,
+    required this.timeRange,
   });
 
-  factory _$PresetScheduleTimeImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PresetScheduleTimeImplFromJson(json);
+  factory _$SchedulePresetTimeImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SchedulePresetTimeImplFromJson(json);
 
   @override
   final int ordinal;
   @override
-  final String startTime;
-  @override
-  final String? endTime;
+  final RangedTimeModel timeRange;
 
   @override
   String toString() {
-    return 'PresetScheduleTime(ordinal: $ordinal, startTime: $startTime, endTime: $endTime)';
+    return 'SchedulePresetTime(ordinal: $ordinal, timeRange: $timeRange)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PresetScheduleTimeImpl &&
+            other is _$SchedulePresetTimeImpl &&
             (identical(other.ordinal, ordinal) || other.ordinal == ordinal) &&
-            (identical(other.startTime, startTime) ||
-                other.startTime == startTime) &&
-            (identical(other.endTime, endTime) || other.endTime == endTime));
+            (identical(other.timeRange, timeRange) ||
+                other.timeRange == timeRange));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, ordinal, startTime, endTime);
+  int get hashCode => Object.hash(runtimeType, ordinal, timeRange);
 
-  /// Create a copy of PresetScheduleTime
+  /// Create a copy of SchedulePresetTime
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$PresetScheduleTimeImplCopyWith<_$PresetScheduleTimeImpl> get copyWith =>
-      __$$PresetScheduleTimeImplCopyWithImpl<_$PresetScheduleTimeImpl>(
+  _$$SchedulePresetTimeImplCopyWith<_$SchedulePresetTimeImpl> get copyWith =>
+      __$$SchedulePresetTimeImplCopyWithImpl<_$SchedulePresetTimeImpl>(
         this,
         _$identity,
       );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PresetScheduleTimeImplToJson(this);
+    return _$$SchedulePresetTimeImplToJson(this);
   }
 }
 
-abstract class _PresetScheduleTime implements PresetScheduleTime {
-  const factory _PresetScheduleTime({
+abstract class _SchedulePresetTime implements SchedulePresetTime {
+  const factory _SchedulePresetTime({
     required final int ordinal,
-    required final String startTime,
-    final String? endTime,
-  }) = _$PresetScheduleTimeImpl;
+    required final RangedTimeModel timeRange,
+  }) = _$SchedulePresetTimeImpl;
 
-  factory _PresetScheduleTime.fromJson(Map<String, dynamic> json) =
-      _$PresetScheduleTimeImpl.fromJson;
+  factory _SchedulePresetTime.fromJson(Map<String, dynamic> json) =
+      _$SchedulePresetTimeImpl.fromJson;
 
   @override
   int get ordinal;
   @override
-  String get startTime;
-  @override
-  String? get endTime;
+  RangedTimeModel get timeRange;
 
-  /// Create a copy of PresetScheduleTime
+  /// Create a copy of SchedulePresetTime
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PresetScheduleTimeImplCopyWith<_$PresetScheduleTimeImpl> get copyWith =>
+  _$$SchedulePresetTimeImplCopyWith<_$SchedulePresetTimeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -2,18 +2,18 @@
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PresetScheduleTimeImpl _$$PresetScheduleTimeImplFromJson(
+_$SchedulePresetTimeImpl _$$SchedulePresetTimeImplFromJson(
   Map<String, dynamic> json,
-) => _$PresetScheduleTimeImpl(
+) => _$SchedulePresetTimeImpl(
   ordinal: (json['ordinal'] as num).toInt(),
-  startTime: json['startTime'] as String,
-  endTime: json['endTime'] as String?,
+  timeRange: RangedTimeModel.fromJson(
+    json['timeRange'] as Map<String, dynamic>,
+  ),
 );
 
-Map<String, dynamic> _$$PresetScheduleTimeImplToJson(
-  _$PresetScheduleTimeImpl instance,
+Map<String, dynamic> _$$SchedulePresetTimeImplToJson(
+  _$SchedulePresetTimeImpl instance,
 ) => <String, dynamic>{
   'ordinal': instance.ordinal,
-  'startTime': instance.startTime,
-  'endTime': instance.endTime,
+  'timeRange': instance.timeRange.toJson(),
 };

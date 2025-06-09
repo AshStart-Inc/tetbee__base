@@ -95,7 +95,9 @@ class _FormManagerState extends State<FormManager> {
                   children: [
                     Expanded(
                       child: ListView(
+                        // itemCount: (widget.formFields ?? {}).length,
                         padding: EdgeInsets.symmetric(horizontal: 16),
+                        // itemBuilder: (context) {},
                         children: [
                           if (widget.formFields != null)
                             ..._getFormValues(formFields: widget.formFields!),
@@ -116,7 +118,7 @@ class _FormManagerState extends State<FormManager> {
     return [
       ...widget.formFields!.entries.map(
         (e) => SizedBox(
-          key: ValueKey(e.key),
+          key: PageStorageKey(e.key),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: getFormUnit(e, _fomKey.currentState?.instantValue[e.key]),
@@ -133,9 +135,11 @@ class _FormManagerState extends State<FormManager> {
       onTap: () async {
         if (_fomKey.currentState!.saveAndValidate()) {
           loading(true);
-          await widget.onSaved!(_fomKey.currentState!.instantValue).then((_) {
-            loading(false);
-            widget.onFinish?.call();
+          await Future.delayed(Duration(milliseconds: 10)).then((_) async {
+            await widget.onSaved!(_fomKey.currentState!.instantValue).then((_) {
+              loading(false);
+              widget.onFinish?.call();
+            });
           });
         }
       },

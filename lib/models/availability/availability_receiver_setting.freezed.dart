@@ -26,7 +26,7 @@ mixin _$AvailabilityReceiverSetting {
   DateRangeType get type => throw _privateConstructorUsedError;
   bool get showNotPreferedDayChecker => throw _privateConstructorUsedError;
   bool get useDailyComment => throw _privateConstructorUsedError;
-  int get timeInterval => throw _privateConstructorUsedError;
+  TimeInterval get timeInterval => throw _privateConstructorUsedError;
   List<DailyAvailability> get dailyAvailabilityTimeRange =>
       throw _privateConstructorUsedError;
 
@@ -55,7 +55,7 @@ abstract class $AvailabilityReceiverSettingCopyWith<$Res> {
     DateRangeType type,
     bool showNotPreferedDayChecker,
     bool useDailyComment,
-    int timeInterval,
+    TimeInterval timeInterval,
     List<DailyAvailability> dailyAvailabilityTimeRange,
   });
 }
@@ -105,7 +105,7 @@ class _$AvailabilityReceiverSettingCopyWithImpl<
                 null == timeInterval
                     ? _value.timeInterval
                     : timeInterval // ignore: cast_nullable_to_non_nullable
-                        as int,
+                        as TimeInterval,
             dailyAvailabilityTimeRange:
                 null == dailyAvailabilityTimeRange
                     ? _value.dailyAvailabilityTimeRange
@@ -130,7 +130,7 @@ abstract class _$$AvailabilityReceiverSettingImplCopyWith<$Res>
     DateRangeType type,
     bool showNotPreferedDayChecker,
     bool useDailyComment,
-    int timeInterval,
+    TimeInterval timeInterval,
     List<DailyAvailability> dailyAvailabilityTimeRange,
   });
 }
@@ -180,7 +180,7 @@ class __$$AvailabilityReceiverSettingImplCopyWithImpl<$Res>
             null == timeInterval
                 ? _value.timeInterval
                 : timeInterval // ignore: cast_nullable_to_non_nullable
-                    as int,
+                    as TimeInterval,
         dailyAvailabilityTimeRange:
             null == dailyAvailabilityTimeRange
                 ? _value._dailyAvailabilityTimeRange
@@ -200,7 +200,7 @@ class _$AvailabilityReceiverSettingImpl
     this.type = DateRangeType.rangedDate,
     this.showNotPreferedDayChecker = true,
     this.useDailyComment = true,
-    this.timeInterval = 15,
+    this.timeInterval = TimeInterval.fifteen,
     final List<DailyAvailability> dailyAvailabilityTimeRange = const [],
   }) : _dailyAvailabilityTimeRange = dailyAvailabilityTimeRange;
 
@@ -219,7 +219,7 @@ class _$AvailabilityReceiverSettingImpl
   final bool useDailyComment;
   @override
   @JsonKey()
-  final int timeInterval;
+  final TimeInterval timeInterval;
   final List<DailyAvailability> _dailyAvailabilityTimeRange;
   @override
   @JsonKey()
@@ -289,7 +289,7 @@ abstract class _AvailabilityReceiverSetting
     final DateRangeType type,
     final bool showNotPreferedDayChecker,
     final bool useDailyComment,
-    final int timeInterval,
+    final TimeInterval timeInterval,
     final List<DailyAvailability> dailyAvailabilityTimeRange,
   }) = _$AvailabilityReceiverSettingImpl;
 
@@ -303,7 +303,7 @@ abstract class _AvailabilityReceiverSetting
   @override
   bool get useDailyComment;
   @override
-  int get timeInterval;
+  TimeInterval get timeInterval;
   @override
   List<DailyAvailability> get dailyAvailabilityTimeRange;
 

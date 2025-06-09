@@ -11,6 +11,7 @@ enum FormUnitType {
   mediaPicker,
   datePicker,
   rangedTimeSlider,
+  customWidget,
 }
 
 abstract class FormUnitBase {

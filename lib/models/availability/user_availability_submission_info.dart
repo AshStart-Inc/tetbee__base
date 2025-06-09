@@ -11,8 +11,6 @@ class UserAvailabilitySubmissionInfo with _$UserAvailabilitySubmissionInfo {
   const factory UserAvailabilitySubmissionInfo({
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     DateTime? submissionTime,
-    @Default('') String weekComment,
-    int? prefferedHours,
   }) = AUserAvailabilitySubmissionInfo;
 
   factory UserAvailabilitySubmissionInfo.fromJson(Map<String, dynamic> json) =>

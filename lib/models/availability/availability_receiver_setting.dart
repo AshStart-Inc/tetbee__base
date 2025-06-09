@@ -14,7 +14,7 @@ class AvailabilityReceiverSetting with _$AvailabilityReceiverSetting {
     @Default(DateRangeType.rangedDate) DateRangeType type,
     @Default(true) bool showNotPreferedDayChecker,
     @Default(true) bool useDailyComment,
-    @Default(15) int timeInterval,
+    @Default(TimeInterval.fifteen) TimeInterval timeInterval,
     @Default([]) List<DailyAvailability> dailyAvailabilityTimeRange,
   }) = _AvailabilityReceiverSetting;
 

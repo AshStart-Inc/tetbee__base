@@ -13,9 +13,11 @@ class DailySchedule with _$DailySchedule {
     String? id,
     RangedTimeModel? scheduleTimeRange,
     RangedTimeModel? breakTimeRange,
+    @Default('') String positionCode,
     @Default('') String comment,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
-    DateTime? signedOutTime,
+    DateTime? signedOutStartTime,
+    DateTime? signedOutEndTime,
     @Default(false) bool isHalfDay,
     @Default([]) List<WorkTrainInfo> trainer,
     @Default([]) List<WorkTrainInfo> trainee,
@@ -23,4 +25,18 @@ class DailySchedule with _$DailySchedule {
 
   factory DailySchedule.fromJson(Map<String, dynamic> json) =>
       _$DailyScheduleFromJson(json);
+}
+
+extension DailyScheduleExtension on DailySchedule {
+  String getScheduleText(bool show24Hour) {
+    RangedTimeModel timeModel =
+        (signedOutStartTime != null)
+            ? scheduleTimeRange!.copyWith(
+              startTime: signedOutStartTime,
+              endTime: signedOutEndTime,
+            )
+            : scheduleTimeRange!;
+
+    return '${timeModel.getTimeFormat(show24Hour)} - ${timeModel.endTime != null ? timeModel.getTimeFormat(show24Hour, isStartTime: false) : ''}';
+  }
 }

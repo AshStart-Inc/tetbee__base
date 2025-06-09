@@ -4,5 +4,9 @@ enum DataModel {
   workPlace,
   chatRoom,
   availabilityReceiver,
+  scheduleContainer,
+  userSchedule,
   joinRequest,
+  userAvailabilities,
+  workPlaceSchedulePresetTimes,
 }

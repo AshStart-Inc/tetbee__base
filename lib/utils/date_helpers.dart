@@ -3,6 +3,14 @@ import 'package:tetbee__base/models/work_place/work_place.dart';
 import 'package:timezone/timezone.dart' as tz;
 
 class DateHelpers {
+  static tz.TZDateTime? timeToLocalTime(DateTime? time) {
+    if (time == null) {
+      return null;
+    }
+    tz.TZDateTime? time0 = tz.TZDateTime.from(time, tz.local);
+    return time0;
+  }
+
   static void setTimeZone(WorkPlace placeModel) {
     if (placeModel.timeZone.location.isNotEmpty) {
       tz.setLocalLocation(tz.getLocation(placeModel.timeZone.location));

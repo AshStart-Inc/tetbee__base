@@ -141,7 +141,6 @@ class DatabaseService {
             overridenPath: overridenPath,
             types: types,
           ));
-
       final QuerySnapshot<Map<String, dynamic>> doc =
           queryBuilder == null
               ? await FirebaseFirestore.instance.collection(fullpath).get()
@@ -151,6 +150,7 @@ class DatabaseService {
         statusCode: HttpStatus.badRequest,
       );
     } catch (error) {
+      print(error);
       return ApiResponse(
         data: null,
         statusCode: HttpStatus.badRequest,
@@ -161,7 +161,8 @@ class DatabaseService {
 
   static Future<ApiResponse<bool>> update({
     required DataModel dataModel,
-    required Map<String, dynamic> data,
+    required Map<String, dynamic> baseData,
+    Map<String, dynamic>? updatedData,
     required List<String>? types,
     required String docId,
     required String userId,
@@ -169,14 +170,14 @@ class DatabaseService {
     bool useFilter = true,
   }) async {
     try {
+      Map<String, dynamic> data = {...(updatedData ?? baseData)};
       String fullpath =
           ('${DatabaseService.generatePath(overridenPath: null, types: types ?? getDataTypes(dataModel))}/$docId');
       data['updatedAt'] = Helpers.dateToJson(DateTime.now());
       data['updatedBy'] = userId;
-      // print('Updating data..... $fullpath');
       if (useFilter) {
         List<String> filters = [];
-        filters.addAll(getDataFilter(data, dataModel));
+        filters.addAll(getDataFilter(baseData, dataModel));
         data[filtersKey] = filters;
       }
       if (useTransaction) {
@@ -186,6 +187,7 @@ class DatabaseService {
       } else {
         await FirebaseFirestore.instance.doc(fullpath).update(data);
       }
+
       return ApiResponse<bool>(
         data: true,
         statusCode: HttpStatus.ok,
@@ -193,7 +195,7 @@ class DatabaseService {
       );
     } catch (error) {
       return ApiResponse<bool>(
-        data: false,
+        data: null,
         statusCode: HttpStatus.badRequest,
         message: error.toString(),
       );

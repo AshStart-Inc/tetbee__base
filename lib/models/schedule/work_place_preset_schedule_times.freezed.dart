@@ -15,62 +15,72 @@ final _privateConstructorUsedError = UnsupportedError(
   'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
 );
 
-WorkPlaceScheduleTimes _$WorkPlaceScheduleTimesFromJson(
+WorkPlaceSchedulePresetTimes _$WorkPlaceSchedulePresetTimesFromJson(
   Map<String, dynamic> json,
 ) {
-  return _WorkPlaceScheduleTimes.fromJson(json);
+  return _WorkPlaceSchedulePresetTimes.fromJson(json);
 }
 
 /// @nodoc
-mixin _$WorkPlaceScheduleTimes {
-  List<PresetScheduleTime>? get presetTimes =>
+mixin _$WorkPlaceSchedulePresetTimes {
+  String? get id => throw _privateConstructorUsedError;
+  List<SchedulePresetTime>? get presetTimes =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this WorkPlaceScheduleTimes to a JSON map.
+  /// Serializes this WorkPlaceSchedulePresetTimes to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of WorkPlaceScheduleTimes
+  /// Create a copy of WorkPlaceSchedulePresetTimes
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $WorkPlaceScheduleTimesCopyWith<WorkPlaceScheduleTimes> get copyWith =>
-      throw _privateConstructorUsedError;
+  $WorkPlaceSchedulePresetTimesCopyWith<WorkPlaceSchedulePresetTimes>
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $WorkPlaceScheduleTimesCopyWith<$Res> {
-  factory $WorkPlaceScheduleTimesCopyWith(
-    WorkPlaceScheduleTimes value,
-    $Res Function(WorkPlaceScheduleTimes) then,
-  ) = _$WorkPlaceScheduleTimesCopyWithImpl<$Res, WorkPlaceScheduleTimes>;
+abstract class $WorkPlaceSchedulePresetTimesCopyWith<$Res> {
+  factory $WorkPlaceSchedulePresetTimesCopyWith(
+    WorkPlaceSchedulePresetTimes value,
+    $Res Function(WorkPlaceSchedulePresetTimes) then,
+  ) =
+      _$WorkPlaceSchedulePresetTimesCopyWithImpl<
+        $Res,
+        WorkPlaceSchedulePresetTimes
+      >;
   @useResult
-  $Res call({List<PresetScheduleTime>? presetTimes});
+  $Res call({String? id, List<SchedulePresetTime>? presetTimes});
 }
 
 /// @nodoc
-class _$WorkPlaceScheduleTimesCopyWithImpl<
+class _$WorkPlaceSchedulePresetTimesCopyWithImpl<
   $Res,
-  $Val extends WorkPlaceScheduleTimes
+  $Val extends WorkPlaceSchedulePresetTimes
 >
-    implements $WorkPlaceScheduleTimesCopyWith<$Res> {
-  _$WorkPlaceScheduleTimesCopyWithImpl(this._value, this._then);
+    implements $WorkPlaceSchedulePresetTimesCopyWith<$Res> {
+  _$WorkPlaceSchedulePresetTimesCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of WorkPlaceScheduleTimes
+  /// Create a copy of WorkPlaceSchedulePresetTimes
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? presetTimes = freezed}) {
+  $Res call({Object? id = freezed, Object? presetTimes = freezed}) {
     return _then(
       _value.copyWith(
+            id:
+                freezed == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as String?,
             presetTimes:
                 freezed == presetTimes
                     ? _value.presetTimes
                     : presetTimes // ignore: cast_nullable_to_non_nullable
-                        as List<PresetScheduleTime>?,
+                        as List<SchedulePresetTime>?,
           )
           as $Val,
     );
@@ -78,57 +88,71 @@ class _$WorkPlaceScheduleTimesCopyWithImpl<
 }
 
 /// @nodoc
-abstract class _$$WorkPlaceScheduleTimesImplCopyWith<$Res>
-    implements $WorkPlaceScheduleTimesCopyWith<$Res> {
-  factory _$$WorkPlaceScheduleTimesImplCopyWith(
-    _$WorkPlaceScheduleTimesImpl value,
-    $Res Function(_$WorkPlaceScheduleTimesImpl) then,
-  ) = __$$WorkPlaceScheduleTimesImplCopyWithImpl<$Res>;
+abstract class _$$WorkPlaceSchedulePresetTimesImplCopyWith<$Res>
+    implements $WorkPlaceSchedulePresetTimesCopyWith<$Res> {
+  factory _$$WorkPlaceSchedulePresetTimesImplCopyWith(
+    _$WorkPlaceSchedulePresetTimesImpl value,
+    $Res Function(_$WorkPlaceSchedulePresetTimesImpl) then,
+  ) = __$$WorkPlaceSchedulePresetTimesImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<PresetScheduleTime>? presetTimes});
+  $Res call({String? id, List<SchedulePresetTime>? presetTimes});
 }
 
 /// @nodoc
-class __$$WorkPlaceScheduleTimesImplCopyWithImpl<$Res>
+class __$$WorkPlaceSchedulePresetTimesImplCopyWithImpl<$Res>
     extends
-        _$WorkPlaceScheduleTimesCopyWithImpl<$Res, _$WorkPlaceScheduleTimesImpl>
-    implements _$$WorkPlaceScheduleTimesImplCopyWith<$Res> {
-  __$$WorkPlaceScheduleTimesImplCopyWithImpl(
-    _$WorkPlaceScheduleTimesImpl _value,
-    $Res Function(_$WorkPlaceScheduleTimesImpl) _then,
+        _$WorkPlaceSchedulePresetTimesCopyWithImpl<
+          $Res,
+          _$WorkPlaceSchedulePresetTimesImpl
+        >
+    implements _$$WorkPlaceSchedulePresetTimesImplCopyWith<$Res> {
+  __$$WorkPlaceSchedulePresetTimesImplCopyWithImpl(
+    _$WorkPlaceSchedulePresetTimesImpl _value,
+    $Res Function(_$WorkPlaceSchedulePresetTimesImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of WorkPlaceScheduleTimes
+  /// Create a copy of WorkPlaceSchedulePresetTimes
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? presetTimes = freezed}) {
+  $Res call({Object? id = freezed, Object? presetTimes = freezed}) {
     return _then(
-      _$WorkPlaceScheduleTimesImpl(
+      _$WorkPlaceSchedulePresetTimesImpl(
+        id:
+            freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as String?,
         presetTimes:
             freezed == presetTimes
                 ? _value._presetTimes
                 : presetTimes // ignore: cast_nullable_to_non_nullable
-                    as List<PresetScheduleTime>?,
+                    as List<SchedulePresetTime>?,
       ),
     );
   }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$WorkPlaceScheduleTimesImpl implements _WorkPlaceScheduleTimes {
-  const _$WorkPlaceScheduleTimesImpl({
-    final List<PresetScheduleTime>? presetTimes,
+
+@JsonSerializable(explicitToJson: true)
+class _$WorkPlaceSchedulePresetTimesImpl
+    implements _WorkPlaceSchedulePresetTimes {
+  const _$WorkPlaceSchedulePresetTimesImpl({
+    this.id,
+    final List<SchedulePresetTime>? presetTimes,
   }) : _presetTimes = presetTimes;
 
-  factory _$WorkPlaceScheduleTimesImpl.fromJson(Map<String, dynamic> json) =>
-      _$$WorkPlaceScheduleTimesImplFromJson(json);
+  factory _$WorkPlaceSchedulePresetTimesImpl.fromJson(
+    Map<String, dynamic> json,
+  ) => _$$WorkPlaceSchedulePresetTimesImplFromJson(json);
 
-  final List<PresetScheduleTime>? _presetTimes;
   @override
-  List<PresetScheduleTime>? get presetTimes {
+  final String? id;
+  final List<SchedulePresetTime>? _presetTimes;
+  @override
+  List<SchedulePresetTime>? get presetTimes {
     final value = _presetTimes;
     if (value == null) return null;
     if (_presetTimes is EqualUnmodifiableListView) return _presetTimes;
@@ -138,14 +162,15 @@ class _$WorkPlaceScheduleTimesImpl implements _WorkPlaceScheduleTimes {
 
   @override
   String toString() {
-    return 'WorkPlaceScheduleTimes(presetTimes: $presetTimes)';
+    return 'WorkPlaceSchedulePresetTimes(id: $id, presetTimes: $presetTimes)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$WorkPlaceScheduleTimesImpl &&
+            other is _$WorkPlaceSchedulePresetTimesImpl &&
+            (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality().equals(
               other._presetTimes,
               _presetTimes,
@@ -156,42 +181,49 @@ class _$WorkPlaceScheduleTimesImpl implements _WorkPlaceScheduleTimes {
   @override
   int get hashCode => Object.hash(
     runtimeType,
+    id,
     const DeepCollectionEquality().hash(_presetTimes),
   );
 
-  /// Create a copy of WorkPlaceScheduleTimes
+  /// Create a copy of WorkPlaceSchedulePresetTimes
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$WorkPlaceScheduleTimesImplCopyWith<_$WorkPlaceScheduleTimesImpl>
-  get copyWith =>
-      __$$WorkPlaceScheduleTimesImplCopyWithImpl<_$WorkPlaceScheduleTimesImpl>(
-        this,
-        _$identity,
-      );
+  _$$WorkPlaceSchedulePresetTimesImplCopyWith<
+    _$WorkPlaceSchedulePresetTimesImpl
+  >
+  get copyWith => __$$WorkPlaceSchedulePresetTimesImplCopyWithImpl<
+    _$WorkPlaceSchedulePresetTimesImpl
+  >(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$WorkPlaceScheduleTimesImplToJson(this);
+    return _$$WorkPlaceSchedulePresetTimesImplToJson(this);
   }
 }
 
-abstract class _WorkPlaceScheduleTimes implements WorkPlaceScheduleTimes {
-  const factory _WorkPlaceScheduleTimes({
-    final List<PresetScheduleTime>? presetTimes,
-  }) = _$WorkPlaceScheduleTimesImpl;
+abstract class _WorkPlaceSchedulePresetTimes
+    implements WorkPlaceSchedulePresetTimes {
+  const factory _WorkPlaceSchedulePresetTimes({
+    final String? id,
+    final List<SchedulePresetTime>? presetTimes,
+  }) = _$WorkPlaceSchedulePresetTimesImpl;
 
-  factory _WorkPlaceScheduleTimes.fromJson(Map<String, dynamic> json) =
-      _$WorkPlaceScheduleTimesImpl.fromJson;
+  factory _WorkPlaceSchedulePresetTimes.fromJson(Map<String, dynamic> json) =
+      _$WorkPlaceSchedulePresetTimesImpl.fromJson;
 
   @override
-  List<PresetScheduleTime>? get presetTimes;
+  String? get id;
+  @override
+  List<SchedulePresetTime>? get presetTimes;
 
-  /// Create a copy of WorkPlaceScheduleTimes
+  /// Create a copy of WorkPlaceSchedulePresetTimes
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$WorkPlaceScheduleTimesImplCopyWith<_$WorkPlaceScheduleTimesImpl>
+  _$$WorkPlaceSchedulePresetTimesImplCopyWith<
+    _$WorkPlaceSchedulePresetTimesImpl
+  >
   get copyWith => throw _privateConstructorUsedError;
 }

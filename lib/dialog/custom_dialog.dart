@@ -24,6 +24,46 @@ class CustomDialog {
     );
   }
 
+  static void showCustomDialog({
+    required String info,
+    required BuildContext context,
+    bool noHeight = false,
+  }) {
+    showDialog(
+      barrierDismissible: true,
+      context: context,
+      builder: (context) {
+        return Center(
+          child: Container(
+            height:
+                noHeight ? null : Helpers.getMQHeight(context: context) * 0.3,
+            width: Helpers.getMQWidth(context: context) * 0.8,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Theme.of(context).scaffoldBackgroundColor,
+            ),
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 30,
+                  left: 20,
+                  right: 20,
+                  bottom: 30,
+                ),
+                child: Center(
+                  child: Text(
+                    info,
+                    style: Theme.of(context).textTheme.displayMedium,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   static void showNewCustomDialog({
     required BuildContext context,
     required Widget widget,

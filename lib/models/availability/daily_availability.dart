@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:tetbee__base/models/common/ranged_time_model.dart';
+import 'package:tetbee__base/utils/helper.dart';
 
 part 'daily_availability.freezed.dart';
 part 'daily_availability.g.dart';
@@ -10,6 +11,8 @@ class DailyAvailability with _$DailyAvailability {
   @JsonSerializable(explicitToJson: true)
   const factory DailyAvailability({
     required int weekDay,
+    String? avReceiverId,
+    @JsonKey(toJson: Helpers.dateIsoToJson, fromJson: Helpers.dateFromJsonIso)
     DateTime? date, //this value will be used for ranged date availaibility type
     String? comment,
     @Default(false) bool? canWorkButNotPreferToWork,
@@ -80,16 +83,13 @@ extension DailyAvailabilityExtension on DailyAvailability {
       int hour = end.hour - start.hour;
       int minute = end.minute - start.minute;
 
-      // 날짜가 넘어간 경우 (익일)
       if (rangedTimeModel.startTime?.day != rangedTimeModel.endTime?.day) {
         hour += 24;
       }
-      // 분 차이가 음수면 시간에서 1 빼고 분 보정
       if (minute < 0) {
         hour -= 1;
         minute += 60;
       }
-
       return TimeOfDay(hour: hour, minute: minute);
     }
 

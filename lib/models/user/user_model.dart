@@ -42,6 +42,7 @@ class UserModel with _$UserModel {
 }
 
 extension UserModelExtension on UserModel {
+  bool get show24Format => userSettings.timeFormat == TimeFormat.militartFormat;
   String getPlaceNickName(String? placeId) {
     if (placeId == null) return nickName;
     String workPlaceNickName =

@@ -50,11 +50,13 @@ class _RangedTimeSliderFormUnitState extends State<RangedTimeSliderFormUnit> {
     minTime = _convertToDiv(timeModel.startTime!);
     maxTime = _convertToDiv(timeModel.endTime!, allowOverflow: true);
 
-    dailyAvailability = DailyAvailability(
-      weekDay: formUnit.baseTime!.weekday,
-      timeRange: timeModel,
-      canWorkButNotPreferToWork: false,
-    );
+    dailyAvailability =
+        _formState!.instantValue[attribute] ??
+        DailyAvailability(
+          weekDay: formUnit.baseTimeRange!.startTime!.weekday,
+          timeRange: timeModel,
+          canWorkButNotPreferToWork: false,
+        );
 
     _lowerValue = _clamp(
       _convertToDiv(dailyAvailability.timeRange.startTime!),
@@ -96,9 +98,9 @@ class _RangedTimeSliderFormUnitState extends State<RangedTimeSliderFormUnit> {
     int hour = value ~/ timeDivision;
     int minute = (60 * (((value / timeDivision) * 10) % 10) ~/ 10).toInt();
     return DateTime(
-      formUnit.baseTime!.year,
-      formUnit.baseTime!.month,
-      formUnit.baseTime!.day,
+      formUnit.baseTimeRange!.startTime!.year,
+      formUnit.baseTimeRange!.startTime!.month,
+      formUnit.baseTimeRange!.startTime!.day,
       hour,
       minute,
     );
@@ -114,6 +116,7 @@ class _RangedTimeSliderFormUnitState extends State<RangedTimeSliderFormUnit> {
           endTime: _fromDiv(_upperValue),
         ),
       );
+      _formState!.setInternalFieldValue(attribute, dailyAvailability);
     });
   }
 
@@ -161,6 +164,7 @@ class _RangedTimeSliderFormUnitState extends State<RangedTimeSliderFormUnit> {
     return Column(
       children: [
         _buildTopRow(context),
+        // if (formUnit.useNotPreferedDay ?? false) _buildLikeButtonRow(context),
         _buildSliderRow(context),
         if (showComment) _buildCommentField(context),
       ],
@@ -172,12 +176,12 @@ class _RangedTimeSliderFormUnitState extends State<RangedTimeSliderFormUnit> {
       children: [
         formUnit.labelWidget ??
             _buildLabelWidget(
-              DateFormat('E').format(formUnit.baseTime!),
+              DateFormat('E').format(formUnit.baseTimeRange!.startTime!),
               context,
             ),
         const Spacer(),
-        if (formUnit.useNotPreferedDay ?? false) _buildLikeButtonRow(context),
-        _buildCommentToggle(context),
+
+        if (formUnit.useDailyComment ?? false) _buildCommentToggle(context),
       ],
     );
   }
@@ -234,6 +238,8 @@ class _RangedTimeSliderFormUnitState extends State<RangedTimeSliderFormUnit> {
             dailyAvailability = dailyAvailability.copyWith(
               comment: _commentController.text,
             );
+
+            _formState!.setInternalFieldValue(attribute, dailyAvailability);
           });
         },
         child: Icon(
@@ -374,6 +380,7 @@ class _RangedTimeSliderFormUnitState extends State<RangedTimeSliderFormUnit> {
         onChanged: (val) {
           setState(() {
             dailyAvailability = dailyAvailability.copyWith(comment: val);
+            _formState!.setInternalFieldValue(attribute, dailyAvailability);
           });
         },
         style: TextStyle(

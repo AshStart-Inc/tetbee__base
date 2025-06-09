@@ -35,6 +35,14 @@ class _ItemPickerFormUnitState extends State<ItemPickerFormUnit> {
             : formUnit.defaultValue ?? [];
   }
 
+  void onChange() {
+    _formState.setInternalFieldValue(
+      attribute,
+      _initialValue.isEmpty ? null : _initialValue.first,
+    );
+    _formState.validate();
+  }
+
   @override
   Widget build(BuildContext context) {
     return FormField<List<dynamic>>(
@@ -47,14 +55,7 @@ class _ItemPickerFormUnitState extends State<ItemPickerFormUnit> {
           ),
       ]),
       onSaved: (val) {
-        if (formUnit.isMultipleValueAllowed!) {
-          _formState.setInternalFieldValue(attribute, _initialValue);
-        } else {
-          _formState.setInternalFieldValue(
-            attribute,
-            _initialValue.isEmpty ? null : _initialValue.first,
-          );
-        }
+        onChange();
       },
       builder: (FormFieldState<List<dynamic>> field) {
         return FormFieldWrapper(
@@ -90,6 +91,7 @@ class _ItemPickerFormUnitState extends State<ItemPickerFormUnit> {
                     }
                   }
                 });
+                onChange();
               },
               child: Container(
                 decoration: BoxDecoration(

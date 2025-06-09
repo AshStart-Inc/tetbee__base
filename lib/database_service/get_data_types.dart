@@ -22,9 +22,28 @@ List<String> getDataTypes(
         dataModel.name,
         docId!, //placeId
       ];
+
+    case DataModel.scheduleContainer:
+      return [
+        dataModel.name,
+        docId!, //placeId
+      ];
     case DataModel.joinRequest:
       return [
         dataModel.name, docId!, //placeId
+      ];
+    case DataModel.userAvailabilities:
+      return [
+        dataModel.name, docId!, //placeId
+        docId2!, // availability receiver Id
+      ];
+
+    case DataModel.workPlaceSchedulePresetTimes:
+      return [dataModel.name];
+    case DataModel.userSchedule:
+      return [
+        dataModel.name,
+        docId!, //placeId
       ];
   }
 }

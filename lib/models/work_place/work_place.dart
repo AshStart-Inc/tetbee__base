@@ -57,6 +57,8 @@ class WorkPlace with _$WorkPlace {
 }
 
 extension WorkPlaceExtension on WorkPlace {
+  bool get isPositionReady => positions.length >= 2;
+  bool get isReadyToOpen => isPositionReady;
   List<PositionModel> sortedPositions({bool withOwner = true}) {
     List<PositionModel> p =
         withOwner
@@ -68,5 +70,16 @@ extension WorkPlaceExtension on WorkPlace {
 
   String getOwnerId() {
     return positions.where((p) => p.isOwner).first.id!;
+  }
+
+  List<String> getSortedUserIds({bool withOwner = true}) {
+    final List<String> sortedUserIds =
+        joinedUsersOrdinal.keys.toList()..sort(
+          (a, b) => joinedUsersOrdinal[a]!.compareTo(joinedUsersOrdinal[b]!),
+        );
+
+    return withOwner
+        ? sortedUserIds
+        : sortedUserIds.where((id) => !ownersIds.contains(id)).toList();
   }
 }
