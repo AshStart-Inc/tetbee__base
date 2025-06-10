@@ -15,6 +15,11 @@ List<String> getDataTypes(
       return [dataModel.name];
     case DataModel.workPlace:
       return [dataModel.name];
+    case DataModel.placePosition:
+      return [
+        dataModel.name,
+        docId!, //placeId
+      ];
     case DataModel.chatRoom:
       return [dataModel.name];
     case DataModel.availabilityReceiver:

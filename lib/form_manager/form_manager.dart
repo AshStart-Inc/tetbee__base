@@ -81,35 +81,40 @@ class _FormManagerState extends State<FormManager> {
   Widget build(BuildContext context) {
     return widget.isLoading
         ? LoadingScreen()
-        : SafeArea(
-          child: Stack(
-            children: [
-              FormBuilder(
-                key: _fomKey,
-                initialValue: widget.initialValue ?? {},
-                onChanged:
-                    () => widget.onChange?.call(
-                      _fomKey.currentState?.instantValue ?? {},
-                    ),
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: ListView(
-                        // itemCount: (widget.formFields ?? {}).length,
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        // itemBuilder: (context) {},
-                        children: [
-                          if (widget.formFields != null)
-                            ..._getFormValues(formFields: widget.formFields!),
-                        ],
+        : InkWell(
+          onTap: () {
+            Helpers.dismissKeyboard(context: context);
+          },
+          child: SafeArea(
+            child: Stack(
+              children: [
+                FormBuilder(
+                  key: _fomKey,
+                  initialValue: widget.initialValue ?? {},
+                  onChanged:
+                      () => widget.onChange?.call(
+                        _fomKey.currentState?.instantValue ?? {},
                       ),
-                    ),
-                    if (widget.onSaved != null) buildButtons(),
-                  ],
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: ListView(
+                          // itemCount: (widget.formFields ?? {}).length,
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          // itemBuilder: (context) {},
+                          children: [
+                            if (widget.formFields != null)
+                              ..._getFormValues(formFields: widget.formFields!),
+                          ],
+                        ),
+                      ),
+                      if (widget.onSaved != null) buildButtons(),
+                    ],
+                  ),
                 ),
-              ),
-              if (_isLoading) formLoadingWidget(),
-            ],
+                if (_isLoading) formLoadingWidget(),
+              ],
+            ),
           ),
         );
   }

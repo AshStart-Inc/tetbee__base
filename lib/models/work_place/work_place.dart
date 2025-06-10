@@ -46,10 +46,10 @@ class WorkPlace with _$WorkPlace {
     @Default([]) List<String> ownersIds,
     @Default({}) Map<String, int> joinedUsersOrdinal,
     @Default([]) List<PositionModel> positions,
-    @Default([]) List<RangedTimeModel> openingTimes,
     @Default(AvailabilityReceiverSetting())
     AvailabilityReceiverSetting availabilityReceiverDefaultSetting,
-    @Default([]) List<RangedTimeModel> availabilityTimes,
+    // @Default([]) List<RangedTimeModel> openingTimes,
+    // @Default([]) List<RangedTimeModel> availabilityTimes,
   }) = _WorkPlace;
 
   factory WorkPlace.fromJson(Map<String, dynamic> json) =>

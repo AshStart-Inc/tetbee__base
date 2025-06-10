@@ -15,7 +15,7 @@ mixin ApiHandlingMixin {
       if (value.data['statusCode'] == HttpStatus.badRequest) {
         return ApiResponse<T>(
           data: null,
-          message: 'Bad Request',
+          message: value.data['message'],
           statusCode: HttpStatus.badRequest,
         );
       }

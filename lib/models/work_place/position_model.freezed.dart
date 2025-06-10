@@ -30,9 +30,9 @@ mixin _$PositionModel {
   bool get deleted => throw _privateConstructorUsedError;
   bool get archived => throw _privateConstructorUsedError;
   bool get managePlaceAccess => throw _privateConstructorUsedError;
-  bool get positionViewAccess => throw _privateConstructorUsedError;
-  bool get contactAccess => throw _privateConstructorUsedError;
+  bool get postingViewAccess => throw _privateConstructorUsedError;
   bool get postingAccess => throw _privateConstructorUsedError;
+  bool get contactAccess => throw _privateConstructorUsedError;
   bool get scheduleAccess => throw _privateConstructorUsedError;
   bool get scheduleReviewAccess => throw _privateConstructorUsedError;
   bool get userInfoUpdateAccess => throw _privateConstructorUsedError;
@@ -66,9 +66,9 @@ abstract class $PositionModelCopyWith<$Res> {
     bool deleted,
     bool archived,
     bool managePlaceAccess,
-    bool positionViewAccess,
-    bool contactAccess,
+    bool postingViewAccess,
     bool postingAccess,
+    bool contactAccess,
     bool scheduleAccess,
     bool scheduleReviewAccess,
     bool userInfoUpdateAccess,
@@ -100,9 +100,9 @@ class _$PositionModelCopyWithImpl<$Res, $Val extends PositionModel>
     Object? deleted = null,
     Object? archived = null,
     Object? managePlaceAccess = null,
-    Object? positionViewAccess = null,
-    Object? contactAccess = null,
+    Object? postingViewAccess = null,
     Object? postingAccess = null,
+    Object? contactAccess = null,
     Object? scheduleAccess = null,
     Object? scheduleReviewAccess = null,
     Object? userInfoUpdateAccess = null,
@@ -151,20 +151,20 @@ class _$PositionModelCopyWithImpl<$Res, $Val extends PositionModel>
                     ? _value.managePlaceAccess
                     : managePlaceAccess // ignore: cast_nullable_to_non_nullable
                         as bool,
-            positionViewAccess:
-                null == positionViewAccess
-                    ? _value.positionViewAccess
-                    : positionViewAccess // ignore: cast_nullable_to_non_nullable
-                        as bool,
-            contactAccess:
-                null == contactAccess
-                    ? _value.contactAccess
-                    : contactAccess // ignore: cast_nullable_to_non_nullable
+            postingViewAccess:
+                null == postingViewAccess
+                    ? _value.postingViewAccess
+                    : postingViewAccess // ignore: cast_nullable_to_non_nullable
                         as bool,
             postingAccess:
                 null == postingAccess
                     ? _value.postingAccess
                     : postingAccess // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            contactAccess:
+                null == contactAccess
+                    ? _value.contactAccess
+                    : contactAccess // ignore: cast_nullable_to_non_nullable
                         as bool,
             scheduleAccess:
                 null == scheduleAccess
@@ -216,9 +216,9 @@ abstract class _$$PositionModelImplCopyWith<$Res>
     bool deleted,
     bool archived,
     bool managePlaceAccess,
-    bool positionViewAccess,
-    bool contactAccess,
+    bool postingViewAccess,
     bool postingAccess,
+    bool contactAccess,
     bool scheduleAccess,
     bool scheduleReviewAccess,
     bool userInfoUpdateAccess,
@@ -249,9 +249,9 @@ class __$$PositionModelImplCopyWithImpl<$Res>
     Object? deleted = null,
     Object? archived = null,
     Object? managePlaceAccess = null,
-    Object? positionViewAccess = null,
-    Object? contactAccess = null,
+    Object? postingViewAccess = null,
     Object? postingAccess = null,
+    Object? contactAccess = null,
     Object? scheduleAccess = null,
     Object? scheduleReviewAccess = null,
     Object? userInfoUpdateAccess = null,
@@ -300,20 +300,20 @@ class __$$PositionModelImplCopyWithImpl<$Res>
                 ? _value.managePlaceAccess
                 : managePlaceAccess // ignore: cast_nullable_to_non_nullable
                     as bool,
-        positionViewAccess:
-            null == positionViewAccess
-                ? _value.positionViewAccess
-                : positionViewAccess // ignore: cast_nullable_to_non_nullable
-                    as bool,
-        contactAccess:
-            null == contactAccess
-                ? _value.contactAccess
-                : contactAccess // ignore: cast_nullable_to_non_nullable
+        postingViewAccess:
+            null == postingViewAccess
+                ? _value.postingViewAccess
+                : postingViewAccess // ignore: cast_nullable_to_non_nullable
                     as bool,
         postingAccess:
             null == postingAccess
                 ? _value.postingAccess
                 : postingAccess // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        contactAccess:
+            null == contactAccess
+                ? _value.contactAccess
+                : contactAccess // ignore: cast_nullable_to_non_nullable
                     as bool,
         scheduleAccess:
             null == scheduleAccess
@@ -358,9 +358,9 @@ class _$PositionModelImpl implements _PositionModel {
     this.deleted = false,
     this.archived = false,
     this.managePlaceAccess = false,
-    this.positionViewAccess = false,
-    this.contactAccess = false,
+    this.postingViewAccess = false,
     this.postingAccess = false,
+    this.contactAccess = false,
     this.scheduleAccess = false,
     this.scheduleReviewAccess = false,
     this.userInfoUpdateAccess = false,
@@ -395,13 +395,13 @@ class _$PositionModelImpl implements _PositionModel {
   final bool managePlaceAccess;
   @override
   @JsonKey()
-  final bool positionViewAccess;
-  @override
-  @JsonKey()
-  final bool contactAccess;
+  final bool postingViewAccess;
   @override
   @JsonKey()
   final bool postingAccess;
+  @override
+  @JsonKey()
+  final bool contactAccess;
   @override
   @JsonKey()
   final bool scheduleAccess;
@@ -420,7 +420,7 @@ class _$PositionModelImpl implements _PositionModel {
 
   @override
   String toString() {
-    return 'PositionModel(id: $id, isOwner: $isOwner, name: $name, ordinal: $ordinal, color: $color, deleted: $deleted, archived: $archived, managePlaceAccess: $managePlaceAccess, positionViewAccess: $positionViewAccess, contactAccess: $contactAccess, postingAccess: $postingAccess, scheduleAccess: $scheduleAccess, scheduleReviewAccess: $scheduleReviewAccess, userInfoUpdateAccess: $userInfoUpdateAccess, chatRoomAccess: $chatRoomAccess, dailyScheduleReviewPermission: $dailyScheduleReviewPermission)';
+    return 'PositionModel(id: $id, isOwner: $isOwner, name: $name, ordinal: $ordinal, color: $color, deleted: $deleted, archived: $archived, managePlaceAccess: $managePlaceAccess, postingViewAccess: $postingViewAccess, postingAccess: $postingAccess, contactAccess: $contactAccess, scheduleAccess: $scheduleAccess, scheduleReviewAccess: $scheduleReviewAccess, userInfoUpdateAccess: $userInfoUpdateAccess, chatRoomAccess: $chatRoomAccess, dailyScheduleReviewPermission: $dailyScheduleReviewPermission)';
   }
 
   @override
@@ -438,12 +438,12 @@ class _$PositionModelImpl implements _PositionModel {
                 other.archived == archived) &&
             (identical(other.managePlaceAccess, managePlaceAccess) ||
                 other.managePlaceAccess == managePlaceAccess) &&
-            (identical(other.positionViewAccess, positionViewAccess) ||
-                other.positionViewAccess == positionViewAccess) &&
-            (identical(other.contactAccess, contactAccess) ||
-                other.contactAccess == contactAccess) &&
+            (identical(other.postingViewAccess, postingViewAccess) ||
+                other.postingViewAccess == postingViewAccess) &&
             (identical(other.postingAccess, postingAccess) ||
                 other.postingAccess == postingAccess) &&
+            (identical(other.contactAccess, contactAccess) ||
+                other.contactAccess == contactAccess) &&
             (identical(other.scheduleAccess, scheduleAccess) ||
                 other.scheduleAccess == scheduleAccess) &&
             (identical(other.scheduleReviewAccess, scheduleReviewAccess) ||
@@ -472,9 +472,9 @@ class _$PositionModelImpl implements _PositionModel {
     deleted,
     archived,
     managePlaceAccess,
-    positionViewAccess,
-    contactAccess,
+    postingViewAccess,
     postingAccess,
+    contactAccess,
     scheduleAccess,
     scheduleReviewAccess,
     userInfoUpdateAccess,
@@ -507,9 +507,9 @@ abstract class _PositionModel implements PositionModel {
     final bool deleted,
     final bool archived,
     final bool managePlaceAccess,
-    final bool positionViewAccess,
-    final bool contactAccess,
+    final bool postingViewAccess,
     final bool postingAccess,
+    final bool contactAccess,
     final bool scheduleAccess,
     final bool scheduleReviewAccess,
     final bool userInfoUpdateAccess,
@@ -538,11 +538,11 @@ abstract class _PositionModel implements PositionModel {
   @override
   bool get managePlaceAccess;
   @override
-  bool get positionViewAccess;
-  @override
-  bool get contactAccess;
+  bool get postingViewAccess;
   @override
   bool get postingAccess;
+  @override
+  bool get contactAccess;
   @override
   bool get scheduleAccess;
   @override

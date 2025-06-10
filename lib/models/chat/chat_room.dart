@@ -8,6 +8,7 @@ part 'chat_room.g.dart';
 
 @freezed
 class ChatRoom with _$ChatRoom {
+  @JsonSerializable(explicitToJson: true)
   const factory ChatRoom({
     required String id,
     required ChatType chatType,

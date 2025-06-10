@@ -34,7 +34,10 @@ class _RangedTimeFormUnitState extends State<RangedTimeFormUnit> {
     attribute = widget.formUnit.key;
     formUnit = widget.formUnit.value;
     _formState = FormBuilder.of(context)!;
-    // _initialValue = _formState.initialValue[attribute] ?? formUnit.baseTime;
+    rangedTimeModel = RangedTimeModel(
+      startTime: formUnit.baseTime,
+      endTime: formUnit.baseTime!.add(Duration(hours: 5)),
+    );
   }
 
   @override
@@ -43,10 +46,12 @@ class _RangedTimeFormUnitState extends State<RangedTimeFormUnit> {
   }
 
   onChange(DateTime? startTime, DateTime? endTime) {
-    rangedTimeModel = rangedTimeModel.copyWith(
-      startTime: startTime ?? rangedTimeModel.startTime,
-      endTime: endTime ?? rangedTimeModel.endTime,
-    );
+    if (startTime != null) {
+      rangedTimeModel = rangedTimeModel.copyWith(startTime: startTime);
+    }
+    if (endTime != null) {
+      rangedTimeModel = rangedTimeModel.copyWith(endTime: endTime);
+    }
 
     _formState.setInternalFieldValue(attribute, rangedTimeModel);
   }
@@ -63,7 +68,7 @@ class _RangedTimeFormUnitState extends State<RangedTimeFormUnit> {
           children: [
             Expanded(
               child: TimeTextField(
-                baseDate: formUnit.baseTime!,
+                baseDate: rangedTimeModel.startTime!,
                 show24Hours: true,
                 onChange: (DateTime time) {
                   onChange(time, null);
@@ -73,7 +78,7 @@ class _RangedTimeFormUnitState extends State<RangedTimeFormUnit> {
             Text('-'),
             Expanded(
               child: TimeTextField(
-                baseDate: formUnit.baseTime!,
+                baseDate: rangedTimeModel.endTime!,
                 show24Hours: true,
                 onChange: (DateTime time) {
                   onChange(null, time);

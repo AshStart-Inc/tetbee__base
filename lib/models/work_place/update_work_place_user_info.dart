@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:tetbee__base/models/work_place/user_work_place_relation.dart';
+import 'package:tetbee__base/tetbee__base.dart';
 
 part 'update_work_place_user_info.freezed.dart';
 part 'update_work_place_user_info.g.dart';
@@ -16,6 +16,7 @@ class UpdateWorkPlaceUserInfo with _$UpdateWorkPlaceUserInfo {
     required bool haveChatRoomAccess,
     required bool didHaveChatRoomAccess,
     required List<String> removedPosition,
+    required List<PositionModel> workPlacePositions,
     required UserWorkPlaceRelation updatedUserWorkPlace,
   }) = _UpdateWorkPlaceUserInfo;
 

@@ -103,7 +103,7 @@ extension UserModelExtension on UserModel {
             workPlace,
           ),
           managePlaceAccess: managePlaceAccess(workPlace),
-          positionViewAccess: positionViewAccess(workPlace),
+          postingViewAccess: postingView(workPlace),
           contactAccess: contactAccess(workPlace),
           postingAccess: postingAccess(workPlace),
           scheduleAccess: scheduleAccess(workPlace),
@@ -128,11 +128,11 @@ extension UserModelExtension on UserModel {
         userPositions(workPlace).any((p) => p.dailyScheduleReviewPermission);
   }
 
-  bool positionViewAccess(WorkPlace workPlace) {
+  bool postingView(WorkPlace workPlace) {
     final permission =
         getUserWorkPlaceRelation(placeId: workPlace.id).userPlacePermission;
-    return permission?.positionViewAccess ??
-        userPositions(workPlace).any((p) => p.positionViewAccess);
+    return permission?.postingViewAccess ??
+        userPositions(workPlace).any((p) => p.postingAccess);
   }
 
   bool contactAccess(WorkPlace workPlace) {

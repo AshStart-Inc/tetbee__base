@@ -68,22 +68,12 @@ _$WorkPlaceImpl _$$WorkPlaceImplFromJson(
           ?.map((e) => PositionModel.fromJson(e as Map<String, dynamic>))
           .toList() ??
       const [],
-  openingTimes:
-      (json['openingTimes'] as List<dynamic>?)
-          ?.map((e) => RangedTimeModel.fromJson(e as Map<String, dynamic>))
-          .toList() ??
-      const [],
   availabilityReceiverDefaultSetting:
       json['availabilityReceiverDefaultSetting'] == null
           ? const AvailabilityReceiverSetting()
           : AvailabilityReceiverSetting.fromJson(
             json['availabilityReceiverDefaultSetting'] as Map<String, dynamic>,
           ),
-  availabilityTimes:
-      (json['availabilityTimes'] as List<dynamic>?)
-          ?.map((e) => RangedTimeModel.fromJson(e as Map<String, dynamic>))
-          .toList() ??
-      const [],
 );
 
 Map<String, dynamic> _$$WorkPlaceImplToJson(_$WorkPlaceImpl instance) =>
@@ -114,9 +104,6 @@ Map<String, dynamic> _$$WorkPlaceImplToJson(_$WorkPlaceImpl instance) =>
       'ownersIds': instance.ownersIds,
       'joinedUsersOrdinal': instance.joinedUsersOrdinal,
       'positions': instance.positions.map((e) => e.toJson()).toList(),
-      'openingTimes': instance.openingTimes.map((e) => e.toJson()).toList(),
       'availabilityReceiverDefaultSetting':
           instance.availabilityReceiverDefaultSetting.toJson(),
-      'availabilityTimes':
-          instance.availabilityTimes.map((e) => e.toJson()).toList(),
     };

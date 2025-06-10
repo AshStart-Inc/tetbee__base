@@ -44,6 +44,8 @@ List<String> getDataFilter(Map<String, dynamic> data, DataModel dataModel) {
       ];
     case DataModel.workPlaceSchedulePresetTimes:
       return [];
+    case DataModel.placePosition:
+      return [];
     case DataModel.userSchedule:
       UserSchedule userSchedule = UserSchedule.fromJson(data);
       DateTime scheduleDate =
@@ -78,7 +80,8 @@ T parseData<T>(DocumentSnapshot<Object?> doc) {
     case const (WorkPlaceSchedulePresetTimes):
       return WorkPlaceSchedulePresetTimes.fromJson(data).copyWith(id: doc.id)
           as T;
-
+    case const (PositionModel):
+      return PositionModel.fromJson(data).copyWith(id: doc.id) as T;
     case const (UserSchedule):
       return UserSchedule.fromJson(data).copyWith(id: doc.id) as T;
     case const (Map<String, dynamic>):

@@ -7,7 +7,7 @@ part 'user_place_permission.g.dart';
 class UserPlacePermission with _$UserPlacePermission {
   const factory UserPlacePermission({
     @Default(false) bool managePlaceAccess,
-    @Default(false) bool positionViewAccess,
+    @Default(false) bool postingViewAccess,
     @Default(false) bool contactAccess,
     @Default(false) bool postingAccess,
     @Default(false) bool scheduleAccess,

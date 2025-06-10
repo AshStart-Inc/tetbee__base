@@ -14,11 +14,34 @@ enum DataType { img, video, pdf, doc, link }
 
 enum TimeInterval { fifteen, thirty, oneHour }
 
-enum ChatType { direct, group, position, place }
+enum ChatType { public, direct, group, position, place }
 
 enum DateRangeType { multipleDates, rangedDate }
 
 enum DateSelectionMode { weekly, multiple, rangedMonth, single }
+
+enum MessageType {
+  textMessage,
+  imageMessage,
+  fileMessage,
+  videoMessage,
+  messageReaction,
+  tagMessage,
+  leavChatRoomMessage,
+  replyMessage,
+  leaveChatRoomMessage,
+}
+
+enum ReactionType {
+  likes,
+  sadness,
+  happiness,
+  fear,
+  anger,
+  surprise,
+  disgust,
+  amazed,
+}
 
 enum ErrorCode {
   internalServerError,

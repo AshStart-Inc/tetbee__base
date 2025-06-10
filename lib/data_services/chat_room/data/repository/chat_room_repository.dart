@@ -1,0 +1,16 @@
+import 'package:tetbee__base/data_services/chat_room/data/data_soruce/chat_room_data_source.dart';
+import 'package:tetbee__base/tetbee__base.dart';
+
+class ChatRoomRepository {
+  Future<String> createChatRoom(String userId, ChatRoom chatRoom) async {
+    return await ChatRoomDataSource().createChatRoom(userId, chatRoom);
+  }
+
+  Future<ChatRoom?> getChatRoom(String id) async {
+    return await ChatRoomDataSource().getChatRoom(id);
+  }
+
+  Future<bool> setUserInChatRoom(String userId, String chatRoomId) async {
+    return await ChatRoomDataSource().setUserInChatRoom(userId, chatRoomId);
+  }
+}

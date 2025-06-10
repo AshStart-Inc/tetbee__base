@@ -40,4 +40,20 @@ class WorkPlaceDataSource with ApiErrorHandlerMixin {
   ) async {
     return execute(() => workPlaceApi.removeUserFormPlace(request));
   }
+
+  // place posiiton
+
+  Future<List<PositionModel>> getPlacePositions(String placeId) async {
+    return execute(() => workPlaceApi.getPlacePositions(placeId));
+  }
+
+  Future<String> createPosition(
+    String placeId,
+    String userId,
+    PositionModel positionModel,
+  ) async {
+    return execute(
+      () => workPlaceApi.createPosition(placeId, userId, positionModel),
+    );
+  }
 }

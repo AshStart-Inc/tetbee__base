@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:tetbee__base/database_service/api_handling_mixin.dart';
 import 'package:tetbee__base/database_service/database_exports.dart';
 import 'package:tetbee__base/models/models.dart';
@@ -87,6 +88,29 @@ class WorkPlaceApi with ApiHandlingMixin {
     return await executeFirebaseFunction<bool>(
       'workPlace-removeUserFormPlace',
       request.toJson(),
+    );
+  }
+
+  //positions
+
+  Future<ApiResponse<List<PositionModel>>> getPlacePositions(String placeId) {
+    return DatabaseService.getAllDocuments<PositionModel>(
+      types: getDataTypes(DataModel.placePosition, docId: placeId),
+      queryBuilder: (path) => FirebaseFirestore.instance.collection(path).get(),
+    );
+  }
+
+  Future<ApiResponse<String>> createPosition(
+    String placeId,
+    String userId,
+    PositionModel positionModel,
+  ) {
+    return DatabaseService.write(
+      dataModel: DataModel.placePosition,
+      types: getDataTypes(DataModel.placePosition, docId: placeId),
+      data: positionModel.toJson(),
+      userId: userId,
+      docId: positionModel.id,
     );
   }
 }

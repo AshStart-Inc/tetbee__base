@@ -50,10 +50,7 @@ mixin _$WorkPlace {
   List<String> get ownersIds => throw _privateConstructorUsedError;
   Map<String, int> get joinedUsersOrdinal => throw _privateConstructorUsedError;
   List<PositionModel> get positions => throw _privateConstructorUsedError;
-  List<RangedTimeModel> get openingTimes => throw _privateConstructorUsedError;
   AvailabilityReceiverSetting get availabilityReceiverDefaultSetting =>
-      throw _privateConstructorUsedError;
-  List<RangedTimeModel> get availabilityTimes =>
       throw _privateConstructorUsedError;
 
   /// Serializes this WorkPlace to a JSON map.
@@ -100,9 +97,7 @@ abstract class $WorkPlaceCopyWith<$Res> {
     List<String> ownersIds,
     Map<String, int> joinedUsersOrdinal,
     List<PositionModel> positions,
-    List<RangedTimeModel> openingTimes,
     AvailabilityReceiverSetting availabilityReceiverDefaultSetting,
-    List<RangedTimeModel> availabilityTimes,
   });
 
   $GooglePlaceModelCopyWith<$Res> get googlePlaceModel;
@@ -155,9 +150,7 @@ class _$WorkPlaceCopyWithImpl<$Res, $Val extends WorkPlace>
     Object? ownersIds = null,
     Object? joinedUsersOrdinal = null,
     Object? positions = null,
-    Object? openingTimes = null,
     Object? availabilityReceiverDefaultSetting = null,
-    Object? availabilityTimes = null,
   }) {
     return _then(
       _value.copyWith(
@@ -291,21 +284,11 @@ class _$WorkPlaceCopyWithImpl<$Res, $Val extends WorkPlace>
                     ? _value.positions
                     : positions // ignore: cast_nullable_to_non_nullable
                         as List<PositionModel>,
-            openingTimes:
-                null == openingTimes
-                    ? _value.openingTimes
-                    : openingTimes // ignore: cast_nullable_to_non_nullable
-                        as List<RangedTimeModel>,
             availabilityReceiverDefaultSetting:
                 null == availabilityReceiverDefaultSetting
                     ? _value.availabilityReceiverDefaultSetting
                     : availabilityReceiverDefaultSetting // ignore: cast_nullable_to_non_nullable
                         as AvailabilityReceiverSetting,
-            availabilityTimes:
-                null == availabilityTimes
-                    ? _value.availabilityTimes
-                    : availabilityTimes // ignore: cast_nullable_to_non_nullable
-                        as List<RangedTimeModel>,
           )
           as $Val,
     );
@@ -426,9 +409,7 @@ abstract class _$$WorkPlaceImplCopyWith<$Res>
     List<String> ownersIds,
     Map<String, int> joinedUsersOrdinal,
     List<PositionModel> positions,
-    List<RangedTimeModel> openingTimes,
     AvailabilityReceiverSetting availabilityReceiverDefaultSetting,
-    List<RangedTimeModel> availabilityTimes,
   });
 
   @override
@@ -486,9 +467,7 @@ class __$$WorkPlaceImplCopyWithImpl<$Res>
     Object? ownersIds = null,
     Object? joinedUsersOrdinal = null,
     Object? positions = null,
-    Object? openingTimes = null,
     Object? availabilityReceiverDefaultSetting = null,
-    Object? availabilityTimes = null,
   }) {
     return _then(
       _$WorkPlaceImpl(
@@ -614,21 +593,11 @@ class __$$WorkPlaceImplCopyWithImpl<$Res>
                 ? _value._positions
                 : positions // ignore: cast_nullable_to_non_nullable
                     as List<PositionModel>,
-        openingTimes:
-            null == openingTimes
-                ? _value._openingTimes
-                : openingTimes // ignore: cast_nullable_to_non_nullable
-                    as List<RangedTimeModel>,
         availabilityReceiverDefaultSetting:
             null == availabilityReceiverDefaultSetting
                 ? _value.availabilityReceiverDefaultSetting
                 : availabilityReceiverDefaultSetting // ignore: cast_nullable_to_non_nullable
                     as AvailabilityReceiverSetting,
-        availabilityTimes:
-            null == availabilityTimes
-                ? _value._availabilityTimes
-                : availabilityTimes // ignore: cast_nullable_to_non_nullable
-                    as List<RangedTimeModel>,
       ),
     );
   }
@@ -667,16 +636,12 @@ class _$WorkPlaceImpl implements _WorkPlace {
     final List<String> ownersIds = const [],
     final Map<String, int> joinedUsersOrdinal = const {},
     final List<PositionModel> positions = const [],
-    final List<RangedTimeModel> openingTimes = const [],
     this.availabilityReceiverDefaultSetting =
         const AvailabilityReceiverSetting(),
-    final List<RangedTimeModel> availabilityTimes = const [],
   }) : _filters = filters,
        _ownersIds = ownersIds,
        _joinedUsersOrdinal = joinedUsersOrdinal,
-       _positions = positions,
-       _openingTimes = openingTimes,
-       _availabilityTimes = availabilityTimes;
+       _positions = positions;
 
   factory _$WorkPlaceImpl.fromJson(Map<String, dynamic> json) =>
       _$$WorkPlaceImplFromJson(json);
@@ -778,31 +743,13 @@ class _$WorkPlaceImpl implements _WorkPlace {
     return EqualUnmodifiableListView(_positions);
   }
 
-  final List<RangedTimeModel> _openingTimes;
-  @override
-  @JsonKey()
-  List<RangedTimeModel> get openingTimes {
-    if (_openingTimes is EqualUnmodifiableListView) return _openingTimes;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_openingTimes);
-  }
-
   @override
   @JsonKey()
   final AvailabilityReceiverSetting availabilityReceiverDefaultSetting;
-  final List<RangedTimeModel> _availabilityTimes;
-  @override
-  @JsonKey()
-  List<RangedTimeModel> get availabilityTimes {
-    if (_availabilityTimes is EqualUnmodifiableListView)
-      return _availabilityTimes;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_availabilityTimes);
-  }
 
   @override
   String toString() {
-    return 'WorkPlace(id: $id, name: $name, createdAt: $createdAt, createdBy: $createdBy, updatedAt: $updatedAt, updatedBy: $updatedBy, filters: $filters, deleted: $deleted, placeOwnerId: $placeOwnerId, currentMembershipId: $currentMembershipId, startWeekDay: $startWeekDay, googlePlaceModel: $googlePlaceModel, addressModel: $addressModel, email1: $email1, email2: $email2, website: $website, defaultProfilePictureUrl: $defaultProfilePictureUrl, isOpened: $isOpened, isVerified: $isVerified, primaryPhoneNumber: $primaryPhoneNumber, secondaryPhoneNumber: $secondaryPhoneNumber, workPlaceTypeId: $workPlaceTypeId, timeZone: $timeZone, ownersIds: $ownersIds, joinedUsersOrdinal: $joinedUsersOrdinal, positions: $positions, openingTimes: $openingTimes, availabilityReceiverDefaultSetting: $availabilityReceiverDefaultSetting, availabilityTimes: $availabilityTimes)';
+    return 'WorkPlace(id: $id, name: $name, createdAt: $createdAt, createdBy: $createdBy, updatedAt: $updatedAt, updatedBy: $updatedBy, filters: $filters, deleted: $deleted, placeOwnerId: $placeOwnerId, currentMembershipId: $currentMembershipId, startWeekDay: $startWeekDay, googlePlaceModel: $googlePlaceModel, addressModel: $addressModel, email1: $email1, email2: $email2, website: $website, defaultProfilePictureUrl: $defaultProfilePictureUrl, isOpened: $isOpened, isVerified: $isVerified, primaryPhoneNumber: $primaryPhoneNumber, secondaryPhoneNumber: $secondaryPhoneNumber, workPlaceTypeId: $workPlaceTypeId, timeZone: $timeZone, ownersIds: $ownersIds, joinedUsersOrdinal: $joinedUsersOrdinal, positions: $positions, availabilityReceiverDefaultSetting: $availabilityReceiverDefaultSetting)';
   }
 
   @override
@@ -865,20 +812,12 @@ class _$WorkPlaceImpl implements _WorkPlace {
               other._positions,
               _positions,
             ) &&
-            const DeepCollectionEquality().equals(
-              other._openingTimes,
-              _openingTimes,
-            ) &&
             (identical(
                   other.availabilityReceiverDefaultSetting,
                   availabilityReceiverDefaultSetting,
                 ) ||
                 other.availabilityReceiverDefaultSetting ==
-                    availabilityReceiverDefaultSetting) &&
-            const DeepCollectionEquality().equals(
-              other._availabilityTimes,
-              _availabilityTimes,
-            ));
+                    availabilityReceiverDefaultSetting));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -911,9 +850,7 @@ class _$WorkPlaceImpl implements _WorkPlace {
     const DeepCollectionEquality().hash(_ownersIds),
     const DeepCollectionEquality().hash(_joinedUsersOrdinal),
     const DeepCollectionEquality().hash(_positions),
-    const DeepCollectionEquality().hash(_openingTimes),
     availabilityReceiverDefaultSetting,
-    const DeepCollectionEquality().hash(_availabilityTimes),
   ]);
 
   /// Create a copy of WorkPlace
@@ -960,9 +897,7 @@ abstract class _WorkPlace implements WorkPlace {
     final List<String> ownersIds,
     final Map<String, int> joinedUsersOrdinal,
     final List<PositionModel> positions,
-    final List<RangedTimeModel> openingTimes,
     final AvailabilityReceiverSetting availabilityReceiverDefaultSetting,
-    final List<RangedTimeModel> availabilityTimes,
   }) = _$WorkPlaceImpl;
 
   factory _WorkPlace.fromJson(Map<String, dynamic> json) =
@@ -1023,11 +958,7 @@ abstract class _WorkPlace implements WorkPlace {
   @override
   List<PositionModel> get positions;
   @override
-  List<RangedTimeModel> get openingTimes;
-  @override
   AvailabilityReceiverSetting get availabilityReceiverDefaultSetting;
-  @override
-  List<RangedTimeModel> get availabilityTimes;
 
   /// Create a copy of WorkPlace
   /// with the given fields replaced by the non-null parameter values.

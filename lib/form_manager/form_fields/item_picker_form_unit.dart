@@ -38,7 +38,11 @@ class _ItemPickerFormUnitState extends State<ItemPickerFormUnit> {
   void onChange() {
     _formState.setInternalFieldValue(
       attribute,
-      _initialValue.isEmpty ? null : _initialValue.first,
+      formUnit.isMultipleValueAllowed!
+          ? _initialValue
+          : _initialValue.isEmpty
+          ? null
+          : _initialValue.first,
     );
     _formState.validate();
   }

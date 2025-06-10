@@ -37,4 +37,21 @@ class WorkPlaceRepository {
   ) async {
     return await WorkPlaceDataSource().removeUserFormPlace(request);
   }
+
+  //place position
+  Future<List<PositionModel>> getPlacePositions(String id) async {
+    return await WorkPlaceDataSource().getPlacePositions(id);
+  }
+
+  Future<String> createPosition(
+    String placeId,
+    String userId,
+    PositionModel positionModel,
+  ) async {
+    return await WorkPlaceDataSource().createPosition(
+      placeId,
+      userId,
+      positionModel,
+    );
+  }
 }

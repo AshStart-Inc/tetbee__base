@@ -56,7 +56,7 @@ class _ColorFormUnitState extends State<ColorFormUnit> {
     attribute = widget.formUnit.key;
     formUnit = widget.formUnit.value;
     _formState = FormBuilder.of(context)!;
-    _initialValue = _formState.initialValue[attribute];
+    _initialValue = _formState.initialValue[attribute] ?? Colors.black.value;
     super.initState();
   }
 

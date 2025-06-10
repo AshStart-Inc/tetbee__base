@@ -411,11 +411,13 @@ class CustomSmallIconButton extends StatelessWidget {
   final String text;
   final Function onTap;
   final bool smallMode;
+  final double? width;
   const CustomSmallIconButton({
     Key? key,
     required this.onTap,
     required this.iconData,
     required this.text,
+    this.width,
     this.smallMode = false,
   }) : super(key: key);
 
@@ -428,7 +430,7 @@ class CustomSmallIconButton extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(4.0),
         child: Container(
-          width: smallMode ? 30 : 45,
+          width: width ?? (smallMode ? 30 : 45),
           height: smallMode ? 30 : 45,
           decoration: BoxDecoration(
             color: Colors.black,

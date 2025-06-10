@@ -88,8 +88,8 @@ class FormUnit extends FormUnitBase {
     super.defaultValue,
     super.errorText,
     super.readOnly,
+    required this.baseTime,
     //
-    this.baseTime,
     this.labelWidget,
     this.startTime,
     this.endTime,
