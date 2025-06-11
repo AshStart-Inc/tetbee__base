@@ -56,6 +56,7 @@ class ThemeConstants {
 
     final Color specialColor = getSpecialColor(appTheme);
     return baseTheme.copyWith(
+      splashColor: Colors.transparent,
       expansionTileTheme: getBaseTheme(
         appTheme,
       ).expansionTileTheme.copyWith(iconColor: baseFontColor),

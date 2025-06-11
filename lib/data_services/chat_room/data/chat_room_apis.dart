@@ -6,6 +6,7 @@ import 'package:tetbee__base/database_service/database_service.dart';
 import 'package:tetbee__base/database_service/get_data_types.dart';
 import 'package:tetbee__base/models/chat/chat_model_exports.dart';
 import 'package:tetbee__base/models/chat/chat_room.dart';
+import 'package:tetbee__base/models/chat/message_model.dart';
 
 class ChatRoomApi {
   static Future<ApiResponse<String>> createChatRoom(
@@ -60,16 +61,15 @@ class ChatRoomApi {
     );
   }
 
-  // static Future<ApiResponse<String>> sendMessage(
-  //   String userId,
-  //   String chatRoomId,
-  // ) async {
-  //   return await DatabaseService.write(
-  //     types: getDataTypes(DataModel.chatRoom),
-  //     dataModel: DataModel.availabilityReceiver,
-  //     userId: userId,
-  //     data: chatRoom.toJson(),
-  //     docId: chatRoom.id,
-  //   );
-  // }
+  static Future<ApiResponse<String>> sendMessage(
+    String chatRoomId,
+    MessageModel messageModel,
+  ) async {
+    return await DatabaseService.write(
+      types: getDataTypes(DataModel.message, docId: chatRoomId),
+      dataModel: DataModel.availabilityReceiver,
+      userId: messageModel.senderUserId,
+      data: messageModel.toJson(),
+    );
+  }
 }

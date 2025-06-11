@@ -17,7 +17,6 @@ class UserWorkPlaceRelation with _$UserWorkPlaceRelation {
     //checking if the user is joined place or not
     @Default(false) bool isSelected,
     required String workPlaceNickName,
-
     @Default(WorkingStatus.fullTime) WorkingStatus workingStatus,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     DateTime? joinedAt,

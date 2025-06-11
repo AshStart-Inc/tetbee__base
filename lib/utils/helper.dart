@@ -115,6 +115,8 @@ class Helpers {
 }
 
 extension FormattedDate on DateTime {
+  bool isSameDate(DateTime b) =>
+      year == b.year && month == b.month && day == b.day;
   String get toIsoDateString => DateFormat('yyyy-MM-dd').format(this);
   String get toIsoMonthString => DateFormat('MM').format(this);
   String get toIsoYearString => DateFormat('yyyy').format(this);

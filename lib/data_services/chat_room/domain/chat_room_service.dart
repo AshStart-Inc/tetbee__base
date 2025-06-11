@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:tetbee__base/data_services/chat_room/data/repository/chat_room_repository.dart';
+import 'package:tetbee__base/models/chat/message_model.dart';
 import 'package:tetbee__base/tetbee__base.dart';
 
 final ChatRoomService chatRoomService = ChatRoomService();
@@ -30,6 +31,16 @@ class ChatRoomService with ApiServiceMixin {
     return execute(
       () => ChatRoomRepository().setUserInChatRoom(userId, chatRoomId),
       'Error while setUserInChatRoom',
+    );
+  }
+
+  Future<Either<Failure, String>> sendMessage(
+    String chatRoomId,
+    MessageModel messageModel,
+  ) async {
+    return execute(
+      () => ChatRoomRepository().sendMessage(chatRoomId, messageModel),
+      'Error while sendMessage',
     );
   }
 }

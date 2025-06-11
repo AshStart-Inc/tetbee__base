@@ -13,6 +13,8 @@ List<String> getDataTypes(
       return [dataModel.name];
     case DataModel.userModel:
       return [dataModel.name];
+    case DataModel.tempUserAvailabilities:
+      return [dataModel.name];
     case DataModel.workPlace:
       return [dataModel.name];
     case DataModel.placePosition:
@@ -22,6 +24,11 @@ List<String> getDataTypes(
       ];
     case DataModel.chatRoom:
       return [dataModel.name];
+    case DataModel.message:
+      return [
+        DataModel.chatRoom.name,
+        docId!, // chat room id
+      ];
     case DataModel.availabilityReceiver:
       return [
         dataModel.name,

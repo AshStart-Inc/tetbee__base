@@ -1,4 +1,5 @@
 import 'package:tetbee__base/data_services/chat_room/data/chat_room_apis.dart';
+import 'package:tetbee__base/models/chat/message_model.dart';
 import 'package:tetbee__base/tetbee__base.dart';
 
 class ChatRoomDataSource with ApiErrorHandlerMixin {
@@ -12,5 +13,12 @@ class ChatRoomDataSource with ApiErrorHandlerMixin {
 
   Future<bool> setUserInChatRoom(String userId, String chatRoomId) async {
     return execute(() => ChatRoomApi.setUserInChatRoom(userId, chatRoomId));
+  }
+
+  Future<String> sendMessage(
+    String chatRoomId,
+    MessageModel messageModel,
+  ) async {
+    return execute(() => ChatRoomApi.sendMessage(chatRoomId, messageModel));
   }
 }

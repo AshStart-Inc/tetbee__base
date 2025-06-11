@@ -1,9 +1,9 @@
 enum DataModel {
   appInfo,
   userModel,
+  tempUserAvailabilities,
   workPlace,
   placePosition,
-
   availabilityReceiver,
   scheduleContainer,
   userSchedule,
@@ -11,4 +11,5 @@ enum DataModel {
   userAvailabilities,
   workPlaceSchedulePresetTimes,
   chatRoom,
+  message,
 }

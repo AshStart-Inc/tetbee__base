@@ -39,6 +39,7 @@ BoxShadow thirdBoxShadow = BoxShadow(
   offset: const Offset(0, 3), // changes position of shadow
 );
 ThemeData appManualLightTheme = ThemeData().copyWith(
+  splashColor: Colors.transparent,
   // hoverColor: Colors.transparent,
   // canvasColor: Colors.transparent,
   // primaryColorLight: Colors.red.withOpacity(0.8),

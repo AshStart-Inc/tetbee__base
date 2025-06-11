@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:tetbee__base/models/availability/user_availabilities.dart';
+import 'package:tetbee__base/models/chat/message_model.dart';
+import 'package:tetbee__base/models/user/temp_user_availabilities.dart';
 import 'package:tetbee__base/models/work_place/join_request.dart';
 import 'package:tetbee__base/tetbee__base.dart';
 
@@ -19,6 +21,8 @@ List<String> getDataFilter(Map<String, dynamic> data, DataModel dataModel) {
       }
       return [...placeIds, ...positionIds];
     case DataModel.workPlace:
+      return [];
+    case DataModel.tempUserAvailabilities:
       return [];
     case DataModel.chatRoom:
       ChatRoom chatRoom = ChatRoom.fromJson(data);
@@ -46,6 +50,8 @@ List<String> getDataFilter(Map<String, dynamic> data, DataModel dataModel) {
       return [];
     case DataModel.placePosition:
       return [];
+    case DataModel.message:
+      return [];
     case DataModel.userSchedule:
       UserSchedule userSchedule = UserSchedule.fromJson(data);
       DateTime scheduleDate =
@@ -65,6 +71,8 @@ T parseData<T>(DocumentSnapshot<Object?> doc) {
       return AppInfo.fromJson(data).copyWith() as T;
     case const (UserModel):
       return UserModel.fromJson(data).copyWith(id: doc.id) as T;
+    case const (TempUserAvailabilities):
+      return TempUserAvailabilities.fromJson(data).copyWith(id: doc.id) as T;
     case const (WorkPlace):
       return WorkPlace.fromJson(data).copyWith(id: doc.id) as T;
     case const (ChatRoom):
@@ -82,6 +90,8 @@ T parseData<T>(DocumentSnapshot<Object?> doc) {
           as T;
     case const (PositionModel):
       return PositionModel.fromJson(data).copyWith(id: doc.id) as T;
+    case const (MessageModel):
+      return MessageModel.fromJson(data).copyWith(id: doc.id) as T;
     case const (UserSchedule):
       return UserSchedule.fromJson(data).copyWith(id: doc.id) as T;
     case const (Map<String, dynamic>):
