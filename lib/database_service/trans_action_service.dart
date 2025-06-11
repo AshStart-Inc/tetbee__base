@@ -43,7 +43,7 @@ class TransactionDataModel {
       );
     } catch (e) {
       return ApiResponse<bool>(
-        data: false,
+        data: null,
         message: e.toString(),
         statusCode: HttpStatus.badRequest,
       );
@@ -53,24 +53,28 @@ class TransactionDataModel {
   static TransactionDataModel getDocumentTransactionDataForWrite({
     required String userId,
     required Map<String, dynamic> dataModel,
+    required DataModel dataModelEnum,
     String? overridenPath,
     String? docId,
     List<String>? types,
     List<String>? filters,
   }) {
-    String docId0 = docId ?? const Uuid().v4();
     String fullpath =
         overridenPath ??
-        ('${DatabaseService.generatePath(overridenPath: overridenPath, types: types)}/$docId0');
+        (DatabaseService.generatePath(
+          overridenPath: overridenPath,
+          types: types ?? getDataTypes(dataModelEnum),
+        ));
     return TransactionDataModel(
-      ref: FirebaseFirestore.instance.doc(fullpath),
+      ref: FirebaseFirestore.instance
+          .collection(fullpath)
+          .doc(docId ?? Uuid().v4()),
       type: FirebaseTransactionType.write,
       data: {
         ...dataModel,
         'createdBy': userId,
         'createdAt': Helpers.dateToJson(DateTime.now()),
         'updatedAt': Helpers.dateToJson(DateTime.now()),
-        'path': fullpath,
         'filters': filters,
       },
     );
@@ -79,6 +83,7 @@ class TransactionDataModel {
   static TransactionDataModel getDocumentTransactionDataForUpdate({
     required String userId,
     required Map<String, dynamic> dataModel,
+    required DataModel dataModelEnum,
     String? overridenPath,
     required String docId,
     List<String>? types,
@@ -87,9 +92,16 @@ class TransactionDataModel {
     String docId0 = docId;
     String fullpath =
         overridenPath ??
-        ('${DatabaseService.generatePath(overridenPath: overridenPath, types: types)}/$docId0');
+        (DatabaseService.generatePath(
+          overridenPath: overridenPath,
+          types: types ?? getDataTypes(dataModelEnum),
+        ));
+
+    print('@@@#####');
+    print(fullpath);
+    print('@@@@#####');
     return TransactionDataModel(
-      ref: FirebaseFirestore.instance.doc(fullpath),
+      ref: FirebaseFirestore.instance.collection(fullpath).doc(docId0),
       type: FirebaseTransactionType.update,
       data:
           filters == null

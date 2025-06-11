@@ -50,6 +50,7 @@ class UserApi {
     TransactionDataModel createTempUser =
         TransactionDataModel.getDocumentTransactionDataForWrite(
           types: getDataTypes(DataModel.userModel),
+          dataModelEnum: DataModel.userModel,
           userId: userId,
           filters: getDataFilter(updatedUser.toJson(), DataModel.userModel),
           dataModel: updatedUser.toJson(),
@@ -59,6 +60,7 @@ class UserApi {
     TransactionDataModel createTempUserAv =
         TransactionDataModel.getDocumentTransactionDataForWrite(
           types: getDataTypes(DataModel.tempUserAvailabilities),
+          dataModelEnum: DataModel.tempUserAvailabilities,
           userId: userId,
           dataModel: tempUserAv.toJson(),
           docId: userModel.id,
@@ -73,7 +75,8 @@ class UserApi {
 
     TransactionDataModel updateWorkPlace =
         TransactionDataModel.getDocumentTransactionDataForUpdate(
-          types: getDataTypes(DataModel.tempUserAvailabilities),
+          types: getDataTypes(DataModel.workPlace),
+          dataModelEnum: DataModel.workPlace,
           userId: userId,
           dataModel: updatedWorkPlace.toJson(),
           docId: updatedWorkPlace.id!,

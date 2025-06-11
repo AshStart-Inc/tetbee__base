@@ -9,6 +9,7 @@ class RemoveUserFormWorkPlaceRequest with _$RemoveUserFormWorkPlaceRequest {
   @JsonSerializable(explicitToJson: true)
   const factory RemoveUserFormWorkPlaceRequest({
     required String userId,
+    required bool isTempUser,
     required String currentUserId,
     required String workPlaceId,
     required List<UserWorkPlaceRelation> updatedUserWorkPlaceRelation,

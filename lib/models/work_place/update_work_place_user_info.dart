@@ -11,6 +11,7 @@ class UpdateWorkPlaceUserInfo with _$UpdateWorkPlaceUserInfo {
     required String currentUserId,
     required String userId,
     required bool wasOwner,
+    required bool isTempUser,
     required bool isOwner,
     required bool didPositionUpdated,
     required bool haveChatRoomAccess,
