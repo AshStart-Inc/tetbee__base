@@ -20,6 +20,7 @@ class JoinRequest with _$JoinRequest {
     DateTime? readAt,
     required String userId,
     required String placeId,
+    String? acceptedUserId,
     @Default(PositionModel(name: '', color: Colors.black))
     PositionModel position,
     @Default(false) bool isRejected,

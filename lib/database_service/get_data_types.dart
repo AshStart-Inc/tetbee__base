@@ -11,6 +11,8 @@ List<String> getDataTypes(
   switch (dataModel) {
     case DataModel.appInfo:
       return [dataModel.name];
+    case DataModel.notificationCenter:
+      return [dataModel.name];
     case DataModel.userModel:
       return [dataModel.name];
     case DataModel.tempUserAvailabilities:
@@ -56,6 +58,12 @@ List<String> getDataTypes(
       return [
         dataModel.name,
         docId!, //placeId
+      ];
+
+    case DataModel.appNotification:
+      return [
+        dataModel.name,
+        docId!, // userId
       ];
   }
 }

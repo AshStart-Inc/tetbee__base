@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:tetbee__base/models/availability/user_availabilities.dart';
 import 'package:tetbee__base/models/chat/message_model.dart';
+import 'package:tetbee__base/models/common/app_notification.dart';
+import 'package:tetbee__base/models/common/notification_center.dart';
 import 'package:tetbee__base/models/user/temp_user_availabilities.dart';
 import 'package:tetbee__base/models/work_place/join_request.dart';
 import 'package:tetbee__base/tetbee__base.dart';
@@ -8,6 +10,9 @@ import 'package:tetbee__base/tetbee__base.dart';
 List<String> getDataFilter(Map<String, dynamic> data, DataModel dataModel) {
   switch (dataModel) {
     case DataModel.appInfo:
+      return [];
+
+    case DataModel.notificationCenter:
       return [];
     case DataModel.userModel:
       UserModel userModel = UserModel.fromJson(data);
@@ -22,6 +27,7 @@ List<String> getDataFilter(Map<String, dynamic> data, DataModel dataModel) {
       return [...placeIds, ...positionIds];
     case DataModel.workPlace:
       return [];
+
     case DataModel.tempUserAvailabilities:
       return [];
     case DataModel.chatRoom:
@@ -61,6 +67,8 @@ List<String> getDataFilter(Map<String, dynamic> data, DataModel dataModel) {
         scheduleDate.toIsoYearString,
         ...userSchedule.schedules.values.map((usche) => usche.positionCode),
       ];
+    case DataModel.appNotification:
+      return [];
   }
 }
 
@@ -94,6 +102,10 @@ T parseData<T>(DocumentSnapshot<Object?> doc) {
       return MessageModel.fromJson(data).copyWith(id: doc.id) as T;
     case const (UserSchedule):
       return UserSchedule.fromJson(data).copyWith(id: doc.id) as T;
+    case const (NotificationCenter):
+      return NotificationCenter.fromJson(data).copyWith() as T;
+    case const (AppNotification):
+      return AppNotification.fromJson(data).copyWith(id: doc.id) as T;
     case const (Map<String, dynamic>):
       return {'id': doc.id, ...data} as T;
     default:

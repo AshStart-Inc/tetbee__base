@@ -80,6 +80,36 @@ class TransactionDataModel {
     );
   }
 
+  static TransactionDataModel getDocumentTransactionDataForRead({
+    required String userId,
+    required Map<String, dynamic> dataModel,
+    required DataModel dataModelEnum,
+    String? overridenPath,
+    String? docId,
+    List<String>? types,
+    List<String>? filters,
+  }) {
+    String fullpath =
+        overridenPath ??
+        (DatabaseService.generatePath(
+          overridenPath: overridenPath,
+          types: types ?? getDataTypes(dataModelEnum),
+        ));
+    return TransactionDataModel(
+      ref: FirebaseFirestore.instance
+          .collection(fullpath)
+          .doc(docId ?? Uuid().v4()),
+      type: FirebaseTransactionType.read,
+      data: {
+        ...dataModel,
+        'createdBy': userId,
+        'createdAt': Helpers.dateToJson(DateTime.now()),
+        'updatedAt': Helpers.dateToJson(DateTime.now()),
+        'filters': filters,
+      },
+    );
+  }
+
   static TransactionDataModel getDocumentTransactionDataForUpdate({
     required String userId,
     required Map<String, dynamic> dataModel,
@@ -97,9 +127,6 @@ class TransactionDataModel {
           types: types ?? getDataTypes(dataModelEnum),
         ));
 
-    print('@@@#####');
-    print(fullpath);
-    print('@@@@#####');
     return TransactionDataModel(
       ref: FirebaseFirestore.instance.collection(fullpath).doc(docId0),
       type: FirebaseTransactionType.update,
@@ -116,23 +143,6 @@ class TransactionDataModel {
                 'updatedAt': Helpers.dateToJson(DateTime.now()),
                 'filters': filters,
               },
-    );
-  }
-
-  static TransactionDataModel getDocumentTransactionDataForRead({
-    String? overridenPath,
-    String? docId,
-    List<String>? types,
-  }) {
-    String docId0 = docId ?? const Uuid().v4();
-    String fullpath =
-        overridenPath ??
-        ('${DatabaseService.generatePath(overridenPath: overridenPath, types: types)}/$docId0');
-
-    return TransactionDataModel(
-      ref: FirebaseFirestore.instance.doc(fullpath),
-      type: FirebaseTransactionType.read,
-      data: null,
     );
   }
 

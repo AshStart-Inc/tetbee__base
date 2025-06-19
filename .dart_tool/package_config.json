@@ -938,6 +938,12 @@
       "languageVersion": "3.4"
     },
     {
+      "name": "top_snackbar_flutter",
+      "rootUri": "file:///Users/daegilpyo/.pub-cache/hosted/pub.dev/top_snackbar_flutter-3.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
       "name": "typed_data",
       "rootUri": "file:///Users/daegilpyo/.pub-cache/hosted/pub.dev/typed_data-1.4.0",
       "packageUri": "lib/",

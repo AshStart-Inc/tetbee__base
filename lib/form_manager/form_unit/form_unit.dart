@@ -182,6 +182,7 @@ class FormUnit extends FormUnitBase {
     this.withPadding = true,
     this.show24Hour = false,
     this.useDailyComment = true,
+    this.showTimeRange = false,
   }) : super(formUnitType: FormUnitType.rangedTimeSlider);
   bool? show24Hour;
   int? minimumHour;
@@ -189,6 +190,7 @@ class FormUnit extends FormUnitBase {
   bool? useNotPreferedDay;
   bool? useDailyComment;
   bool? withPadding;
+  bool? showTimeRange;
 
   FormUnit.customWidget({
     super.label = '',

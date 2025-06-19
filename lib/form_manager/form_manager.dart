@@ -18,6 +18,7 @@ class FormManager extends StatefulWidget {
   final Function? onBackwardButtonTap;
   final Widget? appBardButtons;
   final Widget? additionalWidget;
+  final Widget? additionalButtons;
   final bool showAppBar;
   final Color? scaffoldBackgroundColor;
   final Widget? loadingScreen;
@@ -32,7 +33,7 @@ class FormManager extends StatefulWidget {
     this.formFields,
     this.saveButtonLabel = 'Save',
     this.onChange,
-
+    this.additionalButtons,
     this.onSaved,
     this.showAppBar = true,
     this.loadingScreen,
@@ -98,14 +99,18 @@ class _FormManagerState extends State<FormManager> {
                   child: Column(
                     children: [
                       Expanded(
-                        child: ListView(
+                        child: SingleChildScrollView(
                           // itemCount: (widget.formFields ?? {}).length,
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           // itemBuilder: (context) {},
-                          children: [
-                            if (widget.formFields != null)
-                              ..._getFormValues(formFields: widget.formFields!),
-                          ],
+                          child: Column(
+                            children: [
+                              if (widget.formFields != null)
+                                ..._getFormValues(
+                                  formFields: widget.formFields!,
+                                ),
+                            ],
+                          ),
                         ),
                       ),
                       if (widget.onSaved != null) buildButtons(),

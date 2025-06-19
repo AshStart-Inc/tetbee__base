@@ -15,15 +15,29 @@ class UserApi {
 
   static Future<ApiResponse<List<UserModel>>> getWorkPlaceUsers(
     String placeId,
+    bool withTempUser,
+    bool onlyTempUser,
   ) async {
     return DatabaseService.getAllDocuments<UserModel>(
       types: getDataTypes(DataModel.userModel),
       queryBuilder:
           (path) =>
-              FirebaseFirestore.instance
-                  .collection(path)
-                  .where(DatabaseService.filtersKey, arrayContains: placeId)
-                  .get(),
+              onlyTempUser
+                  ? FirebaseFirestore.instance
+                      .collection(path)
+                      .where(DatabaseService.filtersKey, arrayContains: placeId)
+                      .where('isTempUser', isEqualTo: true)
+                      .get()
+                  : withTempUser
+                  ? FirebaseFirestore.instance
+                      .collection(path)
+                      .where(DatabaseService.filtersKey, arrayContains: placeId)
+                      .get()
+                  : FirebaseFirestore.instance
+                      .collection(path)
+                      .where(DatabaseService.filtersKey, arrayContains: placeId)
+                      .where('isTempUser', isEqualTo: false)
+                      .get(),
     );
   }
 
@@ -69,7 +83,7 @@ class UserApi {
     WorkPlace updatedWorkPlace = workPlace.copyWith(
       joinedUsersOrdinal: {
         ...workPlace.joinedUsersOrdinal,
-        userModel.id!: workPlace.joinedUsersOrdinal.length,
+        userModel.id!: workPlace.joinedUsersOrdinal.length + 1,
       },
     );
 

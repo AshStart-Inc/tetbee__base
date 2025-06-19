@@ -9,8 +9,16 @@ class UserRepository {
     return await userDataSource.getSelectedUsers(userIds);
   }
 
-  Future<List<UserModel>> getWorkPlaceUsers(String placeId) async {
-    return userDataSource.getWorkPlaceUsers(placeId);
+  Future<List<UserModel>> getWorkPlaceUsers(
+    String placeId,
+    bool withTempUser,
+    bool onlyTempUser,
+  ) async {
+    return userDataSource.getWorkPlaceUsers(
+      placeId,
+      withTempUser,
+      onlyTempUser,
+    );
   }
 
   Future<bool> createTempUser(

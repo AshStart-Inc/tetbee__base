@@ -18,4 +18,8 @@ class JojnRequestRepository {
   Future<bool> acceptJoinRequest(JoinRequest joinRequest) async {
     return await joinRequestDataSource.acceptJoinRequest(joinRequest);
   }
+
+  Future<bool> rejectJoinRequest(JoinRequest joinRequest) async {
+    return await joinRequestDataSource.rejectJoinRequest(joinRequest);
+  }
 }

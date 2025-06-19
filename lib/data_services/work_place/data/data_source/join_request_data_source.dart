@@ -19,4 +19,8 @@ class JoinRequestDataSource with ApiErrorHandlerMixin {
   Future<bool> acceptJoinRequest(JoinRequest joinRequest) async {
     return execute(() => workPlaceApi.acceptJoinRequest(joinRequest));
   }
+
+  Future<bool> rejectJoinRequest(JoinRequest joinRequest) async {
+    return execute(() => workPlaceApi.rejectJoinRequest(joinRequest));
+  }
 }

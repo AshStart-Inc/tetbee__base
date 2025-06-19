@@ -3,8 +3,34 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:tetbee__base/utils/helper.dart';
+import 'package:tetbee__base/widgets/top_notification_widget.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class CustomDialog {
+  static void showTopNotificationWidget(
+    BuildContext context, {
+    required String title,
+    required String body,
+    String? imageUrl,
+    Function()? onTap,
+    Function()? onDismissed,
+  }) {
+    HapticFeedback.heavyImpact();
+    showTopSnackBar(
+      Overlay.of(context),
+      displayDuration: Duration(seconds: 1),
+      onDismissed: onDismissed,
+      onTap: onTap,
+      Material(
+        child: TopNotificationWidget(
+          imageUrl: imageUrl,
+          title: title,
+          body: body,
+        ),
+      ),
+    );
+  }
+
   static Future showToast(
     String message, {
     Color textColor = Colors.white,

@@ -24,6 +24,7 @@ Widget getFormUnit(MapEntry<String, FormUnit> entry, dynamic initialValue) {
       return PhoneNumberFormUnit(formUnit: entry);
     case FormUnitType.itemPicker:
       return ItemPickerFormUnit(formUnit: entry);
+
     case FormUnitType.rangedDatePicker:
       return RangedDateFormUnit(formUnit: entry);
     case FormUnitType.rangedTimePicker:

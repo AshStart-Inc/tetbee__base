@@ -35,4 +35,14 @@ class JoinRequestService with ApiServiceMixin {
       'Error while create joinRequest',
     );
   }
+
+  Future<Either<Failure, bool>> rejectJoinRequest(
+    JoinRequest joinRequest,
+    String userId,
+  ) async {
+    return execute(
+      () => jojnRequestRepository.rejectJoinRequest(joinRequest),
+      'Error while rejectJoinRequest',
+    );
+  }
 }

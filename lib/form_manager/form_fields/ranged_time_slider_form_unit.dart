@@ -54,7 +54,7 @@ class _RangedTimeSliderFormUnitState extends State<RangedTimeSliderFormUnit> {
         _formState!.instantValue[attribute] ??
         DailyAvailability(
           weekDay: formUnit.baseTimeRange!.startTime!.weekday,
-          timeRange: timeModel,
+          timeRange: formUnit.defaultValue ?? timeModel,
           canWorkButNotPreferToWork: false,
         );
 
@@ -332,11 +332,13 @@ class _RangedTimeSliderFormUnitState extends State<RangedTimeSliderFormUnit> {
           Padding(
             padding: const EdgeInsets.only(right: 16),
             child: Text(
-              dailyAvailability.getAvailableTime(
-                formUnit.baseTimeRange!,
-                minimumHour,
-                formUnit.show24Hour!,
-              ),
+              formUnit.showTimeRange!
+                  ? '${dailyAvailability.timeRange.getTimeFormat(formUnit.show24Hour!)} - ${dailyAvailability.timeRange.getTimeFormat(formUnit.show24Hour!, isStartTime: false)}'
+                  : dailyAvailability.getAvailableTime(
+                    formUnit.baseTimeRange!,
+                    minimumHour,
+                    formUnit.show24Hour!,
+                  ),
               style: TextStyle(
                 color:
                     dailyAvailability.isAvailableWholeDay(

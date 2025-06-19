@@ -12,4 +12,6 @@ enum DataModel {
   workPlaceSchedulePresetTimes,
   chatRoom,
   message,
+  notificationCenter,
+  appNotification,
 }

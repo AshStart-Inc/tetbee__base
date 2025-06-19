@@ -16,10 +16,13 @@ class UserService with ApiServiceMixin {
   }
 
   Future<Either<Failure, List<UserModel>>> getWorkPlaceUsers(
-    String placeId,
-  ) async {
+    String placeId, {
+    bool withTempUser = true,
+    bool onlyTempUser = false,
+  }) async {
     return execute(
-      () => userRepository.getWorkPlaceUsers(placeId),
+      () =>
+          userRepository.getWorkPlaceUsers(placeId, withTempUser, onlyTempUser),
       'Error while getWorkPlaceUsers ',
     );
   }

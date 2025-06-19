@@ -9,8 +9,14 @@ class UserDataSource with ApiErrorHandlerMixin {
     return execute(() => UserApi.getSelectedUsers(userIds));
   }
 
-  Future<List<UserModel>> getWorkPlaceUsers(String placeId) async {
-    return execute(() => UserApi.getWorkPlaceUsers(placeId));
+  Future<List<UserModel>> getWorkPlaceUsers(
+    String placeId,
+    bool withTempUser,
+    bool onlyTempUser,
+  ) async {
+    return execute(
+      () => UserApi.getWorkPlaceUsers(placeId, withTempUser, onlyTempUser),
+    );
   }
 
   Future<bool> createTempUser(

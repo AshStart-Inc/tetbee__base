@@ -24,12 +24,10 @@ dependencies:
   ##Auth
   google_sign_in: ^6.2.2
   ## Utils
+  top_snackbar_flutter: ^3.3.0
   dio: ^5.8.0+1
   dartz: ^0.10.1
-  freezed_annotation: ^2.4.4
-  freezed: ^2.5.8
   cupertino_icons: ^1.0.8
-  json_annotation: ^4.9.0
   go_router: ^14.7.2
   intl: ^0.20.2
   image_picker: ^1.1.2
@@ -42,8 +40,7 @@ dependencies:
   font_awesome_flutter: ^10.8.0
   convex_bottom_bar: ^3.2.0
   timeago: ^3.7.0
-  build_runner: ^2.4.14
-  json_serializable: ^6.9.3
+
   cached_network_image: ^3.3.1
   fluttertoast: ^8.2.12
   range_slider_flutter: ^0.0.2
@@ -56,12 +53,17 @@ dependencies:
   timezone: ^0.10.1
   flutter_dotenv: ^5.2.1
   rflutter_alert: ^2.0.7
+  freezed_annotation: ^2.4.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
   flutter_lints: ^5.0.0
+
+  freezed: ^2.4.5
+  build_runner: ^2.4.6
+  json_annotation: ^4.9.0
+  json_serializable: ^6.7.1
 
 flutter:
   uses-material-design: true

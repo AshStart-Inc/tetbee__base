@@ -1,3 +1,4 @@
+import 'package:tetbee__base/models/common/notification_center.dart';
 import 'package:tetbee__base/tetbee__base.dart';
 
 class AuthApi {
@@ -5,6 +6,12 @@ class AuthApi {
     UserModel userModel,
     String id,
   ) async {
+    await DatabaseService.write(
+      dataModel: DataModel.notificationCenter,
+      userId: id,
+      data: NotificationCenter().toJson(),
+      docId: id,
+    );
     return DatabaseService.write(
       docId: id,
       dataModel: DataModel.userModel,

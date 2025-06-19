@@ -73,6 +73,13 @@ class WorkPlaceApi with ApiHandlingMixin {
     );
   }
 
+  Future<ApiResponse<bool>> rejectJoinRequest(JoinRequest joinRequest) async {
+    return await executeFirebaseFunction<bool>(
+      'workPlace-rejectJoinRequest',
+      joinRequest.toJson(),
+    );
+  }
+
   Future<ApiResponse<bool>> updateWorkPlaceUserInfo(
     UpdateWorkPlaceUserInfo updateWorkPlaceUserInfo,
   ) async {
