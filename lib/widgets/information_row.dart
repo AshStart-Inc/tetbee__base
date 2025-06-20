@@ -33,6 +33,11 @@ class InformationRow extends StatelessWidget {
                 context,
               ).textTheme.headlineLarge!.color!.withOpacity(0.5),
             ),
+            if (label.isNotEmpty)
+              Padding(
+                padding: EdgeInsets.only(left: 4),
+                child: Text(label, style: TextStyle(fontSize: 12)),
+              ),
             const SizedBox(width: 12),
             Expanded(
               flex: 1,

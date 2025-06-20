@@ -65,5 +65,7 @@ List<String> getDataTypes(
         dataModel.name,
         docId!, // userId
       ];
+    case DataModel.storedData:
+      return [dataModel.name];
   }
 }

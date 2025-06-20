@@ -27,6 +27,16 @@ class UserService with ApiServiceMixin {
     );
   }
 
+  Future<Either<Failure, bool>> updateUserInfo(
+    UserModel userModel,
+    Map<String, dynamic> updatedData,
+  ) async {
+    return execute(
+      () => userRepository.updateUserInfo(userModel, updatedData),
+      'Error while updateUserInfo ',
+    );
+  }
+
   Future<Either<Failure, bool>> createTempUser(
     UserModel userModel,
     WorkPlace workPlace,

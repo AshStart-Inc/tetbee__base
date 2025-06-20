@@ -41,6 +41,20 @@ class UserApi {
     );
   }
 
+  static Future<ApiResponse<bool>> updateUserInfo(
+    UserModel userModel,
+    Map<String, dynamic> updatedData,
+  ) {
+    return DatabaseService.update(
+      baseData: userModel.toJson(),
+      updatedData: updatedData,
+      dataModel: DataModel.userModel,
+      types: getDataTypes(DataModel.userModel),
+      docId: userModel.id!,
+      userId: userModel.id!,
+    );
+  }
+
   static Future<ApiResponse<bool>> createTempUser(
     UserModel userModel,
     WorkPlace workPlace,

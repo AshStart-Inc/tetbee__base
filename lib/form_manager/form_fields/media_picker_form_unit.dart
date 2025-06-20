@@ -452,6 +452,7 @@ class NewInfomationTag extends StatelessWidget {
 
 StoredData xFileToStoredData(XFile xFile, String dataPath, DataType dataType) =>
     StoredData(
+      userId: '',
       url: xFile.path,
       name: xFile.name,
       dataPath: '$dataPath/',
@@ -463,6 +464,7 @@ StoredData fileToStoredData(File file, String dataPath) {
   String fileExtension = file.path.split('.').last;
   DataType dataType = fileExtension == 'pdf' ? DataType.pdf : DataType.doc;
   return StoredData(
+    userId: '',
     url: XFile(file.path).path,
     name: XFile(file.path).name,
     dataPath: '$dataPath/',

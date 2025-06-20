@@ -3,6 +3,7 @@ import 'package:tetbee__base/models/availability/user_availabilities.dart';
 import 'package:tetbee__base/models/chat/message_model.dart';
 import 'package:tetbee__base/models/common/app_notification.dart';
 import 'package:tetbee__base/models/common/notification_center.dart';
+import 'package:tetbee__base/models/common/stored_data.dart';
 import 'package:tetbee__base/models/user/temp_user_availabilities.dart';
 import 'package:tetbee__base/models/work_place/join_request.dart';
 import 'package:tetbee__base/tetbee__base.dart';
@@ -11,7 +12,8 @@ List<String> getDataFilter(Map<String, dynamic> data, DataModel dataModel) {
   switch (dataModel) {
     case DataModel.appInfo:
       return [];
-
+    case DataModel.storedData:
+      return [];
     case DataModel.notificationCenter:
       return [];
     case DataModel.userModel:
@@ -98,6 +100,8 @@ T parseData<T>(DocumentSnapshot<Object?> doc) {
           as T;
     case const (PositionModel):
       return PositionModel.fromJson(data).copyWith(id: doc.id) as T;
+    case const (StoredData):
+      return StoredData.fromJson(data).copyWith(id: doc.id) as T;
     case const (MessageModel):
       return MessageModel.fromJson(data).copyWith(id: doc.id) as T;
     case const (UserSchedule):

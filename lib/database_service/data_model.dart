@@ -14,4 +14,5 @@ enum DataModel {
   message,
   notificationCenter,
   appNotification,
+  storedData,
 }

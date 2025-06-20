@@ -25,7 +25,6 @@ class _TextFormUnitState extends State<TextFormUnit> {
     _formState = FormBuilder.of(context);
     attribute = widget.formUnit.key;
     formUnit = widget.formUnit.value;
-
     initialValue = _formState?.initialValue[attribute];
   }
 
@@ -34,6 +33,7 @@ class _TextFormUnitState extends State<TextFormUnit> {
     return FormFieldWrapper(
       label: formUnit.label,
       formField: FormBuilderTextField(
+        style: TextStyle(fontSize: 15),
         maxLength: formUnit.maxLength,
         validator: FormValidatorLogic.compose([
           if (formUnit.validators != null && formUnit.validators!.isNotEmpty)
@@ -42,7 +42,7 @@ class _TextFormUnitState extends State<TextFormUnit> {
             ),
         ]),
         decoration: InputDecoration(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(25.0)),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
         ),
         name: attribute,
         initialValue: initialValue,

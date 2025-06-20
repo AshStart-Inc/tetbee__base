@@ -21,6 +21,13 @@ class UserRepository {
     );
   }
 
+  Future<bool> updateUserInfo(
+    UserModel userModel,
+    Map<String, dynamic> updatedData,
+  ) async {
+    return userDataSource.updateUserInfo(userModel, updatedData);
+  }
+
   Future<bool> createTempUser(
     UserModel userModel,
     WorkPlace workPlace,

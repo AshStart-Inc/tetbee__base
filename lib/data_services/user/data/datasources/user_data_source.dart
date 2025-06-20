@@ -19,6 +19,13 @@ class UserDataSource with ApiErrorHandlerMixin {
     );
   }
 
+  Future<bool> updateUserInfo(
+    UserModel userModel,
+    Map<String, dynamic> updatedData,
+  ) async {
+    return execute(() => UserApi.updateUserInfo(userModel, updatedData));
+  }
+
   Future<bool> createTempUser(
     UserModel userModel,
     WorkPlace workPlace,
