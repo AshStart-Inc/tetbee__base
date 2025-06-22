@@ -62,6 +62,7 @@ class BooleanFormUnitState extends State<BooleanFormUnit> {
             label: formUnit.label,
             formField: button,
             errorText: val.errorText,
+            trailingWidget: formUnit.trailingWidget,
           ),
         );
       },

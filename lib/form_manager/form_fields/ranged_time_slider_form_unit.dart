@@ -330,10 +330,12 @@ class _RangedTimeSliderFormUnitState extends State<RangedTimeSliderFormUnit> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(right: 16),
+            padding: const EdgeInsets.only(right: 16, top: 8),
             child: Text(
               formUnit.showTimeRange!
-                  ? '${dailyAvailability.timeRange.getTimeFormat(formUnit.show24Hour!)} - ${dailyAvailability.timeRange.getTimeFormat(formUnit.show24Hour!, isStartTime: false)}'
+                  ? dailyAvailability.isUnavailable(minimumHour)
+                      ? 'Closed'
+                      : '${dailyAvailability.timeRange.getTimeFormat(formUnit.show24Hour!)} - ${dailyAvailability.timeRange.getTimeFormat(formUnit.show24Hour!, isStartTime: false)}'
                   : dailyAvailability.getAvailableTime(
                     formUnit.baseTimeRange!,
                     minimumHour,

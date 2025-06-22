@@ -22,7 +22,7 @@ class ThemeConstants {
   // static Color yellowColor2 = const Color(0xffF5D552);
 
   static Color redColor1 = Colors.red.withOpacity(0.8);
-  static Color redColor2 = Colors.pink[600]!;
+  static Color redColor2 = Color(0xffDC143C);
   static Color lightThemeBaseFontColor = Colors.black;
 
   //light theme
@@ -56,6 +56,32 @@ class ThemeConstants {
 
     final Color specialColor = getSpecialColor(appTheme);
     return baseTheme.copyWith(
+      // primaryColor: primaryColor,
+      primaryColor: Color(0xFFF5C518),
+      // scaffoldBackgroundColor: Colors.black,
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: Color(0xFFF5C518),
+        brightness: Brightness.dark,
+        outline: baseBorderColor,
+        onTertiary: Colors.lightBlue,
+        onPrimaryContainer: const Color(0xff6b3e2e),
+        onSurface: const Color(0xff272B34),
+        onSecondary: Colors.pink[600],
+        secondary: specialColor,
+        background: const Color(0xff110002),
+        onError: ThemeConstants.redColor2,
+        error: Color(0xffB22222),
+        primaryContainer: primaryColor,
+        primary: Colors.lightBlue.withOpacity(0.5),
+        onPrimary: const Color.fromARGB(
+          255,
+          11,
+          73,
+          13,
+        ), //bool picker selected color
+      ),
+
+      //
       splashColor: Colors.transparent,
       expansionTileTheme: getBaseTheme(
         appTheme,
@@ -66,9 +92,9 @@ class ThemeConstants {
         }),
       ),
       hoverColor: Colors.transparent,
-      canvasColor: Colors.transparent,
+      // canvasColor: Colors.transparent,
       cupertinoOverrideTheme: NoDefaultCupertinoThemeData(),
-      primaryColor: primaryColor,
+
       cardColor: carColor,
       sliderTheme: baseTheme.sliderTheme.copyWith(
         activeTrackColor: primaryColor,
@@ -92,29 +118,11 @@ class ThemeConstants {
       // primaryColorDark: Color(0xffDCF542),
       // scaffoldBackgroundColor: Color(0xff222224),
       // scaffoldBackgroundColor: Colors.yellow,
-      highlightColor: Colors.transparent,
+      // highlightColor: Colors.transparent,
       //  const Color(
       //   0xffD8FA03, //icon color// button text and border color
       // ),
-      colorScheme: ThemeData.dark().colorScheme.copyWith(
-        outline: baseBorderColor,
-        onTertiary: Colors.lightBlue,
-        onPrimaryContainer: const Color(0xff6b3e2e),
-        onSurface: const Color(0xff272B34),
-        onSecondary: Colors.pink[600],
-        secondary: specialColor,
-        background: const Color(0xff110002),
-        onError: ThemeConstants.redColor2,
-        error: ThemeConstants.redColor2,
-        primaryContainer: primaryColor,
-        primary: Colors.lightBlue.withOpacity(0.5),
-        onPrimary: const Color.fromARGB(
-          255,
-          11,
-          73,
-          13,
-        ), //bool picker selected color
-      ),
+
       // primaryIconTheme: ThemeData.dark().primaryIconTheme.copyWith(
       //       color: Color(0xffDCF542),
       //     ),
@@ -136,13 +144,17 @@ class ThemeConstants {
         titleLarge: TextStyle(
           fontSize: appbaseFontSize * 3.0,
           color: baseOppositFontColor,
+          fontWeight: FontWeight.bold,
         ),
         titleMedium: TextStyle(
-          fontSize: appbaseFontSize * 1.8,
+          fontSize: appbaseFontSize * 2.3,
           fontWeight: FontWeight.bold,
           color: baseOppositFontColor,
         ),
-        titleSmall: TextStyle(color: baseOppositFontColor),
+        titleSmall: TextStyle(
+          color: baseOppositFontColor,
+          fontWeight: FontWeight.bold,
+        ),
         labelLarge: TextStyle(color: baseOppositFontColor),
         labelMedium: TextStyle(
           fontSize: appbaseFontSize * 1.2,
@@ -189,9 +201,10 @@ class ThemeConstants {
         titleLarge: TextStyle(
           fontSize: appbaseFontSize * 3.0,
           color: baseFontColor,
+          fontWeight: FontWeight.bold,
         ),
         titleMedium: TextStyle(
-          fontSize: appbaseFontSize * 2.0,
+          fontSize: appbaseFontSize * 2.3,
           fontWeight: FontWeight.bold,
           color: baseFontColor,
         ),
@@ -205,14 +218,14 @@ class ThemeConstants {
           fontSize: appbaseFontSize * 1.6,
         ),
         labelMedium: TextStyle(
-          fontSize: appbaseFontSize * 1.2,
+          fontSize: appbaseFontSize * 1.4,
           color: baseFontColor,
           fontWeight: FontWeight.bold,
         ),
         labelSmall: TextStyle(
           letterSpacing: 0,
           color: ThemeConstants.yellowColor1,
-          fontSize: appbaseFontSize * 0.8,
+          fontSize: appbaseFontSize * 1.2,
           fontWeight: FontWeight.bold,
         ),
         bodyLarge: TextStyle(color: baseFontColor),
@@ -297,7 +310,8 @@ class ThemeConstants {
   static Color getScaffoldColor(AppTheme appTheme) {
     switch (appTheme) {
       case AppTheme.light:
-        return const Color(0xffF5F2F2);
+        return const Color(0xffFAF9F6);
+      // const Color(0xffF5F2F2);
       case AppTheme.dark:
         return Colors.grey[800]!;
     }

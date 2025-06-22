@@ -5,6 +5,7 @@ import 'package:tetbee__base/models/models.dart';
 import 'package:tetbee__base/models/work_place/join_request.dart';
 import 'package:tetbee__base/models/work_place/remove_user_form_work_place_request.dart';
 import 'package:tetbee__base/models/work_place/update_work_place_user_info.dart';
+import 'package:tetbee__base/models/work_place/user_work_place_ordinal.dart';
 
 WorkPlaceApi workPlaceApi = WorkPlaceApi();
 
@@ -47,7 +48,7 @@ class WorkPlaceApi with ApiHandlingMixin {
   ) async {
     return await DatabaseService.write(
       dataModel: DataModel.joinRequest,
-      types: getDataTypes(DataModel.joinRequest, docId: joinRequest.placeId),
+      types: getDataTypes(DataModel.joinRequest),
       data: joinRequest.toJson(),
       userId: userId,
     );
@@ -59,7 +60,7 @@ class WorkPlaceApi with ApiHandlingMixin {
   ) async {
     return DatabaseService.update(
       dataModel: DataModel.joinRequest,
-      types: getDataTypes(DataModel.joinRequest, docId: joinRequest.placeId),
+      types: getDataTypes(DataModel.joinRequest),
       baseData: joinRequest.toJson(),
       docId: joinRequest.id!,
       userId: userId,
@@ -103,7 +104,12 @@ class WorkPlaceApi with ApiHandlingMixin {
   Future<ApiResponse<List<PositionModel>>> getPlacePositions(String placeId) {
     return DatabaseService.getAllDocuments<PositionModel>(
       types: getDataTypes(DataModel.placePosition, docId: placeId),
-      queryBuilder: (path) => FirebaseFirestore.instance.collection(path).get(),
+      queryBuilder:
+          (path) =>
+              FirebaseFirestore.instance
+                  .collection(path)
+                  .where('deleted', isEqualTo: false)
+                  .get(),
     );
   }
 
@@ -119,5 +125,35 @@ class WorkPlaceApi with ApiHandlingMixin {
       userId: userId,
       docId: positionModel.id,
     );
+  }
+
+  //get user work place ordinal
+  Future<ApiResponse<List<UserWorkPlaceOrdinal>>> getUserWorkPlaceOrdinal(
+    String placeId,
+  ) async {
+    return DatabaseService.getAllDocuments<UserWorkPlaceOrdinal>(
+      types: getDataTypes(DataModel.userWorkPlaceOrdinal, docId: placeId),
+      queryBuilder: (path) => FirebaseFirestore.instance.collection(path).get(),
+    );
+  }
+
+  Future<ApiResponse<bool>> updatePlaceUserOrdinals(
+    String placeId,
+    String userId,
+    List<UserWorkPlaceOrdinal> ordinals,
+  ) async {
+    List<TransactionDataModel> update = [];
+    for (UserWorkPlaceOrdinal ordinal in ordinals) {
+      update.add(
+        TransactionDataModel.getDocumentTransactionDataForUpdate(
+          types: getDataTypes(DataModel.userWorkPlaceOrdinal, docId: placeId),
+          dataModelEnum: DataModel.userWorkPlaceOrdinal,
+          dataModel: ordinal.toJson(),
+          userId: userId,
+          docId: ordinal.id,
+        ),
+      );
+    }
+    return await TransactionDataModel.run(update);
   }
 }

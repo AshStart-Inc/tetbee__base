@@ -6,12 +6,13 @@ import 'package:tetbee__base/utils/helper.dart';
 part 'stored_data.freezed.dart';
 part 'stored_data.g.dart';
 
-enum FilePurpose { userProfilePicture }
+enum FilePurpose { userProfilePicture, placeProfilePicture }
 
 @freezed
 class StoredData with _$StoredData {
   const factory StoredData({
     String? id,
+    int? ordinal,
     required String userId,
     FilePurpose? filePurpose,
     String? url,

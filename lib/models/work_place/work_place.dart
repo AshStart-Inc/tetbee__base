@@ -8,6 +8,7 @@ import 'package:tetbee__base/models/common/ranged_time_model.dart';
 import 'package:tetbee__base/models/common/time_zone_model.dart';
 import 'package:tetbee__base/models/work_place/google_place_model.dart';
 import 'package:tetbee__base/models/work_place/position_model.dart';
+import 'package:tetbee__base/models/work_place/user_work_place_ordinal.dart';
 import 'package:tetbee__base/utils/helper.dart';
 
 part 'work_place.freezed.dart';
@@ -29,6 +30,7 @@ class WorkPlace with _$WorkPlace {
     @Default(false) bool deleted,
     @Default('') String placeOwnerId,
     @Default('') String currentMembershipId,
+    @Default(false) bool useShiftSignOut,
     @Default(1) int startWeekDay,
     @Default(GooglePlaceModel(googlePlaceId: ''))
     GooglePlaceModel googlePlaceModel,
@@ -39,13 +41,14 @@ class WorkPlace with _$WorkPlace {
     String? defaultProfilePictureUrl,
     @Default(false) isOpened,
     @Default(false) isVerified,
-    @Default(PhoneNumberModel(isoCode: '')) PhoneNumberModel primaryPhoneNumber,
+    PhoneNumberModel? primaryPhoneNumber,
     PhoneNumberModel? secondaryPhoneNumber,
     @Default('') String workPlaceTypeId,
     @Default(TimeZoneModel()) TimeZoneModel timeZone,
-    @Default([]) List<String> ownersIds,
-    @Default({}) Map<String, int> joinedUsersOrdinal,
+    // @Default([]) List<String> ownersIds,
+    // @Default({}) Map<String, int> joinedUsersOrdinal,
     @Default([]) List<PositionModel> positions,
+    @JsonKey(ignore: true) @Default([]) List<UserWorkPlaceOrdinal> ordinals,
     @Default(AvailabilityReceiverSetting())
     AvailabilityReceiverSetting availabilityReceiverDefaultSetting,
     // @Default([]) List<RangedTimeModel> openingTimes,
@@ -72,14 +75,14 @@ extension WorkPlaceExtension on WorkPlace {
     return positions.where((p) => p.isOwner).first.id!;
   }
 
-  List<String> getSortedUserIds({bool withOwner = true}) {
-    final List<String> sortedUserIds =
-        joinedUsersOrdinal.keys.toList()..sort(
-          (a, b) => joinedUsersOrdinal[a]!.compareTo(joinedUsersOrdinal[b]!),
-        );
+  // List<String> getSortedUserIds({bool withOwner = true}) {
+  //   final List<String> sortedUserIds =
+  //       joinedUsersOrdinal.keys.toList()..sort(
+  //         (a, b) => joinedUsersOrdinal[a]!.compareTo(joinedUsersOrdinal[b]!),
+  //       );
 
-    return withOwner
-        ? sortedUserIds
-        : sortedUserIds.where((id) => !ownersIds.contains(id)).toList();
-  }
+  //   return withOwner
+  //       ? sortedUserIds
+  //       : sortedUserIds.where((id) => !ownersIds.contains(id)).toList();
+  // }
 }

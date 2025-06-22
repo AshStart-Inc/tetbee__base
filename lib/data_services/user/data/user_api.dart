@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:tetbee__base/database_service/database_exports.dart';
 import 'package:tetbee__base/models/models.dart';
 import 'package:tetbee__base/models/user/temp_user_availabilities.dart';
+import 'package:tetbee__base/models/work_place/user_work_place_ordinal.dart';
 
 class UserApi {
   static Future<ApiResponse<List<UserModel>>> getSelectedUsers(
@@ -93,27 +94,36 @@ class UserApi {
           dataModel: tempUserAv.toJson(),
           docId: userModel.id,
         );
-    //update placemodel
-    WorkPlace updatedWorkPlace = workPlace.copyWith(
-      joinedUsersOrdinal: {
-        ...workPlace.joinedUsersOrdinal,
-        userModel.id!: workPlace.joinedUsersOrdinal.length + 1,
-      },
-    );
 
-    TransactionDataModel updateWorkPlace =
-        TransactionDataModel.getDocumentTransactionDataForUpdate(
-          types: getDataTypes(DataModel.workPlace),
-          dataModelEnum: DataModel.workPlace,
+    // create user work place ordinal
+    //get count
+    final childrenRef = FirebaseFirestore.instance
+        .collection('workPlace')
+        .doc(workPlace.id)
+        .collection('children');
+
+    final aggregateQuery = childrenRef.count();
+    final snapshot = await aggregateQuery.get();
+    TransactionDataModel creaeteUserWorkPlaceOrdinal =
+        TransactionDataModel.getDocumentTransactionDataForWrite(
+          types: getDataTypes(
+            DataModel.userWorkPlaceOrdinal,
+            docId: workPlace.id,
+          ),
+          dataModelEnum: DataModel.userWorkPlaceOrdinal,
           userId: userId,
-          dataModel: updatedWorkPlace.toJson(),
-          docId: updatedWorkPlace.id!,
+          dataModel:
+              UserWorkPlaceOrdinal(
+                id: userModel.id!,
+                ordinal: snapshot.count!,
+              ).toJson(),
+          docId: userModel.id,
         );
 
     return await TransactionDataModel.run([
       createTempUser,
       createTempUserAv,
-      updateWorkPlace,
+      creaeteUserWorkPlaceOrdinal,
     ]);
   }
 }

@@ -2,6 +2,7 @@ import 'package:tetbee__base/data_services/work_place/data/data_source/work_plac
 import 'package:tetbee__base/models/models.dart';
 import 'package:tetbee__base/models/work_place/remove_user_form_work_place_request.dart';
 import 'package:tetbee__base/models/work_place/update_work_place_user_info.dart';
+import 'package:tetbee__base/models/work_place/user_work_place_ordinal.dart';
 
 class WorkPlaceRepository {
   Future<String> createWorkPlace(WorkPlace workPlace, String userId) async {
@@ -52,6 +53,24 @@ class WorkPlaceRepository {
       placeId,
       userId,
       positionModel,
+    );
+  }
+
+  Future<List<UserWorkPlaceOrdinal>> getUserWorkPlaceOrdinal(
+    String placeId,
+  ) async {
+    return await WorkPlaceDataSource().getUserWorkPlaceOrdinal(placeId);
+  }
+
+  Future<bool> updatePlaceUserOrdinals(
+    String placeId,
+    String userId,
+    List<UserWorkPlaceOrdinal> ordinals,
+  ) async {
+    return await WorkPlaceDataSource().updatePlaceUserOrdinals(
+      placeId,
+      userId,
+      ordinals,
     );
   }
 }

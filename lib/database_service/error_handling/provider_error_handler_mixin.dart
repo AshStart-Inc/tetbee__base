@@ -7,11 +7,15 @@ import 'package:tetbee__base/utils/enums.dart';
 
 mixin ProviderErrorHandlerMixin on ChangeNotifier {
   bool _isLoading = false;
+  bool _isUpdating = false;
+  bool _isDeleting = false;
   bool _isSaving = false;
   bool _hasError = false;
   bool _isSuccess = true;
   String? _errorMessage;
+  bool get isUpdating => _isUpdating;
   bool get isLoading => _isLoading;
+  bool get isDeleting => _isDeleting;
   bool get isSaving => _isSaving;
   bool get hasError => _hasError;
   bool get isSuccess => _isSuccess;
@@ -19,6 +23,31 @@ mixin ProviderErrorHandlerMixin on ChangeNotifier {
 
   void setLoading() {
     _isLoading = true;
+    _isUpdating = false;
+    _isDeleting = false;
+    _hasError = false;
+    _isSaving = false;
+    _isSuccess = true;
+    _errorMessage = null;
+
+    notifyListeners();
+  }
+
+  void setUpdating() {
+    _isUpdating = true;
+    _isLoading = false;
+    _isDeleting = false;
+    _hasError = false;
+    _isSaving = false;
+    _isSuccess = true;
+    _errorMessage = null;
+    notifyListeners();
+  }
+
+  void setDeleting() {
+    _isUpdating = false;
+    _isLoading = false;
+    _isDeleting = true;
     _hasError = false;
     _isSaving = false;
     _isSuccess = true;
@@ -29,6 +58,7 @@ mixin ProviderErrorHandlerMixin on ChangeNotifier {
   void setSaving() {
     _isLoading = false;
     _hasError = false;
+    _isDeleting = false;
     _isSaving = true;
     _isSuccess = true;
     _errorMessage = null;
@@ -37,6 +67,8 @@ mixin ProviderErrorHandlerMixin on ChangeNotifier {
 
   void setError(String errorMessage) {
     _isLoading = false;
+    _isDeleting = false;
+    _isUpdating = false;
     _hasError = true;
     _isSaving = false;
     _isSuccess = false;
@@ -46,6 +78,8 @@ mixin ProviderErrorHandlerMixin on ChangeNotifier {
 
   void setSuccess() {
     _isLoading = false;
+    _isUpdating = false;
+    _isDeleting = false;
     _hasError = false;
     _isSaving = false;
     _isSuccess = true;

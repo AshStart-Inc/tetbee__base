@@ -13,7 +13,7 @@ class RemoveUserFormWorkPlaceRequest with _$RemoveUserFormWorkPlaceRequest {
     required String currentUserId,
     required String workPlaceId,
     required List<UserWorkPlaceRelation> updatedUserWorkPlaceRelation,
-    required Map<String, int> updatedJoinedUsersOrdinal,
+    required List<String> notificationPositionIds,
   }) = _RemoveUserFormWorkPlaceRequest;
 
   factory RemoveUserFormWorkPlaceRequest.fromJson(Map<String, dynamic> json) =>

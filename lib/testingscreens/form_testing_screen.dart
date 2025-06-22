@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tetbee__base/models/common/ranged_time_model.dart';
 import 'package:tetbee__base/tetbee__base.dart';
 
 class FormTestingScreen extends StatefulWidget {
@@ -19,6 +18,13 @@ class _FormTestingScreenState extends State<FormTestingScreen> {
       //     ? Text('asd')
       //     :
       FormManager(
+        initialValue: {
+          // 'firstName': PhoneNumberModel(
+          //   isoCode: 'CA',
+          //   phoneNumber: '+14379728180',
+          // ),
+        },
+        // additionalButtons: CommonButton(text: 'asdas', onTap: () {}),
         // initialValue: {
         //   'testing2': Colors.green.value,
         //   // 'testing5': UserModel(
@@ -27,17 +33,45 @@ class _FormTestingScreenState extends State<FormTestingScreen> {
         //   // ),
         // },
         formFields: {
-          'test22ing': FormUnit.rangedTimePicker(
-            baseTime: DateTime(1992, 09, 17, 11, 30),
-            label: 'asdasd',
-            // dateSelectionModes: [
-            //   DateSelectionMode.weekly,
-            //   DateSelectionMode.rangedMonth,
-            //   DateSelectionMode.multiple,
-            //   // DateSelectionMode.single,
-            // ],
-            // validators: [CustomFormValidator.required(errorText: 'value')],
+          'text': FormUnit.text(
+            // max
+            maxLines: 6,
+            textInputType: TextInputType.multiline,
+            label: 'Please select schedule start week day',
+            hint: 'Select schedule week day...',
+            validators: [CustomFormValidator.required()],
           ),
+          // 'firstName': FormUnit.dropdown(
+          //   label: 'Please select schedule start week day',
+          //   hint: 'Select schedule week day...',
+          //   itemList: AvailabilityService.baseWeek,
+          //   itemBuilder:
+          //       (_, value) => Text(
+          //         DateHelpers.getWeekdayFullFormat((value as DateTime).weekday),
+          //       ),
+          //   validators: [CustomFormValidator.required()],
+          // ),
+          // 'wanring': FormUnit.customWidget(
+          //   widget: Text(
+          //     'This selected weekday will determine the start of your weekly schedule. It will also be used to collect availability. Once set, this value cannot be changed. Please choose carefully..',
+          //   ),
+          // ),
+          // 'firstN2ame': FormUnit.text(
+          //   label: 'First Name',
+          //   validators: [CustomFormValidator.required()],
+          // ),
+
+          // 'test22ing': FormUnit.rangedTimePicker(
+          //   baseTime: DateTime(1992, 09, 17, 11, 30),
+          //   label: 'asdasd',
+          //   // dateSelectionModes: [
+          //   //   DateSelectionMode.weekly,
+          //   //   DateSelectionMode.rangedMonth,
+          //   //   DateSelectionMode.multiple,
+          //   //   // DateSelectionMode.single,
+          //   // ],
+          //   // validators: [CustomFormValidator.required(errorText: 'value')],
+          // ),
           // 'testing2': FormUnit.rangedTimeSlider(
           //   useNotPreferedDay: false,
           //   useDailyComment: false,

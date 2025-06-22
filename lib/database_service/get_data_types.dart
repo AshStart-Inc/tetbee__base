@@ -43,9 +43,7 @@ List<String> getDataTypes(
         docId!, //placeId
       ];
     case DataModel.joinRequest:
-      return [
-        dataModel.name, docId!, //placeId
-      ];
+      return [dataModel.name];
     case DataModel.userAvailabilities:
       return [
         dataModel.name, docId!, //placeId
@@ -64,6 +62,13 @@ List<String> getDataTypes(
       return [
         dataModel.name,
         docId!, // userId
+      ];
+    case DataModel.appNotificationState:
+      return [dataModel.name];
+    case DataModel.userWorkPlaceOrdinal:
+      return [
+        DataModel.workPlace.name,
+        docId!, // place Id
       ];
     case DataModel.storedData:
       return [dataModel.name];

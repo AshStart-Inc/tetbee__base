@@ -149,7 +149,9 @@ class RangedDateFormUnitState extends State<RangedDateFormUnit> {
       builder: (FormFieldState val) {
         return FormFieldWrapper(
           label: formUnit.label,
+          subLabel: formUnit.subLabel,
           errorText: val.errorText,
+          trailingWidget: formUnit.trailingWidget,
           formField: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

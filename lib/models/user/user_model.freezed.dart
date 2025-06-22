@@ -30,8 +30,11 @@ mixin _$UserModel {
   String? get updatedBy => throw _privateConstructorUsedError;
   List<String> get filters => throw _privateConstructorUsedError;
   bool get deleted => throw _privateConstructorUsedError;
+  bool get didWatchOnboarding => throw _privateConstructorUsedError;
+  bool get didRateApp => throw _privateConstructorUsedError;
   bool get isTempUser => throw _privateConstructorUsedError;
   String get firstName => throw _privateConstructorUsedError;
+  String get middleName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
   String get nickName => throw _privateConstructorUsedError;
   bool get preferShowNickName => throw _privateConstructorUsedError;
@@ -74,8 +77,11 @@ abstract class $UserModelCopyWith<$Res> {
     String? updatedBy,
     List<String> filters,
     bool deleted,
+    bool didWatchOnboarding,
+    bool didRateApp,
     bool isTempUser,
     String firstName,
+    String middleName,
     String lastName,
     String nickName,
     bool preferShowNickName,
@@ -120,8 +126,11 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? updatedBy = freezed,
     Object? filters = null,
     Object? deleted = null,
+    Object? didWatchOnboarding = null,
+    Object? didRateApp = null,
     Object? isTempUser = null,
     Object? firstName = null,
+    Object? middleName = null,
     Object? lastName = null,
     Object? nickName = null,
     Object? preferShowNickName = null,
@@ -173,6 +182,16 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     ? _value.deleted
                     : deleted // ignore: cast_nullable_to_non_nullable
                         as bool,
+            didWatchOnboarding:
+                null == didWatchOnboarding
+                    ? _value.didWatchOnboarding
+                    : didWatchOnboarding // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            didRateApp:
+                null == didRateApp
+                    ? _value.didRateApp
+                    : didRateApp // ignore: cast_nullable_to_non_nullable
+                        as bool,
             isTempUser:
                 null == isTempUser
                     ? _value.isTempUser
@@ -182,6 +201,11 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                 null == firstName
                     ? _value.firstName
                     : firstName // ignore: cast_nullable_to_non_nullable
+                        as String,
+            middleName:
+                null == middleName
+                    ? _value.middleName
+                    : middleName // ignore: cast_nullable_to_non_nullable
                         as String,
             lastName:
                 null == lastName
@@ -341,8 +365,11 @@ abstract class _$$UserModelImplCopyWith<$Res>
     String? updatedBy,
     List<String> filters,
     bool deleted,
+    bool didWatchOnboarding,
+    bool didRateApp,
     bool isTempUser,
     String firstName,
+    String middleName,
     String lastName,
     String nickName,
     bool preferShowNickName,
@@ -391,8 +418,11 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? updatedBy = freezed,
     Object? filters = null,
     Object? deleted = null,
+    Object? didWatchOnboarding = null,
+    Object? didRateApp = null,
     Object? isTempUser = null,
     Object? firstName = null,
+    Object? middleName = null,
     Object? lastName = null,
     Object? nickName = null,
     Object? preferShowNickName = null,
@@ -444,6 +474,16 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 ? _value.deleted
                 : deleted // ignore: cast_nullable_to_non_nullable
                     as bool,
+        didWatchOnboarding:
+            null == didWatchOnboarding
+                ? _value.didWatchOnboarding
+                : didWatchOnboarding // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        didRateApp:
+            null == didRateApp
+                ? _value.didRateApp
+                : didRateApp // ignore: cast_nullable_to_non_nullable
+                    as bool,
         isTempUser:
             null == isTempUser
                 ? _value.isTempUser
@@ -453,6 +493,11 @@ class __$$UserModelImplCopyWithImpl<$Res>
             null == firstName
                 ? _value.firstName
                 : firstName // ignore: cast_nullable_to_non_nullable
+                    as String,
+        middleName:
+            null == middleName
+                ? _value.middleName
+                : middleName // ignore: cast_nullable_to_non_nullable
                     as String,
         lastName:
             null == lastName
@@ -538,8 +583,11 @@ class _$UserModelImpl implements _UserModel {
     this.updatedBy = '',
     final List<String> filters = const [],
     this.deleted = false,
+    this.didWatchOnboarding = false,
+    this.didRateApp = false,
     this.isTempUser = false,
     this.firstName = '',
+    this.middleName = '',
     this.lastName = '',
     required this.nickName,
     this.preferShowNickName = true,
@@ -587,10 +635,19 @@ class _$UserModelImpl implements _UserModel {
   final bool deleted;
   @override
   @JsonKey()
+  final bool didWatchOnboarding;
+  @override
+  @JsonKey()
+  final bool didRateApp;
+  @override
+  @JsonKey()
   final bool isTempUser;
   @override
   @JsonKey()
   final String firstName;
+  @override
+  @JsonKey()
+  final String middleName;
   @override
   @JsonKey()
   final String lastName;
@@ -631,7 +688,7 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, createdAt: $createdAt, createdBy: $createdBy, updatedAt: $updatedAt, updatedBy: $updatedBy, filters: $filters, deleted: $deleted, isTempUser: $isTempUser, firstName: $firstName, lastName: $lastName, nickName: $nickName, preferShowNickName: $preferShowNickName, primaryPhoneNumber: $primaryPhoneNumber, secondaryPhoneNumber: $secondaryPhoneNumber, emergencyContact: $emergencyContact, addressModel: $addressModel, gender: $gender, defaultProfilePictureUrl: $defaultProfilePictureUrl, email: $email, dateOfBirth: $dateOfBirth, userWorkPlaceRelation: $userWorkPlaceRelation, userSettings: $userSettings)';
+    return 'UserModel(id: $id, createdAt: $createdAt, createdBy: $createdBy, updatedAt: $updatedAt, updatedBy: $updatedBy, filters: $filters, deleted: $deleted, didWatchOnboarding: $didWatchOnboarding, didRateApp: $didRateApp, isTempUser: $isTempUser, firstName: $firstName, middleName: $middleName, lastName: $lastName, nickName: $nickName, preferShowNickName: $preferShowNickName, primaryPhoneNumber: $primaryPhoneNumber, secondaryPhoneNumber: $secondaryPhoneNumber, emergencyContact: $emergencyContact, addressModel: $addressModel, gender: $gender, defaultProfilePictureUrl: $defaultProfilePictureUrl, email: $email, dateOfBirth: $dateOfBirth, userWorkPlaceRelation: $userWorkPlaceRelation, userSettings: $userSettings)';
   }
 
   @override
@@ -650,10 +707,16 @@ class _$UserModelImpl implements _UserModel {
                 other.updatedBy == updatedBy) &&
             const DeepCollectionEquality().equals(other._filters, _filters) &&
             (identical(other.deleted, deleted) || other.deleted == deleted) &&
+            (identical(other.didWatchOnboarding, didWatchOnboarding) ||
+                other.didWatchOnboarding == didWatchOnboarding) &&
+            (identical(other.didRateApp, didRateApp) ||
+                other.didRateApp == didRateApp) &&
             (identical(other.isTempUser, isTempUser) ||
                 other.isTempUser == isTempUser) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
+            (identical(other.middleName, middleName) ||
+                other.middleName == middleName) &&
             (identical(other.lastName, lastName) ||
                 other.lastName == lastName) &&
             (identical(other.nickName, nickName) ||
@@ -696,8 +759,11 @@ class _$UserModelImpl implements _UserModel {
     updatedBy,
     const DeepCollectionEquality().hash(_filters),
     deleted,
+    didWatchOnboarding,
+    didRateApp,
     isTempUser,
     firstName,
+    middleName,
     lastName,
     nickName,
     preferShowNickName,
@@ -738,8 +804,11 @@ abstract class _UserModel implements UserModel {
     final String? updatedBy,
     final List<String> filters,
     final bool deleted,
+    final bool didWatchOnboarding,
+    final bool didRateApp,
     final bool isTempUser,
     final String firstName,
+    final String middleName,
     final String lastName,
     required final String nickName,
     final bool preferShowNickName,
@@ -775,9 +844,15 @@ abstract class _UserModel implements UserModel {
   @override
   bool get deleted;
   @override
+  bool get didWatchOnboarding;
+  @override
+  bool get didRateApp;
+  @override
   bool get isTempUser;
   @override
   String get firstName;
+  @override
+  String get middleName;
   @override
   String get lastName;
   @override

@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:tetbee__base/dialog/custom_dialog.dart';
@@ -270,7 +271,9 @@ class MediaPickerState extends State<MediaPickerFormUnit> {
       builder: (FormFieldState val) {
         return FormFieldWrapper(
           label: formUnit.label,
+          subLabel: formUnit.subLabel,
           errorText: val.errorText,
+          trailingWidget: formUnit.trailingWidget,
           formField: Stack(
             alignment: Alignment.topLeft,
             children: [
@@ -398,20 +401,68 @@ class MediaPickerState extends State<MediaPickerFormUnit> {
   }
 }
 
-class InfomationTag extends StatelessWidget {
+class InfomationTag extends StatefulWidget {
   final String text;
-  const InfomationTag({Key? key, required this.text}) : super(key: key);
+  final bool tooltipMode;
+  final Color? iconColor;
+  const InfomationTag({
+    super.key,
+    required this.text,
+    this.iconColor,
+    this.tooltipMode = false,
+  });
 
   @override
+  State<InfomationTag> createState() => _InfomationTagState();
+}
+
+class _InfomationTagState extends State<InfomationTag> {
+  @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Icon(Icons.info, size: 15, color: Theme.of(context).primaryColorDark),
-        SizedBox(width: 5),
-        Text(text, style: Theme.of(context).textTheme.displaySmall),
-      ],
-    );
+    return widget.tooltipMode
+        ? InkWell(
+          onTap: () {
+            showModalBottomSheet(
+              showDragHandle: true,
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              context: context,
+              builder:
+                  (_) => Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Material(
+                      color: Theme.of(context).scaffoldBackgroundColor,
+                      child: SafeArea(child: Text(widget.text)),
+                    ),
+                  ),
+            );
+          },
+          child: Icon(
+            Icons.info_outline_rounded,
+            size: 25,
+            color: widget.iconColor ?? Theme.of(context).baseTextColor,
+          ),
+        )
+        : Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(
+              Icons.info,
+              size: 20,
+              color: widget.iconColor ?? Theme.of(context).primaryColorDark,
+            ),
+            SizedBox(width: 5),
+            Expanded(
+              child: Text(
+                widget.text,
+                style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                  fontSize: 14,
+                  color: Theme.of(context).unselectedWidgetColor,
+                ),
+              ),
+            ),
+          ],
+        );
   }
 }
 

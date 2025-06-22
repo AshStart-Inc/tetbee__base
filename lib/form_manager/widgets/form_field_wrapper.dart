@@ -3,6 +3,7 @@ import 'package:tetbee__base/form_manager/widgets/error_message_widget.dart';
 
 class FormFieldWrapper extends StatelessWidget {
   final String label;
+  final String? subLabel;
   final Widget formField;
   final Widget? trailingWidget;
   final bool showLabel;
@@ -17,8 +18,9 @@ class FormFieldWrapper extends StatelessWidget {
   final bool useCustomMarkTextWidget;
 
   const FormFieldWrapper({
-    Key? key,
+    super.key,
     required this.label,
+    this.subLabel,
     required this.formField,
     this.trailingWidget,
     this.showLabel = true,
@@ -48,24 +50,53 @@ class FormFieldWrapper extends StatelessWidget {
               color: color,
             ));
     return Padding(
-      padding: padding,
+      padding: const EdgeInsets.only(bottom: 4),
       child: Column(
         crossAxisAlignment: crossAxisAlignment,
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
           if (trailingWidget == null)
-            Text(label, maxLines: 2, style: textStyle),
+            Row(
+              children: [
+                Expanded(child: Text(label, maxLines: 2, style: textStyle)),
+                if (subLabel != null)
+                  Padding(
+                    padding: const EdgeInsets.only(left: 4),
+                    child: Text(
+                      subLabel!,
+                      style: textStyle.copyWith(
+                        color: Theme.of(context).unselectedWidgetColor,
+                        fontSize: textStyle.fontSize! - 2,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
           if (trailingWidget != null)
             Row(
               children: [
                 if (showLabel) Text(label, maxLines: 2, style: textStyle),
+                if (subLabel != null)
+                  Padding(
+                    padding: const EdgeInsets.only(left: 4),
+                    child: Text(
+                      subLabel!,
+                      style: textStyle.copyWith(
+                        color: Theme.of(context).unselectedWidgetColor,
+                        fontSize: textStyle.fontSize! - 2,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
                 const Spacer(),
                 trailingWidget ?? const SizedBox(),
               ],
             ),
           const SizedBox(height: 8),
           if (isExpanded) Flexible(child: formField) else formField,
+          const SizedBox(height: 2),
           ErrorMessageWidget(errorText: errorText),
         ],
       ),

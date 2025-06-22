@@ -45,6 +45,7 @@ class AppNotification with _$AppNotification {
     DateTime? updatedAt,
     String? referenceDocumentPath,
     String? notificationTopic,
+    String? workPlaceId,
     String? title,
     String? body,
     AppNotificationType? type,

@@ -78,6 +78,8 @@ class _ColorFormUnitState extends State<ColorFormUnit> {
       builder: (FormFieldState<int> field) {
         return FormFieldWrapper(
           label: formUnit.label,
+          subLabel: formUnit.subLabel,
+          trailingWidget: formUnit.trailingWidget,
           formField: CustomColorPickerWidget(
             initialValue: field.value ?? Colors.black.value,
             onChange: (Color color) {

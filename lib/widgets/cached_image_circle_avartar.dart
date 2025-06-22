@@ -1,16 +1,17 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class CahceImageCircleAvartar extends StatelessWidget {
   final double radius;
-  final Map<String, dynamic>? imgUrls;
-  final String? singleImg;
+  final String? imageUrl;
+  final String defaultImage;
   const CahceImageCircleAvartar({
     super.key,
-    this.imgUrls,
-    this.singleImg,
+    this.imageUrl,
     this.radius = 20,
+    required this.defaultImage,
   });
 
   @override
@@ -24,15 +25,10 @@ class CahceImageCircleAvartar extends StatelessWidget {
         ),
         CircleAvatar(
           radius: radius,
-          // backgroundImage:
-          // imgUrls == null && singleImg == null
-          //     ? const AssetImage(AppConstats.tetbeePlaceDefaultImage)
-          //         as ImageProvider
-          //     : singleImg != null
-          //     ? CachedNetworkImageProvider(singleImg!)
-          //     : imgUrls!.isEmpty
-          //     ? null
-          //     : CachedNetworkImageProvider(imgUrls!.keys.first),
+          backgroundImage:
+              imageUrl == null
+                  ? AssetImage(defaultImage) as ImageProvider
+                  : CachedNetworkImageProvider(imageUrl!),
         ),
       ],
     );

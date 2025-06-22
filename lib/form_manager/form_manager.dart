@@ -80,48 +80,48 @@ class _FormManagerState extends State<FormManager> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.isLoading
-        ? LoadingScreen()
-        : InkWell(
-          onTap: () {
-            Helpers.dismissKeyboard(context: context);
-          },
-          child: SafeArea(
-            child: Stack(
-              children: [
-                FormBuilder(
-                  key: _fomKey,
-                  initialValue: widget.initialValue ?? {},
-                  onChanged:
-                      () => widget.onChange?.call(
-                        _fomKey.currentState?.instantValue ?? {},
-                      ),
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: SingleChildScrollView(
-                          // itemCount: (widget.formFields ?? {}).length,
-                          padding: EdgeInsets.symmetric(horizontal: 16),
-                          // itemBuilder: (context) {},
-                          child: Column(
-                            children: [
-                              if (widget.formFields != null)
-                                ..._getFormValues(
-                                  formFields: widget.formFields!,
-                                ),
-                            ],
-                          ),
+    return IgnorePointer(
+      ignoring: widget.isLoading,
+      child: InkWell(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        onTap: () {
+          Helpers.dismissKeyboard(context: context);
+        },
+        child: SafeArea(
+          child: Stack(
+            children: [
+              FormBuilder(
+                key: _fomKey,
+                initialValue: widget.initialValue ?? {},
+                onChanged:
+                    () => widget.onChange?.call(
+                      _fomKey.currentState?.instantValue ?? {},
+                    ),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: SingleChildScrollView(
+                        // itemCount: (widget.formFields ?? {}).length,
+                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        // itemBuilder: (context) {},
+                        child: Column(
+                          children: [
+                            if (widget.formFields != null)
+                              ..._getFormValues(formFields: widget.formFields!),
+                          ],
                         ),
                       ),
-                      if (widget.onSaved != null) buildButtons(),
-                    ],
-                  ),
+                    ),
+                    if (widget.onSaved != null) buildButtons(),
+                  ],
                 ),
-                if (_isLoading) formLoadingWidget(),
-              ],
-            ),
+              ),
+            ],
           ),
-        );
+        ),
+      ),
+    );
   }
 
   List<Widget> _getFormValues({required Map<String, FormUnit> formFields}) {
@@ -129,8 +129,8 @@ class _FormManagerState extends State<FormManager> {
       ...widget.formFields!.entries.map(
         (e) => SizedBox(
           key: PageStorageKey(e.key),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
+          child: IgnorePointer(
+            ignoring: e.value.readOnly,
             child: getFormUnit(e, _fomKey.currentState?.instantValue[e.key]),
           ),
         ),
@@ -139,30 +139,43 @@ class _FormManagerState extends State<FormManager> {
   }
 
   Widget buildButtons() {
-    return CommonButton(
-      borderColor: Theme.of(context).colorScheme.tertiary,
-      text: 'save',
-      onTap: () async {
-        if (_fomKey.currentState!.saveAndValidate()) {
-          loading(true);
-          await Future.delayed(Duration(milliseconds: 10)).then((_) async {
-            await widget.onSaved!(_fomKey.currentState!.instantValue).then((_) {
-              loading(false);
-              widget.onFinish?.call();
-            });
-          });
-        }
-      },
-    );
-  }
-
-  Widget formLoadingWidget() {
-    return Container(
-      // ignore: deprecated_member_use
-      color: Colors.grey.withOpacity(0.2),
-      height: double.maxFinite,
-      width: double.maxFinite,
-      child: Center(child: CircularProgressIndicator()),
+    return Row(
+      children: [
+        Expanded(
+          child: CommonButton(
+            buttonColor: Theme.of(context).primaryColor,
+            borderColor: Theme.of(context).primaryColor,
+            buttonType: ButtonType.expanded,
+            text: widget.saveButtonLabel,
+            trailingWidget:
+                (widget.isLoading || _isLoading)
+                    ? Padding(
+                      padding: const EdgeInsets.only(right: 20),
+                      child: SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: CircularProgressIndicator(),
+                      ),
+                    )
+                    : null,
+            onTap: () async {
+              if (_fomKey.currentState!.saveAndValidate()) {
+                loading(true);
+                await Future.delayed(Duration(milliseconds: 10)).then((
+                  _,
+                ) async {
+                  await widget.onSaved!(_fomKey.currentState!.instantValue)
+                      .then((_) {
+                        loading(false);
+                        widget.onFinish?.call();
+                      });
+                });
+              }
+            },
+          ),
+        ),
+        if (widget.additionalButtons != null) widget.additionalButtons!,
+      ],
     );
   }
 }

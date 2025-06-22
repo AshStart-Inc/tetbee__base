@@ -24,6 +24,7 @@ class JoinRequest with _$JoinRequest {
     @Default(PositionModel(name: '', color: Colors.black))
     PositionModel position,
     @Default(false) bool isRejected,
+    @Default(false) bool isConfirmed,
     @Default(false) bool isDeleted,
     @Default(false) bool isCanceled,
     @Default([]) List<String> notificationPositionIds,

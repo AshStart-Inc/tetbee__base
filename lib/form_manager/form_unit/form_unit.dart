@@ -9,23 +9,25 @@ class FormUnit extends FormUnitBase {
   //TEXT Fields
   FormUnit.text({
     required super.label,
+    super.trailingWidget,
+    super.subLabel,
     super.defaultValue,
     super.errorText,
     super.validators,
     super.readOnly,
-    this.textInputType = TextInputType.text,
+    this.textInputType = TextInputType.name,
     this.textStyle,
     this.maxLength,
-    this.maxLine,
     this.hintStyle,
     this.allowWhiteSpace,
     this.hint,
+    this.maxLines = 1,
     this.minLength,
   }) : super(formUnitType: FormUnitType.text);
-  int? maxLine;
   int? maxLength;
   int? minLength;
   String? hint;
+  int? maxLines;
   TextStyle? textStyle;
   TextStyle? hintStyle;
   TextInputType? textInputType;
@@ -33,6 +35,9 @@ class FormUnit extends FormUnitBase {
 
   FormUnit.color({
     required super.label,
+    super.trailingWidget,
+    this.hint,
+    super.subLabel,
     super.defaultValue,
     super.errorText,
     super.validators,
@@ -41,6 +46,9 @@ class FormUnit extends FormUnitBase {
 
   FormUnit.boolean({
     required super.label,
+    super.trailingWidget,
+    this.hint,
+    super.subLabel,
     super.defaultValue = false,
     super.errorText,
     super.validators,
@@ -48,6 +56,9 @@ class FormUnit extends FormUnitBase {
   }) : super(formUnitType: FormUnitType.boolean);
   FormUnit.phoneNumber({
     required super.label,
+    super.trailingWidget,
+    this.hint,
+    super.subLabel,
     super.defaultValue,
     super.errorText,
     super.validators,
@@ -56,6 +67,9 @@ class FormUnit extends FormUnitBase {
 
   FormUnit.itemPicker({
     required super.label,
+    super.trailingWidget,
+    this.hint,
+    super.subLabel,
     super.defaultValue,
     super.errorText,
     super.validators,
@@ -71,8 +85,26 @@ class FormUnit extends FormUnitBase {
   List<dynamic>? itemList;
   Widget Function(BuildContext, dynamic)? itemBuilder;
 
+  FormUnit.dropdown({
+    required super.label,
+    super.trailingWidget,
+    this.hint,
+    super.subLabel,
+    super.defaultValue,
+    super.errorText,
+    super.validators,
+    super.readOnly,
+    //
+    this.isMultipleValueAllowed = false,
+    this.itemList,
+    required this.itemBuilder,
+  }) : super(formUnitType: FormUnitType.dropdown);
+
   FormUnit.rangedDatePicker({
     required super.label,
+    super.trailingWidget,
+    this.hint,
+    super.subLabel,
     super.defaultValue,
     super.errorText,
     super.readOnly,
@@ -85,6 +117,9 @@ class FormUnit extends FormUnitBase {
 
   FormUnit.rangedTimePicker({
     required super.label,
+    super.trailingWidget,
+    this.hint,
+    super.subLabel,
     super.defaultValue,
     super.errorText,
     super.readOnly,
@@ -138,6 +173,7 @@ class FormUnit extends FormUnitBase {
 
   FormUnit.mediaPicker({
     required super.label,
+    super.trailingWidget,
     super.defaultValue,
     super.errorText,
     super.readOnly,
@@ -157,6 +193,7 @@ class FormUnit extends FormUnitBase {
 
   FormUnit.datePicker({
     super.label = '',
+    super.trailingWidget,
     super.defaultValue,
     super.errorText,
     super.readOnly,
@@ -170,6 +207,7 @@ class FormUnit extends FormUnitBase {
 
   FormUnit.rangedTimeSlider({
     super.label = '',
+    super.trailingWidget,
     super.defaultValue,
     super.errorText,
     super.readOnly,
@@ -194,6 +232,7 @@ class FormUnit extends FormUnitBase {
 
   FormUnit.customWidget({
     super.label = '',
+    super.trailingWidget,
     //
     required this.widget,
   }) : super(formUnitType: FormUnitType.customWidget);

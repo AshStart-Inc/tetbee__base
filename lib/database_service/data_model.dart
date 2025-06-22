@@ -15,4 +15,6 @@ enum DataModel {
   notificationCenter,
   appNotification,
   storedData,
+  userWorkPlaceOrdinal,
+  appNotificationState,
 }

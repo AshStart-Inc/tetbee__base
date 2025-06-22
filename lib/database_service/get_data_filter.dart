@@ -1,16 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:tetbee__base/models/app_notification/app_notification_state.dart';
 import 'package:tetbee__base/models/availability/user_availabilities.dart';
 import 'package:tetbee__base/models/chat/message_model.dart';
-import 'package:tetbee__base/models/common/app_notification.dart';
+import 'package:tetbee__base/models/app_notification/app_notification.dart';
 import 'package:tetbee__base/models/common/notification_center.dart';
 import 'package:tetbee__base/models/common/stored_data.dart';
 import 'package:tetbee__base/models/user/temp_user_availabilities.dart';
 import 'package:tetbee__base/models/work_place/join_request.dart';
+import 'package:tetbee__base/models/work_place/user_work_place_ordinal.dart';
 import 'package:tetbee__base/tetbee__base.dart';
 
 List<String> getDataFilter(Map<String, dynamic> data, DataModel dataModel) {
   switch (dataModel) {
     case DataModel.appInfo:
+      return [];
+
+    case DataModel.userWorkPlaceOrdinal:
       return [];
     case DataModel.storedData:
       return [];
@@ -71,6 +76,8 @@ List<String> getDataFilter(Map<String, dynamic> data, DataModel dataModel) {
       ];
     case DataModel.appNotification:
       return [];
+    case DataModel.appNotificationState:
+      return [];
   }
 }
 
@@ -110,6 +117,10 @@ T parseData<T>(DocumentSnapshot<Object?> doc) {
       return NotificationCenter.fromJson(data).copyWith() as T;
     case const (AppNotification):
       return AppNotification.fromJson(data).copyWith(id: doc.id) as T;
+    case const (AppNotificationState):
+      return AppNotificationState.fromJson(data).copyWith() as T;
+    case const (UserWorkPlaceOrdinal):
+      return UserWorkPlaceOrdinal.fromJson(data).copyWith(id: doc.id) as T;
     case const (Map<String, dynamic>):
       return {'id': doc.id, ...data} as T;
     default:

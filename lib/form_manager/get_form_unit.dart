@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tetbee__base/form_manager/form_fields/boolean_form_unit.dart';
 import 'package:tetbee__base/form_manager/form_fields/color_form_unit.dart';
 import 'package:tetbee__base/form_manager/form_fields/date_picker_form_unit.dart';
+import 'package:tetbee__base/form_manager/form_fields/drop_down_form_unit.dart';
 import 'package:tetbee__base/form_manager/form_fields/item_picker_form_unit.dart';
 import 'package:tetbee__base/form_manager/form_fields/media_picker_form_unit.dart';
 import 'package:tetbee__base/form_manager/form_fields/phone_number_form_unit.dart';
@@ -33,6 +34,8 @@ Widget getFormUnit(MapEntry<String, FormUnit> entry, dynamic initialValue) {
       return MediaPickerFormUnit(formUnit: entry);
     case FormUnitType.datePicker:
       return DatePickerFormUnit(formUnit: entry);
+    case FormUnitType.dropdown:
+      return DropDownFormUnit(formUnit: entry);
     case FormUnitType.rangedTimeSlider:
       return RangedTimeSliderFormUnit(
         key: ValueKey('RangedTimeSliderFormUnit/${entry.key}'),

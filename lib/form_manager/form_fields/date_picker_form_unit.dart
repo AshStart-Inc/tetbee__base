@@ -153,6 +153,8 @@ class DatePickerFormUnitState extends State<DatePickerFormUnit> {
         formFieldState = val;
         return FormFieldWrapper(
           label: formUnit.label,
+          subLabel: formUnit.subLabel,
+          trailingWidget: formUnit.trailingWidget,
           errorText: val.errorText,
           formField: Column(
             children: [

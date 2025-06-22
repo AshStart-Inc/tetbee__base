@@ -64,6 +64,8 @@ class _ItemPickerFormUnitState extends State<ItemPickerFormUnit> {
       builder: (FormFieldState<List<dynamic>> field) {
         return FormFieldWrapper(
           label: formUnit.label,
+          subLabel: formUnit.subLabel,
+          trailingWidget: formUnit.trailingWidget,
           formField: buildWidget(field, context),
           errorText: field.errorText,
         );

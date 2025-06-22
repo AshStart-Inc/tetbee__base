@@ -21,6 +21,7 @@ _$WorkPlaceImpl _$$WorkPlaceImplFromJson(
   deleted: json['deleted'] as bool? ?? false,
   placeOwnerId: json['placeOwnerId'] as String? ?? '',
   currentMembershipId: json['currentMembershipId'] as String? ?? '',
+  useShiftSignOut: json['useShiftSignOut'] as bool? ?? false,
   startWeekDay: (json['startWeekDay'] as num?)?.toInt() ?? 1,
   googlePlaceModel:
       json['googlePlaceModel'] == null
@@ -40,7 +41,7 @@ _$WorkPlaceImpl _$$WorkPlaceImplFromJson(
   isVerified: json['isVerified'] ?? false,
   primaryPhoneNumber:
       json['primaryPhoneNumber'] == null
-          ? const PhoneNumberModel(isoCode: '')
+          ? null
           : PhoneNumberModel.fromJson(
             json['primaryPhoneNumber'] as Map<String, dynamic>,
           ),
@@ -55,14 +56,6 @@ _$WorkPlaceImpl _$$WorkPlaceImplFromJson(
       json['timeZone'] == null
           ? const TimeZoneModel()
           : TimeZoneModel.fromJson(json['timeZone'] as Map<String, dynamic>),
-  ownersIds:
-      (json['ownersIds'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      const [],
-  joinedUsersOrdinal:
-      (json['joinedUsersOrdinal'] as Map<String, dynamic>?)?.map(
-        (k, e) => MapEntry(k, (e as num).toInt()),
-      ) ??
-      const {},
   positions:
       (json['positions'] as List<dynamic>?)
           ?.map((e) => PositionModel.fromJson(e as Map<String, dynamic>))
@@ -88,6 +81,7 @@ Map<String, dynamic> _$$WorkPlaceImplToJson(_$WorkPlaceImpl instance) =>
       'deleted': instance.deleted,
       'placeOwnerId': instance.placeOwnerId,
       'currentMembershipId': instance.currentMembershipId,
+      'useShiftSignOut': instance.useShiftSignOut,
       'startWeekDay': instance.startWeekDay,
       'googlePlaceModel': instance.googlePlaceModel.toJson(),
       'addressModel': instance.addressModel?.toJson(),
@@ -97,12 +91,10 @@ Map<String, dynamic> _$$WorkPlaceImplToJson(_$WorkPlaceImpl instance) =>
       'defaultProfilePictureUrl': instance.defaultProfilePictureUrl,
       'isOpened': instance.isOpened,
       'isVerified': instance.isVerified,
-      'primaryPhoneNumber': instance.primaryPhoneNumber.toJson(),
+      'primaryPhoneNumber': instance.primaryPhoneNumber?.toJson(),
       'secondaryPhoneNumber': instance.secondaryPhoneNumber?.toJson(),
       'workPlaceTypeId': instance.workPlaceTypeId,
       'timeZone': instance.timeZone.toJson(),
-      'ownersIds': instance.ownersIds,
-      'joinedUsersOrdinal': instance.joinedUsersOrdinal,
       'positions': instance.positions.map((e) => e.toJson()).toList(),
       'availabilityReceiverDefaultSetting':
           instance.availabilityReceiverDefaultSetting.toJson(),

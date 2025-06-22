@@ -33,6 +33,7 @@ mixin _$WorkPlace {
   bool get deleted => throw _privateConstructorUsedError;
   String get placeOwnerId => throw _privateConstructorUsedError;
   String get currentMembershipId => throw _privateConstructorUsedError;
+  bool get useShiftSignOut => throw _privateConstructorUsedError;
   int get startWeekDay => throw _privateConstructorUsedError;
   GooglePlaceModel get googlePlaceModel => throw _privateConstructorUsedError;
   AddressModel? get addressModel => throw _privateConstructorUsedError;
@@ -42,14 +43,17 @@ mixin _$WorkPlace {
   String? get defaultProfilePictureUrl => throw _privateConstructorUsedError;
   dynamic get isOpened => throw _privateConstructorUsedError;
   dynamic get isVerified => throw _privateConstructorUsedError;
-  PhoneNumberModel get primaryPhoneNumber => throw _privateConstructorUsedError;
+  PhoneNumberModel? get primaryPhoneNumber =>
+      throw _privateConstructorUsedError;
   PhoneNumberModel? get secondaryPhoneNumber =>
       throw _privateConstructorUsedError;
   String get workPlaceTypeId => throw _privateConstructorUsedError;
-  TimeZoneModel get timeZone => throw _privateConstructorUsedError;
-  List<String> get ownersIds => throw _privateConstructorUsedError;
-  Map<String, int> get joinedUsersOrdinal => throw _privateConstructorUsedError;
+  TimeZoneModel get timeZone =>
+      throw _privateConstructorUsedError; // @Default([]) List<String> ownersIds,
+  // @Default({}) Map<String, int> joinedUsersOrdinal,
   List<PositionModel> get positions => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  List<UserWorkPlaceOrdinal> get ordinals => throw _privateConstructorUsedError;
   AvailabilityReceiverSetting get availabilityReceiverDefaultSetting =>
       throw _privateConstructorUsedError;
 
@@ -81,6 +85,7 @@ abstract class $WorkPlaceCopyWith<$Res> {
     bool deleted,
     String placeOwnerId,
     String currentMembershipId,
+    bool useShiftSignOut,
     int startWeekDay,
     GooglePlaceModel googlePlaceModel,
     AddressModel? addressModel,
@@ -90,19 +95,18 @@ abstract class $WorkPlaceCopyWith<$Res> {
     String? defaultProfilePictureUrl,
     dynamic isOpened,
     dynamic isVerified,
-    PhoneNumberModel primaryPhoneNumber,
+    PhoneNumberModel? primaryPhoneNumber,
     PhoneNumberModel? secondaryPhoneNumber,
     String workPlaceTypeId,
     TimeZoneModel timeZone,
-    List<String> ownersIds,
-    Map<String, int> joinedUsersOrdinal,
     List<PositionModel> positions,
+    @JsonKey(ignore: true) List<UserWorkPlaceOrdinal> ordinals,
     AvailabilityReceiverSetting availabilityReceiverDefaultSetting,
   });
 
   $GooglePlaceModelCopyWith<$Res> get googlePlaceModel;
   $AddressModelCopyWith<$Res>? get addressModel;
-  $PhoneNumberModelCopyWith<$Res> get primaryPhoneNumber;
+  $PhoneNumberModelCopyWith<$Res>? get primaryPhoneNumber;
   $PhoneNumberModelCopyWith<$Res>? get secondaryPhoneNumber;
   $TimeZoneModelCopyWith<$Res> get timeZone;
   $AvailabilityReceiverSettingCopyWith<$Res>
@@ -134,6 +138,7 @@ class _$WorkPlaceCopyWithImpl<$Res, $Val extends WorkPlace>
     Object? deleted = null,
     Object? placeOwnerId = null,
     Object? currentMembershipId = null,
+    Object? useShiftSignOut = null,
     Object? startWeekDay = null,
     Object? googlePlaceModel = null,
     Object? addressModel = freezed,
@@ -143,13 +148,12 @@ class _$WorkPlaceCopyWithImpl<$Res, $Val extends WorkPlace>
     Object? defaultProfilePictureUrl = freezed,
     Object? isOpened = freezed,
     Object? isVerified = freezed,
-    Object? primaryPhoneNumber = null,
+    Object? primaryPhoneNumber = freezed,
     Object? secondaryPhoneNumber = freezed,
     Object? workPlaceTypeId = null,
     Object? timeZone = null,
-    Object? ownersIds = null,
-    Object? joinedUsersOrdinal = null,
     Object? positions = null,
+    Object? ordinals = null,
     Object? availabilityReceiverDefaultSetting = null,
   }) {
     return _then(
@@ -204,6 +208,11 @@ class _$WorkPlaceCopyWithImpl<$Res, $Val extends WorkPlace>
                     ? _value.currentMembershipId
                     : currentMembershipId // ignore: cast_nullable_to_non_nullable
                         as String,
+            useShiftSignOut:
+                null == useShiftSignOut
+                    ? _value.useShiftSignOut
+                    : useShiftSignOut // ignore: cast_nullable_to_non_nullable
+                        as bool,
             startWeekDay:
                 null == startWeekDay
                     ? _value.startWeekDay
@@ -250,10 +259,10 @@ class _$WorkPlaceCopyWithImpl<$Res, $Val extends WorkPlace>
                     : isVerified // ignore: cast_nullable_to_non_nullable
                         as dynamic,
             primaryPhoneNumber:
-                null == primaryPhoneNumber
+                freezed == primaryPhoneNumber
                     ? _value.primaryPhoneNumber
                     : primaryPhoneNumber // ignore: cast_nullable_to_non_nullable
-                        as PhoneNumberModel,
+                        as PhoneNumberModel?,
             secondaryPhoneNumber:
                 freezed == secondaryPhoneNumber
                     ? _value.secondaryPhoneNumber
@@ -269,21 +278,16 @@ class _$WorkPlaceCopyWithImpl<$Res, $Val extends WorkPlace>
                     ? _value.timeZone
                     : timeZone // ignore: cast_nullable_to_non_nullable
                         as TimeZoneModel,
-            ownersIds:
-                null == ownersIds
-                    ? _value.ownersIds
-                    : ownersIds // ignore: cast_nullable_to_non_nullable
-                        as List<String>,
-            joinedUsersOrdinal:
-                null == joinedUsersOrdinal
-                    ? _value.joinedUsersOrdinal
-                    : joinedUsersOrdinal // ignore: cast_nullable_to_non_nullable
-                        as Map<String, int>,
             positions:
                 null == positions
                     ? _value.positions
                     : positions // ignore: cast_nullable_to_non_nullable
                         as List<PositionModel>,
+            ordinals:
+                null == ordinals
+                    ? _value.ordinals
+                    : ordinals // ignore: cast_nullable_to_non_nullable
+                        as List<UserWorkPlaceOrdinal>,
             availabilityReceiverDefaultSetting:
                 null == availabilityReceiverDefaultSetting
                     ? _value.availabilityReceiverDefaultSetting
@@ -322,8 +326,12 @@ class _$WorkPlaceCopyWithImpl<$Res, $Val extends WorkPlace>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $PhoneNumberModelCopyWith<$Res> get primaryPhoneNumber {
-    return $PhoneNumberModelCopyWith<$Res>(_value.primaryPhoneNumber, (value) {
+  $PhoneNumberModelCopyWith<$Res>? get primaryPhoneNumber {
+    if (_value.primaryPhoneNumber == null) {
+      return null;
+    }
+
+    return $PhoneNumberModelCopyWith<$Res>(_value.primaryPhoneNumber!, (value) {
       return _then(_value.copyWith(primaryPhoneNumber: value) as $Val);
     });
   }
@@ -393,6 +401,7 @@ abstract class _$$WorkPlaceImplCopyWith<$Res>
     bool deleted,
     String placeOwnerId,
     String currentMembershipId,
+    bool useShiftSignOut,
     int startWeekDay,
     GooglePlaceModel googlePlaceModel,
     AddressModel? addressModel,
@@ -402,13 +411,12 @@ abstract class _$$WorkPlaceImplCopyWith<$Res>
     String? defaultProfilePictureUrl,
     dynamic isOpened,
     dynamic isVerified,
-    PhoneNumberModel primaryPhoneNumber,
+    PhoneNumberModel? primaryPhoneNumber,
     PhoneNumberModel? secondaryPhoneNumber,
     String workPlaceTypeId,
     TimeZoneModel timeZone,
-    List<String> ownersIds,
-    Map<String, int> joinedUsersOrdinal,
     List<PositionModel> positions,
+    @JsonKey(ignore: true) List<UserWorkPlaceOrdinal> ordinals,
     AvailabilityReceiverSetting availabilityReceiverDefaultSetting,
   });
 
@@ -417,7 +425,7 @@ abstract class _$$WorkPlaceImplCopyWith<$Res>
   @override
   $AddressModelCopyWith<$Res>? get addressModel;
   @override
-  $PhoneNumberModelCopyWith<$Res> get primaryPhoneNumber;
+  $PhoneNumberModelCopyWith<$Res>? get primaryPhoneNumber;
   @override
   $PhoneNumberModelCopyWith<$Res>? get secondaryPhoneNumber;
   @override
@@ -451,6 +459,7 @@ class __$$WorkPlaceImplCopyWithImpl<$Res>
     Object? deleted = null,
     Object? placeOwnerId = null,
     Object? currentMembershipId = null,
+    Object? useShiftSignOut = null,
     Object? startWeekDay = null,
     Object? googlePlaceModel = null,
     Object? addressModel = freezed,
@@ -460,13 +469,12 @@ class __$$WorkPlaceImplCopyWithImpl<$Res>
     Object? defaultProfilePictureUrl = freezed,
     Object? isOpened = freezed,
     Object? isVerified = freezed,
-    Object? primaryPhoneNumber = null,
+    Object? primaryPhoneNumber = freezed,
     Object? secondaryPhoneNumber = freezed,
     Object? workPlaceTypeId = null,
     Object? timeZone = null,
-    Object? ownersIds = null,
-    Object? joinedUsersOrdinal = null,
     Object? positions = null,
+    Object? ordinals = null,
     Object? availabilityReceiverDefaultSetting = null,
   }) {
     return _then(
@@ -521,6 +529,11 @@ class __$$WorkPlaceImplCopyWithImpl<$Res>
                 ? _value.currentMembershipId
                 : currentMembershipId // ignore: cast_nullable_to_non_nullable
                     as String,
+        useShiftSignOut:
+            null == useShiftSignOut
+                ? _value.useShiftSignOut
+                : useShiftSignOut // ignore: cast_nullable_to_non_nullable
+                    as bool,
         startWeekDay:
             null == startWeekDay
                 ? _value.startWeekDay
@@ -559,10 +572,10 @@ class __$$WorkPlaceImplCopyWithImpl<$Res>
         isOpened: freezed == isOpened ? _value.isOpened! : isOpened,
         isVerified: freezed == isVerified ? _value.isVerified! : isVerified,
         primaryPhoneNumber:
-            null == primaryPhoneNumber
+            freezed == primaryPhoneNumber
                 ? _value.primaryPhoneNumber
                 : primaryPhoneNumber // ignore: cast_nullable_to_non_nullable
-                    as PhoneNumberModel,
+                    as PhoneNumberModel?,
         secondaryPhoneNumber:
             freezed == secondaryPhoneNumber
                 ? _value.secondaryPhoneNumber
@@ -578,21 +591,16 @@ class __$$WorkPlaceImplCopyWithImpl<$Res>
                 ? _value.timeZone
                 : timeZone // ignore: cast_nullable_to_non_nullable
                     as TimeZoneModel,
-        ownersIds:
-            null == ownersIds
-                ? _value._ownersIds
-                : ownersIds // ignore: cast_nullable_to_non_nullable
-                    as List<String>,
-        joinedUsersOrdinal:
-            null == joinedUsersOrdinal
-                ? _value._joinedUsersOrdinal
-                : joinedUsersOrdinal // ignore: cast_nullable_to_non_nullable
-                    as Map<String, int>,
         positions:
             null == positions
                 ? _value._positions
                 : positions // ignore: cast_nullable_to_non_nullable
                     as List<PositionModel>,
+        ordinals:
+            null == ordinals
+                ? _value._ordinals
+                : ordinals // ignore: cast_nullable_to_non_nullable
+                    as List<UserWorkPlaceOrdinal>,
         availabilityReceiverDefaultSetting:
             null == availabilityReceiverDefaultSetting
                 ? _value.availabilityReceiverDefaultSetting
@@ -620,6 +628,7 @@ class _$WorkPlaceImpl implements _WorkPlace {
     this.deleted = false,
     this.placeOwnerId = '',
     this.currentMembershipId = '',
+    this.useShiftSignOut = false,
     this.startWeekDay = 1,
     this.googlePlaceModel = const GooglePlaceModel(googlePlaceId: ''),
     this.addressModel = const AddressModel(),
@@ -629,19 +638,17 @@ class _$WorkPlaceImpl implements _WorkPlace {
     this.defaultProfilePictureUrl,
     this.isOpened = false,
     this.isVerified = false,
-    this.primaryPhoneNumber = const PhoneNumberModel(isoCode: ''),
+    this.primaryPhoneNumber,
     this.secondaryPhoneNumber,
     this.workPlaceTypeId = '',
     this.timeZone = const TimeZoneModel(),
-    final List<String> ownersIds = const [],
-    final Map<String, int> joinedUsersOrdinal = const {},
     final List<PositionModel> positions = const [],
+    @JsonKey(ignore: true) final List<UserWorkPlaceOrdinal> ordinals = const [],
     this.availabilityReceiverDefaultSetting =
         const AvailabilityReceiverSetting(),
   }) : _filters = filters,
-       _ownersIds = ownersIds,
-       _joinedUsersOrdinal = joinedUsersOrdinal,
-       _positions = positions;
+       _positions = positions,
+       _ordinals = ordinals;
 
   factory _$WorkPlaceImpl.fromJson(Map<String, dynamic> json) =>
       _$$WorkPlaceImplFromJson(json);
@@ -683,6 +690,9 @@ class _$WorkPlaceImpl implements _WorkPlace {
   final String currentMembershipId;
   @override
   @JsonKey()
+  final bool useShiftSignOut;
+  @override
+  @JsonKey()
   final int startWeekDay;
   @override
   @JsonKey()
@@ -705,8 +715,7 @@ class _$WorkPlaceImpl implements _WorkPlace {
   @JsonKey()
   final dynamic isVerified;
   @override
-  @JsonKey()
-  final PhoneNumberModel primaryPhoneNumber;
+  final PhoneNumberModel? primaryPhoneNumber;
   @override
   final PhoneNumberModel? secondaryPhoneNumber;
   @override
@@ -715,26 +724,11 @@ class _$WorkPlaceImpl implements _WorkPlace {
   @override
   @JsonKey()
   final TimeZoneModel timeZone;
-  final List<String> _ownersIds;
-  @override
-  @JsonKey()
-  List<String> get ownersIds {
-    if (_ownersIds is EqualUnmodifiableListView) return _ownersIds;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_ownersIds);
-  }
-
-  final Map<String, int> _joinedUsersOrdinal;
-  @override
-  @JsonKey()
-  Map<String, int> get joinedUsersOrdinal {
-    if (_joinedUsersOrdinal is EqualUnmodifiableMapView)
-      return _joinedUsersOrdinal;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_joinedUsersOrdinal);
-  }
-
+  // @Default([]) List<String> ownersIds,
+  // @Default({}) Map<String, int> joinedUsersOrdinal,
   final List<PositionModel> _positions;
+  // @Default([]) List<String> ownersIds,
+  // @Default({}) Map<String, int> joinedUsersOrdinal,
   @override
   @JsonKey()
   List<PositionModel> get positions {
@@ -743,13 +737,22 @@ class _$WorkPlaceImpl implements _WorkPlace {
     return EqualUnmodifiableListView(_positions);
   }
 
+  final List<UserWorkPlaceOrdinal> _ordinals;
+  @override
+  @JsonKey(ignore: true)
+  List<UserWorkPlaceOrdinal> get ordinals {
+    if (_ordinals is EqualUnmodifiableListView) return _ordinals;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_ordinals);
+  }
+
   @override
   @JsonKey()
   final AvailabilityReceiverSetting availabilityReceiverDefaultSetting;
 
   @override
   String toString() {
-    return 'WorkPlace(id: $id, name: $name, createdAt: $createdAt, createdBy: $createdBy, updatedAt: $updatedAt, updatedBy: $updatedBy, filters: $filters, deleted: $deleted, placeOwnerId: $placeOwnerId, currentMembershipId: $currentMembershipId, startWeekDay: $startWeekDay, googlePlaceModel: $googlePlaceModel, addressModel: $addressModel, email1: $email1, email2: $email2, website: $website, defaultProfilePictureUrl: $defaultProfilePictureUrl, isOpened: $isOpened, isVerified: $isVerified, primaryPhoneNumber: $primaryPhoneNumber, secondaryPhoneNumber: $secondaryPhoneNumber, workPlaceTypeId: $workPlaceTypeId, timeZone: $timeZone, ownersIds: $ownersIds, joinedUsersOrdinal: $joinedUsersOrdinal, positions: $positions, availabilityReceiverDefaultSetting: $availabilityReceiverDefaultSetting)';
+    return 'WorkPlace(id: $id, name: $name, createdAt: $createdAt, createdBy: $createdBy, updatedAt: $updatedAt, updatedBy: $updatedBy, filters: $filters, deleted: $deleted, placeOwnerId: $placeOwnerId, currentMembershipId: $currentMembershipId, useShiftSignOut: $useShiftSignOut, startWeekDay: $startWeekDay, googlePlaceModel: $googlePlaceModel, addressModel: $addressModel, email1: $email1, email2: $email2, website: $website, defaultProfilePictureUrl: $defaultProfilePictureUrl, isOpened: $isOpened, isVerified: $isVerified, primaryPhoneNumber: $primaryPhoneNumber, secondaryPhoneNumber: $secondaryPhoneNumber, workPlaceTypeId: $workPlaceTypeId, timeZone: $timeZone, positions: $positions, ordinals: $ordinals, availabilityReceiverDefaultSetting: $availabilityReceiverDefaultSetting)';
   }
 
   @override
@@ -773,6 +776,8 @@ class _$WorkPlaceImpl implements _WorkPlace {
                 other.placeOwnerId == placeOwnerId) &&
             (identical(other.currentMembershipId, currentMembershipId) ||
                 other.currentMembershipId == currentMembershipId) &&
+            (identical(other.useShiftSignOut, useShiftSignOut) ||
+                other.useShiftSignOut == useShiftSignOut) &&
             (identical(other.startWeekDay, startWeekDay) ||
                 other.startWeekDay == startWeekDay) &&
             (identical(other.googlePlaceModel, googlePlaceModel) ||
@@ -801,17 +806,10 @@ class _$WorkPlaceImpl implements _WorkPlace {
             (identical(other.timeZone, timeZone) ||
                 other.timeZone == timeZone) &&
             const DeepCollectionEquality().equals(
-              other._ownersIds,
-              _ownersIds,
-            ) &&
-            const DeepCollectionEquality().equals(
-              other._joinedUsersOrdinal,
-              _joinedUsersOrdinal,
-            ) &&
-            const DeepCollectionEquality().equals(
               other._positions,
               _positions,
             ) &&
+            const DeepCollectionEquality().equals(other._ordinals, _ordinals) &&
             (identical(
                   other.availabilityReceiverDefaultSetting,
                   availabilityReceiverDefaultSetting,
@@ -834,6 +832,7 @@ class _$WorkPlaceImpl implements _WorkPlace {
     deleted,
     placeOwnerId,
     currentMembershipId,
+    useShiftSignOut,
     startWeekDay,
     googlePlaceModel,
     addressModel,
@@ -847,9 +846,8 @@ class _$WorkPlaceImpl implements _WorkPlace {
     secondaryPhoneNumber,
     workPlaceTypeId,
     timeZone,
-    const DeepCollectionEquality().hash(_ownersIds),
-    const DeepCollectionEquality().hash(_joinedUsersOrdinal),
     const DeepCollectionEquality().hash(_positions),
+    const DeepCollectionEquality().hash(_ordinals),
     availabilityReceiverDefaultSetting,
   ]);
 
@@ -881,6 +879,7 @@ abstract class _WorkPlace implements WorkPlace {
     final bool deleted,
     final String placeOwnerId,
     final String currentMembershipId,
+    final bool useShiftSignOut,
     final int startWeekDay,
     final GooglePlaceModel googlePlaceModel,
     final AddressModel? addressModel,
@@ -890,13 +889,12 @@ abstract class _WorkPlace implements WorkPlace {
     final String? defaultProfilePictureUrl,
     final dynamic isOpened,
     final dynamic isVerified,
-    final PhoneNumberModel primaryPhoneNumber,
+    final PhoneNumberModel? primaryPhoneNumber,
     final PhoneNumberModel? secondaryPhoneNumber,
     final String workPlaceTypeId,
     final TimeZoneModel timeZone,
-    final List<String> ownersIds,
-    final Map<String, int> joinedUsersOrdinal,
     final List<PositionModel> positions,
+    @JsonKey(ignore: true) final List<UserWorkPlaceOrdinal> ordinals,
     final AvailabilityReceiverSetting availabilityReceiverDefaultSetting,
   }) = _$WorkPlaceImpl;
 
@@ -926,6 +924,8 @@ abstract class _WorkPlace implements WorkPlace {
   @override
   String get currentMembershipId;
   @override
+  bool get useShiftSignOut;
+  @override
   int get startWeekDay;
   @override
   GooglePlaceModel get googlePlaceModel;
@@ -944,19 +944,19 @@ abstract class _WorkPlace implements WorkPlace {
   @override
   dynamic get isVerified;
   @override
-  PhoneNumberModel get primaryPhoneNumber;
+  PhoneNumberModel? get primaryPhoneNumber;
   @override
   PhoneNumberModel? get secondaryPhoneNumber;
   @override
   String get workPlaceTypeId;
   @override
-  TimeZoneModel get timeZone;
-  @override
-  List<String> get ownersIds;
-  @override
-  Map<String, int> get joinedUsersOrdinal;
+  TimeZoneModel get timeZone; // @Default([]) List<String> ownersIds,
+  // @Default({}) Map<String, int> joinedUsersOrdinal,
   @override
   List<PositionModel> get positions;
+  @override
+  @JsonKey(ignore: true)
+  List<UserWorkPlaceOrdinal> get ordinals;
   @override
   AvailabilityReceiverSetting get availabilityReceiverDefaultSetting;
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:animate_do/animate_do.dart' as anido;
 
 class ErrorMessageWidget extends StatelessWidget {
   final TextStyle? validationMessageTextStyle;
@@ -16,20 +17,23 @@ class ErrorMessageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget textWidget = SizedBox(
-      height: userNullSize ? null : 20,
+      height: userNullSize ? null : 15,
       child:
           errorText == null
               ? const SizedBox.shrink()
-              : Padding(
-                padding: const EdgeInsets.only(left: 5, top: 5),
-                child: Text(
-                  errorText!,
-                  style:
-                      validationMessageTextStyle ??
-                      TextStyle(
-                        color: Theme.of(context).colorScheme.error,
-                        fontSize: 12.0,
-                      ),
+              : anido.SlideInRight(
+                duration: Duration(milliseconds: 200),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 2),
+                  child: Text(
+                    errorText!,
+                    style:
+                        validationMessageTextStyle ??
+                        TextStyle(
+                          color: Theme.of(context).colorScheme.error,
+                          fontSize: 12.0,
+                        ),
+                  ),
                 ),
               ),
     );

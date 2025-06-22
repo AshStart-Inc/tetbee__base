@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tetbee__base/theme/theme_extension.dart';
 
 class InformationRow extends StatelessWidget {
   final String label;
@@ -29,9 +30,7 @@ class InformationRow extends StatelessWidget {
           children: [
             Icon(
               iconData,
-              color: Theme.of(
-                context,
-              ).textTheme.headlineLarge!.color!.withOpacity(0.5),
+              color: Theme.of(context).baseTextColor.withValues(alpha: 0.8),
             ),
             if (label.isNotEmpty)
               Padding(
@@ -44,7 +43,12 @@ class InformationRow extends StatelessWidget {
               child: Text(
                 value.isEmpty ? 'Not updated' : value,
                 style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                  fontStyle: value.isEmpty ? FontStyle.italic : null,
                   fontWeight: FontWeight.bold,
+                  color:
+                      value.isEmpty
+                          ? Theme.of(context).unselectedWidgetColor
+                          : null,
                   fontSize: 12,
                 ),
               ),
