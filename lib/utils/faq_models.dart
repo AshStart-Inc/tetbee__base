@@ -43,3 +43,9 @@ final FAQModel AVAILABILITY_OPTION = FAQModel(
   info:
       'Make available your staff can update their user availability, if your user doesn\'t have any specifc availability from availability reciever this availability will be used as default.',
 );
+
+final FAQModel Default_Availability_Settings = FAQModel(
+  label: 'Default Availability Settings',
+  info:
+      'Set your default availability here. Your staff will submit their availability based on this time range.',
+);

@@ -201,9 +201,11 @@ class FormUnit extends FormUnitBase {
     //
     this.dateSelectionModes,
     this.defaultStartWeekday,
+    this.allowSameDate = false,
   }) : super(formUnitType: FormUnitType.datePicker);
   int? defaultStartWeekday;
   List<DateSelectionMode>? dateSelectionModes;
+  bool? allowSameDate;
 
   FormUnit.rangedTimeSlider({
     super.label = '',
@@ -221,6 +223,7 @@ class FormUnit extends FormUnitBase {
     this.show24Hour = false,
     this.useDailyComment = true,
     this.showTimeRange = false,
+    this.isClosed = false,
   }) : super(formUnitType: FormUnitType.rangedTimeSlider);
   bool? show24Hour;
   int? minimumHour;
@@ -229,6 +232,9 @@ class FormUnit extends FormUnitBase {
   bool? useDailyComment;
   bool? withPadding;
   bool? showTimeRange;
+  //if this value is true, the availability silder will not be available
+  // and display closed text.
+  bool? isClosed;
 
   FormUnit.customWidget({
     super.label = '',

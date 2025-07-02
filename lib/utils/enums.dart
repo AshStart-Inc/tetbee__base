@@ -20,6 +20,16 @@ enum DateRangeType { multipleDates, rangedDate }
 
 enum DateSelectionMode { weekly, multiple, rangedMonth, single }
 
+enum DocumentStatus {
+  onSubmit,
+  onReview,
+  onHold,
+  onRejected,
+  onConfirmed,
+  onCancel,
+  onExpired,
+}
+
 enum MessageType {
   textMessage,
   imageMessage,

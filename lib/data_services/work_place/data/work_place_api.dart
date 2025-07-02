@@ -109,6 +109,7 @@ class WorkPlaceApi with ApiHandlingMixin {
               FirebaseFirestore.instance
                   .collection(path)
                   .where('deleted', isEqualTo: false)
+                  .orderBy('ordinal', descending: false)
                   .get(),
     );
   }

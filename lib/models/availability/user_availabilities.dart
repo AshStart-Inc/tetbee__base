@@ -21,6 +21,7 @@ class UserAvailabilities with _$UserAvailabilities {
     @Default('') String updatedBy,
     required List<DailyAvailability> dailyAvailabilities,
     @Default('') String weekComment,
+    int? weekDay,
     int? prefferedHours,
   }) = AUserAvailabilities;
 
@@ -29,20 +30,32 @@ class UserAvailabilities with _$UserAvailabilities {
 }
 
 extension UserAvailabilitiesExtension on UserAvailabilities {
-  DailyAvailability? getDailyAvailability(DateTime date, DateRangeType type) {
+  DailyAvailability? getDailyAvailability(
+    DateTime date,
+    DateRangeType type,
+    bool isTempUser,
+  ) {
     List<DailyAvailability>? davs;
     switch (type) {
       case DateRangeType.multipleDates:
         davs =
             dailyAvailabilities
                 .where(
-                  (dav) => dav.date?.toIsoDateString == date.toIsoDateString,
+                  (dav) =>
+                      isTempUser
+                          ? dav.weekDay == date.weekday
+                          : dav.date?.toIsoDateString == date.toIsoDateString,
                 )
                 .toList();
       case DateRangeType.rangedDate:
         davs =
             dailyAvailabilities
-                .where((dav) => dav.weekDay == date.weekday)
+                .where(
+                  (dav) =>
+                      isTempUser
+                          ? dav.weekDay == date.weekday
+                          : dav.weekDay == date.weekday,
+                )
                 .toList();
     }
     return davs.isEmpty ? null : davs.first;

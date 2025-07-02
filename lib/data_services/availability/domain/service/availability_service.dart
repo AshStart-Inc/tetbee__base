@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:tetbee__base/data_services/availability/data/repository/availability_repository.dart';
 import 'package:tetbee__base/models/availability/user_availabilities.dart';
+import 'package:tetbee__base/models/common/ranged_time_model.dart';
 import 'package:tetbee__base/tetbee__base.dart';
 
 final AvailabilityService availabilityService = AvailabilityService();
@@ -22,6 +23,43 @@ class AvailabilityService with ApiServiceMixin {
     baseSat,
     baseSun,
   ];
+  static Map<String, RangedTimeModel> defaultAvailabilityTimeRange = {
+    '1': RangedTimeModel(
+      weekDay: 1,
+      startTime: DateTime(baseMon.year, baseMon.month, baseMon.day, 00, 00),
+      endTime: DateTime(baseMon.year, baseMon.month, baseMon.day + 1, 06, 00),
+    ),
+    '2': RangedTimeModel(
+      weekDay: 2,
+      startTime: DateTime(baseTue.year, baseTue.month, baseTue.day, 00, 00),
+      endTime: DateTime(baseTue.year, baseTue.month, baseTue.day + 1, 06, 00),
+    ),
+    '3': RangedTimeModel(
+      weekDay: 3,
+      startTime: DateTime(baseWed.year, baseWed.month, baseWed.day, 00, 00),
+      endTime: DateTime(baseWed.year, baseWed.month, baseWed.day + 1, 06, 00),
+    ),
+    '4': RangedTimeModel(
+      weekDay: 4,
+      startTime: DateTime(baseThu.year, baseThu.month, baseThu.day, 00, 00),
+      endTime: DateTime(baseThu.year, baseThu.month, baseThu.day + 1, 06, 00),
+    ),
+    '5': RangedTimeModel(
+      weekDay: 5,
+      startTime: DateTime(baseFri.year, baseFri.month, baseFri.day, 00, 00),
+      endTime: DateTime(baseFri.year, baseFri.month, baseFri.day + 1, 06, 00),
+    ),
+    '6': RangedTimeModel(
+      weekDay: 6,
+      startTime: DateTime(baseSat.year, baseSat.month, baseSat.day, 00, 00),
+      endTime: DateTime(baseSat.year, baseSat.month, baseSat.day + 1, 06, 00),
+    ),
+    '7': RangedTimeModel(
+      weekDay: 7,
+      startTime: DateTime(baseSun.year, baseSun.month, baseSun.day, 00, 00),
+      endTime: DateTime(baseSun.year, baseSun.month, baseSun.day + 1, 06, 00),
+    ),
+  };
 
   Future<Either<Failure, String>> createAvailabilityReceiver(
     String userId,

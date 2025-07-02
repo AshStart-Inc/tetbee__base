@@ -3,10 +3,49 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:tetbee__base/dialog/custom_dialog.dart';
+
 import 'package:tetbee__base/utils/enums.dart';
 import 'package:url_launcher/url_launcher.dart' as urllauncher;
 
 class Helpers {
+  static Color getColorByDocumentStatus(DocumentStatus documentStatus) {
+    switch (documentStatus) {
+      case DocumentStatus.onSubmit:
+        return Colors.cyan;
+      case DocumentStatus.onReview:
+        return Colors.brown;
+      case DocumentStatus.onHold:
+        return Colors.purple;
+      case DocumentStatus.onRejected:
+        return Colors.red;
+      case DocumentStatus.onConfirmed:
+        return Colors.green;
+      case DocumentStatus.onCancel:
+        return Colors.deepOrangeAccent;
+      case DocumentStatus.onExpired:
+        return Colors.black87;
+    }
+  }
+
+  static String getStringByDocumentStatus(DocumentStatus documentStatus) {
+    switch (documentStatus) {
+      case DocumentStatus.onSubmit:
+        return 'Submitted';
+      case DocumentStatus.onReview:
+        return 'On Review';
+      case DocumentStatus.onHold:
+        return 'On Hold';
+      case DocumentStatus.onRejected:
+        return 'Rejected';
+      case DocumentStatus.onConfirmed:
+        return 'Confirmed';
+      case DocumentStatus.onCancel:
+        return 'Canceled';
+      case DocumentStatus.onExpired:
+        return 'Expired';
+    }
+  }
+
   static dismissKeyboard({required BuildContext context}) =>
       FocusScope.of(context).requestFocus(FocusNode());
   static int? colorToInt(Color? color) => color?.value;
@@ -118,7 +157,7 @@ extension FormattedDate on DateTime {
   bool isSameDate(DateTime b) =>
       year == b.year && month == b.month && day == b.day;
   String get toIsoDateString => DateFormat('yyyy-MM-dd').format(this);
-  String get toIsoMonthString => DateFormat('MM').format(this);
+  String get toIsoMonthString => DateFormat('yyyy-MM').format(this);
   String get toIsoYearString => DateFormat('yyyy').format(this);
   // String get compactDateString => DateFormat('yyyyMMdd').format(this);
   String get fullTimestamp => DateFormat('yyyy-MM-dd_HH-mm-ss').format(this);
@@ -140,6 +179,14 @@ extension FormattedDate on DateTime {
       now = now.subtract(const Duration(days: 1));
     }
     return now;
+  }
+
+  String get getMonthFormatFromDateTime => '$year/$month';
+
+  List<DateTime> getWeekDatesFrom() {
+    final int diffToMonday = weekday - DateTime.monday;
+    final DateTime monday = subtract(Duration(days: diffToMonday));
+    return List.generate(7, (i) => monday.add(Duration(days: i)));
   }
 }
 

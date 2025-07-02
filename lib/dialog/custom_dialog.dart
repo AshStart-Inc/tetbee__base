@@ -279,7 +279,7 @@ void showCustomFormBottomSheet({
             topLeft: Radius.circular(25),
             topRight: Radius.circular(25),
           ),
-          color: backgroundColor ?? Theme.of(context).cardColor,
+          color: backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
         ),
         child: SafeArea(
           child: Column(

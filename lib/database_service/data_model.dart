@@ -17,4 +17,6 @@ enum DataModel {
   storedData,
   userWorkPlaceOrdinal,
   appNotificationState,
+  postModel,
+  timeOffRequest,
 }

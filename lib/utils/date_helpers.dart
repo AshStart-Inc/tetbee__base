@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tetbee__base/models/work_place/work_place.dart';
+import 'package:tetbee__base/tetbee__base.dart';
 import 'package:timezone/timezone.dart' as tz;
 
 class DateHelpers {
@@ -17,6 +18,9 @@ class DateHelpers {
       print('Time zone has been changed - ${placeModel.timeZone.timeZoneName}');
     }
   }
+
+  static bool isSameDate(DateTime a, DateTime b) =>
+      a.year == b.year && a.month == b.month && a.day == b.day;
 
   static String getWeekdayFormat(int weekday) {
     String? weekdayFormat;
@@ -124,5 +128,46 @@ class DateHelpers {
 
   static String getAvailabilityText(TimeOfDay timeOfDay) {
     return '${timeOfDay.hour}:${timeOfDay.minute == 0 ? '00' : timeOfDay.minute} ';
+  }
+
+  static List<String> getFirstDaysOfMonthsFilters(
+    DateTime start,
+    DateTime end,
+  ) {
+    DateTime current = DateTime(start.year, start.month);
+
+    final last = DateTime(end.year, end.month);
+
+    List<String> result = [];
+
+    while (!current.isAfter(last)) {
+      result.add(current.toIsoMonthString);
+      current = DateTime(current.year, current.month + 1);
+    }
+
+    return result;
+  }
+
+  static List<String> getFirstDaysOfYearsFilters(DateTime start, DateTime end) {
+    final int startYear = start.year;
+    final int endYear = end.year;
+
+    return List.generate(
+      endYear - startYear + 1,
+      (i) => DateTime(startYear + i, 1, 1).toIsoYearString,
+    );
+  }
+
+  static List<String> getAllDatesBetween(DateTime start, DateTime end) {
+    DateTime current = DateTime(start.year, start.month, start.day);
+    final DateTime last = DateTime(end.year, end.month, end.day);
+    List<String> result = [];
+
+    while (!current.isAfter(last)) {
+      result.add(current.toIsoDateString);
+      current = current.add(const Duration(days: 1));
+    }
+
+    return result;
   }
 }

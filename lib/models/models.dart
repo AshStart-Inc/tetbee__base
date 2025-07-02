@@ -5,3 +5,4 @@ export 'user/user_index.dart';
 export 'schedule/schedule_index.dart';
 export 'work_place/work_place_index.dart';
 export 'chat/chat_model_exports.dart';
+export 'post/post_exports.dart';

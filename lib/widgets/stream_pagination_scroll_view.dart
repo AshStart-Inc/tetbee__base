@@ -250,8 +250,11 @@ class _StreamPaginationScrollViewState
                           BuildContext context,
                           AsyncSnapshot<QuerySnapshot<Object?>> docs,
                         ) {
-                          if (docs.hasError)
+                          if (docs.hasError) {
+                            print(docs.error);
                             return Text('Error: ${docs.error}');
+                          }
+
                           switch (docs.connectionState) {
                             case ConnectionState.waiting:
                               return widget.isLoadingWidgetRequired

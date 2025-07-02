@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tetbee__base/models/common/ranged_time_model.dart';
 import 'package:tetbee__base/tetbee__base.dart';
 
 class FormTestingScreen extends StatefulWidget {
@@ -19,10 +20,14 @@ class _FormTestingScreenState extends State<FormTestingScreen> {
       //     :
       FormManager(
         initialValue: {
-          // 'firstName': PhoneNumberModel(
-          //   isoCode: 'CA',
-          //   phoneNumber: '+14379728180',
-          // ),
+          'testing2': DailyAvailability(
+            weekDay: 1,
+            timeRange: RangedTimeModel(
+              weekDay: 1,
+              startTime: DateTime(1992, 09, 17, 03, 00, 00),
+              endTime: DateTime(1992, 09, 18, 06, 00, 00),
+            ),
+          ),
         },
         // additionalButtons: CommonButton(text: 'asdas', onTap: () {}),
         // initialValue: {
@@ -33,14 +38,25 @@ class _FormTestingScreenState extends State<FormTestingScreen> {
         //   // ),
         // },
         formFields: {
-          'text': FormUnit.text(
-            // max
-            maxLines: 6,
-            textInputType: TextInputType.multiline,
-            label: 'Please select schedule start week day',
-            hint: 'Select schedule week day...',
-            validators: [CustomFormValidator.required()],
+          'testing2': FormUnit.rangedTimeSlider(
+            useNotPreferedDay: false,
+            useDailyComment: false,
+            baseTimeRange: RangedTimeModel(
+              weekDay: 1,
+              startTime: DateTime(1992, 09, 17, 00, 00, 00),
+              endTime: DateTime(1992, 09, 18, 06, 00, 00),
+            ),
+            label: 'Testing',
+            // validators: [CustomFormValidator.required(errorText: 'value')],
           ),
+          // 'text': FormUnit.text(
+          //   // max
+          //   maxLines: 6,
+          //   textInputType: TextInputType.multiline,
+          //   label: 'Please select schedule start week day',
+          //   hint: 'Select schedule week day...',
+          //   validators: [CustomFormValidator.required()],
+          // ),
           // 'firstName': FormUnit.dropdown(
           //   label: 'Please select schedule start week day',
           //   hint: 'Select schedule week day...',
@@ -72,18 +88,7 @@ class _FormTestingScreenState extends State<FormTestingScreen> {
           //   // ],
           //   // validators: [CustomFormValidator.required(errorText: 'value')],
           // ),
-          // 'testing2': FormUnit.rangedTimeSlider(
-          //   useNotPreferedDay: false,
-          //   useDailyComment: false,
-          //   dailyAvailabilityTimeInterval: TimeInterval.oneHour,
-          //   baseTimeRange: RangedTimeModel(
-          //     startTime: DateTime(1992, 09, 17, 00, 00, 00),
-          //     endTime: DateTime(1992, 09, 18, 06, 00, 00),
-          //   ),
-          //   minimumHour: 3,
-          //   label: 'Testing',
-          //   // validators: [CustomFormValidator.required(errorText: 'value')],
-          // ),
+
           // 'testing3': FormUnit.boolean(
           //   label: 'Testing',
           //   // validators: [CustomFormValidator.required(errorText: 'value')],

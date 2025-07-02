@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:tetbee__base/models/user/temp_user_availabilities.dart';
 import 'package:tetbee__base/tetbee__base.dart';
 
 class ScheduleApi {
@@ -111,6 +112,86 @@ class ScheduleApi {
                   .collection(path)
                   .where('scheduleContainerId', isEqualTo: scheduleContainerId)
                   .get(),
+    );
+  }
+
+  static Future<ApiResponse<String>> createTimeOffRequest(
+    TimeOffRequest timeOffRequest,
+    String placeId,
+    String userId,
+  ) async {
+    return await DatabaseService.write(
+      types: getDataTypes(DataModel.timeOffRequest, docId: placeId),
+      dataModel: DataModel.timeOffRequest,
+      userId: userId,
+      data: timeOffRequest.toJson(),
+    );
+  }
+
+  static Future<ApiResponse<bool>> updateTimeOffRequest(
+    TimeOffRequest timeOffRequest,
+    String placeId,
+    String userId,
+  ) async {
+    return await DatabaseService.update(
+      types: getDataTypes(DataModel.timeOffRequest, docId: placeId),
+      dataModel: DataModel.timeOffRequest,
+      userId: userId,
+      baseData: timeOffRequest.toJson(),
+      docId: timeOffRequest.id!,
+    );
+  }
+
+  static Future<ApiResponse<List<TimeOffRequest>>>
+  getTimeOffRequestsForSchedule(
+    String placeId,
+    List<String> filterKeys, {
+    List<DocumentStatus>? status,
+  }) async {
+    return DatabaseService.getAllDocuments<TimeOffRequest>(
+      types: getDataTypes(DataModel.timeOffRequest, docId: placeId),
+      queryBuilder:
+          (path) =>
+              FirebaseFirestore.instance
+                  .collection(path)
+                  .where('filters', arrayContainsAny: filterKeys)
+                  .where('createdAt')
+                  .where(
+                    'status',
+                    whereIn:
+                        status == null
+                            ? [
+                              DocumentStatus.onSubmit.name,
+                              DocumentStatus.onReview.name,
+                              DocumentStatus.onConfirmed.name,
+                            ]
+                            : [...status.map((status) => status.name)],
+                  )
+                  .get(),
+    );
+  }
+
+  //temp user
+  static Future<ApiResponse<TempUserAvailabilities>> getTempUserAvailability(
+    String tempUserId,
+  ) async {
+    return await DatabaseService.read<TempUserAvailabilities>(
+      types: getDataTypes(DataModel.tempUserAvailabilities),
+      docId: tempUserId,
+    );
+  }
+
+  static Future<ApiResponse<bool>> updateTempUserAvailability(
+    String currentUserId,
+    String tempUserId,
+    TempUserAvailabilities tempUserAvailabilities,
+  ) async {
+    return await DatabaseService.update(
+      types: getDataTypes(DataModel.tempUserAvailabilities),
+      dataModel: DataModel.tempUserAvailabilities,
+      userId: currentUserId,
+      baseData: tempUserAvailabilities.toJson(),
+      docId: tempUserId,
     );
   }
 }

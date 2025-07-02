@@ -5,6 +5,7 @@ import 'package:tetbee__base/models/chat/message_model.dart';
 import 'package:tetbee__base/models/app_notification/app_notification.dart';
 import 'package:tetbee__base/models/common/notification_center.dart';
 import 'package:tetbee__base/models/common/stored_data.dart';
+import 'package:tetbee__base/models/schedule/time_off_request.dart';
 import 'package:tetbee__base/models/user/temp_user_availabilities.dart';
 import 'package:tetbee__base/models/work_place/join_request.dart';
 import 'package:tetbee__base/models/work_place/user_work_place_ordinal.dart';
@@ -14,7 +15,6 @@ List<String> getDataFilter(Map<String, dynamic> data, DataModel dataModel) {
   switch (dataModel) {
     case DataModel.appInfo:
       return [];
-
     case DataModel.userWorkPlaceOrdinal:
       return [];
     case DataModel.storedData:
@@ -78,6 +78,54 @@ List<String> getDataFilter(Map<String, dynamic> data, DataModel dataModel) {
       return [];
     case DataModel.appNotificationState:
       return [];
+    case DataModel.postModel:
+      PostModel userSchedule = PostModel.fromJson(data);
+      return [userSchedule.workPlaceId, ...userSchedule.selectedPositions];
+    case DataModel.timeOffRequest:
+      TimeOffRequest timeOffRequest = TimeOffRequest.fromJson(data);
+      if (timeOffRequest.endDate!
+              .difference(timeOffRequest.startDate!)
+              .inDays ==
+          0) {
+        return [
+          timeOffRequest.createdBy,
+          ...timeOffRequest.startDate!.getWeekDatesFrom().map(
+            (date) => date.toIsoDateString,
+          ),
+          timeOffRequest.startDate!.year.toString(),
+          timeOffRequest.startDate!.getMonthFormatFromDateTime,
+        ];
+      } else {
+        List<String> dateDocIdFormats = [];
+        List<String> years = [];
+        List<String> months = [];
+
+        dateDocIdFormats.addAll(
+          DateHelpers.getAllDatesBetween(
+            timeOffRequest.startDate!,
+            timeOffRequest.endDate!,
+          ),
+        );
+        years.addAll(
+          DateHelpers.getFirstDaysOfYearsFilters(
+            timeOffRequest.startDate!,
+            timeOffRequest.endDate!,
+          ),
+        );
+
+        months.addAll(
+          DateHelpers.getFirstDaysOfMonthsFilters(
+            timeOffRequest.startDate!,
+            timeOffRequest.endDate!,
+          ),
+        );
+        return [
+          timeOffRequest.createdBy,
+          ...dateDocIdFormats,
+          ...years,
+          ...months,
+        ];
+      }
   }
 }
 
@@ -121,6 +169,10 @@ T parseData<T>(DocumentSnapshot<Object?> doc) {
       return AppNotificationState.fromJson(data).copyWith() as T;
     case const (UserWorkPlaceOrdinal):
       return UserWorkPlaceOrdinal.fromJson(data).copyWith(id: doc.id) as T;
+    case const (PostModel):
+      return PostModel.fromJson(data).copyWith(id: doc.id) as T;
+    case const (TimeOffRequest):
+      return TimeOffRequest.fromJson(data).copyWith(id: doc.id) as T;
     case const (Map<String, dynamic>):
       return {'id': doc.id, ...data} as T;
     default:

@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:tetbee__base/data_services/schedule/data/repository/schedule_repository.dart';
+import 'package:tetbee__base/models/user/temp_user_availabilities.dart';
 import 'package:tetbee__base/tetbee__base.dart';
 
 final ScheduleService scheduleService = ScheduleService();
@@ -101,6 +102,75 @@ class ScheduleService with ApiServiceMixin {
         scheduleContainerId,
       ),
       'Error while getUserSchedulesForScheduleContainer',
+    );
+  }
+
+  Future<Either<Failure, String>> createTimeOffRequest(
+    TimeOffRequest timeOffRequest,
+    String placeId,
+    String userId,
+  ) async {
+    return execute(
+      () => ScheduleRepository().createTimeOffRequest(
+        timeOffRequest,
+        placeId,
+        userId,
+      ),
+      'Error while createTimeOffRequest',
+    );
+  }
+
+  Future<Either<Failure, bool>> updateTimeOffRequest(
+    TimeOffRequest timeOffRequest,
+    String placeId,
+    String userId,
+  ) async {
+    return execute(
+      () => ScheduleRepository().updateTimeOffRequest(
+        timeOffRequest,
+        placeId,
+        userId,
+      ),
+      'Error while updateTimeOffRequest',
+    );
+  }
+
+  Future<Either<Failure, List<TimeOffRequest>>> getTimeOffRequestsForSchedule(
+    String placeId,
+    List<String> filterKeys, {
+    List<DocumentStatus>? status,
+  }) async {
+    return execute(
+      () => ScheduleRepository().getTimeOffRequestsForSchedule(
+        placeId,
+        filterKeys,
+        status: status,
+      ),
+      'Error while getTimeOffRequestsForSchedule',
+    );
+  }
+
+  Future<Either<Failure, TempUserAvailabilities>> getTempUserAvailability(
+    String tempUserId,
+  ) async {
+    return execute(
+      () => ScheduleRepository().getTempUserAvailability(tempUserId),
+      'Error while getTempUserAvailability',
+    );
+  }
+
+  Future<Either<Failure, bool>> updateTempUserAvailability(
+    String currentUserId,
+    String tempUserId,
+    TempUserAvailabilities tempUserAvailabilities,
+  ) async {
+    return execute(
+      () => ScheduleRepository().updateTempUserAvailability(
+        currentUserId,
+        tempUserId,
+        tempUserAvailabilities,
+      ),
+      'Error while updateTempUserAvailability',
     );
   }
 }

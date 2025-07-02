@@ -86,7 +86,7 @@ class DatePickerFormUnitState extends State<DatePickerFormUnit> {
       initialValue: _initialValue,
       validator: (value) {
         if (_initialValue == null) {
-          return 'Please Select Dater';
+          return 'Please Select Date';
         }
 
         if (_initialValue is PickerDateRange) {
@@ -94,36 +94,50 @@ class DatePickerFormUnitState extends State<DatePickerFormUnit> {
           if ((timeRange.endDate == null || timeRange.startDate == null)) {
             return 'Please Select proper date range';
           }
-          if ((timeRange.startDate == timeRange.endDate)) {
-            return 'Please Select proper date range';
-          }
-          if (selectedDateSelectionMode == DateSelectionMode.rangedMonth) {
-            if (timeRange.startDate!.weekday == timeRange.endDate!.weekday) {
-              return 'Please Select proper Month range';
-            }
-            if (_areBothEndOfMonth(timeRange.startDate!, timeRange.endDate!)) {
-              return 'Please Select proper Month range';
-            }
-            if (_areBothStartOfMonth(
-              timeRange.startDate!,
-              timeRange.endDate!,
-            )) {
-              return 'Please Select proper Month range';
-            }
-            if (timeRange.startDate!.isEndOfMonth()) {
+          if (!formUnit.allowSameDate!) {
+            if ((timeRange.startDate == timeRange.endDate)) {
               return 'Please Select proper date range';
             }
-          }
+            if (selectedDateSelectionMode == DateSelectionMode.rangedMonth) {
+              if (timeRange.startDate!.weekday == timeRange.endDate!.weekday) {
+                return 'Please Select proper Month range';
+              }
+              if (_areBothEndOfMonth(
+                timeRange.startDate!,
+                timeRange.endDate!,
+              )) {
+                return 'Please Select proper Month range';
+              }
+              if (_areBothStartOfMonth(
+                timeRange.startDate!,
+                timeRange.endDate!,
+              )) {
+                return 'Please Select proper Month range';
+              }
+              if (timeRange.startDate!.isEndOfMonth()) {
+                return 'Please Select proper date range';
+              }
+            }
 
-          if (selectedDateSelectionMode == DateSelectionMode.weekly &&
-              formUnit.defaultStartWeekday != null) {
-            if (timeRange.startDate!.weekday != formUnit.defaultStartWeekday) {
-              return 'Please Select proper date range';
-            }
-            if (timeRange.startDate != null &&
-                timeRange.endDate != null &&
-                timeRange.startDate!.weekday == timeRange.endDate!.weekday) {
-              return 'Please Select proper date range';
+            if (selectedDateSelectionMode == DateSelectionMode.weekly &&
+                formUnit.defaultStartWeekday != null) {
+              if (timeRange.startDate!.weekday !=
+                  formUnit.defaultStartWeekday) {
+                return 'Please Select ${DateHelpers.getWeekdayFullFormat(formUnit.defaultStartWeekday!)} for start date.';
+              }
+
+              if (timeRange.startDate != null &&
+                  timeRange.endDate != null &&
+                  timeRange.startDate!.weekday == timeRange.endDate!.weekday) {
+                return 'Please Select proper date range';
+              }
+              if (timeRange.startDate!.difference(timeRange.endDate!).inDays !=
+                  -6) {
+                print(
+                  timeRange.startDate!.difference(timeRange.endDate!).inDays,
+                );
+                return 'Please Select proper 222date range';
+              }
             }
           }
         }
@@ -203,8 +217,10 @@ class DatePickerFormUnitState extends State<DatePickerFormUnit> {
               : (formUnit.defaultStartWeekday != null &&
                   selectedDateSelectionMode == DateSelectionMode.weekly)
               ? (DateTime date) {
-                return date.weekday == formUnit.defaultStartWeekday ||
-                    date.weekday == formUnit.defaultStartWeekday! + 6;
+                final int start = formUnit.defaultStartWeekday!;
+                final int prev = start == 1 ? 7 : start - 1;
+
+                return date.weekday == start || date.weekday == prev;
               }
               : null,
       onSelectionChanged: (args) {

@@ -9,7 +9,7 @@ class DividerWithText extends StatelessWidget {
     this.color,
     this.needPadding = true,
     this.withDivider = true,
-    this.fontSize = 10,
+    this.fontSize = 14,
   });
   final bool withDivider;
   final String label;

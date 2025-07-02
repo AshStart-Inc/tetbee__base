@@ -30,45 +30,42 @@ extension DailyAvailabilityExtension on DailyAvailability {
     bool show24Hour, {
     bool showOnlyTimeFormat = false,
   }) {
-    return isAvailableWholeDay(rTime)
+    return isUnavailable(minimumHour)
+        ? (showOnlyTimeFormat ? '' : 'Not available')
+        : isAvailableWholeDay(rTime)
         ? (showOnlyTimeFormat ? '' : "Whole Day")
-        : (isUnavailable(minimumHour)
-            ? (showOnlyTimeFormat ? '' : 'Not available')
-            : '${timeRange.getTimeFormat(show24Hour)} - ${timeRange.getTimeFormat(show24Hour, isStartTime: false)}');
+        : '${timeRange.getTimeFormat(show24Hour)} - ${timeRange.getTimeFormat(show24Hour, isStartTime: false)}';
   }
 
   bool isAvailableWholeDay(RangedTimeModel r) {
-    RangedTimeModel rModel = r;
-    DateTime actaulStart = timeRange.startTime!;
-    DateTime actaulEnd = timeRange.endTime!;
-    bool isDiffernentDate1 = timeRange.startTime?.day != timeRange.endTime?.day;
-    bool isDiffernentDate2 = rModel.startTime?.day != rModel.endTime?.day;
+    if (isUnavailable(3)) return false;
 
-    if (timeRange.startTime!.hour < rModel.startTime!.hour ||
-        timeRange.startTime!.hour >
-            (isDiffernentDate2
-                ? rModel.endTime!.hour + 24
-                : rModel.endTime!.hour)) {
-      actaulStart = rModel.startTime!;
+    final model = r;
+
+    // normalize: remove date, keep time
+    DateTime normalize(DateTime dt) => DateTime(0, 1, 1, dt.hour, dt.minute);
+
+    // adjust if end is before start (overnight)
+    DateTime adjustEndIfOvernight(DateTime start, DateTime end) {
+      if (end.isBefore(start)) {
+        return end.add(const Duration(days: 1));
+      }
+      return end;
     }
 
-    if ((isDiffernentDate1
-                ? (timeRange.endTime!.hour + 24)
-                : timeRange.endTime!.hour) >
-            (isDiffernentDate2
-                ? (rModel.endTime!.hour + 24)
-                : rModel.endTime!.hour) ||
-        (isDiffernentDate1
-                ? (timeRange.endTime!.hour + 24)
-                : timeRange.endTime!.hour) <
-            rModel.startTime!.hour) {
-      actaulEnd = rModel.endTime!;
-    }
+    final DateTime modelStart = normalize(model.startTime!);
+    final DateTime modelEnd = adjustEndIfOvernight(
+      modelStart,
+      normalize(model.endTime!),
+    );
 
-    return ((actaulStart.hour == rModel.startTime?.hour &&
-            actaulStart.minute == rModel.startTime?.minute) &&
-        (actaulEnd.hour == rModel.endTime?.hour &&
-            actaulEnd.minute == rModel.endTime?.minute));
+    final DateTime actualStart = normalize(timeRange.startTime!);
+    final DateTime actualEnd = adjustEndIfOvernight(
+      actualStart,
+      normalize(timeRange.endTime!),
+    );
+
+    return actualStart == modelStart && actualEnd == modelEnd;
   }
 
   bool isUnavailable(int minimumHour) {

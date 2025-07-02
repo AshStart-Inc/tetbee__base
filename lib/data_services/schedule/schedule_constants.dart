@@ -3,7 +3,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:tetbee__base/models/common/ranged_time_model.dart';
 import 'package:tetbee__base/models/schedule/daily_schedule.dart';
+import 'package:tetbee__base/models/work_place/position_model.dart';
 import 'package:tetbee__base/theme/theme_constants.dart';
+import 'package:tetbee__base/widgets/position_circle_widget.dart';
 
 class ScheduleConstants {
   static int minimumHours = 3;
@@ -136,4 +138,8 @@ class ScheduleConstants {
   //     ],
   //   );
   // }
+  static Widget tempUserTag = PositionCricleWidget(
+    showFullName: true,
+    positionModel: PositionModel(name: 'Temp', color: Colors.red),
+  );
 }

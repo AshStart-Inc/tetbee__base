@@ -65,11 +65,10 @@ class _FormManagerState extends State<FormManager> {
     _fomKey = GlobalKey<FormBuilderState>();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      //initialize Form
       if (widget.initialValue != null) {
-        widget.initialValue!.entries.map((MapEntry entry) {
+        for (var entry in widget.initialValue!.entries) {
           _fomKey.currentState!.setInternalFieldValue(entry.key, entry.value);
-        });
+        }
       }
     });
   }

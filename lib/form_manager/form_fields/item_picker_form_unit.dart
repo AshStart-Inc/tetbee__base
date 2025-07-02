@@ -44,7 +44,6 @@ class _ItemPickerFormUnitState extends State<ItemPickerFormUnit> {
           ? null
           : _initialValue.first,
     );
-    _formState.validate();
   }
 
   @override

@@ -1,5 +1,7 @@
 import 'package:tetbee__base/data_services/schedule/data/data_soruce/schedule_data_source.dart';
 import 'package:tetbee__base/models/models.dart';
+import 'package:tetbee__base/models/user/temp_user_availabilities.dart';
+import 'package:tetbee__base/utils/enums.dart';
 
 class ScheduleRepository {
   Future<String> createScheduleContainer(
@@ -71,6 +73,60 @@ class ScheduleRepository {
     return await ScheduleDataSource().getUserSchedulesForScheduleContainer(
       workPlaceId,
       scheduleContainerId,
+    );
+  }
+
+  Future<String> createTimeOffRequest(
+    TimeOffRequest timeOffRequest,
+    String placeId,
+    String userId,
+  ) async {
+    return await ScheduleDataSource().createTimeOffRequest(
+      timeOffRequest,
+      placeId,
+      userId,
+    );
+  }
+
+  Future<bool> updateTimeOffRequest(
+    TimeOffRequest timeOffRequest,
+    String placeId,
+    String userId,
+  ) async {
+    return await ScheduleDataSource().updateTimeOffRequest(
+      timeOffRequest,
+      placeId,
+      userId,
+    );
+  }
+
+  Future<List<TimeOffRequest>> getTimeOffRequestsForSchedule(
+    String placeId,
+    List<String> filterKeys, {
+    List<DocumentStatus>? status,
+  }) async {
+    return await ScheduleDataSource().getTimeOffRequestsForSchedule(
+      placeId,
+      filterKeys,
+      status: status,
+    );
+  }
+
+  Future<TempUserAvailabilities> getTempUserAvailability(
+    String tempUserId,
+  ) async {
+    return await ScheduleDataSource().getTempUserAvailability(tempUserId);
+  }
+
+  Future<bool> updateTempUserAvailability(
+    String currentUserId,
+    String tempUserId,
+    TempUserAvailabilities tempUserAvailabilities,
+  ) async {
+    return await ScheduleDataSource().updateTempUserAvailability(
+      currentUserId,
+      tempUserId,
+      tempUserAvailabilities,
     );
   }
 }

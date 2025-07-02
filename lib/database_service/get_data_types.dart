@@ -72,5 +72,12 @@ List<String> getDataTypes(
       ];
     case DataModel.storedData:
       return [dataModel.name];
+    case DataModel.postModel:
+      return [dataModel.name];
+    case DataModel.timeOffRequest:
+      return [
+        dataModel.name,
+        docId!, // place Id
+      ];
   }
 }

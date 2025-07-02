@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:tetbee__base/models/availability/availability_receiver_setting.dart';
 import 'package:tetbee__base/models/availability/daily_availability.dart';
 
 part 'temp_user_availabilities.freezed.dart';
@@ -12,6 +13,7 @@ class TempUserAvailabilities with _$TempUserAvailabilities {
   const factory TempUserAvailabilities({
     String? id,
     @Default([]) List<DailyAvailability> dailyAvailabilityTimeRange,
+    AvailabilityReceiverSetting? availabilityReceiverDefaultSetting,
   }) = _TempUserAvailabilities;
 
   factory TempUserAvailabilities.fromJson(Map<String, dynamic> json) =>

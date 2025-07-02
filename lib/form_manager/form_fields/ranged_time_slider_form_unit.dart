@@ -11,6 +11,7 @@ import 'package:like_button/like_button.dart';
 import 'package:tetbee__base/form_manager/form_unit/form_unit.dart';
 import 'package:tetbee__base/models/availability/daily_availability.dart';
 import 'package:tetbee__base/models/common/ranged_time_model.dart';
+import 'package:tetbee__base/tetbee__base.dart';
 import 'package:tetbee__base/utils/enums.dart';
 import 'package:tetbee__base/widgets/buttons/home_button.dart';
 
@@ -41,7 +42,6 @@ class _RangedTimeSliderFormUnitState extends State<RangedTimeSliderFormUnit> {
     formUnit = widget.formUnit.value;
     attribute = widget.formUnit.key;
     _formState = FormBuilder.of(context);
-    _commentController = TextEditingController();
 
     minimumHour = formUnit.minimumHour ?? 3;
     timeDivision = _getTimeDivision(formUnit.dailyAvailabilityTimeInterval);
@@ -49,14 +49,52 @@ class _RangedTimeSliderFormUnitState extends State<RangedTimeSliderFormUnit> {
 
     minTime = _convertToDiv(timeModel.startTime!);
     maxTime = _convertToDiv(timeModel.endTime!, allowOverflow: true);
-
     dailyAvailability =
-        _formState!.instantValue[attribute] ??
+        _formState!.initialValue[attribute] ??
         DailyAvailability(
           weekDay: formUnit.baseTimeRange!.startTime!.weekday,
-          timeRange: formUnit.defaultValue ?? timeModel,
+          timeRange: (formUnit.defaultValue ?? timeModel),
           canWorkButNotPreferToWork: false,
         );
+
+    final baseStart = timeModel.startTime!;
+    final baseEnd = timeModel.endTime!;
+    DateTime start = dailyAvailability.timeRange.startTime!;
+    DateTime end = dailyAvailability.timeRange.endTime!;
+
+    if (start.isBefore(baseStart)) {
+      start = baseStart;
+    }
+    if (end.isAfter(baseEnd)) {
+      end = baseEnd;
+    }
+
+    if (end.difference(start).inHours < minimumHour) {
+      final extendedEnd = start.add(Duration(hours: minimumHour));
+      if (extendedEnd.isBefore(baseEnd) ||
+          extendedEnd.isAtSameMomentAs(baseEnd)) {
+        end = extendedEnd;
+      } else {
+        start = end.subtract(Duration(hours: minimumHour));
+        if (start.isBefore(baseStart)) {
+          start = baseStart;
+          end = baseStart.add(Duration(hours: minimumHour));
+          if (end.isAfter(baseEnd)) {
+            end = baseEnd;
+          }
+        }
+      }
+    }
+
+    dailyAvailability = dailyAvailability.copyWith(
+      timeRange: dailyAvailability.timeRange.copyWith(
+        startTime: start,
+        endTime: end,
+      ),
+    );
+
+    _commentController = TextEditingController(text: dailyAvailability.comment);
+    showComment = _commentController.text.isNotEmpty;
 
     _lowerValue = _clamp(
       _convertToDiv(dailyAvailability.timeRange.startTime!),
@@ -165,8 +203,8 @@ class _RangedTimeSliderFormUnitState extends State<RangedTimeSliderFormUnit> {
       children: [
         _buildTopRow(context),
         // if (formUnit.useNotPreferedDay ?? false) _buildLikeButtonRow(context),
-        _buildSliderRow(context),
-        if (showComment) _buildCommentField(context),
+        formUnit.isClosed! ? Text('Closed') : _buildSliderRow(context),
+        if (!(formUnit.isClosed!) && showComment) _buildCommentField(context),
       ],
     );
   }
@@ -180,8 +218,10 @@ class _RangedTimeSliderFormUnitState extends State<RangedTimeSliderFormUnit> {
               context,
             ),
         const Spacer(),
-
-        if (formUnit.useDailyComment ?? false) _buildCommentToggle(context),
+        buildTime(Theme.of(context)),
+        const Spacer(),
+        if (!(formUnit.isClosed!) && (formUnit.useDailyComment ?? false))
+          _buildCommentToggle(context),
       ],
     );
   }
@@ -287,7 +327,7 @@ class _RangedTimeSliderFormUnitState extends State<RangedTimeSliderFormUnit> {
                       (60 * (((a / timeDivision) * 10) % 10) ~/ 10).toInt();
                   return Container(
                     decoration: BoxDecoration(
-                      color: theme.primaryColor,
+                      color: theme.primaryTextColor,
                       borderRadius: BorderRadius.circular(10),
                     ),
                     padding: const EdgeInsets.all(8.0),
@@ -329,32 +369,34 @@ class _RangedTimeSliderFormUnitState extends State<RangedTimeSliderFormUnit> {
               textBackgroundColor: theme.primaryColorDark,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(right: 16, top: 8),
-            child: Text(
-              formUnit.showTimeRange!
-                  ? dailyAvailability.isUnavailable(minimumHour)
-                      ? 'Closed'
-                      : '${dailyAvailability.timeRange.getTimeFormat(formUnit.show24Hour!)} - ${dailyAvailability.timeRange.getTimeFormat(formUnit.show24Hour!, isStartTime: false)}'
-                  : dailyAvailability.getAvailableTime(
-                    formUnit.baseTimeRange!,
-                    minimumHour,
-                    formUnit.show24Hour!,
-                  ),
-              style: TextStyle(
-                color:
-                    dailyAvailability.isAvailableWholeDay(
-                          formUnit.baseTimeRange!,
-                        )
-                        ? theme.colorScheme.onPrimary
-                        : dailyAvailability.isUnavailable(minimumHour)
-                        ? theme.colorScheme.error.withOpacity(0.7)
-                        : theme.colorScheme.secondary,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
         ],
+      ),
+    );
+  }
+
+  Widget buildTime(ThemeData theme) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 16, top: 8),
+      child: Text(
+        formUnit.showTimeRange!
+            ? dailyAvailability.isUnavailable(minimumHour)
+                ? 'Closed'
+                : '${dailyAvailability.timeRange.getTimeFormat(formUnit.show24Hour!)} - ${dailyAvailability.timeRange.getTimeFormat(formUnit.show24Hour!, isStartTime: false)}'
+            : dailyAvailability.getAvailableTime(
+              formUnit.baseTimeRange!,
+              minimumHour,
+              formUnit.show24Hour!,
+            ),
+        style: TextStyle(
+          color:
+              dailyAvailability.isAvailableWholeDay(formUnit.baseTimeRange!)
+                  ? theme.colorScheme.onPrimary
+                  : dailyAvailability.isUnavailable(minimumHour)
+                  ? theme.colorScheme.error.withOpacity(0.7)
+                  : theme.colorScheme.secondary,
+          fontWeight: FontWeight.bold,
+          fontSize: 16,
+        ),
       ),
     );
   }
