@@ -4,7 +4,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:tetbee__base/models/availability/availability_receiver_setting.dart';
 import 'package:tetbee__base/models/common/address_model.dart';
 import 'package:tetbee__base/models/common/phone_number_model.dart';
-import 'package:tetbee__base/models/common/ranged_time_model.dart';
 import 'package:tetbee__base/models/common/time_zone_model.dart';
 import 'package:tetbee__base/models/work_place/google_place_model.dart';
 import 'package:tetbee__base/models/work_place/position_model.dart';

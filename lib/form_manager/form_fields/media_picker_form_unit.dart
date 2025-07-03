@@ -5,7 +5,6 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:tetbee__base/dialog/custom_dialog.dart';
@@ -33,7 +32,7 @@ class MediaPickerState extends State<MediaPickerFormUnit> {
   late Map<String, StoredData>? _initialValue;
 
   List<StoredData>? _images = [];
-  final List<StoredData>? _deletedImage = [];
+  final List<StoredData> _deletedImage = [];
   final List<dynamic> _validators = [];
   bool _isLoadingImage = false;
   final double borderRadius = 10;
@@ -154,7 +153,7 @@ class MediaPickerState extends State<MediaPickerFormUnit> {
                   radius: 15,
                   onTap: () {
                     setState(() {
-                      _deletedImage!.add(_images![index]);
+                      _deletedImage.add(_images![index]);
                       _images!.removeAt(index);
                     });
                   },
@@ -250,7 +249,7 @@ class MediaPickerState extends State<MediaPickerFormUnit> {
     return FormField(
       onSaved: (dynamic val) {
         _formState!.setInternalFieldValue(attribute, val);
-        if (_deletedImage!.isNotEmpty) {
+        if (_deletedImage.isNotEmpty) {
           _deletedImage.forEach((element) {
             if (element.xFile == null) {
               FirebaseStorage.instance
@@ -341,7 +340,7 @@ class MediaPickerState extends State<MediaPickerFormUnit> {
                                                                     e,
                                                                   ),
                                                             );
-                                                          }).toList(),
+                                                          }),
                                                         ],
                                                         onReorder: (
                                                           int oldIndex,
@@ -378,7 +377,7 @@ class MediaPickerState extends State<MediaPickerFormUnit> {
                                                               ),
                                                               e,
                                                             );
-                                                          }).toList(),
+                                                          }),
                                                         ],
                                                       ),
                                             ),
@@ -469,8 +468,7 @@ class _InfomationTagState extends State<InfomationTag> {
 class NewInfomationTag extends StatelessWidget {
   final String text;
   final double? fontSize;
-  const NewInfomationTag({Key? key, required this.text, this.fontSize})
-    : super(key: key);
+  const NewInfomationTag({super.key, required this.text, this.fontSize});
 
   @override
   Widget build(BuildContext context) {

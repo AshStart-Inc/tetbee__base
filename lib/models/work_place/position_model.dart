@@ -37,6 +37,34 @@ class PositionModel with _$PositionModel {
       _$PositionModelFromJson(json);
 }
 
+extension PositionListExtension on List<PositionModel> {
+  List<PositionModel> get managePlaceAccessPositions =>
+      where((position) => position.managePlaceAccess).toList();
+  List<PositionModel> get postingViewAccessPositions =>
+      where((position) => position.postingViewAccess).toList();
+
+  List<PositionModel> get postingAccessPositions =>
+      where((position) => position.postingAccess).toList();
+
+  List<PositionModel> get contactAccessPositions =>
+      where((position) => position.contactAccess).toList();
+
+  List<PositionModel> get scheduleAccessPositions =>
+      where((position) => position.scheduleAccess).toList();
+
+  List<PositionModel> get scheduleReviewAccessPositions =>
+      where((position) => position.scheduleReviewAccess).toList();
+
+  List<PositionModel> get userInfoUpdateAccessPositions =>
+      where((position) => position.userInfoUpdateAccess).toList();
+
+  List<PositionModel> get chatRoomAccessPositions =>
+      where((position) => position.chatRoomAccess).toList();
+
+  List<PositionModel> get dailyScheduleReviewPermissionPositions =>
+      where((position) => position.dailyScheduleReviewPermission).toList();
+}
+
 Map<String, FormUnit> permissionFormField({bool isUserPermission = false}) => {
   'managePlaceAccess': FormUnit.boolean(
     defaultValue: false,

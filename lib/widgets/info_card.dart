@@ -3,8 +3,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tetbee__base/dialog/custom_dialog.dart';
 import 'package:tetbee__base/models/common/faq_model.dart';
 import 'package:tetbee__base/tetbee__base.dart';
-import 'package:tetbee__base/utils/helper.dart';
-import 'package:tetbee__base/widgets/label_with_info_button.dart';
 
 class InfoCard extends StatelessWidget {
   final bool sectionButton;
@@ -27,7 +25,7 @@ class InfoCard extends StatelessWidget {
   final Function? onFormUnavailable;
 
   const InfoCard({
-    Key? key,
+    super.key,
     required this.contents,
     this.useBottomBorder = false,
     this.editForms,
@@ -46,11 +44,11 @@ class InfoCard extends StatelessWidget {
     this.useRadius = true,
     this.onTap,
     required this.faqModel,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
-    final Widget _widget = Padding(
+    final Widget widget = Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
       child: Container(
         decoration: BoxDecoration(
@@ -246,6 +244,6 @@ class InfoCard extends StatelessWidget {
         ),
       ),
     );
-    return Column(children: [_widget]);
+    return Column(children: [widget]);
   }
 }

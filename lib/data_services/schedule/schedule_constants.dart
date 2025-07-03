@@ -1,7 +1,5 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:tetbee__base/models/common/ranged_time_model.dart';
 import 'package:tetbee__base/models/schedule/daily_schedule.dart';
 import 'package:tetbee__base/models/work_place/position_model.dart';
 import 'package:tetbee__base/theme/theme_constants.dart';

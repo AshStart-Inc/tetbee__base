@@ -5,7 +5,6 @@ import 'package:tetbee__base/data_services/availability/domain/service/availabil
 import 'package:tetbee__base/models/availability/availability_receiver_setting.dart';
 import 'package:tetbee__base/models/availability/daily_availability.dart';
 import 'package:tetbee__base/models/availability/user_availability_submission_info.dart';
-import 'package:tetbee__base/models/schedule/selected_user.dart';
 import 'package:tetbee__base/utils/enums.dart';
 import 'package:tetbee__base/utils/helper.dart';
 

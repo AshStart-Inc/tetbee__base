@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:tetbee__base/theme/theme_extension.dart';
 
 enum ButtonType { basicButton, expanded, squareButton }
 

@@ -5,7 +5,6 @@ import 'package:tetbee__base/database_service/data_model.dart';
 import 'package:tetbee__base/database_service/database_service.dart';
 import 'package:tetbee__base/database_service/get_data_types.dart';
 import 'package:tetbee__base/models/chat/chat_model_exports.dart';
-import 'package:tetbee__base/models/chat/chat_room.dart';
 import 'package:tetbee__base/models/chat/message_model.dart';
 
 class ChatRoomApi {

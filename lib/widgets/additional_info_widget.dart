@@ -46,7 +46,7 @@ class AdditionalInfoWidget extends StatelessWidget {
                       ),
                     ),
                   )
-                  .toList(),
+                  ,
             ],
           ),
         ],

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tetbee__base/tetbee__base.dart';
-import 'package:tetbee__base/theme/theme_extension.dart';
 
 class DateButton extends StatelessWidget {
   const DateButton({
@@ -31,7 +30,7 @@ class DateButton extends StatelessWidget {
       color:
           !isSelected ? Theme.of(context).baseTextColor.withOpacity(0.3) : null,
     );
-    Widget _child = InkWell(
+    Widget child = InkWell(
       splashColor: Colors.transparent,
       onTap: () {
         onTap();
@@ -71,6 +70,6 @@ class DateButton extends StatelessWidget {
         ),
       ),
     );
-    return _child;
+    return child;
   }
 }

@@ -12,6 +12,7 @@ enum AppNotificationType {
   postCommentReply,
   confirmNotification,
   availabilityReceiverOpen,
+  availabilityReceiverClose,
   availabilityReminder,
   scheduleRelease,
   scheduleUpdate,

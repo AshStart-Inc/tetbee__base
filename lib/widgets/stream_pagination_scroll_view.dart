@@ -33,7 +33,7 @@ class StreamPaginationScrollView extends StatefulWidget {
   final Widget Function(BuildContext, AsyncSnapshot<QuerySnapshot<Object?>>)?
   builder;
   StreamPaginationScrollView({
-    Key? key,
+    super.key,
     this.useEmpty = true,
     this.useImpact = false,
     this.removeCell = false,
@@ -58,7 +58,7 @@ class StreamPaginationScrollView extends StatefulWidget {
     this.showCount = false,
     this.countText,
     this.orderBy = 'createdAt',
-  }) : super(key: key);
+  });
 
   @override
   _StreamPaginationScrollViewState createState() =>
@@ -405,7 +405,7 @@ class _StreamPaginationScrollViewState
                                                     ),
                                                   ),
                                                 )
-                                                .toList(),
+                                                ,
                                             if (widget.needBottomSizedBox)
                                               SizedBox(height: 300),
                                           ],

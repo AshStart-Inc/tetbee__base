@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tetbee__base/models/work_place/work_place.dart';
 import 'package:tetbee__base/tetbee__base.dart';
 import 'package:timezone/timezone.dart' as tz;
 

@@ -8,12 +8,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:range_slider_flutter/range_slider_flutter.dart';
 import 'package:like_button/like_button.dart';
-import 'package:tetbee__base/form_manager/form_unit/form_unit.dart';
-import 'package:tetbee__base/models/availability/daily_availability.dart';
 import 'package:tetbee__base/models/common/ranged_time_model.dart';
 import 'package:tetbee__base/tetbee__base.dart';
-import 'package:tetbee__base/utils/enums.dart';
-import 'package:tetbee__base/widgets/buttons/home_button.dart';
 
 class RangedTimeSliderFormUnit extends StatefulWidget {
   final MapEntry<String, FormUnit> formUnit;

@@ -27,6 +27,7 @@ class TimeOffRequest with _$TimeOffRequest {
     @JsonKey(toJson: Helpers.dateIsoToJson, fromJson: Helpers.dateFromJsonIso)
     DateTime? endDate,
     @Default(DocumentStatus.onSubmit) DocumentStatus status,
+    @Default([]) List<String> notificationPositionTarget,
   }) = _TimeOffRequest;
 
   factory TimeOffRequest.fromJson(Map<String, dynamic> json) =>

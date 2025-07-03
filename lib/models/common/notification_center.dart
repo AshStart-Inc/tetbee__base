@@ -1,6 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:tetbee__base/models/common/stored_data.dart';
-import 'package:tetbee__base/utils/helper.dart';
 
 part 'notification_center.freezed.dart';
 part 'notification_center.g.dart';

@@ -380,7 +380,7 @@ void showCustomFormBottomSheet({
                               ),
                             ),
                           )
-                          .toList(),
+                          ,
                     ],
                   ),
             ],
@@ -423,7 +423,7 @@ void showCustomIconFormBottomSheet({
                       child: Icon(e.iconData),
                     ),
                   )
-                  .toList(),
+                  ,
             ],
           ),
         ),
@@ -439,13 +439,13 @@ class CustomSmallIconButton extends StatelessWidget {
   final bool smallMode;
   final double? width;
   const CustomSmallIconButton({
-    Key? key,
+    super.key,
     required this.onTap,
     required this.iconData,
     required this.text,
     this.width,
     this.smallMode = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

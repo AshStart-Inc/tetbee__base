@@ -219,7 +219,7 @@ class _CustomColorPickerWidgetState extends State<CustomColorPickerWidget> {
 
 class CustomSlider extends StatelessWidget {
   const CustomSlider({
-    Key? key,
+    super.key,
     required this.initialValue,
     required this.labelText,
     this.onChanged,
@@ -228,7 +228,7 @@ class CustomSlider extends StatelessWidget {
     required this.divisions,
     this.fractionDigits = 2,
     this.showValue = true,
-  }) : super(key: key);
+  });
   final bool showValue;
 
   final double? initialValue;

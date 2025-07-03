@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
 import 'package:tetbee__base/tetbee__base.dart';
-import 'package:tetbee__base/utils/helper.dart';
 
 part 'ranged_time_model.freezed.dart';
 part 'ranged_time_model.g.dart';

@@ -2,8 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:tetbee__base/form_manager/form_fields/ranged_time_form_unit/widgets/hour_time.dart';
-import 'package:tetbee__base/form_manager/form_fields/ranged_time_form_unit/widgets/minute_time.dart';
 import 'package:tetbee__base/models/common/ranged_time_model.dart';
 
 class TimeTextField extends StatefulWidget {
@@ -128,7 +126,7 @@ class _TimeTextFieldState extends State<TimeTextField> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Container(
+            SizedBox(
               width: 25,
               height: 20,
               child: TextField(
@@ -145,7 +143,7 @@ class _TimeTextFieldState extends State<TimeTextField> {
               ),
             ),
             const SizedBox(width: 10, child: Text(':')),
-            Container(
+            SizedBox(
               width: 25,
               child: Center(
                 child: TextField(

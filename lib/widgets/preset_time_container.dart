@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tetbee__base/models/common/ranged_time_model.dart';
 import 'package:tetbee__base/models/models.dart';
-import 'package:tetbee__base/models/schedule/schedule_index.dart';
 import 'package:tetbee__base/widgets/open_time_format.dart';
 import 'package:tetbee__base/widgets/timezone_text_widget.dart';
 
