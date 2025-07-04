@@ -173,4 +173,21 @@ class ScheduleService with ApiServiceMixin {
       'Error while updateTempUserAvailability',
     );
   }
+
+  Future<Either<Failure, bool>> scheduleSignOut(
+    String workPlaceId,
+    String userId,
+    DateTime baseDate,
+    UserSchedule userSchedule,
+  ) async {
+    return execute(
+      () => ScheduleRepository().scheduleSignOut(
+        workPlaceId,
+        userId,
+        baseDate,
+        userSchedule,
+      ),
+      'Error while scheduleSignOut',
+    );
+  }
 }

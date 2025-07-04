@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:tetbee__base/tetbee__base.dart';
 
 class DividerWithText extends StatelessWidget {
   const DividerWithText({
@@ -9,12 +9,14 @@ class DividerWithText extends StatelessWidget {
     this.needPadding = true,
     this.withDivider = true,
     this.fontSize = 14,
+    this.trailingWidget,
   });
   final bool withDivider;
   final String label;
   final bool needPadding;
   final Color? color;
   final double fontSize;
+  final Widget? trailingWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +25,18 @@ class DividerWithText extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: needPadding ? 10 : 0),
-          child: Text(
-            label,
-            style: TextStyle(
-              color: color ?? Colors.grey,
-              fontWeight: FontWeight.bold,
-              fontSize: fontSize,
-            ),
+          child: Row(
+            children: [
+              Text(
+                label,
+                style: TextStyle(
+                  color: color ?? Colors.grey,
+                  fontWeight: FontWeight.bold,
+                  fontSize: fontSize,
+                ),
+              ),
+              if (trailingWidget != null) trailingWidget!,
+            ],
           ),
         ),
         if (withDivider)

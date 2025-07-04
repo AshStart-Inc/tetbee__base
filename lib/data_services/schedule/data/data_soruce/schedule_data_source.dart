@@ -142,4 +142,20 @@ class ScheduleDataSource with ApiErrorHandlerMixin {
       ),
     );
   }
+
+  Future<bool> scheduleSignOut(
+    String workPlaceId,
+    String userId,
+    DateTime baseDate,
+    UserSchedule userSchedule,
+  ) async {
+    return execute(
+      () => ScheduleApi.scheduleSignOut(
+        workPlaceId,
+        userId,
+        baseDate,
+        userSchedule,
+      ),
+    );
+  }
 }

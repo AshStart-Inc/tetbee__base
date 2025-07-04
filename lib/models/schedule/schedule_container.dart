@@ -24,6 +24,7 @@ class ScheduleContainer with _$ScheduleContainer {
     @Default({}) Map<int, String> selectedAvailabilityReceiverIds,
     @Default({}) Map<String, SelectedUser> selectedUserList,
     @Default(false) bool isReleased,
+    @Default(false) bool deleted,
   }) = _ScheduleContainer;
 
   factory ScheduleContainer.fromJson(Map<String, dynamic> json) =>

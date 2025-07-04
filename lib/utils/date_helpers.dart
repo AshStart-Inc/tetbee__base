@@ -169,4 +169,103 @@ class DateHelpers {
 
     return result;
   }
+
+  static DateTime getDateOfThisWeekday(int weekday, {DateTime? baseDate}) {
+    final now = baseDate ?? DateTime.now();
+    final todayWeekday = now.weekday;
+
+    int diff;
+    if (weekday == 7) {
+      diff = todayWeekday;
+    } else {
+      diff = todayWeekday - weekday;
+    }
+
+    return now.subtract(Duration(days: diff));
+  }
+
+  static String getActualWorkTime({
+    required DateTime startTime,
+    required DateTime endTime,
+    required int breakMinute,
+    int? scheduleTimeInterval,
+  }) {
+    Duration worktime = endTime
+        .subtract(Duration(hours: 0, minutes: breakMinute))
+        .difference(startTime);
+    return DateHelpers.durationTime(
+      worktime,
+      showSeconds: false,
+      scheduleTimeInterval: scheduleTimeInterval,
+    );
+  }
+
+  static String durationTime(
+    Duration duration, {
+    bool showSeconds = true,
+    int? scheduleTimeInterval,
+  }) {
+    String twoDigits(int n) => n.toString().padLeft(2, "0");
+    String twoDigitMinutes =
+        scheduleTimeInterval != null
+            ? twoDigits(
+              duration.inMinutes.remainder(60) ~/
+                  scheduleTimeInterval *
+                  scheduleTimeInterval,
+            )
+            : twoDigits(duration.inMinutes.remainder(60));
+    String twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
+    return "${twoDigits(duration.inHours)}:$twoDigitMinutes ${showSeconds ? ':$twoDigitSeconds' : ''}";
+  }
+
+  static Color getWorkHourColor({
+    required BuildContext context,
+    required DateTime startTime,
+    required DateTime endTime,
+    required int breakMinute,
+  }) {
+    Duration worktime = endTime
+        .subtract(Duration(hours: 0, minutes: breakMinute))
+        .difference(startTime);
+
+    if (worktime.inHours >= 20) {
+      return Colors.red[900]!;
+    } else if (worktime.inHours >= 15) {
+      return Colors.pink[900]!;
+    } else if (worktime.inHours >= 10) {
+      return Colors.yellow[900]!;
+    } else if (worktime.inHours >= 5) {
+      return Colors.green[900]!;
+    } else {
+      return Theme.of(context).textTheme.headlineLarge!.color!.withOpacity(0.8);
+    }
+  }
+}
+
+extension TimeOfDayExtension on TimeOfDay {
+  String formatTimeOfDay() {
+    final h = hour.toString().padLeft(2, '0');
+    final m = minute.toString().padLeft(2, '0');
+    return '$h:$m';
+  }
+
+  TimeOfDay getTimeOfDayDifferenceAsTimeOfDay(TimeOfDay end) {
+    final now = DateTime.now();
+
+    final startDateTime = DateTime(now.year, now.month, now.day, hour, minute);
+    final endDateTime = DateTime(
+      now.year,
+      now.month,
+      now.day,
+      end.hour,
+      end.minute,
+    );
+
+    final diff = endDateTime.difference(startDateTime).abs();
+
+    final hours = diff.inHours;
+    final minutes = diff.inMinutes.remainder(60);
+
+    return TimeOfDay(hour: hours, minute: minutes);
+  }
 }

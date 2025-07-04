@@ -6,6 +6,7 @@ import 'package:tetbee__base/form_manager/form_unit/form_unit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:tetbee__base/models/common/ranged_time_model.dart';
+import 'package:tetbee__base/tetbee__base.dart';
 
 DateTime baseDateTime = DateTime(1992, 09, 17);
 
@@ -23,6 +24,7 @@ class _RangedTimeFormUnitState extends State<RangedTimeFormUnit> {
   late final String attribute;
   late final FormUnit formUnit;
   RangedTimeModel rangedTimeModel = RangedTimeModel();
+  bool showEndTime = true;
   // late bool _initialValue;
 
   @override
@@ -58,7 +60,12 @@ class _RangedTimeFormUnitState extends State<RangedTimeFormUnit> {
     return FormField<RangedTimeModel>(
       onSaved: (a) {
         FocusScope.of(context).unfocus();
-        _formState.setInternalFieldValue(attribute, rangedTimeModel);
+        _formState.setInternalFieldValue(
+          attribute,
+          showEndTime
+              ? rangedTimeModel
+              : rangedTimeModel.copyWith(endTime: null),
+        );
       },
       builder: (FormFieldState<RangedTimeModel> field) {
         return Row(
@@ -74,14 +81,24 @@ class _RangedTimeFormUnitState extends State<RangedTimeFormUnit> {
               ),
             ),
             Text('-'),
-            Expanded(
-              child: TimeTextField(
-                baseDate: rangedTimeModel.endTime!,
-                show24Hours: true,
-                onChange: (DateTime time) {
-                  onChange(null, time);
-                },
-              ),
+            showEndTime
+                ? Expanded(
+                  child: TimeTextField(
+                    baseDate: rangedTimeModel.endTime!,
+                    show24Hours: true,
+                    onChange: (DateTime time) {
+                      onChange(null, time);
+                    },
+                  ),
+                )
+                : Text('Close'),
+            HomeButton(
+              iconData: Icons.check,
+              onTap: () {
+                setState(() {
+                  showEndTime = !showEndTime;
+                });
+              },
             ),
           ],
         );

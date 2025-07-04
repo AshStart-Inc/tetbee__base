@@ -129,4 +129,18 @@ class ScheduleRepository {
       tempUserAvailabilities,
     );
   }
+
+  Future<bool> scheduleSignOut(
+    String workPlaceId,
+    String userId,
+    DateTime baseDate,
+    UserSchedule userSchedule,
+  ) async {
+    return await ScheduleDataSource().scheduleSignOut(
+      workPlaceId,
+      userId,
+      baseDate,
+      userSchedule,
+    );
+  }
 }

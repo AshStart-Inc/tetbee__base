@@ -45,4 +45,16 @@ extension RangedTimeModelExtension on RangedTimeModel {
       ).format(DateTime(0, 0, 0, time.hour, time.minute));
     }
   }
+
+  TimeOfDay getTimeDifference() {
+    if (startTime == null || endTime == null) {
+      return TimeOfDay(hour: 0, minute: 0);
+    }
+    Duration diff = endTime!.difference(startTime!);
+
+    int hours = diff.inHours;
+    int minutes = diff.inMinutes.remainder(60);
+
+    return TimeOfDay(hour: hours, minute: minutes);
+  }
 }

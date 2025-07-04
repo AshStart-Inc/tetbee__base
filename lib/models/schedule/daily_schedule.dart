@@ -13,11 +13,10 @@ class DailySchedule with _$DailySchedule {
     String? id,
     RangedTimeModel? scheduleTimeRange,
     RangedTimeModel? breakTimeRange,
+    RangedTimeModel? signedOutTimeRange,
+    @Default('') String signOutComment,
     @Default('') String positionCode,
     @Default('') String comment,
-    @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
-    DateTime? signedOutStartTime,
-    DateTime? signedOutEndTime,
     @Default(false) bool isHalfDay,
     @Default([]) List<WorkTrainInfo> trainer,
     @Default([]) List<WorkTrainInfo> trainee,
@@ -30,10 +29,10 @@ class DailySchedule with _$DailySchedule {
 extension DailyScheduleExtension on DailySchedule {
   String getScheduleText(bool show24Hour) {
     RangedTimeModel timeModel =
-        (signedOutStartTime != null)
+        (signedOutTimeRange != null)
             ? scheduleTimeRange!.copyWith(
-              startTime: signedOutStartTime,
-              endTime: signedOutEndTime,
+              startTime: signedOutTimeRange!.startTime,
+              endTime: signedOutTimeRange!.endTime,
             )
             : scheduleTimeRange!;
 

@@ -194,4 +194,20 @@ class ScheduleApi {
       docId: tempUserId,
     );
   }
+
+  //sign out
+  static Future<ApiResponse<bool>> scheduleSignOut(
+    String workPlaceId,
+    String userId,
+    DateTime baseDate,
+    UserSchedule userSchedule,
+  ) async {
+    return await DatabaseService.update(
+      types: getDataTypes(DataModel.userSchedule, docId: workPlaceId),
+      dataModel: DataModel.userSchedule,
+      userId: userId,
+      baseData: userSchedule.toJson(),
+      docId: getUserScheduleIdByDate(baseDate, userId),
+    );
+  }
 }

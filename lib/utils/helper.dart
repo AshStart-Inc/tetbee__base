@@ -169,18 +169,6 @@ extension FormattedDate on DateTime {
   DateTime setHourAndMinutes(int customHour, int customMinute) =>
       DateTime(year, month, day, customHour, customMinute);
 
-  DateTime get getMondayOfThisWeek {
-    const int monday = 1;
-    DateTime now = this;
-    var month = (now.month >= 10 ? now.month : "0${now.month}");
-    var day = (now.day >= 10 ? now.day : "0${now.day}");
-    now = DateTime.parse("${now.year}-$month-$day 00:00:00");
-    while (now.weekday != monday) {
-      now = now.subtract(const Duration(days: 1));
-    }
-    return now;
-  }
-
   String get getMonthFormatFromDateTime => '$year/$month';
 
   List<DateTime> getWeekDatesFrom() {
