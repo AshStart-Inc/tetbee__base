@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tetbee__base/tetbee__base.dart';
 
 class DividerWithText extends StatelessWidget {
   const DividerWithText({

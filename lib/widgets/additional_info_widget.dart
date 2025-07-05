@@ -25,28 +25,23 @@ class AdditionalInfoWidget extends StatelessWidget {
               Center(
                 child: Text(
                   title,
-                  style:
-                  //TODO needs to be checked
-                  Theme.of(context).primaryTextTheme.headlineMedium!.copyWith(
-                    color: Theme.of(context).cardColor,
-                  ),
+                  style: Theme.of(context).primaryTextTheme.headlineMedium!
+                      .copyWith(color: Theme.of(context).cardColor),
                 ),
               ),
               const SizedBox(height: 30),
-              ...infos
-                  .map(
-                    (st) => Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 4,
-                        vertical: 2,
-                      ),
-                      child: Text(
-                        st,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                    ),
-                  )
-                  ,
+              ...infos.map(
+                (st) => Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 4,
+                    vertical: 2,
+                  ),
+                  child: Text(
+                    st,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                ),
+              ),
             ],
           ),
         ],

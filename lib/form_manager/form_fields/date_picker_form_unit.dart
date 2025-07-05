@@ -133,10 +133,7 @@ class DatePickerFormUnitState extends State<DatePickerFormUnit> {
               }
               if (timeRange.startDate!.difference(timeRange.endDate!).inDays !=
                   -6) {
-                print(
-                  timeRange.startDate!.difference(timeRange.endDate!).inDays,
-                );
-                return 'Please Select proper 222date range';
+                return 'Please Select proper date range';
               }
             }
           }

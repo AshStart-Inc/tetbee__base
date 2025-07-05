@@ -76,15 +76,6 @@ class MediaPickerState extends State<MediaPickerFormUnit> {
                         },
                       ),
 
-                    //TODO fix at version 1.1.3
-                    // if (formUnit.dataType == DataType.video ||
-                    //     formUnit.dataType == DataType.both)
-                    //   BottoSheetItemModel(
-                    //       text: 'Videos',
-                    //       trailingWidget: Icon(Icons.video_library_sharp),
-                    //       onTap: () async {
-                    //         await _postImage(DataType.video);
-                    //       }),
                     if (formUnit.dataType!.contains(DataType.pdf))
                       BottoSheetItemModel(
                         text: 'Files',

@@ -7,7 +7,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:range_slider_flutter/range_slider_flutter.dart';
-import 'package:like_button/like_button.dart';
 import 'package:tetbee__base/models/common/ranged_time_model.dart';
 import 'package:tetbee__base/tetbee__base.dart';
 
@@ -222,44 +221,44 @@ class _RangedTimeSliderFormUnitState extends State<RangedTimeSliderFormUnit> {
     );
   }
 
-  Widget _buildLikeButtonRow(BuildContext context) {
-    final theme = Theme.of(context);
-    return Row(
-      children: [
-        Text(
-          "Available, but I don't prefer to work.",
-          style: theme.textTheme.bodySmall!.copyWith(
-            color:
-                canWorkButNotAvailable
-                    ? theme.textTheme.headlineLarge!.color
-                    : theme.textTheme.headlineLarge!.color!.withOpacity(0.5),
-            fontSize: 11,
-            fontWeight:
-                canWorkButNotAvailable ? FontWeight.bold : FontWeight.w200,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 8, right: 20),
-          child: LikeButton(
-            size: 20,
-            likeBuilder:
-                (isLiked) => Icon(
-                  isLiked
-                      ? FontAwesomeIcons.circleCheck
-                      : FontAwesomeIcons.cancel,
-                  color:
-                      isLiked
-                          ? theme.colorScheme.secondary.withOpacity(0.8)
-                          : Colors.white60,
-                  size: 25,
-                ),
-            isLiked: canWorkButNotAvailable,
-            onTap: (isLiked) async => canWorkButNotAvailable,
-          ),
-        ),
-      ],
-    );
-  }
+  // Widget _buildLikeButtonRow(BuildContext context) {
+  //   final theme = Theme.of(context);
+  //   return Row(
+  //     children: [
+  //       Text(
+  //         "Available, but I don't prefer to work.",
+  //         style: theme.textTheme.bodySmall!.copyWith(
+  //           color:
+  //               canWorkButNotAvailable
+  //                   ? theme.textTheme.headlineLarge!.color
+  //                   : theme.textTheme.headlineLarge!.color!.withOpacity(0.5),
+  //           fontSize: 11,
+  //           fontWeight:
+  //               canWorkButNotAvailable ? FontWeight.bold : FontWeight.w200,
+  //         ),
+  //       ),
+  //       Padding(
+  //         padding: const EdgeInsets.only(left: 8, right: 20),
+  //         child: LikeButton(
+  //           size: 20,
+  //           likeBuilder:
+  //               (isLiked) => Icon(
+  //                 isLiked
+  //                     ? FontAwesomeIcons.circleCheck
+  //                     : FontAwesomeIcons.cancel,
+  //                 color:
+  //                     isLiked
+  //                         ? theme.colorScheme.secondary.withOpacity(0.8)
+  //                         : Colors.white60,
+  //                 size: 25,
+  //               ),
+  //           isLiked: canWorkButNotAvailable,
+  //           onTap: (isLiked) async => canWorkButNotAvailable,
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
 
   Widget _buildCommentToggle(BuildContext context) {
     final theme = Theme.of(context);

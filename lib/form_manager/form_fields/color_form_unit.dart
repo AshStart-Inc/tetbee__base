@@ -157,6 +157,7 @@ class CustomColorPickerWidget extends StatefulWidget {
   final Function(Color) onChange;
 
   @override
+  // ignore: library_private_types_in_public_api
   _CustomColorPickerWidgetState createState() =>
       _CustomColorPickerWidgetState();
 }

@@ -150,7 +150,6 @@ class DatabaseService {
         statusCode: HttpStatus.badRequest,
       );
     } catch (error) {
-      print(error);
       return ApiResponse(
         data: null,
         statusCode: HttpStatus.badRequest,

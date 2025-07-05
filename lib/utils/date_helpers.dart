@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:tetbee__base/tetbee__base.dart';
 import 'package:timezone/timezone.dart' as tz;
@@ -14,7 +15,11 @@ class DateHelpers {
   static void setTimeZone(WorkPlace placeModel) {
     if (placeModel.timeZone.location.isNotEmpty) {
       tz.setLocalLocation(tz.getLocation(placeModel.timeZone.location));
-      print('Time zone has been changed - ${placeModel.timeZone.timeZoneName}');
+      if (kDebugMode) {
+        print(
+          'Time zone has been changed - ${placeModel.timeZone.timeZoneName}',
+        );
+      }
     }
   }
 

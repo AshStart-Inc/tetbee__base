@@ -13,7 +13,6 @@ class HourField extends StatelessWidget {
   });
 
   void _validateAndFormatHour() {
-    print('asdasda');
     String raw = controller.text.replaceAll(RegExp(r'[^0-9]'), '');
     if (raw.isEmpty) {
       controller.text = '00';
