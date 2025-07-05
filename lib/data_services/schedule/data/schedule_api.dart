@@ -115,6 +115,21 @@ class ScheduleApi {
     );
   }
 
+  static Future<ApiResponse<List<UserSchedule>>> getUserSchedulesForDate(
+    String workPlaceId,
+    DateTime baseDate,
+  ) async {
+    return DatabaseService.getAllDocuments<UserSchedule>(
+      types: getDataTypes(DataModel.userSchedule, docId: workPlaceId),
+      queryBuilder:
+          (path) =>
+              FirebaseFirestore.instance
+                  .collection(path)
+                  .where('scheduleDate', isEqualTo: baseDate.toIsoDateString)
+                  .get(),
+    );
+  }
+
   static Future<ApiResponse<String>> createTimeOffRequest(
     TimeOffRequest timeOffRequest,
     String placeId,
@@ -208,6 +223,56 @@ class ScheduleApi {
       userId: userId,
       baseData: userSchedule.toJson(),
       docId: getUserScheduleIdByDate(baseDate, userId),
+    );
+  }
+
+  static Future<ApiResponse<DailyScheduleSignOutReview?>>
+  getDailyScheduleSignOutReview(
+    String workPlaceId,
+    String userId,
+    DateTime baseDate,
+  ) async {
+    return await DatabaseService.read<DailyScheduleSignOutReview>(
+      types: getDataTypes(
+        DataModel.dailyScheduleSignOutReview,
+        docId: workPlaceId,
+      ),
+      docId: baseDate.toIsoDateString,
+    );
+  }
+
+  static Future<ApiResponse<String>> createDailyScheduleSignOutReview(
+    String workPlaceId,
+    String userId,
+    DateTime baseDate,
+  ) async {
+    return await DatabaseService.write(
+      types: getDataTypes(
+        DataModel.dailyScheduleSignOutReview,
+        docId: workPlaceId,
+      ),
+      dataModel: DataModel.dailyScheduleSignOutReview,
+      userId: userId,
+      data: DailyScheduleSignOutReview().toJson(),
+      docId: baseDate.toIsoDateString,
+    );
+  }
+
+  static Future<ApiResponse<bool>> updateDailyScheduleSignOutReview(
+    String workPlaceId,
+    String userId,
+    DateTime baseDate,
+    DailyScheduleSignOutReview dailyScheduleSignOutReview,
+  ) async {
+    return await DatabaseService.update(
+      types: getDataTypes(
+        DataModel.dailyScheduleSignOutReview,
+        docId: workPlaceId,
+      ),
+      dataModel: DataModel.dailyScheduleSignOutReview,
+      userId: userId,
+      baseData: dailyScheduleSignOutReview.toJson(),
+      docId: baseDate.toIsoDateString,
     );
   }
 }

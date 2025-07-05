@@ -76,6 +76,16 @@ class ScheduleRepository {
     );
   }
 
+  Future<List<UserSchedule>> getUserSchedulesForDate(
+    String workPlaceId,
+    DateTime baseDate,
+  ) async {
+    return await ScheduleDataSource().getUserSchedulesForDate(
+      workPlaceId,
+      baseDate,
+    );
+  }
+
   Future<String> createTimeOffRequest(
     TimeOffRequest timeOffRequest,
     String placeId,
@@ -141,6 +151,44 @@ class ScheduleRepository {
       userId,
       baseDate,
       userSchedule,
+    );
+  }
+
+  Future<DailyScheduleSignOutReview?> getDailyScheduleSignOutReview(
+    String workPlaceId,
+    String userId,
+    DateTime baseDate,
+  ) async {
+    return await ScheduleDataSource().getDailyScheduleSignOutReview(
+      workPlaceId,
+      userId,
+      baseDate,
+    );
+  }
+
+  Future<String> createDailyScheduleSignOutReview(
+    String workPlaceId,
+    String userId,
+    DateTime baseDate,
+  ) async {
+    return await ScheduleDataSource().createDailyScheduleSignOutReview(
+      workPlaceId,
+      userId,
+      baseDate,
+    );
+  }
+
+  Future<bool> updateDailyScheduleSignOutReview(
+    String workPlaceId,
+    String userId,
+    DateTime baseDate,
+    DailyScheduleSignOutReview dailyScheduleSignOutReview,
+  ) async {
+    return await ScheduleDataSource().updateDailyScheduleSignOutReview(
+      workPlaceId,
+      userId,
+      baseDate,
+      dailyScheduleSignOutReview,
     );
   }
 }

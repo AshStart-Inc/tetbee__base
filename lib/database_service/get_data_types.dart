@@ -79,5 +79,10 @@ List<String> getDataTypes(
         dataModel.name,
         docId!, // place Id
       ];
+    case DataModel.dailyScheduleSignOutReview:
+      return [
+        dataModel.name,
+        docId!, // place Id
+      ];
   }
 }

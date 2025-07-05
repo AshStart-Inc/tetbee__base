@@ -1,5 +1,6 @@
 import 'package:tetbee__base/data_services/schedule/data/schedule_api.dart';
 import 'package:tetbee__base/database_service/error_handling/api_error_handler_mixin.dart';
+import 'package:tetbee__base/models/schedule/daily_schedule_sign_out_review/daily_schedule_sign_out_review.dart';
 import 'package:tetbee__base/models/schedule/schedule_container.dart';
 import 'package:tetbee__base/models/schedule/time_off_request.dart';
 import 'package:tetbee__base/models/schedule/user_schedule.dart';
@@ -89,6 +90,15 @@ class ScheduleDataSource with ApiErrorHandlerMixin {
     );
   }
 
+  Future<List<UserSchedule>> getUserSchedulesForDate(
+    String workPlaceId,
+    DateTime baseDate,
+  ) async {
+    return execute(
+      () => ScheduleApi.getUserSchedulesForDate(workPlaceId, baseDate),
+    );
+  }
+
   Future<String> createTimeOffRequest(
     TimeOffRequest timeOffRequest,
     String placeId,
@@ -155,6 +165,50 @@ class ScheduleDataSource with ApiErrorHandlerMixin {
         userId,
         baseDate,
         userSchedule,
+      ),
+    );
+  }
+
+  Future<DailyScheduleSignOutReview?> getDailyScheduleSignOutReview(
+    String workPlaceId,
+    String userId,
+    DateTime baseDate,
+  ) async {
+    return execute(
+      () => ScheduleApi.getDailyScheduleSignOutReview(
+        workPlaceId,
+        userId,
+        baseDate,
+      ),
+    );
+  }
+
+  Future<String> createDailyScheduleSignOutReview(
+    String workPlaceId,
+    String userId,
+    DateTime baseDate,
+  ) async {
+    return execute(
+      () => ScheduleApi.createDailyScheduleSignOutReview(
+        workPlaceId,
+        userId,
+        baseDate,
+      ),
+    );
+  }
+
+  Future<bool> updateDailyScheduleSignOutReview(
+    String workPlaceId,
+    String userId,
+    DateTime baseDate,
+    DailyScheduleSignOutReview dailyScheduleSignOutReview,
+  ) async {
+    return execute(
+      () => ScheduleApi.updateDailyScheduleSignOutReview(
+        workPlaceId,
+        userId,
+        baseDate,
+        dailyScheduleSignOutReview,
       ),
     );
   }

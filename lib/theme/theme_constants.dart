@@ -248,7 +248,7 @@ class ThemeConstants {
         ),
         displaySmall: TextStyle(
           //bottomsheet handler
-          fontSize: appbaseFontSize * 0.9,
+          fontSize: appbaseFontSize * 1.2,
           color: baseFontColor,
         ),
       ),

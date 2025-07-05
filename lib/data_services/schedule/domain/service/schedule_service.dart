@@ -105,6 +105,16 @@ class ScheduleService with ApiServiceMixin {
     );
   }
 
+  Future<Either<Failure, List<UserSchedule>>> getUserSchedulesForDate(
+    String workPlaceId,
+    DateTime baseDate,
+  ) async {
+    return execute(
+      () => ScheduleRepository().getUserSchedulesForDate(workPlaceId, baseDate),
+      'Error while getUserSchedulesForDate',
+    );
+  }
+
   Future<Either<Failure, String>> createTimeOffRequest(
     TimeOffRequest timeOffRequest,
     String placeId,
@@ -188,6 +198,54 @@ class ScheduleService with ApiServiceMixin {
         userSchedule,
       ),
       'Error while scheduleSignOut',
+    );
+  }
+
+  Future<Either<Failure, DailyScheduleSignOutReview?>>
+  getDailyScheduleSignOutReview(
+    String workPlaceId,
+    String userId,
+    DateTime baseDate,
+  ) async {
+    return execute(
+      () => ScheduleRepository().getDailyScheduleSignOutReview(
+        workPlaceId,
+        userId,
+        baseDate,
+      ),
+      'Error while getDailyScheduleSignOutReview',
+    );
+  }
+
+  Future<Either<Failure, String>> createDailyScheduleSignOutReview(
+    String workPlaceId,
+    String userId,
+    DateTime baseDate,
+  ) async {
+    return execute(
+      () => ScheduleRepository().createDailyScheduleSignOutReview(
+        workPlaceId,
+        userId,
+        baseDate,
+      ),
+      'Error while createDailyScheduleSignOutReview',
+    );
+  }
+
+  Future<Either<Failure, bool>> updateDailyScheduleSignOutReview(
+    String workPlaceId,
+    String userId,
+    DateTime baseDate,
+    DailyScheduleSignOutReview dailyScheduleSignOutReview,
+  ) async {
+    return execute(
+      () => ScheduleRepository().updateDailyScheduleSignOutReview(
+        workPlaceId,
+        userId,
+        baseDate,
+        dailyScheduleSignOutReview,
+      ),
+      'Error while updateDailyScheduleSignOutReview',
     );
   }
 }

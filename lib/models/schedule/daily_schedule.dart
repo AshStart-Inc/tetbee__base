@@ -14,6 +14,8 @@ class DailySchedule with _$DailySchedule {
     RangedTimeModel? scheduleTimeRange,
     RangedTimeModel? breakTimeRange,
     RangedTimeModel? signedOutTimeRange,
+    @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
+    DateTime? signedOutAt,
     @Default('') String signOutComment,
     @Default('') String positionCode,
     @Default('') String comment,
@@ -27,9 +29,12 @@ class DailySchedule with _$DailySchedule {
 }
 
 extension DailyScheduleExtension on DailySchedule {
-  String getScheduleText(bool show24Hour) {
+  String getScheduleText(
+    bool show24Hour, {
+    bool displayInitialSchedule = false,
+  }) {
     RangedTimeModel timeModel =
-        (signedOutTimeRange != null)
+        (signedOutTimeRange != null && !displayInitialSchedule)
             ? scheduleTimeRange!.copyWith(
               startTime: signedOutTimeRange!.startTime,
               endTime: signedOutTimeRange!.endTime,

@@ -19,4 +19,5 @@ enum DataModel {
   appNotificationState,
   postModel,
   timeOffRequest,
+  dailyScheduleSignOutReview,
 }
