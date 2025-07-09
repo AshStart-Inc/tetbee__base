@@ -275,4 +275,17 @@ class ScheduleApi {
       docId: baseDate.toIsoDateString,
     );
   }
+
+  static Future<ApiResponse<String>> createWorkHourCalculationHistory(
+    String userId,
+    String placeId,
+    WorkHourCalculationHistory history,
+  ) async {
+    return await DatabaseService.write(
+      types: getDataTypes(DataModel.workHourCalculationHistory, docId: placeId),
+      dataModel: DataModel.workHourCalculationHistory,
+      userId: userId,
+      data: history.toJson(),
+    );
+  }
 }

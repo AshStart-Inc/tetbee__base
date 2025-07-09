@@ -1,5 +1,6 @@
 import 'package:tetbee__base/data_services/post/data/post_apis.dart';
 import 'package:tetbee__base/database_service/error_handling/api_error_handler_mixin.dart';
+import 'package:tetbee__base/models/chat/message_model.dart';
 import 'package:tetbee__base/models/post/post_model.dart';
 
 class PostDataSoruce with ApiErrorHandlerMixin {
@@ -13,5 +14,15 @@ class PostDataSoruce with ApiErrorHandlerMixin {
     Map<String, dynamic> updatedData,
   ) async {
     return execute(() => PostApi.updatePost(postModel, userId, updatedData));
+  }
+
+  Future<String> createPostComment(
+    MessageModel postComment,
+    String postId,
+    String userId,
+  ) async {
+    return execute(
+      () => PostApi.createPostComment(postComment, postId, userId),
+    );
   }
 }

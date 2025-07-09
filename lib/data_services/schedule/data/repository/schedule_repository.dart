@@ -191,4 +191,16 @@ class ScheduleRepository {
       dailyScheduleSignOutReview,
     );
   }
+
+  Future<String> createWorkHourCalculationHistory(
+    String userId,
+    String placeId,
+    WorkHourCalculationHistory history,
+  ) async {
+    return await ScheduleDataSource().createWorkHourCalculationHistory(
+      userId,
+      placeId,
+      history,
+    );
+  }
 }

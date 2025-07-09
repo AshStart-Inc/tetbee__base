@@ -18,6 +18,9 @@ enum DataModel {
   userWorkPlaceOrdinal,
   appNotificationState,
   postModel,
+  postComment,
   timeOffRequest,
   dailyScheduleSignOutReview,
+  workHourCalculationHistory,
+  feedbackForm,
 }

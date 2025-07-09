@@ -248,4 +248,19 @@ class ScheduleService with ApiServiceMixin {
       'Error while updateDailyScheduleSignOutReview',
     );
   }
+
+  Future<Either<Failure, String>> createWorkHourCalculationHistory(
+    String userId,
+    String placeId,
+    WorkHourCalculationHistory history,
+  ) async {
+    return execute(
+      () => ScheduleRepository().createWorkHourCalculationHistory(
+        userId,
+        placeId,
+        history,
+      ),
+      'Error while createWorkHourCalculationHistory',
+    );
+  }
 }

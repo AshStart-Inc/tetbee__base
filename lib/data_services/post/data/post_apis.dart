@@ -2,6 +2,7 @@ import 'package:tetbee__base/database_service/api_response.dart';
 import 'package:tetbee__base/database_service/data_model.dart';
 import 'package:tetbee__base/database_service/database_service.dart';
 import 'package:tetbee__base/database_service/get_data_types.dart';
+import 'package:tetbee__base/models/chat/message_model.dart';
 import 'package:tetbee__base/models/post/post_exports.dart';
 
 class PostApi {
@@ -29,6 +30,19 @@ class PostApi {
       updatedData: updatedData,
       userId: userId,
       docId: postModel.id!,
+    );
+  }
+
+  static Future<ApiResponse<String>> createPostComment(
+    MessageModel postComment,
+    String postId,
+    String userId,
+  ) async {
+    return await DatabaseService.write(
+      types: getDataTypes(DataModel.postComment, docId: postId),
+      dataModel: DataModel.postComment,
+      userId: userId,
+      data: postComment.toJson(),
     );
   }
 }

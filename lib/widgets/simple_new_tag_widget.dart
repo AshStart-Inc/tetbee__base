@@ -32,7 +32,7 @@ class SimpleNewTagWidget extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            title ?? 'N',
+            title ?? '',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: isSmallSize ? 5 : 10,

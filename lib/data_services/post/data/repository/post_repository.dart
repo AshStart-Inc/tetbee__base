@@ -1,4 +1,5 @@
 import 'package:tetbee__base/data_services/post/data/data_soruce/post_data_source.dart';
+import 'package:tetbee__base/models/chat/message_model.dart';
 import 'package:tetbee__base/models/post/post_model.dart';
 
 class PostRepository {
@@ -12,5 +13,17 @@ class PostRepository {
     Map<String, dynamic> updatedData,
   ) async {
     return await PostDataSoruce().updatePost(postModel, userId, updatedData);
+  }
+
+  Future<String> createPostComment(
+    MessageModel postComment,
+    String postId,
+    String userId,
+  ) async {
+    return await PostDataSoruce().createPostComment(
+      postComment,
+      postId,
+      userId,
+    );
   }
 }

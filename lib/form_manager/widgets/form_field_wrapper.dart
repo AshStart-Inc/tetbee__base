@@ -41,7 +41,7 @@ class FormFieldWrapper extends StatelessWidget {
         (usePlainFont
             ? Theme.of(context).textTheme.titleSmall!.copyWith(
               fontWeight: FontWeight.w500,
-              fontSize: 16,
+              fontSize: 14,
               color: color,
             )
             : Theme.of(context).textTheme.titleSmall!.copyWith(

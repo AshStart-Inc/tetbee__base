@@ -4,6 +4,7 @@ import 'package:tetbee__base/models/schedule/daily_schedule_sign_out_review/dail
 import 'package:tetbee__base/models/schedule/schedule_container.dart';
 import 'package:tetbee__base/models/schedule/time_off_request.dart';
 import 'package:tetbee__base/models/schedule/user_schedule.dart';
+import 'package:tetbee__base/models/schedule/work_hour_calculation_history.dart';
 import 'package:tetbee__base/models/schedule/work_place_preset_schedule_times.dart';
 import 'package:tetbee__base/models/user/temp_user_availabilities.dart';
 import 'package:tetbee__base/utils/enums.dart';
@@ -209,6 +210,20 @@ class ScheduleDataSource with ApiErrorHandlerMixin {
         userId,
         baseDate,
         dailyScheduleSignOutReview,
+      ),
+    );
+  }
+
+  Future<String> createWorkHourCalculationHistory(
+    String userId,
+    String placeId,
+    WorkHourCalculationHistory history,
+  ) async {
+    return execute(
+      () => ScheduleApi.createWorkHourCalculationHistory(
+        userId,
+        placeId,
+        history,
       ),
     );
   }

@@ -80,6 +80,12 @@ class Helpers {
   static DateTime? dateFromJsonIso(String? time) =>
       time?.isoDateStringToDateTime;
 
+  static List<String>? dateListToIsoJson(List<DateTime>? times) =>
+      times?.map((e) => e.toIsoDateString).toList();
+
+  static List<DateTime>? dateListFromStringJson(List<dynamic>? times) =>
+      times?.map((e) => dateFromJsonIso(e)!).toList();
+
   // List<DateTime> → List<int>
   static List<int> listDateToJson(List<DateTime> times) =>
       times.map((e) => e.toUtc().millisecondsSinceEpoch).toList();

@@ -1,7 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:tetbee__base/models/common/ranged_time_model.dart';
-import 'package:tetbee__base/models/schedule/daily_schedule.dart';
-import 'package:tetbee__base/utils/helper.dart';
+import 'package:tetbee__base/tetbee__base.dart';
 import 'package:uuid/uuid.dart';
 
 part 'user_schedule.freezed.dart';
@@ -31,6 +31,37 @@ class UserSchedule with _$UserSchedule {
 }
 
 extension UserScheduleExtension on UserSchedule {
+  bool get isAllScheduleSignedOut =>
+      schedules.values.where((dsce) => dsce.signedOutTimeRange == null).isEmpty;
+  int getTotalScheduleTimeInMinuteByPosition({
+    int scheduleTimeInterval = 15,
+    String? positionCode,
+  }) {
+    int minute = 0;
+    for (DailySchedule dsche
+        in (positionCode == null
+            ? schedules.values
+            : schedules.values.where(
+              (DailySchedule dsc) => dsc.positionCode == positionCode,
+            ))) {
+      TimeOfDay result =
+          (dsche.breakTimeRange == null)
+              ? dsche.signedOutTimeRange!.getTimeDifference()
+              : dsche.signedOutTimeRange!
+                  .getTimeDifference()
+                  .getTimeOfDayDifferenceAsTimeOfDay(
+                    dsche.breakTimeRange!.getTimeDifference(),
+                  );
+
+      minute +=
+          (((result.toMinute + (scheduleTimeInterval ~/ 2)) ~/
+                      scheduleTimeInterval) *
+                  scheduleTimeInterval)
+              .toInt();
+    }
+    return minute;
+  }
+
   String get userScheduleId => scheduleDate + userId!;
 
   List<DailySchedule> getSortedSchedules() {

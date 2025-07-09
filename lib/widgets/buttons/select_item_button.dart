@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tetbee__base/theme/theme_extension.dart';
 
 class SelectItemButton extends StatelessWidget {
   final String text;
@@ -54,8 +55,12 @@ class SelectItemButton extends StatelessWidget {
                     ? Center(
                       child: Text(
                         text,
-                        style: Theme.of(context).primaryTextTheme.bodySmall!
-                            .copyWith(fontWeight: FontWeight.bold),
+                        style: Theme.of(
+                          context,
+                        ).primaryTextTheme.bodySmall!.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).baseTextColor,
+                        ),
                         overflow: TextOverflow.ellipsis,
                       ),
                     )

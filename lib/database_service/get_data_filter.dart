@@ -78,8 +78,11 @@ List<String> getDataFilter(Map<String, dynamic> data, DataModel dataModel) {
     case DataModel.appNotificationState:
       return [];
     case DataModel.postModel:
-      PostModel userSchedule = PostModel.fromJson(data);
-      return [userSchedule.workPlaceId, ...userSchedule.selectedPositions];
+      PostModel postModel = PostModel.fromJson(data);
+      return [postModel.workPlaceId, ...postModel.selectedPositions];
+
+    case DataModel.postComment:
+      return [];
     case DataModel.timeOffRequest:
       TimeOffRequest timeOffRequest = TimeOffRequest.fromJson(data);
       if (timeOffRequest.endDate!
@@ -125,7 +128,12 @@ List<String> getDataFilter(Map<String, dynamic> data, DataModel dataModel) {
           ...months,
         ];
       }
+
     case DataModel.dailyScheduleSignOutReview:
+      return [];
+    case DataModel.workHourCalculationHistory:
+      return [];
+    case DataModel.feedbackForm:
       return [];
   }
 }
@@ -156,6 +164,7 @@ T parseData<T>(DocumentSnapshot<Object?> doc) {
           as T;
     case const (PositionModel):
       return PositionModel.fromJson(data).copyWith(id: doc.id) as T;
+
     case const (StoredData):
       return StoredData.fromJson(data).copyWith(id: doc.id) as T;
     case const (MessageModel):
@@ -177,6 +186,12 @@ T parseData<T>(DocumentSnapshot<Object?> doc) {
     case const (DailyScheduleSignOutReview):
       return DailyScheduleSignOutReview.fromJson(data).copyWith(id: doc.id)
           as T;
+    case const (WorkHourCalculationHistory):
+      return WorkHourCalculationHistory.fromJson(data).copyWith(id: doc.id)
+          as T;
+
+    case const (FeedbackForm):
+      return FeedbackForm.fromJson(data).copyWith(id: doc.id) as T;
     case const (Map<String, dynamic>):
       return {'id': doc.id, ...data} as T;
     default:

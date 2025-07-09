@@ -20,9 +20,13 @@ class AuthApi {
     );
   }
 
-  static Future<ApiResponse<UserModel?>> getUser(String id) async {
+  static Future<ApiResponse<UserModel?>> getUser(
+    String id, {
+    bool? deleted,
+  }) async {
     return await DatabaseService.read<UserModel>(
       types: getDataTypes(DataModel.userModel),
+
       docId: id,
     );
   }

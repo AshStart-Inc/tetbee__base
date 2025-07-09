@@ -29,6 +29,7 @@ class PostModel with _$PostModel {
     required String contents,
     @Default(false) bool commentDisabled,
     @Default(false) bool pined,
+    @Default(false) bool deleted,
     @Default([]) List<String> notificationPositionIds,
     @Default([]) List<String> selectedPositions,
     @Default([]) List<String> views,

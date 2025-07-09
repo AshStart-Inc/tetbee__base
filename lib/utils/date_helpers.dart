@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:tetbee__base/tetbee__base.dart';
 import 'package:timezone/timezone.dart' as tz;
 
@@ -225,21 +226,15 @@ class DateHelpers {
 
   static Color getWorkHourColor({
     required BuildContext context,
-    required DateTime startTime,
-    required DateTime endTime,
-    required int breakMinute,
+    required int hours,
   }) {
-    Duration worktime = endTime
-        .subtract(Duration(hours: 0, minutes: breakMinute))
-        .difference(startTime);
-
-    if (worktime.inHours >= 20) {
+    if (hours >= 20) {
       return Colors.red[900]!;
-    } else if (worktime.inHours >= 15) {
+    } else if (hours >= 15) {
       return Colors.pink[900]!;
-    } else if (worktime.inHours >= 10) {
+    } else if (hours >= 10) {
       return Colors.yellow[900]!;
-    } else if (worktime.inHours >= 5) {
+    } else if (hours >= 5) {
       return Colors.green[900]!;
     } else {
       return Theme.of(context).textTheme.headlineLarge!.color!.withOpacity(0.8);
@@ -248,10 +243,14 @@ class DateHelpers {
 }
 
 extension TimeOfDayExtension on TimeOfDay {
-  String formatTimeOfDay() {
-    final h = hour.toString().padLeft(2, '0');
-    final m = minute.toString().padLeft(2, '0');
-    return '$h:$m';
+  int get toMinute => hour * 60 + minute;
+  String formatTimeOfDay({bool show24Format = true}) {
+    final now = DateTime.now();
+    final dt = DateTime(now.year, now.month, now.day, hour, minute);
+
+    final format = show24Format ? DateFormat('HH:mm') : DateFormat('hh:mm a');
+
+    return format.format(dt);
   }
 
   TimeOfDay getTimeOfDayDifferenceAsTimeOfDay(TimeOfDay end) {

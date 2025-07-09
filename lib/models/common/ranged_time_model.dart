@@ -26,6 +26,18 @@ extension RangedTimeModelExtension on RangedTimeModel {
     endTime: DateHelpers.timeToLocalTime(endTime),
   );
 
+  String? getTimeRange({bool show24Format = true}) {
+    if (endTime == null && startTime == null) {
+      return null;
+    }
+    final format =
+        show24Format
+            ? DateFormat('HH:mm') // 24시간 형식
+            : DateFormat('hh:mm a'); // 12시간 형식 (AM/PM)
+
+    return '${format.format(startTime!)} ~ ${endTime == null ? '' : format.format(endTime!)}';
+  }
+
   String getTimeFormat(
     bool show24Hour, {
     bool isStartTime = true,

@@ -29,6 +29,24 @@ class DailySchedule with _$DailySchedule {
 }
 
 extension DailyScheduleExtension on DailySchedule {
+  bool get isStartTimeUpdated =>
+      scheduleTimeRange != null &&
+      signedOutTimeRange != null &&
+      scheduleTimeRange!.startTime != null &&
+      signedOutTimeRange!.startTime != null &&
+      (scheduleTimeRange!.startTime != signedOutTimeRange!.startTime);
+
+  bool get isEndTimeUpdated =>
+      scheduleTimeRange != null &&
+      signedOutTimeRange != null &&
+      scheduleTimeRange!.endTime != null &&
+      signedOutTimeRange!.endTime != null &&
+      (scheduleTimeRange!.endTime != signedOutTimeRange!.endTime);
+
+  bool get didHaveBreak =>
+      breakTimeRange != null &&
+      breakTimeRange!.startTime != null &&
+      breakTimeRange!.endTime != null;
   String getScheduleText(
     bool show24Hour, {
     bool displayInitialSchedule = false,

@@ -74,6 +74,11 @@ List<String> getDataTypes(
       return [dataModel.name];
     case DataModel.postModel:
       return [dataModel.name];
+    case DataModel.postComment:
+      return [
+        DataModel.postModel.name,
+        docId!, //post id
+      ];
     case DataModel.timeOffRequest:
       return [
         dataModel.name,
@@ -84,5 +89,12 @@ List<String> getDataTypes(
         dataModel.name,
         docId!, // place Id
       ];
+    case DataModel.workHourCalculationHistory:
+      return [
+        dataModel.name,
+        docId!, // place Id
+      ];
+    case DataModel.feedbackForm:
+      return [dataModel.name];
   }
 }

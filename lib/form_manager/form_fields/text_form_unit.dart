@@ -91,7 +91,7 @@ class _TextFormUnitState extends State<TextFormUnit> {
               },
               decoration: InputDecoration(
                 hint: Text(
-                  'Enter the ${formUnit.label}...',
+                  formUnit.hint ?? 'Enter the ${formUnit.label}...',
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
                     color: Theme.of(context).unselectedWidgetColor,
                   ),

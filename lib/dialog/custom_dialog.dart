@@ -106,7 +106,7 @@ class CustomDialog {
             height: height ?? 400,
             width: width ?? 300,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(radius ?? 30),
+              borderRadius: BorderRadius.circular(radius ?? 10),
               color: Theme.of(context).scaffoldBackgroundColor,
             ),
             child: Padding(padding: const EdgeInsets.all(4.0), child: widget),
@@ -327,60 +327,57 @@ void showCustomFormBottomSheet({
                   : Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      ...list!
-                          .map(
-                            (e) => InkWell(
-                              onTap: () {
-                                Navigator.pop(context);
-                                if (e.onTap != null) {
-                                  e.onTap!();
-                                } else {
-                                  Helpers.materialPageRoute(
-                                    context: context,
-                                    destination: e.destination!,
-                                  );
-                                }
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child:
-                                          e.prefixWidget ??
-                                          const SizedBox.shrink(),
-                                    ),
-                                    if (e.prefixIcon != null)
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Icon(e.prefixIcon),
-                                      ),
-                                    Text(e.text),
-                                    const Spacer(),
-                                    if (e.trailingWidget != null)
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: e.trailingWidget!,
-                                      ),
-                                    if (e.iconData != null)
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Icon(
-                                          e.iconData,
-                                          color:
-                                              Theme.of(
-                                                context,
-                                              ).colorScheme.secondary,
-                                        ),
-                                      ),
-                                  ],
+                      ...list!.map(
+                        (e) => InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                            if (e.onTap != null) {
+                              e.onTap!();
+                            } else {
+                              Helpers.materialPageRoute(
+                                context: context,
+                                destination: e.destination!,
+                              );
+                            }
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child:
+                                      e.prefixWidget ?? const SizedBox.shrink(),
                                 ),
-                              ),
+                                if (e.prefixIcon != null)
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Icon(e.prefixIcon),
+                                  ),
+                                Text(e.text),
+                                const Spacer(),
+                                if (e.trailingWidget != null)
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: e.trailingWidget!,
+                                  ),
+                                if (e.iconData != null)
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Icon(
+                                      e.iconData,
+                                      color:
+                                          Theme.of(
+                                            context,
+                                          ).colorScheme.secondary,
+                                    ),
+                                  ),
+                              ],
                             ),
-                          )
-                          ,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
             ],
@@ -410,20 +407,18 @@ void showCustomIconFormBottomSheet({
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: [
-              ...iconButtonModels
-                  .map(
-                    (e) => InkWell(
-                      onTap: () {
-                        Navigator.pop(context);
-                        Helpers.materialPageRoute(
-                          context: context,
-                          destination: e.destination,
-                        );
-                      },
-                      child: Icon(e.iconData),
-                    ),
-                  )
-                  ,
+              ...iconButtonModels.map(
+                (e) => InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                    Helpers.materialPageRoute(
+                      context: context,
+                      destination: e.destination,
+                    );
+                  },
+                  child: Icon(e.iconData),
+                ),
+              ),
             ],
           ),
         ),

@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:tetbee__base/models/common/updated_ranged_time_model.dart';
 import 'package:tetbee__base/utils/helper.dart';
 
 part 'schedule_confirm_history.freezed.dart';
@@ -14,8 +15,8 @@ class ScheduleConfirmHistory with _$ScheduleConfirmHistory {
     @Default('') String createdBy,
     String? comment,
     String? updatedReason,
-    String? signOutTimeUpdateLog,
-    String? breakTimeUpdateLog,
+    UpdatedRangedTimeModel? signOutTimeUpdateTimeLog,
+    UpdatedRangedTimeModel? breakTimeUpdateTimeLog,
   }) = _ScheduleConfirmHistory;
 
   factory ScheduleConfirmHistory.fromJson(Map<String, dynamic> json) =>
