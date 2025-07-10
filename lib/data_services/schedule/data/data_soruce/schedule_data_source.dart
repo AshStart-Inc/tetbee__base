@@ -31,6 +31,22 @@ class ScheduleDataSource with ApiErrorHandlerMixin {
     return execute(() => ScheduleApi.getScheduleContainer(placeId, startDate));
   }
 
+  Future<bool> updateScheduleContainer(
+    String placeId,
+    String userId,
+    ScheduleContainer baseDate,
+    Map<String, dynamic>? updatedData,
+  ) async {
+    return execute(
+      () => ScheduleApi.updateScheduleContainer(
+        placeId,
+        userId,
+        baseDate,
+        updatedData,
+      ),
+    );
+  }
+
   Future<String> createWorkPlacePresetTime(
     String placeId,
     String userId,
@@ -77,6 +93,20 @@ class ScheduleDataSource with ApiErrorHandlerMixin {
     UserSchedule userSchedule,
   ) async {
     return execute(() => ScheduleApi.updateUserSchedule(userId, userSchedule));
+  }
+
+  Future<List<UserSchedule>> getSingleUserSchedulesForScheduleContainer(
+    String workPlaceId,
+    String scheduleUserId,
+    String scheduleContainerId,
+  ) async {
+    return execute(
+      () => ScheduleApi.getSingleUserSchedulesForScheduleContainer(
+        workPlaceId,
+        scheduleUserId,
+        scheduleContainerId,
+      ),
+    );
   }
 
   Future<List<UserSchedule>> getUserSchedulesForScheduleContainer(

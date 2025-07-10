@@ -53,7 +53,7 @@ class DatabaseService {
     data['archived'] = false;
     if (useFilter) {
       List<String> filters = [];
-      filters.addAll(getDataFilter(data, dataModel));
+      filters.addAll(await getDataFilter(data, dataModel));
       data[filtersKey] = filters;
     }
     try {
@@ -110,15 +110,20 @@ class DatabaseService {
     required List<String> ids,
   }) async {
     try {
-      final snapshot =
-          await FirebaseFirestore.instance
-              .collection(DatabaseService.generatePath(types: types))
-              .where(FieldPath.documentId, whereIn: ids)
-              .get();
-      return ApiResponse<List<T>>(
-        data: [...snapshot.docs.map((doc) => parseData<T>(doc))],
-        statusCode: HttpStatus.ok,
-      );
+      final chunks = _chunkList(ids, 10);
+      final List<T> allResults = [];
+
+      for (final chunk in chunks) {
+        final snapshot =
+            await FirebaseFirestore.instance
+                .collection(DatabaseService.generatePath(types: types))
+                .where(FieldPath.documentId, whereIn: chunk)
+                .get();
+
+        allResults.addAll(snapshot.docs.map((doc) => parseData<T>(doc)));
+      }
+
+      return ApiResponse(data: allResults, statusCode: HttpStatus.ok);
     } catch (error) {
       return ApiResponse(
         data: null,
@@ -126,6 +131,13 @@ class DatabaseService {
         message: error.toString(),
       );
     }
+  }
+
+  static List<List<T>> _chunkList<T>(List<T> list, int chunkSize) {
+    return List.generate(
+      (list.length / chunkSize).ceil(),
+      (i) => list.skip(i * chunkSize).take(chunkSize).toList(),
+    );
   }
 
   static Future<ApiResponse<List<T>>> getAllDocuments<T>({
@@ -176,7 +188,7 @@ class DatabaseService {
       data['updatedBy'] = userId;
       if (useFilter) {
         List<String> filters = [];
-        filters.addAll(getDataFilter(baseData, dataModel));
+        filters.addAll(await getDataFilter(baseData, dataModel));
         data[filtersKey] = filters;
       }
       if (useTransaction) {

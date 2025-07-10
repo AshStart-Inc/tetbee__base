@@ -8,7 +8,6 @@ export 'additional_info_widget.dart';
 export 'container_date_section.dart';
 export 'screen_list_section/screen_list_section.dart';
 export 'custom_search_bar.dart';
-export 'select_user_widget.dart';
 export 'filter_dropdown.dart';
 export 'search_name_bar.dart';
 export 'comment_widget.dart';

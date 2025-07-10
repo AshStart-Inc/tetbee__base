@@ -7,7 +7,8 @@ import 'package:tetbee__base/models/common/phone_number_model.dart';
 import 'package:tetbee__base/models/common/time_zone_model.dart';
 import 'package:tetbee__base/models/work_place/google_place_model.dart';
 import 'package:tetbee__base/models/work_place/position_model.dart';
-import 'package:tetbee__base/models/work_place/user_work_place_ordinal.dart';
+import 'package:tetbee__base/models/work_place/user_work_place_info.dart';
+
 import 'package:tetbee__base/utils/helper.dart';
 
 part 'work_place.freezed.dart';
@@ -44,14 +45,11 @@ class WorkPlace with _$WorkPlace {
     PhoneNumberModel? secondaryPhoneNumber,
     @Default('') String workPlaceTypeId,
     @Default(TimeZoneModel()) TimeZoneModel timeZone,
-    // @Default([]) List<String> ownersIds,
-    // @Default({}) Map<String, int> joinedUsersOrdinal,
+
     @Default([]) List<PositionModel> positions,
-    @JsonKey(ignore: true) @Default([]) List<UserWorkPlaceOrdinal> ordinals,
+    @JsonKey(ignore: true) @Default([]) List<UserWorkPlaceInfo> ordinals,
     @Default(AvailabilityReceiverSetting())
     AvailabilityReceiverSetting availabilityReceiverDefaultSetting,
-    // @Default([]) List<RangedTimeModel> openingTimes,
-    // @Default([]) List<RangedTimeModel> availabilityTimes,
   }) = _WorkPlace;
 
   factory WorkPlace.fromJson(Map<String, dynamic> json) =>

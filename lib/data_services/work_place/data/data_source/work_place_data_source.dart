@@ -3,7 +3,6 @@ import 'package:tetbee__base/database_service/database_exports.dart';
 import 'package:tetbee__base/models/models.dart';
 import 'package:tetbee__base/models/work_place/remove_user_form_work_place_request.dart';
 import 'package:tetbee__base/models/work_place/update_work_place_user_info.dart';
-import 'package:tetbee__base/models/work_place/user_work_place_ordinal.dart';
 
 class WorkPlaceDataSource with ApiErrorHandlerMixin {
   Future<String> createWorkPlace(WorkPlace workPlace, String userId) async {
@@ -58,19 +57,18 @@ class WorkPlaceDataSource with ApiErrorHandlerMixin {
     );
   }
 
-  Future<List<UserWorkPlaceOrdinal>> getUserWorkPlaceOrdinal(
-    String placeId,
-  ) async {
-    return execute(() => workPlaceApi.getUserWorkPlaceOrdinal(placeId));
+  Future<List<UserWorkPlaceInfo>> getUserWorkPlaceInfo(String placeId) async {
+    return execute(() => workPlaceApi.getUserWorkPlaceInfo(placeId));
   }
 
-  Future<bool> updatePlaceUserOrdinals(
+  Future<bool> updatePlaceUserWorkPlaceInfo(
     String placeId,
     String userId,
-    List<UserWorkPlaceOrdinal> ordinals,
+    List<UserWorkPlaceInfo> ordinals,
   ) async {
     return execute(
-      () => workPlaceApi.updatePlaceUserOrdinals(placeId, userId, ordinals),
+      () =>
+          workPlaceApi.updatePlaceUserWorkPlaceInfo(placeId, userId, ordinals),
     );
   }
 }

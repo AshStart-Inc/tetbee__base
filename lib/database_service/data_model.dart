@@ -3,6 +3,7 @@ enum DataModel {
   userModel,
   tempUserAvailabilities,
   workPlace,
+  userWorkPlaceInfo,
   placePosition,
   availabilityReceiver,
   scheduleContainer,
@@ -15,7 +16,6 @@ enum DataModel {
   notificationCenter,
   appNotification,
   storedData,
-  userWorkPlaceOrdinal,
   appNotificationState,
   postModel,
   postComment,
@@ -23,4 +23,5 @@ enum DataModel {
   dailyScheduleSignOutReview,
   workHourCalculationHistory,
   feedbackForm,
+  userWorkPlaceRelation,
 }

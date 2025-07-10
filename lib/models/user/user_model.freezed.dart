@@ -48,9 +48,13 @@ mixin _$UserModel {
   String? get defaultProfilePictureUrl => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get dateOfBirth => throw _privateConstructorUsedError;
-  List<UserWorkPlaceRelation> get userWorkPlaceRelation =>
+  @JsonKey(ignore: true)
+  Map<String, UserWorkPlaceRelation> get userWorkPlaceRelation =>
       throw _privateConstructorUsedError;
   UserSettings get userSettings => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  UserWorkPlaceInfo? get userWorkPlaceInfo =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this UserModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -93,8 +97,10 @@ abstract class $UserModelCopyWith<$Res> {
     String? defaultProfilePictureUrl,
     String? email,
     String? dateOfBirth,
-    List<UserWorkPlaceRelation> userWorkPlaceRelation,
+    @JsonKey(ignore: true)
+    Map<String, UserWorkPlaceRelation> userWorkPlaceRelation,
     UserSettings userSettings,
+    @JsonKey(ignore: true) UserWorkPlaceInfo? userWorkPlaceInfo,
   });
 
   $PhoneNumberModelCopyWith<$Res>? get primaryPhoneNumber;
@@ -102,6 +108,7 @@ abstract class $UserModelCopyWith<$Res> {
   $EmergnecyContactCopyWith<$Res>? get emergencyContact;
   $AddressModelCopyWith<$Res>? get addressModel;
   $UserSettingsCopyWith<$Res> get userSettings;
+  $UserWorkPlaceInfoCopyWith<$Res>? get userWorkPlaceInfo;
 }
 
 /// @nodoc
@@ -144,6 +151,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? dateOfBirth = freezed,
     Object? userWorkPlaceRelation = null,
     Object? userSettings = null,
+    Object? userWorkPlaceInfo = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -266,12 +274,17 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                 null == userWorkPlaceRelation
                     ? _value.userWorkPlaceRelation
                     : userWorkPlaceRelation // ignore: cast_nullable_to_non_nullable
-                        as List<UserWorkPlaceRelation>,
+                        as Map<String, UserWorkPlaceRelation>,
             userSettings:
                 null == userSettings
                     ? _value.userSettings
                     : userSettings // ignore: cast_nullable_to_non_nullable
                         as UserSettings,
+            userWorkPlaceInfo:
+                freezed == userWorkPlaceInfo
+                    ? _value.userWorkPlaceInfo
+                    : userWorkPlaceInfo // ignore: cast_nullable_to_non_nullable
+                        as UserWorkPlaceInfo?,
           )
           as $Val,
     );
@@ -344,6 +357,20 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
       return _then(_value.copyWith(userSettings: value) as $Val);
     });
   }
+
+  /// Create a copy of UserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserWorkPlaceInfoCopyWith<$Res>? get userWorkPlaceInfo {
+    if (_value.userWorkPlaceInfo == null) {
+      return null;
+    }
+
+    return $UserWorkPlaceInfoCopyWith<$Res>(_value.userWorkPlaceInfo!, (value) {
+      return _then(_value.copyWith(userWorkPlaceInfo: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -381,8 +408,10 @@ abstract class _$$UserModelImplCopyWith<$Res>
     String? defaultProfilePictureUrl,
     String? email,
     String? dateOfBirth,
-    List<UserWorkPlaceRelation> userWorkPlaceRelation,
+    @JsonKey(ignore: true)
+    Map<String, UserWorkPlaceRelation> userWorkPlaceRelation,
     UserSettings userSettings,
+    @JsonKey(ignore: true) UserWorkPlaceInfo? userWorkPlaceInfo,
   });
 
   @override
@@ -395,6 +424,8 @@ abstract class _$$UserModelImplCopyWith<$Res>
   $AddressModelCopyWith<$Res>? get addressModel;
   @override
   $UserSettingsCopyWith<$Res> get userSettings;
+  @override
+  $UserWorkPlaceInfoCopyWith<$Res>? get userWorkPlaceInfo;
 }
 
 /// @nodoc
@@ -436,6 +467,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? dateOfBirth = freezed,
     Object? userWorkPlaceRelation = null,
     Object? userSettings = null,
+    Object? userWorkPlaceInfo = freezed,
   }) {
     return _then(
       _$UserModelImpl(
@@ -558,12 +590,17 @@ class __$$UserModelImplCopyWithImpl<$Res>
             null == userWorkPlaceRelation
                 ? _value._userWorkPlaceRelation
                 : userWorkPlaceRelation // ignore: cast_nullable_to_non_nullable
-                    as List<UserWorkPlaceRelation>,
+                    as Map<String, UserWorkPlaceRelation>,
         userSettings:
             null == userSettings
                 ? _value.userSettings
                 : userSettings // ignore: cast_nullable_to_non_nullable
                     as UserSettings,
+        userWorkPlaceInfo:
+            freezed == userWorkPlaceInfo
+                ? _value.userWorkPlaceInfo
+                : userWorkPlaceInfo // ignore: cast_nullable_to_non_nullable
+                    as UserWorkPlaceInfo?,
       ),
     );
   }
@@ -599,8 +636,10 @@ class _$UserModelImpl implements _UserModel {
     this.defaultProfilePictureUrl,
     this.email,
     this.dateOfBirth,
-    final List<UserWorkPlaceRelation> userWorkPlaceRelation = const [],
+    @JsonKey(ignore: true)
+    final Map<String, UserWorkPlaceRelation> userWorkPlaceRelation = const {},
     required this.userSettings,
+    @JsonKey(ignore: true) this.userWorkPlaceInfo,
   }) : _filters = filters,
        _userWorkPlaceRelation = userWorkPlaceRelation;
 
@@ -673,22 +712,25 @@ class _$UserModelImpl implements _UserModel {
   final String? email;
   @override
   final String? dateOfBirth;
-  final List<UserWorkPlaceRelation> _userWorkPlaceRelation;
+  final Map<String, UserWorkPlaceRelation> _userWorkPlaceRelation;
   @override
-  @JsonKey()
-  List<UserWorkPlaceRelation> get userWorkPlaceRelation {
-    if (_userWorkPlaceRelation is EqualUnmodifiableListView)
+  @JsonKey(ignore: true)
+  Map<String, UserWorkPlaceRelation> get userWorkPlaceRelation {
+    if (_userWorkPlaceRelation is EqualUnmodifiableMapView)
       return _userWorkPlaceRelation;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_userWorkPlaceRelation);
+    return EqualUnmodifiableMapView(_userWorkPlaceRelation);
   }
 
   @override
   final UserSettings userSettings;
+  @override
+  @JsonKey(ignore: true)
+  final UserWorkPlaceInfo? userWorkPlaceInfo;
 
   @override
   String toString() {
-    return 'UserModel(id: $id, createdAt: $createdAt, createdBy: $createdBy, updatedAt: $updatedAt, updatedBy: $updatedBy, filters: $filters, deleted: $deleted, didWatchOnboarding: $didWatchOnboarding, didRateApp: $didRateApp, isTempUser: $isTempUser, firstName: $firstName, middleName: $middleName, lastName: $lastName, nickName: $nickName, preferShowNickName: $preferShowNickName, primaryPhoneNumber: $primaryPhoneNumber, secondaryPhoneNumber: $secondaryPhoneNumber, emergencyContact: $emergencyContact, addressModel: $addressModel, gender: $gender, defaultProfilePictureUrl: $defaultProfilePictureUrl, email: $email, dateOfBirth: $dateOfBirth, userWorkPlaceRelation: $userWorkPlaceRelation, userSettings: $userSettings)';
+    return 'UserModel(id: $id, createdAt: $createdAt, createdBy: $createdBy, updatedAt: $updatedAt, updatedBy: $updatedBy, filters: $filters, deleted: $deleted, didWatchOnboarding: $didWatchOnboarding, didRateApp: $didRateApp, isTempUser: $isTempUser, firstName: $firstName, middleName: $middleName, lastName: $lastName, nickName: $nickName, preferShowNickName: $preferShowNickName, primaryPhoneNumber: $primaryPhoneNumber, secondaryPhoneNumber: $secondaryPhoneNumber, emergencyContact: $emergencyContact, addressModel: $addressModel, gender: $gender, defaultProfilePictureUrl: $defaultProfilePictureUrl, email: $email, dateOfBirth: $dateOfBirth, userWorkPlaceRelation: $userWorkPlaceRelation, userSettings: $userSettings, userWorkPlaceInfo: $userWorkPlaceInfo)';
   }
 
   @override
@@ -745,7 +787,9 @@ class _$UserModelImpl implements _UserModel {
               _userWorkPlaceRelation,
             ) &&
             (identical(other.userSettings, userSettings) ||
-                other.userSettings == userSettings));
+                other.userSettings == userSettings) &&
+            (identical(other.userWorkPlaceInfo, userWorkPlaceInfo) ||
+                other.userWorkPlaceInfo == userWorkPlaceInfo));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -777,6 +821,7 @@ class _$UserModelImpl implements _UserModel {
     dateOfBirth,
     const DeepCollectionEquality().hash(_userWorkPlaceRelation),
     userSettings,
+    userWorkPlaceInfo,
   ]);
 
   /// Create a copy of UserModel
@@ -820,8 +865,10 @@ abstract class _UserModel implements UserModel {
     final String? defaultProfilePictureUrl,
     final String? email,
     final String? dateOfBirth,
-    final List<UserWorkPlaceRelation> userWorkPlaceRelation,
+    @JsonKey(ignore: true)
+    final Map<String, UserWorkPlaceRelation> userWorkPlaceRelation,
     required final UserSettings userSettings,
+    @JsonKey(ignore: true) final UserWorkPlaceInfo? userWorkPlaceInfo,
   }) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
@@ -876,9 +923,13 @@ abstract class _UserModel implements UserModel {
   @override
   String? get dateOfBirth;
   @override
-  List<UserWorkPlaceRelation> get userWorkPlaceRelation;
+  @JsonKey(ignore: true)
+  Map<String, UserWorkPlaceRelation> get userWorkPlaceRelation;
   @override
   UserSettings get userSettings;
+  @override
+  @JsonKey(ignore: true)
+  UserWorkPlaceInfo? get userWorkPlaceInfo;
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.

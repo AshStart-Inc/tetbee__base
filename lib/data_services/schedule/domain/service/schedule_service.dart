@@ -31,6 +31,23 @@ class ScheduleService with ApiServiceMixin {
     );
   }
 
+  Future<Either<Failure, bool>> updateScheduleContainer(
+    String placeId,
+    String userId,
+    ScheduleContainer baseDate, {
+    Map<String, dynamic>? updatedData,
+  }) async {
+    return execute(
+      () => ScheduleRepository().updateScheduleContainer(
+        placeId,
+        userId,
+        baseDate,
+        updatedData,
+      ),
+      'Error while getScheduleContainer',
+    );
+  }
+
   Future<Either<Failure, String>> createWorkPlacePresetTime(
     String placeId,
     String userId,
@@ -88,6 +105,22 @@ class ScheduleService with ApiServiceMixin {
     return execute(
       () => ScheduleRepository().updateUserSchedule(userId, userSchedule),
       'Error while updateUserSchedule',
+    );
+  }
+
+  Future<Either<Failure, List<UserSchedule>>>
+  getSingleUserSchedulesForScheduleContainer(
+    String workPlaceId,
+    String scheduleUserId,
+    String scheduleContainerId,
+  ) async {
+    return execute(
+      () => ScheduleRepository().getSingleUserSchedulesForScheduleContainer(
+        workPlaceId,
+        scheduleUserId,
+        scheduleContainerId,
+      ),
+      'Error while getSingleUserSchedulesForScheduleContainer',
     );
   }
 

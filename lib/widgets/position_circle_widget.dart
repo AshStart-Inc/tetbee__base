@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tetbee__base/models/work_place/position_model.dart';
+import 'package:tetbee__base/theme/theme_extension.dart';
 
 class PositionCricleWidget extends StatelessWidget {
   final double? size;
@@ -19,7 +20,7 @@ class PositionCricleWidget extends StatelessWidget {
     return showFullName
         ? Container(
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.white),
+            border: Border.all(color: Theme.of(context).baseTextColor),
             boxShadow: [
               BoxShadow(
                 color: Theme.of(
@@ -38,6 +39,7 @@ class PositionCricleWidget extends StatelessWidget {
               showFullName ? positionModel.name : positionModel.name[0],
               style: Theme.of(context).primaryTextTheme.labelSmall!.copyWith(
                 fontWeight: FontWeight.bold,
+                color: Colors.white,
                 fontSize:
                     fontSize ??
                     (!showFullName || positionModel.name.length < 8 ? 8 : 7),
@@ -58,6 +60,7 @@ class PositionCricleWidget extends StatelessWidget {
               showFullName ? positionModel.name : positionModel.name[0],
               style: Theme.of(context).primaryTextTheme.displayMedium!.copyWith(
                 fontWeight: FontWeight.bold,
+                color: Colors.white,
                 fontSize: 10,
               ),
             ),

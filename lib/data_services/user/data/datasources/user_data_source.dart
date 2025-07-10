@@ -43,4 +43,46 @@ class UserDataSource with ApiErrorHandlerMixin {
       ),
     );
   }
+
+  Future<List<UserWorkPlaceRelation>> getUserWorkPlaceRelation(
+    String userId, {
+    bool? active,
+  }) async {
+    return execute(
+      () => UserApi.getUserWorkPlaceRelation(userId, active: active),
+    );
+  }
+
+  Future<UserWorkPlaceRelation?> getUserWorkPlaceRelationForSingleWorkPlace(
+    String userId,
+    String workPlaceId,
+  ) async {
+    return execute(
+      () => UserApi.getUserWorkPlaceRelationForSingleWorkPlace(
+        userId,
+        workPlaceId,
+      ),
+    );
+  }
+
+  Future<UserWorkPlaceInfo?> getUserWorkPlaceInfo(
+    String userId,
+    String workPlaceId,
+  ) async {
+    return execute(() => UserApi.getUserWorkPlaceInfo(userId, workPlaceId));
+  }
+
+  Future<List<UserWorkPlaceInfo>> getWorkPlaceUserUserWorkPlaceInfos(
+    String placeId,
+    bool withTempUser,
+    bool onlyTempUser,
+  ) async {
+    return execute(
+      () => UserApi.getWorkPlaceUserUserWorkPlaceInfos(
+        placeId,
+        withTempUser,
+        onlyTempUser,
+      ),
+    );
+  }
 }

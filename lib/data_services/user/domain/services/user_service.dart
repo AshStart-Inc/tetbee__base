@@ -55,4 +55,54 @@ class UserService with ApiServiceMixin {
       'Error while createTempUser ',
     );
   }
+
+  Future<Either<Failure, List<UserWorkPlaceRelation>>> getUserWorkPlaceRelation(
+    String userId, {
+    bool? active,
+  }) async {
+    return execute(
+      () => userRepository.getUserWorkPlaceRelation(userId, active: active),
+      'Error while getUserWorkPlaceRelation ',
+    );
+  }
+
+  Future<Either<Failure, UserWorkPlaceRelation?>>
+  getUserWorkPlaceRelationForSingleWorkPlace(
+    String userId,
+    String workPlaceId,
+  ) async {
+    return execute(
+      () => userRepository.getUserWorkPlaceRelationForSingleWorkPlace(
+        userId,
+        workPlaceId,
+      ),
+      'Error while getUserWorkPlaceRelationForSingleWorkPlace ',
+    );
+  }
+
+  Future<Either<Failure, UserWorkPlaceInfo?>> getUserWorkPlaceInfo(
+    String userId,
+    String workPlaceId,
+  ) async {
+    return execute(
+      () => userRepository.getUserWorkPlaceInfo(userId, workPlaceId),
+      'Error while getUserWorkPlaceInfo ',
+    );
+  }
+
+  Future<Either<Failure, List<UserWorkPlaceInfo>>>
+  getWorkPlaceUserUserWorkPlaceInfos(
+    String placeId, {
+    bool withTempUser = true,
+    bool onlyTempUser = false,
+  }) async {
+    return execute(
+      () => userRepository.getWorkPlaceUserUserWorkPlaceInfos(
+        placeId,
+        withTempUser,
+        onlyTempUser,
+      ),
+      'Error while getWorkPlaceUserUserWorkPlaceInfos ',
+    );
+  }
 }

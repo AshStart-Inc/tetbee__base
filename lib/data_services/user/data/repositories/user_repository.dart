@@ -43,4 +43,40 @@ class UserRepository {
       userId,
     );
   }
+
+  Future<List<UserWorkPlaceRelation>> getUserWorkPlaceRelation(
+    String userId, {
+    bool? active,
+  }) async {
+    return userDataSource.getUserWorkPlaceRelation(userId, active: active);
+  }
+
+  Future<UserWorkPlaceRelation?> getUserWorkPlaceRelationForSingleWorkPlace(
+    String userId,
+    String workPlaceId,
+  ) async {
+    return userDataSource.getUserWorkPlaceRelationForSingleWorkPlace(
+      userId,
+      workPlaceId,
+    );
+  }
+
+  Future<UserWorkPlaceInfo?> getUserWorkPlaceInfo(
+    String userId,
+    String workPlaceId,
+  ) async {
+    return userDataSource.getUserWorkPlaceInfo(userId, workPlaceId);
+  }
+
+  Future<List<UserWorkPlaceInfo>> getWorkPlaceUserUserWorkPlaceInfos(
+    String placeId,
+    bool withTempUser,
+    bool onlyTempUser,
+  ) async {
+    return userDataSource.getWorkPlaceUserUserWorkPlaceInfos(
+      placeId,
+      withTempUser,
+      onlyTempUser,
+    );
+  }
 }

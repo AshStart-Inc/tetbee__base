@@ -23,6 +23,20 @@ class ScheduleRepository {
     return await ScheduleDataSource().getScheduleContainer(placeId, startDate);
   }
 
+  Future<bool> updateScheduleContainer(
+    String placeId,
+    String userId,
+    ScheduleContainer baseDate,
+    Map<String, dynamic>? updatedData,
+  ) async {
+    return await ScheduleDataSource().updateScheduleContainer(
+      placeId,
+      userId,
+      baseDate,
+      updatedData,
+    );
+  }
+
   Future<String> createWorkPlacePresetTime(
     String placeId,
     String userId,
@@ -64,6 +78,19 @@ class ScheduleRepository {
     UserSchedule userSchedule,
   ) async {
     return await ScheduleDataSource().updateUserSchedule(userId, userSchedule);
+  }
+
+  Future<List<UserSchedule>> getSingleUserSchedulesForScheduleContainer(
+    String workPlaceId,
+    String scheduleUserId,
+    String scheduleContainerId,
+  ) async {
+    return await ScheduleDataSource()
+        .getSingleUserSchedulesForScheduleContainer(
+          workPlaceId,
+          scheduleUserId,
+          scheduleContainerId,
+        );
   }
 
   Future<List<UserSchedule>> getUserSchedulesForScheduleContainer(

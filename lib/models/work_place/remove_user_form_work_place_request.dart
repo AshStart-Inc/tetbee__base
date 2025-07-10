@@ -12,7 +12,7 @@ class RemoveUserFormWorkPlaceRequest with _$RemoveUserFormWorkPlaceRequest {
     required bool isTempUser,
     required String currentUserId,
     required String workPlaceId,
-    required List<UserWorkPlaceRelation> updatedUserWorkPlaceRelation,
+    required UserWorkPlaceRelation updatedUserWorkPlaceRelation,
     required List<String> notificationPositionIds,
   }) = _RemoveUserFormWorkPlaceRequest;
 

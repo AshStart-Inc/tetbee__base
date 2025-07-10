@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:tetbee__base/database_service/database_exports.dart';
 import 'package:tetbee__base/models/models.dart';
 import 'package:tetbee__base/models/user/temp_user_availabilities.dart';
-import 'package:tetbee__base/models/work_place/user_work_place_ordinal.dart';
 
 class UserApi {
   static Future<ApiResponse<List<UserModel>>> getSelectedUsers(
@@ -63,17 +62,12 @@ class UserApi {
     List<String> positionIds,
     String userId,
   ) async {
-    UserModel updatedUser = userModel.copyWith(
-      userWorkPlaceRelation: [
-        UserWorkPlaceRelation(
-          isActive: true,
-          isSelected: true,
-          workPlaceId: workPlace.id!,
-          workPlaceNickName: userModel.nickName,
-          positions: positionIds,
-          joinedAt: DateTime.now(),
-        ),
-      ],
+    UserModel updatedUser = userModel;
+    UserWorkPlaceRelation relation = UserWorkPlaceRelation(
+      isActive: true,
+      isSelected: true,
+      workPlaceId: workPlace.id!,
+      joinedAt: DateTime.now(),
     );
     //create user
     TransactionDataModel createTempUser =
@@ -81,8 +75,21 @@ class UserApi {
           types: getDataTypes(DataModel.userModel),
           dataModelEnum: DataModel.userModel,
           userId: userId,
-          filters: getDataFilter(updatedUser.toJson(), DataModel.userModel),
+          filters: [workPlace.id!, ...positionIds],
           dataModel: updatedUser.toJson(),
+          docId: userModel.id,
+        );
+
+    //create user work place relation
+    TransactionDataModel createTempUserWrokPlaceRelation =
+        TransactionDataModel.getDocumentTransactionDataForWrite(
+          types: getDataTypes(
+            DataModel.userWorkPlaceRelation,
+            docId: userModel.id,
+          ),
+          dataModelEnum: DataModel.userWorkPlaceRelation,
+          userId: userId,
+          dataModel: relation.toJson(),
           docId: userModel.id,
         );
     //create templ user av
@@ -104,26 +111,87 @@ class UserApi {
 
     final aggregateQuery = childrenRef.count();
     final snapshot = await aggregateQuery.get();
-    TransactionDataModel creaeteUserWorkPlaceOrdinal =
+    TransactionDataModel creaeteUserWorkPlaceInfo =
         TransactionDataModel.getDocumentTransactionDataForWrite(
-          types: getDataTypes(
-            DataModel.userWorkPlaceOrdinal,
-            docId: workPlace.id,
-          ),
-          dataModelEnum: DataModel.userWorkPlaceOrdinal,
+          types: getDataTypes(DataModel.userWorkPlaceInfo, docId: workPlace.id),
+          dataModelEnum: DataModel.userWorkPlaceInfo,
           userId: userId,
           dataModel:
-              UserWorkPlaceOrdinal(
+              UserWorkPlaceInfo(
+                isTempUser: true,
                 id: userModel.id!,
                 ordinal: snapshot.count!,
+                workPlaceNickName: userModel.nickName,
+                positions: positionIds,
               ).toJson(),
-          docId: userModel.id,
+          docId: userModel.id!,
         );
 
     return await TransactionDataModel.run([
       createTempUser,
+      createTempUserWrokPlaceRelation,
       createTempUserAv,
-      creaeteUserWorkPlaceOrdinal,
+      creaeteUserWorkPlaceInfo,
     ]);
+  }
+
+  static Future<ApiResponse<List<UserWorkPlaceRelation>>>
+  getUserWorkPlaceRelation(String userId, {bool? active}) async {
+    return DatabaseService.getAllDocuments<UserWorkPlaceRelation>(
+      types: getDataTypes(DataModel.userWorkPlaceRelation, docId: userId),
+      queryBuilder:
+          (path) =>
+              active == null
+                  ? FirebaseFirestore.instance.collection(path).get()
+                  : FirebaseFirestore.instance
+                      .collection(path)
+                      .where('isActive', isEqualTo: active)
+                      .get(),
+    );
+  }
+
+  static Future<ApiResponse<UserWorkPlaceRelation?>>
+  getUserWorkPlaceRelationForSingleWorkPlace(
+    String userId,
+    String workPlaceId,
+  ) async {
+    return await DatabaseService.read<UserWorkPlaceRelation>(
+      types: getDataTypes(DataModel.userWorkPlaceRelation, docId: userId),
+      docId: workPlaceId,
+    );
+  }
+
+  static Future<ApiResponse<UserWorkPlaceInfo?>> getUserWorkPlaceInfo(
+    String userId,
+    String workPlaceId,
+  ) async {
+    return await DatabaseService.read<UserWorkPlaceInfo>(
+      types: getDataTypes(DataModel.userWorkPlaceInfo, docId: workPlaceId),
+      docId: userId,
+    );
+  }
+
+  static Future<ApiResponse<List<UserWorkPlaceInfo>>>
+  getWorkPlaceUserUserWorkPlaceInfos(
+    String placeId,
+    bool withTempUser,
+    bool onlyTempUser,
+  ) async {
+    return DatabaseService.getAllDocuments<UserWorkPlaceInfo>(
+      types: getDataTypes(DataModel.userWorkPlaceInfo, docId: placeId),
+      queryBuilder:
+          (path) =>
+              onlyTempUser
+                  ? FirebaseFirestore.instance
+                      .collection(path)
+                      .where('isTempUser', isEqualTo: true)
+                      .get()
+                  : withTempUser
+                  ? FirebaseFirestore.instance.collection(path).get()
+                  : FirebaseFirestore.instance
+                      .collection(path)
+                      .where('isTempUser', isEqualTo: false)
+                      .get(),
+    );
   }
 }

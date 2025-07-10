@@ -48,12 +48,10 @@ mixin _$WorkPlace {
   PhoneNumberModel? get secondaryPhoneNumber =>
       throw _privateConstructorUsedError;
   String get workPlaceTypeId => throw _privateConstructorUsedError;
-  TimeZoneModel get timeZone =>
-      throw _privateConstructorUsedError; // @Default([]) List<String> ownersIds,
-  // @Default({}) Map<String, int> joinedUsersOrdinal,
+  TimeZoneModel get timeZone => throw _privateConstructorUsedError;
   List<PositionModel> get positions => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  List<UserWorkPlaceOrdinal> get ordinals => throw _privateConstructorUsedError;
+  List<UserWorkPlaceInfo> get ordinals => throw _privateConstructorUsedError;
   AvailabilityReceiverSetting get availabilityReceiverDefaultSetting =>
       throw _privateConstructorUsedError;
 
@@ -100,7 +98,7 @@ abstract class $WorkPlaceCopyWith<$Res> {
     String workPlaceTypeId,
     TimeZoneModel timeZone,
     List<PositionModel> positions,
-    @JsonKey(ignore: true) List<UserWorkPlaceOrdinal> ordinals,
+    @JsonKey(ignore: true) List<UserWorkPlaceInfo> ordinals,
     AvailabilityReceiverSetting availabilityReceiverDefaultSetting,
   });
 
@@ -287,7 +285,7 @@ class _$WorkPlaceCopyWithImpl<$Res, $Val extends WorkPlace>
                 null == ordinals
                     ? _value.ordinals
                     : ordinals // ignore: cast_nullable_to_non_nullable
-                        as List<UserWorkPlaceOrdinal>,
+                        as List<UserWorkPlaceInfo>,
             availabilityReceiverDefaultSetting:
                 null == availabilityReceiverDefaultSetting
                     ? _value.availabilityReceiverDefaultSetting
@@ -416,7 +414,7 @@ abstract class _$$WorkPlaceImplCopyWith<$Res>
     String workPlaceTypeId,
     TimeZoneModel timeZone,
     List<PositionModel> positions,
-    @JsonKey(ignore: true) List<UserWorkPlaceOrdinal> ordinals,
+    @JsonKey(ignore: true) List<UserWorkPlaceInfo> ordinals,
     AvailabilityReceiverSetting availabilityReceiverDefaultSetting,
   });
 
@@ -600,7 +598,7 @@ class __$$WorkPlaceImplCopyWithImpl<$Res>
             null == ordinals
                 ? _value._ordinals
                 : ordinals // ignore: cast_nullable_to_non_nullable
-                    as List<UserWorkPlaceOrdinal>,
+                    as List<UserWorkPlaceInfo>,
         availabilityReceiverDefaultSetting:
             null == availabilityReceiverDefaultSetting
                 ? _value.availabilityReceiverDefaultSetting
@@ -643,7 +641,7 @@ class _$WorkPlaceImpl implements _WorkPlace {
     this.workPlaceTypeId = '',
     this.timeZone = const TimeZoneModel(),
     final List<PositionModel> positions = const [],
-    @JsonKey(ignore: true) final List<UserWorkPlaceOrdinal> ordinals = const [],
+    @JsonKey(ignore: true) final List<UserWorkPlaceInfo> ordinals = const [],
     this.availabilityReceiverDefaultSetting =
         const AvailabilityReceiverSetting(),
   }) : _filters = filters,
@@ -724,11 +722,7 @@ class _$WorkPlaceImpl implements _WorkPlace {
   @override
   @JsonKey()
   final TimeZoneModel timeZone;
-  // @Default([]) List<String> ownersIds,
-  // @Default({}) Map<String, int> joinedUsersOrdinal,
   final List<PositionModel> _positions;
-  // @Default([]) List<String> ownersIds,
-  // @Default({}) Map<String, int> joinedUsersOrdinal,
   @override
   @JsonKey()
   List<PositionModel> get positions {
@@ -737,10 +731,10 @@ class _$WorkPlaceImpl implements _WorkPlace {
     return EqualUnmodifiableListView(_positions);
   }
 
-  final List<UserWorkPlaceOrdinal> _ordinals;
+  final List<UserWorkPlaceInfo> _ordinals;
   @override
   @JsonKey(ignore: true)
-  List<UserWorkPlaceOrdinal> get ordinals {
+  List<UserWorkPlaceInfo> get ordinals {
     if (_ordinals is EqualUnmodifiableListView) return _ordinals;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_ordinals);
@@ -894,7 +888,7 @@ abstract class _WorkPlace implements WorkPlace {
     final String workPlaceTypeId,
     final TimeZoneModel timeZone,
     final List<PositionModel> positions,
-    @JsonKey(ignore: true) final List<UserWorkPlaceOrdinal> ordinals,
+    @JsonKey(ignore: true) final List<UserWorkPlaceInfo> ordinals,
     final AvailabilityReceiverSetting availabilityReceiverDefaultSetting,
   }) = _$WorkPlaceImpl;
 
@@ -950,13 +944,12 @@ abstract class _WorkPlace implements WorkPlace {
   @override
   String get workPlaceTypeId;
   @override
-  TimeZoneModel get timeZone; // @Default([]) List<String> ownersIds,
-  // @Default({}) Map<String, int> joinedUsersOrdinal,
+  TimeZoneModel get timeZone;
   @override
   List<PositionModel> get positions;
   @override
   @JsonKey(ignore: true)
-  List<UserWorkPlaceOrdinal> get ordinals;
+  List<UserWorkPlaceInfo> get ordinals;
   @override
   AvailabilityReceiverSetting get availabilityReceiverDefaultSetting;
 

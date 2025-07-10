@@ -10,6 +10,7 @@ class UpdateWorkPlaceUserInfo with _$UpdateWorkPlaceUserInfo {
   const factory UpdateWorkPlaceUserInfo({
     required String currentUserId,
     required String userId,
+    required String workPlaceId,
     required bool wasOwner,
     required bool isTempUser,
     required bool isOwner,
@@ -18,7 +19,7 @@ class UpdateWorkPlaceUserInfo with _$UpdateWorkPlaceUserInfo {
     required bool didHaveChatRoomAccess,
     required List<String> removedPosition,
     required List<PositionModel> workPlacePositions,
-    required UserWorkPlaceRelation updatedUserWorkPlace,
+    required UserWorkPlaceInfo updatedUserWorkPlaceInfo,
   }) = _UpdateWorkPlaceUserInfo;
 
   factory UpdateWorkPlaceUserInfo.fromJson(Map<String, dynamic> json) =>

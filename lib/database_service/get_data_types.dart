@@ -65,7 +65,7 @@ List<String> getDataTypes(
       ];
     case DataModel.appNotificationState:
       return [dataModel.name];
-    case DataModel.userWorkPlaceOrdinal:
+    case DataModel.userWorkPlaceInfo:
       return [
         DataModel.workPlace.name,
         docId!, // place Id
@@ -96,5 +96,11 @@ List<String> getDataTypes(
       ];
     case DataModel.feedbackForm:
       return [dataModel.name];
+
+    case DataModel.userWorkPlaceRelation:
+      return [
+        DataModel.userModel.name,
+        docId!, // user Id
+      ];
   }
 }

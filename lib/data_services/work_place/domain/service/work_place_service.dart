@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:tetbee__base/data_services/work_place/data/repositories/work_place_repository.dart';
 import 'package:tetbee__base/models/work_place/remove_user_form_work_place_request.dart';
 import 'package:tetbee__base/models/work_place/update_work_place_user_info.dart';
-import 'package:tetbee__base/models/work_place/user_work_place_ordinal.dart';
+
 import 'package:tetbee__base/tetbee__base.dart';
 
 WorkPlaceService workPlaceService = WorkPlaceService();
@@ -82,27 +82,27 @@ class WorkPlaceService with ApiServiceMixin {
     );
   }
 
-  Future<Either<Failure, List<UserWorkPlaceOrdinal>>> getUserWorkPlaceOrdinal(
+  Future<Either<Failure, List<UserWorkPlaceInfo>>> getUserWorkPlaceInfo(
     String placeId,
   ) async {
     return execute(
-      () => WorkPlaceRepository().getUserWorkPlaceOrdinal(placeId),
-      'Error while getting getUserWorkPlaceOrdinal',
+      () => WorkPlaceRepository().getUserWorkPlaceInfo(placeId),
+      'Error while getting getUserWorkPlaceInfo',
     );
   }
 
-  Future<Either<Failure, bool>> updatePlaceUserOrdinals(
+  Future<Either<Failure, bool>> updatePlaceUserWorkPlaceInfo(
     String placeId,
     String userId,
-    List<UserWorkPlaceOrdinal> ordinals,
+    List<UserWorkPlaceInfo> ordinals,
   ) async {
     return execute(
-      () => WorkPlaceRepository().updatePlaceUserOrdinals(
+      () => WorkPlaceRepository().updatePlaceUserWorkPlaceInfo(
         placeId,
         userId,
         ordinals,
       ),
-      'Error while  updatePlaceUserOrdinals',
+      'Error while updatePlaceUserWorkPlaceInfo',
     );
   }
 }

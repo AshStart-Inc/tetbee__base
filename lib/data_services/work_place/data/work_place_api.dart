@@ -5,7 +5,6 @@ import 'package:tetbee__base/models/models.dart';
 import 'package:tetbee__base/models/work_place/join_request.dart';
 import 'package:tetbee__base/models/work_place/remove_user_form_work_place_request.dart';
 import 'package:tetbee__base/models/work_place/update_work_place_user_info.dart';
-import 'package:tetbee__base/models/work_place/user_work_place_ordinal.dart';
 
 WorkPlaceApi workPlaceApi = WorkPlaceApi();
 
@@ -128,27 +127,27 @@ class WorkPlaceApi with ApiHandlingMixin {
     );
   }
 
-  //get user work place ordinal
-  Future<ApiResponse<List<UserWorkPlaceOrdinal>>> getUserWorkPlaceOrdinal(
+  //get user work place info
+  Future<ApiResponse<List<UserWorkPlaceInfo>>> getUserWorkPlaceInfo(
     String placeId,
   ) async {
-    return DatabaseService.getAllDocuments<UserWorkPlaceOrdinal>(
-      types: getDataTypes(DataModel.userWorkPlaceOrdinal, docId: placeId),
+    return DatabaseService.getAllDocuments<UserWorkPlaceInfo>(
+      types: getDataTypes(DataModel.userWorkPlaceInfo, docId: placeId),
       queryBuilder: (path) => FirebaseFirestore.instance.collection(path).get(),
     );
   }
 
-  Future<ApiResponse<bool>> updatePlaceUserOrdinals(
+  Future<ApiResponse<bool>> updatePlaceUserWorkPlaceInfo(
     String placeId,
     String userId,
-    List<UserWorkPlaceOrdinal> ordinals,
+    List<UserWorkPlaceInfo> ordinals,
   ) async {
     List<TransactionDataModel> update = [];
-    for (UserWorkPlaceOrdinal ordinal in ordinals) {
+    for (UserWorkPlaceInfo ordinal in ordinals) {
       update.add(
         TransactionDataModel.getDocumentTransactionDataForUpdate(
-          types: getDataTypes(DataModel.userWorkPlaceOrdinal, docId: placeId),
-          dataModelEnum: DataModel.userWorkPlaceOrdinal,
+          types: getDataTypes(DataModel.userWorkPlaceInfo, docId: placeId),
+          dataModelEnum: DataModel.userWorkPlaceInfo,
           dataModel: ordinal.toJson(),
           userId: userId,
           docId: ordinal.id,

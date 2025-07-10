@@ -27,6 +27,22 @@ class ScheduleApi {
     );
   }
 
+  static Future<ApiResponse<bool>> updateScheduleContainer(
+    String placeId,
+    String userId,
+    ScheduleContainer baseDate,
+    Map<String, dynamic>? updatedData,
+  ) async {
+    return await DatabaseService.update(
+      types: getDataTypes(DataModel.scheduleContainer, docId: placeId),
+      userId: userId,
+      dataModel: DataModel.scheduleContainer,
+      baseData: baseDate.toJson(),
+      updatedData: updatedData,
+      docId: baseDate.id!,
+    );
+  }
+
   static Future<ApiResponse<String>> createWorkPlacePresetTime(
     String placeId,
     String userId,
@@ -96,6 +112,24 @@ class ScheduleApi {
       baseData: userSchedule.toJson(),
       updatedData: {'schedules': userSchedule.toJson()['schedules']},
       docId: userSchedule.id!,
+    );
+  }
+
+  static Future<ApiResponse<List<UserSchedule>>>
+  getSingleUserSchedulesForScheduleContainer(
+    String workPlaceId,
+    String scheduleUserId,
+    String scheduleContainerId,
+  ) async {
+    return DatabaseService.getAllDocuments<UserSchedule>(
+      types: getDataTypes(DataModel.userSchedule, docId: workPlaceId),
+      queryBuilder:
+          (path) =>
+              FirebaseFirestore.instance
+                  .collection(path)
+                  .where('scheduleContainerId', isEqualTo: scheduleContainerId)
+                  .where('userId', isEqualTo: scheduleUserId)
+                  .get(),
     );
   }
 

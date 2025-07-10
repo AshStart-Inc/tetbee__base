@@ -52,13 +52,6 @@ _$UserModelImpl _$$UserModelImplFromJson(
   defaultProfilePictureUrl: json['defaultProfilePictureUrl'] as String?,
   email: json['email'] as String?,
   dateOfBirth: json['dateOfBirth'] as String?,
-  userWorkPlaceRelation:
-      (json['userWorkPlaceRelation'] as List<dynamic>?)
-          ?.map(
-            (e) => UserWorkPlaceRelation.fromJson(e as Map<String, dynamic>),
-          )
-          .toList() ??
-      const [],
   userSettings: UserSettings.fromJson(
     json['userSettings'] as Map<String, dynamic>,
   ),
@@ -89,8 +82,6 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'defaultProfilePictureUrl': instance.defaultProfilePictureUrl,
       'email': instance.email,
       'dateOfBirth': instance.dateOfBirth,
-      'userWorkPlaceRelation':
-          instance.userWorkPlaceRelation.map((e) => e.toJson()).toList(),
       'userSettings': instance.userSettings.toJson(),
     };
 
