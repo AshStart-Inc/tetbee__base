@@ -35,7 +35,10 @@ class _DropDownFormUnitState extends State<DropDownFormUnit> {
     setState(() {});
 
     field?.didChange(value);
+
+    // _formState.setState(() {
     _formState.setInternalFieldValue(attribute, _initialValue);
+    // });
     if (field?.errorText != null) {
       field!.validate();
     }
@@ -46,6 +49,7 @@ class _DropDownFormUnitState extends State<DropDownFormUnit> {
     return FormField<dynamic>(
       key: _fieldKey,
       initialValue: _initialValue,
+
       validator: FormValidatorLogic.compose([
         if (formUnit.validators != null && formUnit.validators!.isNotEmpty)
           ...formUnit.validators!.map(

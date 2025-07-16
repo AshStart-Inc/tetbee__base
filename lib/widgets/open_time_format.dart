@@ -65,19 +65,20 @@ class OpenTimeFormat extends StatelessWidget {
                               ),
                             ),
                             const Spacer(),
-                            if (rangedTimeModel.endTime != null)
-                              Text(
-                                rangedTimeModel.getTimeFormat(
-                                  show24Hour,
-                                  isStartTime: false,
-                                ),
-                                style: Theme.of(
-                                  context,
-                                ).textTheme.titleSmall!.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: fontSize,
-                                ),
+                            Text(
+                              rangedTimeModel.endTime != null
+                                  ? rangedTimeModel.getTimeFormat(
+                                    show24Hour,
+                                    isStartTime: false,
+                                  )
+                                  : "Close",
+                              style: Theme.of(
+                                context,
+                              ).textTheme.titleSmall!.copyWith(
+                                fontWeight: FontWeight.bold,
+                                fontSize: fontSize,
                               ),
+                            ),
                           ],
                         ),
                       ],
@@ -97,10 +98,12 @@ class OpenTimeFormat extends StatelessWidget {
                         child: Center(child: Text('-')),
                       ),
                       Text(
-                        rangedTimeModel.getTimeFormat(
-                          show24Hour,
-                          isStartTime: false,
-                        ),
+                        rangedTimeModel.endTime != null
+                            ? rangedTimeModel.getTimeFormat(
+                              show24Hour,
+                              isStartTime: false,
+                            )
+                            : "Close",
                         style: Theme.of(context).textTheme.titleSmall!.copyWith(
                           fontWeight: FontWeight.bold,
                           fontSize: 15,

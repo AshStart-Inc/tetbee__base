@@ -21,7 +21,6 @@ _$WorkPlaceImpl _$$WorkPlaceImplFromJson(
   deleted: json['deleted'] as bool? ?? false,
   placeOwnerId: json['placeOwnerId'] as String? ?? '',
   currentMembershipId: json['currentMembershipId'] as String? ?? '',
-  useShiftSignOut: json['useShiftSignOut'] as bool? ?? false,
   startWeekDay: (json['startWeekDay'] as num?)?.toInt() ?? 1,
   googlePlaceModel:
       json['googlePlaceModel'] == null
@@ -67,6 +66,8 @@ _$WorkPlaceImpl _$$WorkPlaceImplFromJson(
           : AvailabilityReceiverSetting.fromJson(
             json['availabilityReceiverDefaultSetting'] as Map<String, dynamic>,
           ),
+  useShiftSignOut: json['useShiftSignOut'] as bool? ?? false,
+  roundingInterval: (json['roundingInterval'] as num?)?.toInt() ?? 15,
 );
 
 Map<String, dynamic> _$$WorkPlaceImplToJson(_$WorkPlaceImpl instance) =>
@@ -81,7 +82,6 @@ Map<String, dynamic> _$$WorkPlaceImplToJson(_$WorkPlaceImpl instance) =>
       'deleted': instance.deleted,
       'placeOwnerId': instance.placeOwnerId,
       'currentMembershipId': instance.currentMembershipId,
-      'useShiftSignOut': instance.useShiftSignOut,
       'startWeekDay': instance.startWeekDay,
       'googlePlaceModel': instance.googlePlaceModel.toJson(),
       'addressModel': instance.addressModel?.toJson(),
@@ -98,4 +98,6 @@ Map<String, dynamic> _$$WorkPlaceImplToJson(_$WorkPlaceImpl instance) =>
       'positions': instance.positions.map((e) => e.toJson()).toList(),
       'availabilityReceiverDefaultSetting':
           instance.availabilityReceiverDefaultSetting.toJson(),
+      'useShiftSignOut': instance.useShiftSignOut,
+      'roundingInterval': instance.roundingInterval,
     };

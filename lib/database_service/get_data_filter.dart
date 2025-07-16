@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:tetbee__base/data_services/user/data/datasources/user_data_source.dart';
 import 'package:tetbee__base/models/app_notification/app_notification_state.dart';
 import 'package:tetbee__base/models/availability/user_availabilities.dart';
 import 'package:tetbee__base/models/chat/message_model.dart';
@@ -25,7 +24,7 @@ Future<List<String>> getDataFilter(
     case DataModel.notificationCenter:
       return [];
     case DataModel.userModel:
-      UserModel userModel = UserModel.fromJson(data);
+      // UserModel userModel = UserModel.fromJson(data);
       // List<String> placeIds = [];
       // List<String> positionIds = [];
 
@@ -65,7 +64,9 @@ Future<List<String>> getDataFilter(
       return [];
     case DataModel.chatRoom:
       ChatRoom chatRoom = ChatRoom.fromJson(data);
-      return [...chatRoom.userStatus.keys];
+      return chatRoom.workPlaceId.isNotEmpty
+          ? [chatRoom.workPlaceId, ...chatRoom.userStatus.keys]
+          : [...chatRoom.userStatus.keys];
     case DataModel.availabilityReceiver:
       return [];
     case DataModel.joinRequest:

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:tetbee__base/models/availability/availability_receiver.dart';
 import 'package:tetbee__base/models/common/ranged_time_model.dart';
 import 'package:tetbee__base/utils/helper.dart';
 
@@ -11,12 +12,13 @@ class DailyAvailability with _$DailyAvailability {
   @JsonSerializable(explicitToJson: true)
   const factory DailyAvailability({
     required int weekDay,
-    String? avReceiverId,
     @JsonKey(toJson: Helpers.dateIsoToJson, fromJson: Helpers.dateFromJsonIso)
     DateTime? date, //this value will be used for ranged date availaibility type
     String? comment,
     @Default(false) bool? canWorkButNotPreferToWork,
     required RangedTimeModel timeRange,
+
+    @JsonKey(ignore: true) AvailabilityReceiver? av,
   }) = _DailyAvailability;
 
   factory DailyAvailability.fromJson(Map<String, dynamic> json) =>

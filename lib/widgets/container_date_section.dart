@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tetbee__base/theme/theme_extension.dart';
 import 'package:tetbee__base/utils/utils_exports.dart';
 
 class ContainerDateSection extends StatelessWidget {
@@ -9,14 +10,14 @@ class ContainerDateSection extends StatelessWidget {
     this.dayFontsize = 20.0,
     this.monthWeekFontSize = 10.0,
     this.yearFontSize = 7.0,
-    this.dateColor = Colors.white,
+    this.dateColor,
   });
   final DateTime startDate;
   final DateTime endDate;
   final double dayFontsize;
   final double monthWeekFontSize;
   final double yearFontSize;
-  final Color dateColor;
+  final Color? dateColor;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -82,7 +83,7 @@ class NewCustomTimeFormat extends StatelessWidget {
 class NewCustomDateRange extends StatelessWidget {
   final DateTime startDate;
   final DateTime endDate;
-  final Color dateColor;
+  final Color? dateColor;
   final double dayFontSize;
   final double monthWeekFontSize;
 
@@ -92,7 +93,7 @@ class NewCustomDateRange extends StatelessWidget {
     this.monthWeekFontSize = 10.0,
     required this.startDate,
     required this.endDate,
-    this.dateColor = Colors.white,
+    this.dateColor,
   });
 
   @override
@@ -124,12 +125,12 @@ class CustomDateFormatWidget extends StatelessWidget {
     required this.date,
     this.dayFontSize = 20,
     this.monthWeekdayFontSize = 10,
-    this.dateColor = Colors.white,
-    this.dayAndMonthColor = Colors.black,
+    this.dateColor,
+    this.dayAndMonthColor,
   });
   final DateTime date;
-  final Color dateColor;
-  final Color dayAndMonthColor;
+  final Color? dateColor;
+  final Color? dayAndMonthColor;
   final double monthWeekdayFontSize;
   final double dayFontSize;
 
@@ -144,7 +145,7 @@ class CustomDateFormatWidget extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: dayFontSize,
-              color: dateColor,
+              color: dateColor ?? Theme.of(context).baseTextColor,
             ),
           ),
           const SizedBox(width: 4),
@@ -160,7 +161,7 @@ class CustomDateFormatWidget extends StatelessWidget {
                           ? Colors.blue
                           : date.weekday == 7
                           ? Colors.red
-                          : dayAndMonthColor,
+                          : Theme.of(context).baseTextColor,
                 ),
               ),
               Text(
@@ -168,7 +169,7 @@ class CustomDateFormatWidget extends StatelessWidget {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: monthWeekdayFontSize,
-                  color: dayAndMonthColor,
+                  color: Theme.of(context).baseTextColor,
                 ),
               ),
             ],

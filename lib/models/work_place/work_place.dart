@@ -30,7 +30,7 @@ class WorkPlace with _$WorkPlace {
     @Default(false) bool deleted,
     @Default('') String placeOwnerId,
     @Default('') String currentMembershipId,
-    @Default(false) bool useShiftSignOut,
+
     @Default(1) int startWeekDay,
     @Default(GooglePlaceModel(googlePlaceId: ''))
     GooglePlaceModel googlePlaceModel,
@@ -50,6 +50,8 @@ class WorkPlace with _$WorkPlace {
     @JsonKey(ignore: true) @Default([]) List<UserWorkPlaceInfo> ordinals,
     @Default(AvailabilityReceiverSetting())
     AvailabilityReceiverSetting availabilityReceiverDefaultSetting,
+    @Default(false) bool useShiftSignOut,
+    @Default(15) int roundingInterval,
   }) = _WorkPlace;
 
   factory WorkPlace.fromJson(Map<String, dynamic> json) =>
@@ -62,8 +64,12 @@ extension WorkPlaceExtension on WorkPlace {
   List<PositionModel> sortedPositions({bool withOwner = true}) {
     List<PositionModel> p =
         withOwner
-            ? [...positions]
-            : [...positions.where((position) => !position.isOwner)];
+            ? [...positions.where((position) => !position.deleted)]
+            : [
+              ...positions.where(
+                (position) => !position.deleted && !position.isOwner,
+              ),
+            ];
     p.sort((a, b) => a.ordinal.compareTo(b.ordinal));
     return p;
   }

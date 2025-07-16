@@ -32,10 +32,13 @@ class _RangedTimeFormUnitState extends State<RangedTimeFormUnit> {
     attribute = widget.formUnit.key;
     formUnit = widget.formUnit.value;
     _formState = FormBuilder.of(context)!;
-    rangedTimeModel = RangedTimeModel(
-      startTime: formUnit.baseTime,
-      endTime: formUnit.baseTime!.add(Duration(hours: 5)),
-    );
+    rangedTimeModel =
+        _formState.initialValue[attribute] ??
+        RangedTimeModel(
+          startTime: formUnit.baseTime,
+          endTime: formUnit.baseTime!.add(Duration(hours: 5)),
+        );
+    showEndTime = rangedTimeModel.endTime != null;
   }
 
   @override
@@ -96,6 +99,9 @@ class _RangedTimeFormUnitState extends State<RangedTimeFormUnit> {
               onTap: () {
                 setState(() {
                   showEndTime = !showEndTime;
+                  rangedTimeModel = rangedTimeModel.copyWith(
+                    endTime: rangedTimeModel.startTime!.add(Duration(hours: 5)),
+                  );
                 });
               },
             ),

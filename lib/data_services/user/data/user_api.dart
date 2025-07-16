@@ -90,7 +90,7 @@ class UserApi {
           dataModelEnum: DataModel.userWorkPlaceRelation,
           userId: userId,
           dataModel: relation.toJson(),
-          docId: userModel.id,
+          docId: workPlace.id,
         );
     //create templ user av
     TransactionDataModel createTempUserAv =

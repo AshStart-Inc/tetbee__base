@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tetbee__base/models/models.dart';
+import 'package:tetbee__base/theme/theme_extension.dart';
 import 'package:tetbee__base/widgets/open_time_format.dart';
 import 'package:tetbee__base/widgets/timezone_text_widget.dart';
 
@@ -36,13 +37,12 @@ class PresetTimeContainer extends StatelessWidget {
             height: height,
             width: width ?? 80,
             decoration: BoxDecoration(
-              color: Colors.white,
-              // boxShadow: [
-              //   thirdBoxShadow,
-              // ],
+              color: Theme.of(context).cardColor,
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Colors.grey, width: 2),
-              // color: Colors.yellow,
+              border: Border.all(
+                color: Theme.of(context).baseTextColor,
+                width: 2,
+              ),
             ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -60,9 +60,10 @@ class PresetTimeContainer extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 20),
                       child: Text(
                         getLocalAndTimeZone(timeZoneModel!),
-                        style: Theme.of(
-                          context,
-                        ).textTheme.bodySmall!.copyWith(fontSize: 8),
+                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          fontSize: 8,
+                          color: Theme.of(context).baseTextColor,
+                        ),
                       ),
                     ),
                 ],

@@ -66,7 +66,7 @@ class InfoCard extends StatelessWidget {
                     bottomRight: Radius.circular(useBottomBorder ? 10 : 0),
                   )
                   : null,
-          color: useLine ? Theme.of(context).cardColor : Colors.white,
+          color: Theme.of(context).cardColor.withValues(alpha: 0.5),
         ),
         child: Stack(
           children: [
@@ -79,7 +79,9 @@ class InfoCard extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 8),
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Theme.of(
+                            context,
+                          ).primaryTextColor.withValues(alpha: 0.5),
                           borderRadius:
                               useRadius
                                   ? BorderRadius.only(
@@ -172,7 +174,8 @@ class InfoCard extends StatelessWidget {
                                       if (editForms != null)
                                         HomeButton(
                                           withContainer: false,
-                                          iconColor: Colors.black,
+                                          iconColor:
+                                              Theme.of(context).baseTextColor,
                                           iconData:
                                               sectionButton
                                                   ? Icons.chevron_right_rounded

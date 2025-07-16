@@ -22,6 +22,7 @@ class CustomDialog {
       onDismissed: onDismissed,
       onTap: onTap,
       Material(
+        color: Theme.of(context).scaffoldBackgroundColor,
         child: TopNotificationWidget(
           imageUrl: imageUrl,
           title: title,

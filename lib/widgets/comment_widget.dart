@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tetbee__base/theme/theme_extension.dart';
 
 class CommentWidget extends StatelessWidget {
   final String title;
@@ -21,7 +22,7 @@ class CommentWidget extends StatelessWidget {
                   title,
                   style: TextStyle(
                     fontSize: 8,
-                    color: Colors.black,
+                    color: Theme.of(context).baseTextColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

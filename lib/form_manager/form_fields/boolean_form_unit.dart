@@ -32,6 +32,7 @@ class BooleanFormUnitState extends State<BooleanFormUnit> {
       onTap: () {
         setState(() {
           _initialValue = !_initialValue;
+          _formState.setInternalFieldValue(attribute, _initialValue);
         });
       },
       child: Icon(

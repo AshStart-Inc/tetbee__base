@@ -22,6 +22,7 @@ class _TextFormUnitState extends State<TextFormUnit> {
   late final FocusNode focusNode;
   FormFieldState<String>? formState;
   String? initialValue;
+
   @override
   void initState() {
     super.initState();
@@ -37,9 +38,11 @@ class _TextFormUnitState extends State<TextFormUnit> {
   void onValueChange(String value, FormFieldState<String> state) {
     initialValue = value;
     state.didChange(initialValue);
+    _formState!.setInternalFieldValue(attribute, initialValue);
     if (state.errorText != null) {
       state.validate();
     }
+
     setState(() {});
   }
 

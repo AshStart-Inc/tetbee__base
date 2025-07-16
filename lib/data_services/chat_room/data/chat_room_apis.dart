@@ -14,7 +14,7 @@ class ChatRoomApi {
   ) async {
     return await DatabaseService.write(
       types: getDataTypes(DataModel.chatRoom),
-      dataModel: DataModel.availabilityReceiver,
+      dataModel: DataModel.chatRoom,
       userId: userId,
       data: chatRoom.toJson(),
       docId: chatRoom.id,

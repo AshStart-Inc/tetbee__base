@@ -12,6 +12,7 @@ class ChatRoom with _$ChatRoom {
   const factory ChatRoom({
     required String id,
     required ChatType chatType,
+    @Default('') String workPlaceId,
     @Default('') String name,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     DateTime? createdAt,

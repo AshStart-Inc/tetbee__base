@@ -10,7 +10,6 @@ _$DailyAvailabilityImpl _$$DailyAvailabilityImplFromJson(
   Map<String, dynamic> json,
 ) => _$DailyAvailabilityImpl(
   weekDay: (json['weekDay'] as num).toInt(),
-  avReceiverId: json['avReceiverId'] as String?,
   date: Helpers.dateFromJsonIso(json['date'] as String?),
   comment: json['comment'] as String?,
   canWorkButNotPreferToWork:
@@ -24,7 +23,6 @@ Map<String, dynamic> _$$DailyAvailabilityImplToJson(
   _$DailyAvailabilityImpl instance,
 ) => <String, dynamic>{
   'weekDay': instance.weekDay,
-  'avReceiverId': instance.avReceiverId,
   'date': Helpers.dateIsoToJson(instance.date),
   'comment': instance.comment,
   'canWorkButNotPreferToWork': instance.canWorkButNotPreferToWork,

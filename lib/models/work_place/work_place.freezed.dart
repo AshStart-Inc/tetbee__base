@@ -33,7 +33,6 @@ mixin _$WorkPlace {
   bool get deleted => throw _privateConstructorUsedError;
   String get placeOwnerId => throw _privateConstructorUsedError;
   String get currentMembershipId => throw _privateConstructorUsedError;
-  bool get useShiftSignOut => throw _privateConstructorUsedError;
   int get startWeekDay => throw _privateConstructorUsedError;
   GooglePlaceModel get googlePlaceModel => throw _privateConstructorUsedError;
   AddressModel? get addressModel => throw _privateConstructorUsedError;
@@ -54,6 +53,8 @@ mixin _$WorkPlace {
   List<UserWorkPlaceInfo> get ordinals => throw _privateConstructorUsedError;
   AvailabilityReceiverSetting get availabilityReceiverDefaultSetting =>
       throw _privateConstructorUsedError;
+  bool get useShiftSignOut => throw _privateConstructorUsedError;
+  int get roundingInterval => throw _privateConstructorUsedError;
 
   /// Serializes this WorkPlace to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -83,7 +84,6 @@ abstract class $WorkPlaceCopyWith<$Res> {
     bool deleted,
     String placeOwnerId,
     String currentMembershipId,
-    bool useShiftSignOut,
     int startWeekDay,
     GooglePlaceModel googlePlaceModel,
     AddressModel? addressModel,
@@ -100,6 +100,8 @@ abstract class $WorkPlaceCopyWith<$Res> {
     List<PositionModel> positions,
     @JsonKey(ignore: true) List<UserWorkPlaceInfo> ordinals,
     AvailabilityReceiverSetting availabilityReceiverDefaultSetting,
+    bool useShiftSignOut,
+    int roundingInterval,
   });
 
   $GooglePlaceModelCopyWith<$Res> get googlePlaceModel;
@@ -136,7 +138,6 @@ class _$WorkPlaceCopyWithImpl<$Res, $Val extends WorkPlace>
     Object? deleted = null,
     Object? placeOwnerId = null,
     Object? currentMembershipId = null,
-    Object? useShiftSignOut = null,
     Object? startWeekDay = null,
     Object? googlePlaceModel = null,
     Object? addressModel = freezed,
@@ -153,6 +154,8 @@ class _$WorkPlaceCopyWithImpl<$Res, $Val extends WorkPlace>
     Object? positions = null,
     Object? ordinals = null,
     Object? availabilityReceiverDefaultSetting = null,
+    Object? useShiftSignOut = null,
+    Object? roundingInterval = null,
   }) {
     return _then(
       _value.copyWith(
@@ -206,11 +209,6 @@ class _$WorkPlaceCopyWithImpl<$Res, $Val extends WorkPlace>
                     ? _value.currentMembershipId
                     : currentMembershipId // ignore: cast_nullable_to_non_nullable
                         as String,
-            useShiftSignOut:
-                null == useShiftSignOut
-                    ? _value.useShiftSignOut
-                    : useShiftSignOut // ignore: cast_nullable_to_non_nullable
-                        as bool,
             startWeekDay:
                 null == startWeekDay
                     ? _value.startWeekDay
@@ -291,6 +289,16 @@ class _$WorkPlaceCopyWithImpl<$Res, $Val extends WorkPlace>
                     ? _value.availabilityReceiverDefaultSetting
                     : availabilityReceiverDefaultSetting // ignore: cast_nullable_to_non_nullable
                         as AvailabilityReceiverSetting,
+            useShiftSignOut:
+                null == useShiftSignOut
+                    ? _value.useShiftSignOut
+                    : useShiftSignOut // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            roundingInterval:
+                null == roundingInterval
+                    ? _value.roundingInterval
+                    : roundingInterval // ignore: cast_nullable_to_non_nullable
+                        as int,
           )
           as $Val,
     );
@@ -399,7 +407,6 @@ abstract class _$$WorkPlaceImplCopyWith<$Res>
     bool deleted,
     String placeOwnerId,
     String currentMembershipId,
-    bool useShiftSignOut,
     int startWeekDay,
     GooglePlaceModel googlePlaceModel,
     AddressModel? addressModel,
@@ -416,6 +423,8 @@ abstract class _$$WorkPlaceImplCopyWith<$Res>
     List<PositionModel> positions,
     @JsonKey(ignore: true) List<UserWorkPlaceInfo> ordinals,
     AvailabilityReceiverSetting availabilityReceiverDefaultSetting,
+    bool useShiftSignOut,
+    int roundingInterval,
   });
 
   @override
@@ -457,7 +466,6 @@ class __$$WorkPlaceImplCopyWithImpl<$Res>
     Object? deleted = null,
     Object? placeOwnerId = null,
     Object? currentMembershipId = null,
-    Object? useShiftSignOut = null,
     Object? startWeekDay = null,
     Object? googlePlaceModel = null,
     Object? addressModel = freezed,
@@ -474,6 +482,8 @@ class __$$WorkPlaceImplCopyWithImpl<$Res>
     Object? positions = null,
     Object? ordinals = null,
     Object? availabilityReceiverDefaultSetting = null,
+    Object? useShiftSignOut = null,
+    Object? roundingInterval = null,
   }) {
     return _then(
       _$WorkPlaceImpl(
@@ -527,11 +537,6 @@ class __$$WorkPlaceImplCopyWithImpl<$Res>
                 ? _value.currentMembershipId
                 : currentMembershipId // ignore: cast_nullable_to_non_nullable
                     as String,
-        useShiftSignOut:
-            null == useShiftSignOut
-                ? _value.useShiftSignOut
-                : useShiftSignOut // ignore: cast_nullable_to_non_nullable
-                    as bool,
         startWeekDay:
             null == startWeekDay
                 ? _value.startWeekDay
@@ -604,6 +609,16 @@ class __$$WorkPlaceImplCopyWithImpl<$Res>
                 ? _value.availabilityReceiverDefaultSetting
                 : availabilityReceiverDefaultSetting // ignore: cast_nullable_to_non_nullable
                     as AvailabilityReceiverSetting,
+        useShiftSignOut:
+            null == useShiftSignOut
+                ? _value.useShiftSignOut
+                : useShiftSignOut // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        roundingInterval:
+            null == roundingInterval
+                ? _value.roundingInterval
+                : roundingInterval // ignore: cast_nullable_to_non_nullable
+                    as int,
       ),
     );
   }
@@ -626,7 +641,6 @@ class _$WorkPlaceImpl implements _WorkPlace {
     this.deleted = false,
     this.placeOwnerId = '',
     this.currentMembershipId = '',
-    this.useShiftSignOut = false,
     this.startWeekDay = 1,
     this.googlePlaceModel = const GooglePlaceModel(googlePlaceId: ''),
     this.addressModel = const AddressModel(),
@@ -644,6 +658,8 @@ class _$WorkPlaceImpl implements _WorkPlace {
     @JsonKey(ignore: true) final List<UserWorkPlaceInfo> ordinals = const [],
     this.availabilityReceiverDefaultSetting =
         const AvailabilityReceiverSetting(),
+    this.useShiftSignOut = false,
+    this.roundingInterval = 15,
   }) : _filters = filters,
        _positions = positions,
        _ordinals = ordinals;
@@ -686,9 +702,6 @@ class _$WorkPlaceImpl implements _WorkPlace {
   @override
   @JsonKey()
   final String currentMembershipId;
-  @override
-  @JsonKey()
-  final bool useShiftSignOut;
   @override
   @JsonKey()
   final int startWeekDay;
@@ -743,10 +756,16 @@ class _$WorkPlaceImpl implements _WorkPlace {
   @override
   @JsonKey()
   final AvailabilityReceiverSetting availabilityReceiverDefaultSetting;
+  @override
+  @JsonKey()
+  final bool useShiftSignOut;
+  @override
+  @JsonKey()
+  final int roundingInterval;
 
   @override
   String toString() {
-    return 'WorkPlace(id: $id, name: $name, createdAt: $createdAt, createdBy: $createdBy, updatedAt: $updatedAt, updatedBy: $updatedBy, filters: $filters, deleted: $deleted, placeOwnerId: $placeOwnerId, currentMembershipId: $currentMembershipId, useShiftSignOut: $useShiftSignOut, startWeekDay: $startWeekDay, googlePlaceModel: $googlePlaceModel, addressModel: $addressModel, email1: $email1, email2: $email2, website: $website, defaultProfilePictureUrl: $defaultProfilePictureUrl, isOpened: $isOpened, isVerified: $isVerified, primaryPhoneNumber: $primaryPhoneNumber, secondaryPhoneNumber: $secondaryPhoneNumber, workPlaceTypeId: $workPlaceTypeId, timeZone: $timeZone, positions: $positions, ordinals: $ordinals, availabilityReceiverDefaultSetting: $availabilityReceiverDefaultSetting)';
+    return 'WorkPlace(id: $id, name: $name, createdAt: $createdAt, createdBy: $createdBy, updatedAt: $updatedAt, updatedBy: $updatedBy, filters: $filters, deleted: $deleted, placeOwnerId: $placeOwnerId, currentMembershipId: $currentMembershipId, startWeekDay: $startWeekDay, googlePlaceModel: $googlePlaceModel, addressModel: $addressModel, email1: $email1, email2: $email2, website: $website, defaultProfilePictureUrl: $defaultProfilePictureUrl, isOpened: $isOpened, isVerified: $isVerified, primaryPhoneNumber: $primaryPhoneNumber, secondaryPhoneNumber: $secondaryPhoneNumber, workPlaceTypeId: $workPlaceTypeId, timeZone: $timeZone, positions: $positions, ordinals: $ordinals, availabilityReceiverDefaultSetting: $availabilityReceiverDefaultSetting, useShiftSignOut: $useShiftSignOut, roundingInterval: $roundingInterval)';
   }
 
   @override
@@ -770,8 +789,6 @@ class _$WorkPlaceImpl implements _WorkPlace {
                 other.placeOwnerId == placeOwnerId) &&
             (identical(other.currentMembershipId, currentMembershipId) ||
                 other.currentMembershipId == currentMembershipId) &&
-            (identical(other.useShiftSignOut, useShiftSignOut) ||
-                other.useShiftSignOut == useShiftSignOut) &&
             (identical(other.startWeekDay, startWeekDay) ||
                 other.startWeekDay == startWeekDay) &&
             (identical(other.googlePlaceModel, googlePlaceModel) ||
@@ -809,7 +826,11 @@ class _$WorkPlaceImpl implements _WorkPlace {
                   availabilityReceiverDefaultSetting,
                 ) ||
                 other.availabilityReceiverDefaultSetting ==
-                    availabilityReceiverDefaultSetting));
+                    availabilityReceiverDefaultSetting) &&
+            (identical(other.useShiftSignOut, useShiftSignOut) ||
+                other.useShiftSignOut == useShiftSignOut) &&
+            (identical(other.roundingInterval, roundingInterval) ||
+                other.roundingInterval == roundingInterval));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -826,7 +847,6 @@ class _$WorkPlaceImpl implements _WorkPlace {
     deleted,
     placeOwnerId,
     currentMembershipId,
-    useShiftSignOut,
     startWeekDay,
     googlePlaceModel,
     addressModel,
@@ -843,6 +863,8 @@ class _$WorkPlaceImpl implements _WorkPlace {
     const DeepCollectionEquality().hash(_positions),
     const DeepCollectionEquality().hash(_ordinals),
     availabilityReceiverDefaultSetting,
+    useShiftSignOut,
+    roundingInterval,
   ]);
 
   /// Create a copy of WorkPlace
@@ -873,7 +895,6 @@ abstract class _WorkPlace implements WorkPlace {
     final bool deleted,
     final String placeOwnerId,
     final String currentMembershipId,
-    final bool useShiftSignOut,
     final int startWeekDay,
     final GooglePlaceModel googlePlaceModel,
     final AddressModel? addressModel,
@@ -890,6 +911,8 @@ abstract class _WorkPlace implements WorkPlace {
     final List<PositionModel> positions,
     @JsonKey(ignore: true) final List<UserWorkPlaceInfo> ordinals,
     final AvailabilityReceiverSetting availabilityReceiverDefaultSetting,
+    final bool useShiftSignOut,
+    final int roundingInterval,
   }) = _$WorkPlaceImpl;
 
   factory _WorkPlace.fromJson(Map<String, dynamic> json) =
@@ -917,8 +940,6 @@ abstract class _WorkPlace implements WorkPlace {
   String get placeOwnerId;
   @override
   String get currentMembershipId;
-  @override
-  bool get useShiftSignOut;
   @override
   int get startWeekDay;
   @override
@@ -952,6 +973,10 @@ abstract class _WorkPlace implements WorkPlace {
   List<UserWorkPlaceInfo> get ordinals;
   @override
   AvailabilityReceiverSetting get availabilityReceiverDefaultSetting;
+  @override
+  bool get useShiftSignOut;
+  @override
+  int get roundingInterval;
 
   /// Create a copy of WorkPlace
   /// with the given fields replaced by the non-null parameter values.

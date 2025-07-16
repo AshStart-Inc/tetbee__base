@@ -73,6 +73,9 @@ extension UserModelExtension on UserModel {
   }
 
   List<PositionModel> userPositions(WorkPlace placeModel) {
+    if (userWorkPlaceInfo == null || userWorkPlaceInfo!.positions.isEmpty) {
+      return [placeModel.positions.first];
+    }
     List<PositionModel> p =
         placeModel.positions
             .where(
