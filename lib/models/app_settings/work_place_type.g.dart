@@ -11,7 +11,6 @@ _$WorkPlaceTypeImpl _$$WorkPlaceTypeImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       name: json['name'] as String,
       ordinal: (json['ordinal'] as num).toInt(),
-      iconModel: IconModel.fromJson(json['iconModel'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$WorkPlaceTypeImplToJson(_$WorkPlaceTypeImpl instance) =>
@@ -19,5 +18,4 @@ Map<String, dynamic> _$$WorkPlaceTypeImplToJson(_$WorkPlaceTypeImpl instance) =>
       'id': instance.id,
       'name': instance.name,
       'ordinal': instance.ordinal,
-      'iconModel': instance.iconModel.toJson(),
     };

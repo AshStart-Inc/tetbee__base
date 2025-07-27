@@ -24,7 +24,6 @@ mixin _$WorkPlaceType {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   int get ordinal => throw _privateConstructorUsedError;
-  IconModel get iconModel => throw _privateConstructorUsedError;
 
   /// Serializes this WorkPlaceType to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,9 +42,7 @@ abstract class $WorkPlaceTypeCopyWith<$Res> {
     $Res Function(WorkPlaceType) then,
   ) = _$WorkPlaceTypeCopyWithImpl<$Res, WorkPlaceType>;
   @useResult
-  $Res call({String id, String name, int ordinal, IconModel iconModel});
-
-  $IconModelCopyWith<$Res> get iconModel;
+  $Res call({String id, String name, int ordinal});
 }
 
 /// @nodoc
@@ -62,12 +59,7 @@ class _$WorkPlaceTypeCopyWithImpl<$Res, $Val extends WorkPlaceType>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? ordinal = null,
-    Object? iconModel = null,
-  }) {
+  $Res call({Object? id = null, Object? name = null, Object? ordinal = null}) {
     return _then(
       _value.copyWith(
             id:
@@ -85,24 +77,9 @@ class _$WorkPlaceTypeCopyWithImpl<$Res, $Val extends WorkPlaceType>
                     ? _value.ordinal
                     : ordinal // ignore: cast_nullable_to_non_nullable
                         as int,
-            iconModel:
-                null == iconModel
-                    ? _value.iconModel
-                    : iconModel // ignore: cast_nullable_to_non_nullable
-                        as IconModel,
           )
           as $Val,
     );
-  }
-
-  /// Create a copy of WorkPlaceType
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $IconModelCopyWith<$Res> get iconModel {
-    return $IconModelCopyWith<$Res>(_value.iconModel, (value) {
-      return _then(_value.copyWith(iconModel: value) as $Val);
-    });
   }
 }
 
@@ -115,10 +92,7 @@ abstract class _$$WorkPlaceTypeImplCopyWith<$Res>
   ) = __$$WorkPlaceTypeImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String name, int ordinal, IconModel iconModel});
-
-  @override
-  $IconModelCopyWith<$Res> get iconModel;
+  $Res call({String id, String name, int ordinal});
 }
 
 /// @nodoc
@@ -134,12 +108,7 @@ class __$$WorkPlaceTypeImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? ordinal = null,
-    Object? iconModel = null,
-  }) {
+  $Res call({Object? id = null, Object? name = null, Object? ordinal = null}) {
     return _then(
       _$WorkPlaceTypeImpl(
         id:
@@ -157,11 +126,6 @@ class __$$WorkPlaceTypeImplCopyWithImpl<$Res>
                 ? _value.ordinal
                 : ordinal // ignore: cast_nullable_to_non_nullable
                     as int,
-        iconModel:
-            null == iconModel
-                ? _value.iconModel
-                : iconModel // ignore: cast_nullable_to_non_nullable
-                    as IconModel,
       ),
     );
   }
@@ -175,7 +139,6 @@ class _$WorkPlaceTypeImpl implements _WorkPlaceType {
     required this.id,
     required this.name,
     required this.ordinal,
-    required this.iconModel,
   });
 
   factory _$WorkPlaceTypeImpl.fromJson(Map<String, dynamic> json) =>
@@ -187,12 +150,10 @@ class _$WorkPlaceTypeImpl implements _WorkPlaceType {
   final String name;
   @override
   final int ordinal;
-  @override
-  final IconModel iconModel;
 
   @override
   String toString() {
-    return 'WorkPlaceType(id: $id, name: $name, ordinal: $ordinal, iconModel: $iconModel)';
+    return 'WorkPlaceType(id: $id, name: $name, ordinal: $ordinal)';
   }
 
   @override
@@ -202,14 +163,12 @@ class _$WorkPlaceTypeImpl implements _WorkPlaceType {
             other is _$WorkPlaceTypeImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.ordinal, ordinal) || other.ordinal == ordinal) &&
-            (identical(other.iconModel, iconModel) ||
-                other.iconModel == iconModel));
+            (identical(other.ordinal, ordinal) || other.ordinal == ordinal));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, ordinal, iconModel);
+  int get hashCode => Object.hash(runtimeType, id, name, ordinal);
 
   /// Create a copy of WorkPlaceType
   /// with the given fields replaced by the non-null parameter values.
@@ -230,7 +189,6 @@ abstract class _WorkPlaceType implements WorkPlaceType {
     required final String id,
     required final String name,
     required final int ordinal,
-    required final IconModel iconModel,
   }) = _$WorkPlaceTypeImpl;
 
   factory _WorkPlaceType.fromJson(Map<String, dynamic> json) =
@@ -242,8 +200,6 @@ abstract class _WorkPlaceType implements WorkPlaceType {
   String get name;
   @override
   int get ordinal;
-  @override
-  IconModel get iconModel;
 
   /// Create a copy of WorkPlaceType
   /// with the given fields replaced by the non-null parameter values.

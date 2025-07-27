@@ -11,7 +11,7 @@ class WorkPlaceType with _$WorkPlaceType {
     required String id,
     required String name,
     required int ordinal,
-    required IconModel iconModel,
+    // required IconModel iconModel,
   }) = _WorkPlaceType;
 
   factory WorkPlaceType.fromJson(Map<String, dynamic> json) =>
