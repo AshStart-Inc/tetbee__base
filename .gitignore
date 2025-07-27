@@ -50,5 +50,5 @@ app.*.map.json
 /android/app/release
 
 
-*.g.dart
-*.freezed.dart
+# *.g.dart
+# *.freezed.dart
