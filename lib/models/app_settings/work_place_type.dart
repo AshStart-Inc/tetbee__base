@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:tetbee__base/models/common/icon_model.dart';
 
 part 'work_place_type.freezed.dart';
 part 'work_place_type.g.dart';

@@ -1,9 +1,6 @@
 import 'dart:io';
-import 'dart:typed_data';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image/image.dart' as img;
 import 'package:image_picker/image_picker.dart';
-import 'package:tetbee__base/models/common/stored_data.dart';
 
 class ImageHelpers {
   static Future<List<XFile>> getImage(
