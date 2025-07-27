@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:tetbee__base/data_services/availability/data/repository/availability_repository.dart';
+import 'package:tetbee__base/models/availability/availability_reminder_request.dart';
 import 'package:tetbee__base/models/availability/user_availabilities.dart';
 import 'package:tetbee__base/models/common/ranged_time_model.dart';
 import 'package:tetbee__base/tetbee__base.dart';
@@ -123,6 +124,21 @@ class AvailabilityService with ApiServiceMixin {
     );
   }
 
+  Future<Either<Failure, UserAvailabilities?>> getUserAvailability(
+    String userId,
+    String placeId,
+    String availabilityId,
+  ) async {
+    return execute(
+      () => AvailabilityRepository().getUserAvailability(
+        userId,
+        placeId,
+        availabilityId,
+      ),
+      'Error while getUserAvailability',
+    );
+  }
+
   Future<Either<Failure, AvailabilityReceiver?>> getAvailabilityReceiver(
     String placeId,
     String availabilityId,
@@ -133,6 +149,62 @@ class AvailabilityService with ApiServiceMixin {
         availabilityId,
       ),
       'Error while getAvailabilityReceiver',
+    );
+  }
+
+  Future<Either<Failure, String>> createMyPresetAvailability(
+    MyPresetAvailability myPresetAvailability,
+    String userId,
+    String placeId,
+  ) async {
+    return execute(
+      () => AvailabilityRepository().createMyPresetAvailability(
+        myPresetAvailability,
+        userId,
+        placeId,
+      ),
+      'Error while createMyPresetAvailability',
+    );
+  }
+
+  Future<Either<Failure, bool>> updateMyPresetAvailability(
+    MyPresetAvailability myPresetAvailability,
+    String userId,
+    String placeId,
+  ) async {
+    return execute(
+      () => AvailabilityRepository().updateMyPresetAvailability(
+        myPresetAvailability,
+        userId,
+        placeId,
+      ),
+      'Error while updateMyPresetAvailability',
+    );
+  }
+
+  Future<Either<Failure, List<MyPresetAvailability>>> getMyPresetAvailabilities(
+    String userId,
+    String placeId, {
+    bool getSelected = false,
+  }) async {
+    return execute(
+      () => AvailabilityRepository().getMyPresetAvailabilities(
+        userId,
+        placeId,
+        getSelected: getSelected,
+      ),
+      'Error while getMyPresetAvailabilities',
+    );
+  }
+
+  Future<Either<Failure, bool>> sendAvailabilityReminder(
+    AvailabilityReminderRequest availabilityReminderRequest,
+  ) async {
+    return execute(
+      () => AvailabilityRepository().sendAvailabilityReminder(
+        availabilityReminderRequest,
+      ),
+      'Error while sendAvailabilityReminder',
     );
   }
 }

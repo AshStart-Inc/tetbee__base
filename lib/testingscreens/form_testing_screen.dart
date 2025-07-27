@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tetbee__base/form_manager/form_unit/form_condition.dart';
 import 'package:tetbee__base/models/common/ranged_time_model.dart';
 import 'package:tetbee__base/tetbee__base.dart';
 
@@ -20,14 +21,14 @@ class _FormTestingScreenState extends State<FormTestingScreen> {
       //     :
       FormManager(
         initialValue: {
-          'testing2': DailyAvailability(
-            weekDay: 1,
-            timeRange: RangedTimeModel(
-              weekDay: 1,
-              startTime: DateTime(1992, 09, 17, 03, 00, 00),
-              endTime: DateTime(1992, 09, 18, 06, 00, 00),
-            ),
-          ),
+          // 'testing2': DailyAvailability(
+          //   weekDay: 1,
+          //   timeRange: RangedTimeModel(
+          //     weekDay: 1,
+          //     startTime: DateTime(1992, 09, 17, 03, 00, 00),
+          //     endTime: DateTime(1992, 09, 18, 06, 00, 00),
+          //   ),
+          // ),
         },
         // additionalButtons: CommonButton(text: 'asdas', onTap: () {}),
         // initialValue: {
@@ -38,16 +39,23 @@ class _FormTestingScreenState extends State<FormTestingScreen> {
         //   // ),
         // },
         formFields: {
-          'testing2': FormUnit.rangedTimeSlider(
-            useNotPreferedDay: false,
-            useDailyComment: false,
-            baseTimeRange: RangedTimeModel(
-              weekDay: 1,
-              startTime: DateTime(1992, 09, 17, 00, 00, 00),
-              endTime: DateTime(1992, 09, 18, 06, 00, 00),
-            ),
+          'testing1': FormUnit.itemPicker(
+            label: 'Testing',
+            itemList: ['a', 'b', 'c'],
+            itemBuilder: (_, a) => Text(a.toString()),
+            // validators: [CustomFormValidator.required(errorText: 'value')],
+          ),
+          'testing2': FormUnit.text(
             label: 'Testing',
             // validators: [CustomFormValidator.required(errorText: 'value')],
+            formConditions: {
+              FormCondition(
+                    logicalOperator: LogicalOperator.isEqualTo,
+                    value: 'a',
+                    attribute: 'testing1',
+                  ):
+                  LogicalOperator.end,
+            },
           ),
           // 'text': FormUnit.text(
           //   // max
@@ -130,9 +138,10 @@ class _FormTestingScreenState extends State<FormTestingScreen> {
           // ),
         },
         onSaved: (a) async {
-          // print('===');
+          print('===');
+          print(a);
+          print('===');
           // print(a);
-          // print('===');
         },
       ),
     );

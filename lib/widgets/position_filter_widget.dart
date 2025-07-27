@@ -94,6 +94,7 @@ class _PositionFilterWidgetState extends State<PositionFilterWidget> {
     Offset widgetOffset = (key.currentContext!.findRenderObject() as RenderBox)
         .localToGlobal(Offset.zero);
     return Material(
+      color: Colors.transparent,
       child: Stack(
         children: [
           InkWell(

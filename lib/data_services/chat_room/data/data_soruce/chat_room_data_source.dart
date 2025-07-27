@@ -21,4 +21,18 @@ class ChatRoomDataSource with ApiErrorHandlerMixin {
   ) async {
     return execute(() => ChatRoomApi.sendMessage(chatRoomId, messageModel));
   }
+
+  Future<bool> updateUserMessageRead(String userId, String chatRoomId) async {
+    return execute(() => ChatRoomApi.updateUserMessageRead(userId, chatRoomId));
+  }
+
+  Future<bool> updateChatRoom(
+    ChatRoom chatRoom,
+    String userId,
+    Map<String, dynamic> updatedData,
+  ) async {
+    return execute(
+      () => ChatRoomApi.updateChatRoom(chatRoom, userId, updatedData),
+    );
+  }
 }

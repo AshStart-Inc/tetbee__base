@@ -66,7 +66,7 @@ class InfoCard extends StatelessWidget {
                     bottomRight: Radius.circular(useBottomBorder ? 10 : 0),
                   )
                   : null,
-          color: Theme.of(context).cardColor.withValues(alpha: 0.5),
+          color: Theme.of(context).primaryColor.withValues(alpha: 0.5),
         ),
         child: Stack(
           children: [
@@ -79,9 +79,7 @@ class InfoCard extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 8),
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Theme.of(
-                            context,
-                          ).primaryTextColor.withValues(alpha: 0.5),
+                          color: Theme.of(context).cardColor,
                           borderRadius:
                               useRadius
                                   ? BorderRadius.only(

@@ -37,6 +37,18 @@ class ScheduleRepository {
     );
   }
 
+  Future<bool> deleteScheduleContainer(
+    String placeId,
+    String userId,
+    String scheduleContainerId,
+  ) async {
+    return await ScheduleDataSource().deleteScheduleContainer(
+      placeId,
+      userId,
+      scheduleContainerId,
+    );
+  }
+
   Future<String> createWorkPlacePresetTime(
     String placeId,
     String userId,
@@ -78,6 +90,10 @@ class ScheduleRepository {
     UserSchedule userSchedule,
   ) async {
     return await ScheduleDataSource().updateUserSchedule(userId, userSchedule);
+  }
+
+  Future<bool> deleteUserSchedule(UserSchedule userSchedule) async {
+    return await ScheduleDataSource().deleteUserSchedule(userSchedule);
   }
 
   Future<List<UserSchedule>> getSingleUserSchedulesForScheduleContainer(

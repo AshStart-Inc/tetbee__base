@@ -301,7 +301,7 @@ class ThemeConstants {
   static Color getCardColor(AppTheme appTheme) {
     switch (appTheme) {
       case AppTheme.light:
-        return ThemeConstants.yellowColor2;
+        return Colors.white;
       case AppTheme.dark:
         return ThemeConstants.primaryDarkColor;
     }

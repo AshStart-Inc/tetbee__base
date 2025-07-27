@@ -21,4 +21,20 @@ class ChatRoomRepository {
   ) async {
     return await ChatRoomDataSource().sendMessage(chatRoomId, messageModel);
   }
+
+  Future<bool> updateUserMessageRead(String userId, String chatRoomId) async {
+    return await ChatRoomDataSource().updateUserMessageRead(userId, chatRoomId);
+  }
+
+  Future<bool> updateChatRoom(
+    ChatRoom chatRoom,
+    String userId,
+    Map<String, dynamic> updatedData,
+  ) async {
+    return await ChatRoomDataSource().updateChatRoom(
+      chatRoom,
+      userId,
+      updatedData,
+    );
+  }
 }

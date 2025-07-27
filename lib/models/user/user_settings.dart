@@ -11,7 +11,7 @@ class UserSettings with _$UserSettings {
     @Default(TimeFormat.amPmFormat) TimeFormat timeFormat,
     @Default(AppTheme.light) AppTheme appTheme,
     @Default(8.0) double baseFontSize,
-    @Default(false) bool homeScreenShowMySchedule,
+    @Default(true) bool homeScreenShowMySchedule,
     @Default(false) bool didRateApp,
     @Default(true) bool showAddress,
     @Default(true) bool showCV,

@@ -50,6 +50,7 @@ class UserModel with _$UserModel {
 
 extension UserModelExtension on UserModel {
   bool get show24Format => userSettings.timeFormat == TimeFormat.militartFormat;
+  bool get homeScreenShowMySchedule => userSettings.homeScreenShowMySchedule;
   String getPlaceNickName(String? placeId) {
     if (placeId == null) return nickName;
     String workPlaceNickName = userWorkPlaceInfo?.workPlaceNickName ?? '';
@@ -98,7 +99,7 @@ extension UserModelExtension on UserModel {
             workPlace,
           ),
           managePlaceAccess: managePlaceAccess(workPlace),
-          postingViewAccess: postingView(workPlace),
+          postingViewAccess: postingViewAccess(workPlace),
           contactAccess: contactAccess(workPlace),
           postingAccess: postingAccess(workPlace),
           scheduleAccess: scheduleAccess(workPlace),
@@ -121,10 +122,10 @@ extension UserModelExtension on UserModel {
         userPositions(workPlace).any((p) => p.dailyScheduleReviewPermission);
   }
 
-  bool postingView(WorkPlace workPlace) {
+  bool postingViewAccess(WorkPlace workPlace) {
     final permission = userWorkPlaceInfo?.userPlacePermission;
     return permission?.postingViewAccess ??
-        userPositions(workPlace).any((p) => p.postingAccess);
+        userPositions(workPlace).any((p) => p.postingViewAccess);
   }
 
   bool contactAccess(WorkPlace workPlace) {

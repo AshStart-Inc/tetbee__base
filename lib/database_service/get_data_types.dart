@@ -77,6 +77,7 @@ List<String> getDataTypes(
     case DataModel.postComment:
       return [
         DataModel.postModel.name,
+        dataModel.name,
         docId!, //post id
       ];
     case DataModel.timeOffRequest:
@@ -101,6 +102,24 @@ List<String> getDataTypes(
       return [
         DataModel.userModel.name,
         docId!, // user Id
+      ];
+    case DataModel.myPresetAvailability:
+      return [
+        DataModel.myPresetAvailability.name,
+        docId!, // userId
+        docId2!, // place Id
+      ];
+
+    case DataModel.postStoredData:
+      return [
+        DataModel.postModel.name,
+        docId!, // postId
+      ];
+
+    case DataModel.userMessageReads:
+      return [
+        dataModel.name,
+        docId!, // userId
       ];
   }
 }

@@ -10,7 +10,7 @@ part 'chat_room.g.dart';
 class ChatRoom with _$ChatRoom {
   @JsonSerializable(explicitToJson: true)
   const factory ChatRoom({
-    required String id,
+    String? id,
     required ChatType chatType,
     @Default('') String workPlaceId,
     @Default('') String name,
@@ -23,10 +23,15 @@ class ChatRoom with _$ChatRoom {
     @Default([]) List<String> filters,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     DateTime? latestMessageTime,
-    String? latestMessage,
+    String? latestMessageId,
     @Default({}) Map<String, ChatRoomUserStatus> userStatus,
   }) = _ChatRoom;
 
   factory ChatRoom.fromJson(Map<String, dynamic> json) =>
       _$ChatRoomFromJson(json);
+}
+
+String generateChatRoomId(String userA, String userB) {
+  final sortedIds = [userA, userB]..sort();
+  return '${sortedIds[0]}_${sortedIds[1]}';
 }

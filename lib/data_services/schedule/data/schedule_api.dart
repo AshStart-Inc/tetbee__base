@@ -43,6 +43,18 @@ class ScheduleApi {
     );
   }
 
+  static Future<ApiResponse<bool>> deleteScheduleContainer(
+    String placeId,
+    String userId,
+    String scheduleContainerId,
+  ) async {
+    return await DatabaseService.delete(
+      types: getDataTypes(DataModel.scheduleContainer, docId: placeId),
+      dataModel: DataModel.scheduleContainer,
+      docId: scheduleContainerId,
+    );
+  }
+
   static Future<ApiResponse<String>> createWorkPlacePresetTime(
     String placeId,
     String userId,
@@ -111,6 +123,19 @@ class ScheduleApi {
       userId: userId,
       baseData: userSchedule.toJson(),
       updatedData: {'schedules': userSchedule.toJson()['schedules']},
+      docId: userSchedule.id!,
+    );
+  }
+
+  static Future<ApiResponse<bool>> deleteUserSchedule(
+    UserSchedule userSchedule,
+  ) async {
+    return await DatabaseService.delete(
+      types: getDataTypes(
+        DataModel.userSchedule,
+        docId: userSchedule.workPlaceId,
+      ),
+      dataModel: DataModel.userSchedule,
       docId: userSchedule.id!,
     );
   }

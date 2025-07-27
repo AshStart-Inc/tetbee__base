@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:tetbee__base/data_services/work_place/data/repositories/work_place_repository.dart';
 import 'package:tetbee__base/models/work_place/remove_user_form_work_place_request.dart';
+import 'package:tetbee__base/models/work_place/remove_work_place_request.dart';
 import 'package:tetbee__base/models/work_place/update_work_place_user_info.dart';
 
 import 'package:tetbee__base/tetbee__base.dart';
@@ -15,6 +16,15 @@ class WorkPlaceService with ApiServiceMixin {
     return execute(
       () => WorkPlaceRepository().createWorkPlace(workPlace, userId),
       'Error while create work place',
+    );
+  }
+
+  Future<Either<Failure, bool>> removeWorkplace(
+    RemoveWorkPlaceRequest request,
+  ) async {
+    return execute(
+      () => WorkPlaceRepository().removeWorkplace(request),
+      'Error while removeWorkplace',
     );
   }
 
@@ -79,6 +89,23 @@ class WorkPlaceService with ApiServiceMixin {
       () =>
           WorkPlaceRepository().createPosition(placeId, userId, positionModel),
       'Error while getting work createPosition',
+    );
+  }
+
+  Future<Either<Failure, bool>> updatePosition(
+    String placeId,
+    String userId,
+    PositionModel positionModel, {
+    Map<String, dynamic>? updatedData,
+  }) async {
+    return execute(
+      () => WorkPlaceRepository().updatePosition(
+        placeId,
+        userId,
+        positionModel,
+        updatedData,
+      ),
+      'Error while getting work updatePosition',
     );
   }
 

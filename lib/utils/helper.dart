@@ -8,6 +8,13 @@ import 'package:tetbee__base/utils/enums.dart';
 import 'package:url_launcher/url_launcher.dart' as urllauncher;
 
 class Helpers {
+  static void makeAPhoneCall({
+    required String phoneNumber,
+    required BuildContext context,
+  }) {
+    urllauncher.launch("tel://$phoneNumber");
+  }
+
   static Color getColorByDocumentStatus(DocumentStatus documentStatus) {
     switch (documentStatus) {
       case DocumentStatus.onSubmit:

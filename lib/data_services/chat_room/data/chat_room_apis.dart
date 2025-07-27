@@ -6,6 +6,8 @@ import 'package:tetbee__base/database_service/database_service.dart';
 import 'package:tetbee__base/database_service/get_data_types.dart';
 import 'package:tetbee__base/models/chat/chat_model_exports.dart';
 import 'package:tetbee__base/models/chat/message_model.dart';
+import 'package:tetbee__base/utils/enums.dart';
+import 'package:tetbee__base/utils/helper.dart';
 
 class ChatRoomApi {
   static Future<ApiResponse<String>> createChatRoom(
@@ -22,7 +24,7 @@ class ChatRoomApi {
   }
 
   static Future<ApiResponse<ChatRoom?>> getChatRoom(String id) async {
-    return await DatabaseService.read(
+    return await DatabaseService.read<ChatRoom>(
       types: getDataTypes(DataModel.chatRoom),
       docId: id,
     );
@@ -69,6 +71,43 @@ class ChatRoomApi {
       dataModel: DataModel.availabilityReceiver,
       userId: messageModel.senderUserId,
       data: messageModel.toJson(),
+    );
+  }
+
+  static Future<ApiResponse<bool>> updateUserMessageRead(
+    String userId,
+    String chatRoomId,
+  ) async {
+    return await DatabaseService.update(
+      types: getDataTypes(DataModel.userMessageReads, docId: userId),
+      dataModel: DataModel.userMessageReads,
+      baseData:
+          UserMessageRead(
+            chatType: ChatType.place,
+            lastReads: DateTime.now(),
+            unreadCount: 0,
+          ).toJson(),
+      updatedData: {
+        'lastReads': Helpers.dateToJson(DateTime.now()),
+        'unreadCount': 0,
+      },
+      userId: userId,
+      docId: chatRoomId,
+    );
+  }
+
+  static Future<ApiResponse<bool>> updateChatRoom(
+    ChatRoom chatRoom,
+    String userId,
+    Map<String, dynamic> updatedData,
+  ) async {
+    return await DatabaseService.update(
+      types: getDataTypes(DataModel.chatRoom),
+      dataModel: DataModel.chatRoom,
+      baseData: chatRoom.toJson(),
+      updatedData: updatedData,
+      userId: userId,
+      docId: chatRoom.id!,
     );
   }
 }

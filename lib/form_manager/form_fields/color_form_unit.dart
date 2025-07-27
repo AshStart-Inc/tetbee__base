@@ -173,7 +173,6 @@ class _CustomColorPickerWidgetState extends State<CustomColorPickerWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 100,
       width: 300,
       child: Row(
         children: [

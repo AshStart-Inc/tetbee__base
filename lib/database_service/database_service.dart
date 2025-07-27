@@ -162,6 +162,7 @@ class DatabaseService {
         statusCode: HttpStatus.badRequest,
       );
     } catch (error) {
+      print(error);
       return ApiResponse(
         data: null,
         statusCode: HttpStatus.badRequest,
@@ -206,7 +207,31 @@ class DatabaseService {
       );
     } catch (error) {
       return ApiResponse<bool>(
-        data: null,
+        data: false,
+        statusCode: HttpStatus.badRequest,
+        message: error.toString(),
+      );
+    }
+  }
+
+  static Future<ApiResponse<bool>> delete({
+    required DataModel dataModel,
+    required List<String>? types,
+    required String docId,
+  }) async {
+    try {
+      String fullpath =
+          ('${DatabaseService.generatePath(overridenPath: null, types: types ?? getDataTypes(dataModel))}/$docId');
+
+      await FirebaseFirestore.instance.doc(fullpath).delete();
+      return ApiResponse<bool>(
+        data: true,
+        statusCode: HttpStatus.ok,
+        message: 'Successfully deleted $fullpath',
+      );
+    } catch (error) {
+      return ApiResponse<bool>(
+        data: false,
         statusCode: HttpStatus.badRequest,
         message: error.toString(),
       );

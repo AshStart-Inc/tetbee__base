@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
+import 'package:tetbee__base/form_manager/form_fields/media_picker/info_tag.dart';
 import 'package:tetbee__base/form_manager/widgets/form_field_wrapper.dart';
 import 'package:tetbee__base/models/common/ranged_time_model.dart';
 import 'package:tetbee__base/tetbee__base.dart';
@@ -43,41 +44,92 @@ class DatePickerFormUnitState extends State<DatePickerFormUnit> {
         formUnit.dateSelectionModes!.length == 1) {
       return SizedBox.shrink();
     }
-    return Row(
-      children: [
-        ...formUnit.dateSelectionModes!.map((mode) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: InkWell(
-              onTap: () {
-                setState(() {
-                  selectedDateSelectionMode = mode;
-                  _initialValue = null;
-                  controller.selectedDate = null;
-                  controller.selectedDates = null;
-                  controller.selectedRange = null;
-                  controller.selectedRanges = null;
-                });
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  color:
-                      mode == selectedDateSelectionMode
-                          ? Theme.of(context).primaryColor.withOpacity(0.7)
-                          : null,
-                  border: Border.all(),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(mode.name),
+    return SizedBox(
+      height: 60,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: [
+          ...formUnit.dateSelectionModes!.map((mode) {
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: InkWell(
+                onTap: () {
+                  setState(() {
+                    selectedDateSelectionMode = mode;
+                    _initialValue = null;
+                    controller.selectedDate = null;
+                    controller.selectedDates = null;
+                    controller.selectedRange = null;
+                    controller.selectedRanges = null;
+                  });
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color:
+                          mode == selectedDateSelectionMode
+                              ? Theme.of(context).primaryColor
+                              : Theme.of(context).unselectedWidgetColor,
+                      width: mode == selectedDateSelectionMode ? 3 : 1,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Text(
+                          getTypeDisplayName(mode),
+                          style: TextStyle(
+                            color:
+                                mode == selectedDateSelectionMode
+                                    ? null
+                                    : Theme.of(context).unselectedWidgetColor,
+                            fontWeight:
+                                mode == selectedDateSelectionMode
+                                    ? FontWeight.bold
+                                    : null,
+                          ),
+                        ),
+                        SizedBox(width: 4),
+                        InfomationTag(
+                          tooltipMode: true,
+                          text: getTypeInfo(mode),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
-            ),
-          );
-        }),
-      ],
+            );
+          }),
+        ],
+      ),
     );
+  }
+
+  String getTypeDisplayName(DateSelectionMode type) {
+    switch (type) {
+      case DateSelectionMode.weekly:
+        return "Week";
+      case DateSelectionMode.rangedMonth:
+        return "Ranged Month";
+      case DateSelectionMode.multiple:
+      case DateSelectionMode.single:
+        return "Specific Date";
+    }
+  }
+
+  String getTypeInfo(DateSelectionMode type) {
+    switch (type) {
+      case DateSelectionMode.weekly:
+        return "When this mode is selected, only one week can be chosen based on the selected schedule start date.";
+      case DateSelectionMode.rangedMonth:
+        return "When this mode is selected, you can select a ranged month.The start date must be the 1st, and the end date must be the last day of the month.";
+      case DateSelectionMode.multiple:
+      case DateSelectionMode.single:
+        return "When this mode is selected, you can choose specific individual dates.";
+    }
   }
 
   @override
@@ -194,55 +246,78 @@ class DatePickerFormUnitState extends State<DatePickerFormUnit> {
   }
 
   Widget buildDatePicker() {
-    return SfDateRangePicker(
-      key: ValueKey(selectedDateSelectionMode),
-      controller: controller,
-      toggleDaySelection: true,
-      backgroundColor: Colors.white,
-      headerStyle: DateRangePickerHeaderStyle(backgroundColor: Colors.white),
-      selectionMode: getDateSelectionMode(selectedDateSelectionMode),
-      rangeSelectionColor: Colors.transparent,
-      selectableDayPredicate:
-          (selectedDateSelectionMode == DateSelectionMode.rangedMonth)
-              ? (DateTime date) {
-                final isFirstDay = date.day == 1;
-                final isLastDay =
-                    date.day == DateTime(date.year, date.month + 1, 0).day;
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: Theme.of(context).baseTextColor),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SfDateRangePicker(
+          rangeTextStyle: Theme.of(context).textTheme.bodyLarge,
+          selectionTextStyle: Theme.of(context).textTheme.bodyLarge,
+          key: ValueKey(selectedDateSelectionMode),
+          monthViewSettings: DateRangePickerMonthViewSettings(
+            viewHeaderStyle: DateRangePickerViewHeaderStyle(
+              textStyle: Theme.of(context).textTheme.bodyLarge,
+            ),
+          ),
+          controller: controller,
+          toggleDaySelection: true,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          headerStyle: DateRangePickerHeaderStyle(
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            textStyle: Theme.of(context).textTheme.bodyLarge,
+          ),
+          selectionMode: getDateSelectionMode(selectedDateSelectionMode),
+          rangeSelectionColor: Colors.transparent,
+          selectableDayPredicate:
+              formUnit.earliestDate != null
+                  ? (DateTime? date) {
+                    return date?.isAfter(formUnit.earliestDate!) ?? false;
+                  }
+                  : (selectedDateSelectionMode == DateSelectionMode.rangedMonth)
+                  ? (DateTime date) {
+                    final isFirstDay = date.day == 1;
+                    final isLastDay =
+                        date.day == DateTime(date.year, date.month + 1, 0).day;
 
-                return isFirstDay || isLastDay;
-              }
-              : (formUnit.defaultStartWeekday != null &&
-                  selectedDateSelectionMode == DateSelectionMode.weekly)
-              ? (DateTime date) {
-                final int start = formUnit.defaultStartWeekday!;
-                final int prev = start == 1 ? 7 : start - 1;
+                    return isFirstDay || isLastDay;
+                  }
+                  : (formUnit.defaultStartWeekday != null &&
+                      selectedDateSelectionMode == DateSelectionMode.weekly)
+                  ? (DateTime date) {
+                    final int start = formUnit.defaultStartWeekday!;
+                    final int prev = start == 1 ? 7 : start - 1;
 
-                return date.weekday == start || date.weekday == prev;
-              }
-              : null,
-      onSelectionChanged: (args) {
-        setState(() {
-          _initialValue = args.value;
-          formFieldState?.validate();
-        });
-        // setState(() {
-        //   if (args.value is PickerDateRange) {
-        //     _initialValue = RangedTimeModel(
-        //       startTime: args.value.startDate,
-        //       endTime: args.value.endDate,
-        //     );
-        //   } else if (args.value is DateTime) {
-        //     _initialValue = RangedTimeModel(startTime: args.value);
-        //   }
-        //   print(_initialValue);
-        //   // else if (args.value is List<DateTime>) {
-        //   //   print(args.value.length.toString());
-        //   // } else {
-        //   //   print(args.value.length.toString());
-        //   // }
-        // });
-      },
-      view: DateRangePickerView.month,
+                    return date.weekday == start || date.weekday == prev;
+                  }
+                  : null,
+          onSelectionChanged: (args) {
+            setState(() {
+              _initialValue = args.value;
+              formFieldState?.validate();
+            });
+            // setState(() {
+            //   if (args.value is PickerDateRange) {
+            //     _initialValue = RangedTimeModel(
+            //       startTime: args.value.startDate,
+            //       endTime: args.value.endDate,
+            //     );
+            //   } else if (args.value is DateTime) {
+            //     _initialValue = RangedTimeModel(startTime: args.value);
+            //   }
+            //   print(_initialValue);
+            //   // else if (args.value is List<DateTime>) {
+            //   //   print(args.value.length.toString());
+            //   // } else {
+            //   //   print(args.value.length.toString());
+            //   // }
+            // });
+          },
+          view: DateRangePickerView.month,
+        ),
+      ),
     );
   }
 
@@ -251,21 +326,32 @@ class DatePickerFormUnitState extends State<DatePickerFormUnit> {
       return Text(_initialValue.toString());
     }
     if (_initialValue is PickerDateRange) {
+      var value = (_initialValue as PickerDateRange);
+      if (value.startDate == null || value.endDate == null) {
+        return SizedBox.shrink();
+      }
       return Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            if ((_initialValue as PickerDateRange).startDate != null)
-              Text(
-                (_initialValue as PickerDateRange).startDate!.toIsoDateString,
-              ),
-            Text('    -   '),
-            if ((_initialValue as PickerDateRange).endDate != null)
-              Text((_initialValue as PickerDateRange).endDate!.toIsoDateString),
-          ],
+        child: NewCustomDateRange(
+          startDate: (_initialValue as PickerDateRange).startDate!,
+          endDate: (_initialValue as PickerDateRange).endDate!,
         ),
       );
+      // Padding(
+      //   padding: const EdgeInsets.all(8.0),
+      //   child: Row(
+      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //     children: [
+      //       if ((_initialValue as PickerDateRange).startDate != null)
+      //         Text(
+      //           (_initialValue as PickerDateRange).startDate!.toIsoDateString,
+      //         ),
+      //       Text('    -   '),
+      //       if ((_initialValue as PickerDateRange).endDate != null)
+      //         Text((_initialValue as PickerDateRange).endDate!.toIsoDateString),
+      //     ],
+      //   ),
+      // );
     } else if (_initialValue is DateTime) {
       return Text(_initialValue.toIsoDateString);
     } else if (_initialValue is List) {

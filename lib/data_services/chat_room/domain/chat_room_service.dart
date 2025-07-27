@@ -43,4 +43,25 @@ class ChatRoomService with ApiServiceMixin {
       'Error while sendMessage',
     );
   }
+
+  Future<Either<Failure, bool>> updateUserMessageRead(
+    String userId,
+    String chatRoomId,
+  ) async {
+    return execute(
+      () => ChatRoomRepository().updateUserMessageRead(userId, chatRoomId),
+      'Error while updateUserMessageRead',
+    );
+  }
+
+  Future<Either<Failure, bool>> updateChatRoom(
+    ChatRoom chatRoom,
+    String userId,
+    Map<String, dynamic> updatedData,
+  ) async {
+    return execute(
+      () => ChatRoomRepository().updateChatRoom(chatRoom, userId, updatedData),
+      'Error while updateChatRoom',
+    );
+  }
 }

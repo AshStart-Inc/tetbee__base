@@ -68,6 +68,9 @@ _$WorkPlaceImpl _$$WorkPlaceImplFromJson(
           ),
   useShiftSignOut: json['useShiftSignOut'] as bool? ?? false,
   roundingInterval: (json['roundingInterval'] as num?)?.toInt() ?? 15,
+  useTimeOffRequest: json['useTimeOffRequest'] as bool? ?? true,
+  timeOffRequestNoticeDays:
+      (json['timeOffRequestNoticeDays'] as num?)?.toInt() ?? 10,
 );
 
 Map<String, dynamic> _$$WorkPlaceImplToJson(_$WorkPlaceImpl instance) =>
@@ -100,4 +103,6 @@ Map<String, dynamic> _$$WorkPlaceImplToJson(_$WorkPlaceImpl instance) =>
           instance.availabilityReceiverDefaultSetting.toJson(),
       'useShiftSignOut': instance.useShiftSignOut,
       'roundingInterval': instance.roundingInterval,
+      'useTimeOffRequest': instance.useTimeOffRequest,
+      'timeOffRequestNoticeDays': instance.timeOffRequestNoticeDays,
     };

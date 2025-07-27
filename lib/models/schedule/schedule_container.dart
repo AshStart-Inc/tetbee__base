@@ -38,4 +38,14 @@ extension ScheduleContainerExtension on ScheduleContainer {
         startDate!.add(Duration(days: date.weekday - 1)),
     ];
   }
+
+  List<String> getSortedAvailabilities() {
+    if (selectedAvailabilityReceiverIds.isEmpty) return [];
+
+    final sortedEntries =
+        selectedAvailabilityReceiverIds.entries.toList()
+          ..sort((a, b) => a.key.compareTo(b.key));
+
+    return sortedEntries.map((e) => e.value).whereType<String>().toList();
+  }
 }

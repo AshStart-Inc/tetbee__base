@@ -91,10 +91,12 @@ class _FormManagerState extends State<FormManager> {
               FormBuilder(
                 key: _fomKey,
                 initialValue: widget.initialValue ?? {},
-                onChanged:
-                    () => widget.onChange?.call(
-                      _fomKey.currentState?.instantValue ?? {},
-                    ),
+                onChanged: () {
+                  setState(() {});
+                  widget.onChange?.call(
+                    _fomKey.currentState?.instantValue ?? {},
+                  );
+                },
                 child: Column(
                   children: [
                     Expanded(
@@ -128,7 +130,11 @@ class _FormManagerState extends State<FormManager> {
           key: PageStorageKey(e.key),
           child: IgnorePointer(
             ignoring: e.value.readOnly,
-            child: getFormUnit(e, _fomKey.currentState?.instantValue[e.key]),
+            child: getFormUnit(
+              e,
+              _fomKey.currentState?.instantValue[e.key],
+              _fomKey.currentState?.instantValue ?? {},
+            ),
           ),
         ),
       ),
@@ -156,6 +162,7 @@ class _FormManagerState extends State<FormManager> {
                     )
                     : null,
             onTap: () async {
+              Helpers.dismissKeyboard(context: context);
               if (_fomKey.currentState!.saveAndValidate()) {
                 loading(true);
                 await Future.delayed(Duration(milliseconds: 10)).then((

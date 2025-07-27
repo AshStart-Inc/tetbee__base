@@ -69,4 +69,38 @@ extension RangedTimeModelExtension on RangedTimeModel {
 
     return TimeOfDay(hour: hours, minute: minutes);
   }
+
+  RangedTimeModel toBaseTime(DateTime baseDate) {
+    DateTime sTime = startTime!;
+    DateTime? eTime = endTime;
+
+    if (eTime != null) {
+      if (sTime.day != eTime.day) {
+        eTime = DateTime(
+          baseDate.year,
+          baseDate.month,
+          baseDate.day + 1,
+          eTime.hour,
+          eTime.minute,
+        );
+      } else {
+        eTime = DateTime(
+          baseDate.year,
+          baseDate.month,
+          baseDate.day,
+          eTime.hour,
+          eTime.minute,
+        );
+      }
+    }
+    sTime = DateTime(
+      baseDate.year,
+      baseDate.month,
+      baseDate.day,
+      sTime.hour,
+      sTime.minute,
+    );
+
+    return RangedTimeModel(startTime: sTime, endTime: eTime);
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tetbee__base/form_manager/form_unit/form_condition.dart';
 import 'package:tetbee__base/form_manager/form_validator/custom_form_validator.dart';
 
 enum FormUnitType {
@@ -25,6 +26,7 @@ abstract class FormUnitBase {
   String? errorText;
   dynamic defaultValue;
   List<CustomFormValidator>? validators;
+  Map<FormCondition, LogicalOperator>? formConditions = {};
 
   FormUnitBase({
     required this.formUnitType,
@@ -35,5 +37,6 @@ abstract class FormUnitBase {
     this.errorText,
     this.defaultValue,
     this.trailingWidget,
+    this.formConditions,
   });
 }

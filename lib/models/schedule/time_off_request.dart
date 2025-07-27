@@ -18,6 +18,7 @@ class TimeOffRequest with _$TimeOffRequest {
     @Default('') String updatedBy,
     @Default(false) bool deleted,
     @Default(false) bool archived,
+    @Default([]) List<String> scheduleDocIds,
     @Default([]) List<String> filters,
     @Default([]) List<String> scheduleContainerFilter,
     @Default('') String description,
@@ -28,6 +29,7 @@ class TimeOffRequest with _$TimeOffRequest {
     DateTime? endDate,
     @Default(DocumentStatus.onSubmit) DocumentStatus status,
     @Default([]) List<String> notificationPositionTarget,
+    @Default([]) List<String> requestedUserPositionIds,
   }) = _TimeOffRequest;
 
   factory TimeOffRequest.fromJson(Map<String, dynamic> json) =>

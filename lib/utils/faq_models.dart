@@ -45,7 +45,7 @@ final FAQModel AVAILABILITY_OPTION = FAQModel(
 );
 
 final FAQModel Default_Availability_Settings = FAQModel(
-  label: 'Default Availability Settings',
+  label: 'Work Hours',
   info:
-      'Set your default availability here. Your staff will submit their availability based on this time range.',
+      'Set your default Work Hours here. Your staff will submit their availability based on this time range.',
 );

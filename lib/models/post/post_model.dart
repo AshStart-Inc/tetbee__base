@@ -16,6 +16,7 @@ class PostModel with _$PostModel {
   @JsonSerializable(explicitToJson: true)
   const factory PostModel({
     String? id,
+    @Default(false) bool isUploading,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     DateTime? createdAt,
     @Default('') String createdBy,
@@ -34,8 +35,6 @@ class PostModel with _$PostModel {
     @Default([]) List<String> selectedPositions,
     @Default([]) List<String> views,
     @Default([]) List<String> confirms,
-    @Default([]) List<StoredData> images,
-    @Default([]) List<StoredData> files,
     @Default([]) List<LinkModel> linkes,
     @Default([]) List<VotingOption> votingOptions,
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)

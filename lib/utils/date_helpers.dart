@@ -190,6 +190,23 @@ class DateHelpers {
     return now.subtract(Duration(days: diff));
   }
 
+  static List<String> getAllWeekDates(DateTime date) {
+    if (date.weekday == DateTime.sunday) {
+      return List.generate(
+        7,
+        (i) => date.add(Duration(days: i)).toIsoDateString,
+      );
+    } else {
+      final monday = date.subtract(Duration(days: date.weekday - 1));
+      final sunday = monday.subtract(const Duration(days: 1)).toIsoDateString;
+      final weekDates = List.generate(
+        6,
+        (i) => monday.add(Duration(days: i)).toIsoDateString,
+      );
+      return [sunday, ...weekDates];
+    }
+  }
+
   static String getActualWorkTime({
     required DateTime startTime,
     required DateTime endTime,

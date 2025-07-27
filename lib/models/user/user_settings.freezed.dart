@@ -274,7 +274,7 @@ class _$UserSettingsImpl implements _UserSettings {
     this.timeFormat = TimeFormat.amPmFormat,
     this.appTheme = AppTheme.light,
     this.baseFontSize = 8.0,
-    this.homeScreenShowMySchedule = false,
+    this.homeScreenShowMySchedule = true,
     this.didRateApp = false,
     this.showAddress = true,
     this.showCV = true,

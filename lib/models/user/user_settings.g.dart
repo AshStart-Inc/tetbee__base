@@ -16,7 +16,7 @@ _$UserSettingsImpl _$$UserSettingsImplFromJson(Map<String, dynamic> json) =>
           AppTheme.light,
       baseFontSize: (json['baseFontSize'] as num?)?.toDouble() ?? 8.0,
       homeScreenShowMySchedule:
-          json['homeScreenShowMySchedule'] as bool? ?? false,
+          json['homeScreenShowMySchedule'] as bool? ?? true,
       didRateApp: json['didRateApp'] as bool? ?? false,
       showAddress: json['showAddress'] as bool? ?? true,
       showCV: json['showCV'] as bool? ?? true,

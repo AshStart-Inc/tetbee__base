@@ -4,6 +4,7 @@ import 'package:tetbee__base/database_service/database_exports.dart';
 import 'package:tetbee__base/models/models.dart';
 import 'package:tetbee__base/models/work_place/join_request.dart';
 import 'package:tetbee__base/models/work_place/remove_user_form_work_place_request.dart';
+import 'package:tetbee__base/models/work_place/remove_work_place_request.dart';
 import 'package:tetbee__base/models/work_place/update_work_place_user_info.dart';
 
 WorkPlaceApi workPlaceApi = WorkPlaceApi();
@@ -16,6 +17,15 @@ class WorkPlaceApi with ApiHandlingMixin {
     return await executeFirebaseFunction<String>(
       'workPlace-createWorkPlace',
       workPlace.toJson(),
+    );
+  }
+
+  Future<ApiResponse<bool>> removeWorkplace(
+    RemoveWorkPlaceRequest request,
+  ) async {
+    return await executeFirebaseFunction<bool>(
+      'workPlace-removeWorkplace',
+      request.toJson(),
     );
   }
 
@@ -124,6 +134,22 @@ class WorkPlaceApi with ApiHandlingMixin {
       data: positionModel.toJson(),
       userId: userId,
       docId: positionModel.id,
+    );
+  }
+
+  Future<ApiResponse<bool>> updatePosition(
+    String placeId,
+    String userId,
+    PositionModel positionModel, {
+    Map<String, dynamic>? updatedData,
+  }) {
+    return DatabaseService.update(
+      dataModel: DataModel.placePosition,
+      types: getDataTypes(DataModel.placePosition, docId: placeId),
+      baseData: positionModel.toJson(),
+      userId: userId,
+      updatedData: updatedData,
+      docId: positionModel.id!,
     );
   }
 

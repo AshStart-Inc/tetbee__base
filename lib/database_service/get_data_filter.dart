@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:tetbee__base/models/app_notification/app_notification_state.dart';
+import 'package:tetbee__base/models/availability/my_preset_availability.dart';
 import 'package:tetbee__base/models/availability/user_availabilities.dart';
 import 'package:tetbee__base/models/chat/message_model.dart';
 import 'package:tetbee__base/models/app_notification/app_notification.dart';
+import 'package:tetbee__base/models/chat/user_message_read.dart';
 import 'package:tetbee__base/models/common/notification_center.dart';
 import 'package:tetbee__base/models/common/stored_data.dart';
 import 'package:tetbee__base/models/user/temp_user_availabilities.dart';
@@ -118,10 +120,7 @@ Future<List<String>> getDataFilter(
               .inDays ==
           0) {
         return [
-          timeOffRequest.createdBy,
-          ...timeOffRequest.startDate!.getWeekDatesFrom().map(
-            (date) => date.toIsoDateString,
-          ),
+          timeOffRequest.startDate!.toIsoDateString,
           timeOffRequest.startDate!.year.toString(),
           timeOffRequest.startDate!.getMonthFormatFromDateTime,
         ];
@@ -149,12 +148,7 @@ Future<List<String>> getDataFilter(
             timeOffRequest.endDate!,
           ),
         );
-        return [
-          timeOffRequest.createdBy,
-          ...dateDocIdFormats,
-          ...years,
-          ...months,
-        ];
+        return [...dateDocIdFormats, ...years, ...months];
       }
 
     case DataModel.dailyScheduleSignOutReview:
@@ -165,6 +159,12 @@ Future<List<String>> getDataFilter(
     case DataModel.workHourCalculationHistory:
       return [];
     case DataModel.feedbackForm:
+      return [];
+    case DataModel.myPresetAvailability:
+      return [];
+    case DataModel.postStoredData:
+      return [];
+    case DataModel.userMessageReads:
       return [];
   }
 }
@@ -220,12 +220,17 @@ T parseData<T>(DocumentSnapshot<Object?> doc) {
     case const (WorkHourCalculationHistory):
       return WorkHourCalculationHistory.fromJson(data).copyWith(id: doc.id)
           as T;
+
+    case const (MyPresetAvailability):
+      return MyPresetAvailability.fromJson(data).copyWith(id: doc.id) as T;
     case const (UserWorkPlaceRelation):
       return UserWorkPlaceRelation.fromJson(data).copyWith(id: doc.id) as T;
     case const (FeedbackForm):
       return FeedbackForm.fromJson(data).copyWith(id: doc.id) as T;
     case const (Map<String, dynamic>):
       return {'id': doc.id, ...data} as T;
+    case const (UserMessageRead):
+      return UserMessageRead.fromJson(data).copyWith(id: doc.id) as T;
     default:
       throw Exception('Unknown type');
   }

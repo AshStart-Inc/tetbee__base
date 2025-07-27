@@ -77,7 +77,8 @@ class _TextFormUnitState extends State<TextFormUnit> {
             height: formUnit.maxLines! > 1 ? null : FormConstants.baseHeight,
             child: TextField(
               maxLines: formUnit.maxLines,
-              keyboardType: formUnit.textInputType,
+              keyboardType: formUnit.textInputType ?? TextInputType.name,
+              textCapitalization: TextCapitalization.sentences,
               focusNode: focusNode,
               controller: textEditingController,
               onChanged: (v) => onValueChange(v, state),

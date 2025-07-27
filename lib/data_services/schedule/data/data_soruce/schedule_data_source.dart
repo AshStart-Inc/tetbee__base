@@ -47,6 +47,20 @@ class ScheduleDataSource with ApiErrorHandlerMixin {
     );
   }
 
+  Future<bool> deleteScheduleContainer(
+    String placeId,
+    String userId,
+    String scheduleContainerId,
+  ) async {
+    return execute(
+      () => ScheduleApi.deleteScheduleContainer(
+        placeId,
+        userId,
+        scheduleContainerId,
+      ),
+    );
+  }
+
   Future<String> createWorkPlacePresetTime(
     String placeId,
     String userId,
@@ -93,6 +107,10 @@ class ScheduleDataSource with ApiErrorHandlerMixin {
     UserSchedule userSchedule,
   ) async {
     return execute(() => ScheduleApi.updateUserSchedule(userId, userSchedule));
+  }
+
+  Future<bool> deleteUserSchedule(UserSchedule userSchedule) async {
+    return execute(() => ScheduleApi.deleteUserSchedule(userSchedule));
   }
 
   Future<List<UserSchedule>> getSingleUserSchedulesForScheduleContainer(

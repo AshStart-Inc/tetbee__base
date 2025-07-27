@@ -15,6 +15,7 @@ class FormUnit extends FormUnitBase {
     super.errorText,
     super.validators,
     super.readOnly,
+    super.formConditions,
     this.textInputType = TextInputType.name,
     this.textStyle,
     this.maxLength,
@@ -42,6 +43,7 @@ class FormUnit extends FormUnitBase {
     super.errorText,
     super.validators,
     super.readOnly,
+    super.formConditions,
   }) : super(formUnitType: FormUnitType.color);
 
   FormUnit.boolean({
@@ -53,7 +55,12 @@ class FormUnit extends FormUnitBase {
     super.errorText,
     super.validators,
     super.readOnly,
+    super.formConditions,
+    this.titleWidget,
+    this.headingWidget,
   }) : super(formUnitType: FormUnitType.boolean);
+  Widget? titleWidget;
+  Widget? headingWidget;
   FormUnit.phoneNumber({
     required super.label,
     super.trailingWidget,
@@ -63,6 +70,7 @@ class FormUnit extends FormUnitBase {
     super.errorText,
     super.validators,
     super.readOnly,
+    super.formConditions,
   }) : super(formUnitType: FormUnitType.phoneNumber);
 
   FormUnit.itemPicker({
@@ -74,6 +82,7 @@ class FormUnit extends FormUnitBase {
     super.errorText,
     super.validators,
     super.readOnly,
+    super.formConditions,
     //
     this.isMultipleValueAllowed = false,
     this.itemList,
@@ -94,6 +103,7 @@ class FormUnit extends FormUnitBase {
     super.errorText,
     super.validators,
     super.readOnly,
+    super.formConditions,
     //
     this.isMultipleValueAllowed = false,
     this.itemList,
@@ -108,6 +118,7 @@ class FormUnit extends FormUnitBase {
     super.defaultValue,
     super.errorText,
     super.readOnly,
+    super.formConditions,
     //
     this.baseTime,
     this.typeMode,
@@ -123,6 +134,7 @@ class FormUnit extends FormUnitBase {
     super.defaultValue,
     super.errorText,
     super.readOnly,
+    super.formConditions,
     required this.baseTime,
     //
     this.labelWidget,
@@ -144,6 +156,7 @@ class FormUnit extends FormUnitBase {
     this.startTimeLabel,
     this.endTimeLabel,
     this.dailyAvailabilityTimeInterval = TimeInterval.thirty,
+    this.showDate = true,
   }) : super(formUnitType: FormUnitType.rangedTimePicker);
 
   //date
@@ -170,6 +183,7 @@ class FormUnit extends FormUnitBase {
   String? startTimeLabel;
   String? endTimeLabel;
   TimeInterval? dailyAvailabilityTimeInterval;
+  bool? showDate;
 
   FormUnit.mediaPicker({
     required super.label,
@@ -177,7 +191,7 @@ class FormUnit extends FormUnitBase {
     super.defaultValue,
     super.errorText,
     super.readOnly,
-
+    super.formConditions,
     //
     this.dataPath,
     this.widgetHeight = 150,
@@ -198,14 +212,17 @@ class FormUnit extends FormUnitBase {
     super.errorText,
     super.readOnly,
     super.validators,
+    super.formConditions,
     //
     this.dateSelectionModes,
     this.defaultStartWeekday,
     this.allowSameDate = false,
+    this.earliestDate,
   }) : super(formUnitType: FormUnitType.datePicker);
   int? defaultStartWeekday;
   List<DateSelectionMode>? dateSelectionModes;
   bool? allowSameDate;
+  DateTime? earliestDate;
 
   FormUnit.rangedTimeSlider({
     super.label = '',
@@ -213,6 +230,7 @@ class FormUnit extends FormUnitBase {
     super.defaultValue,
     super.errorText,
     super.readOnly,
+    super.formConditions,
     //
     this.minimumHour,
     this.labelWidget,
@@ -239,6 +257,7 @@ class FormUnit extends FormUnitBase {
   FormUnit.customWidget({
     super.label = '',
     super.trailingWidget,
+    super.formConditions,
     //
     required this.widget,
   }) : super(formUnitType: FormUnitType.customWidget);

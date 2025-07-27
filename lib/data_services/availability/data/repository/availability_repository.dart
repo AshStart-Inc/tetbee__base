@@ -1,4 +1,5 @@
 import 'package:tetbee__base/data_services/availability/data/data_sources/availability_data_source.dart';
+import 'package:tetbee__base/models/availability/availability_reminder_request.dart';
 import 'package:tetbee__base/models/availability/user_availabilities.dart';
 import 'package:tetbee__base/models/models.dart';
 
@@ -54,6 +55,18 @@ class AvailabilityRepository {
     );
   }
 
+  Future<UserAvailabilities?> getUserAvailability(
+    String userId,
+    String placeId,
+    String availabilityId,
+  ) async {
+    return await AvailabilityDataSource().getUserAvailability(
+      userId,
+      placeId,
+      availabilityId,
+    );
+  }
+
   Future<AvailabilityReceiver?> getAvailabilityReceiver(
     String placeId,
     String availabilityId,
@@ -61,6 +74,50 @@ class AvailabilityRepository {
     return await AvailabilityDataSource().getAvailabilityReceiver(
       placeId,
       availabilityId,
+    );
+  }
+
+  Future<String> createMyPresetAvailability(
+    MyPresetAvailability myPresetAvailability,
+    String userId,
+    String placeId,
+  ) async {
+    return await AvailabilityDataSource().createMyPresetAvailability(
+      myPresetAvailability,
+      userId,
+      placeId,
+    );
+  }
+
+  Future<bool> updateMyPresetAvailability(
+    MyPresetAvailability myPresetAvailability,
+    String userId,
+    String placeId,
+  ) async {
+    return await AvailabilityDataSource().updateMyPresetAvailability(
+      myPresetAvailability,
+      userId,
+      placeId,
+    );
+  }
+
+  Future<List<MyPresetAvailability>> getMyPresetAvailabilities(
+    String userId,
+    String placeId, {
+    bool getSelected = false,
+  }) async {
+    return await AvailabilityDataSource().getMyPresetAvailabilities(
+      userId,
+      placeId,
+      getSelected: getSelected,
+    );
+  }
+
+  Future<bool> sendAvailabilityReminder(
+    AvailabilityReminderRequest availabilityReminderRequest,
+  ) async {
+    return await AvailabilityDataSource().sendAvailabilityReminder(
+      availabilityReminderRequest,
     );
   }
 }

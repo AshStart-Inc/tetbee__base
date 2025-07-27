@@ -55,6 +55,8 @@ mixin _$WorkPlace {
       throw _privateConstructorUsedError;
   bool get useShiftSignOut => throw _privateConstructorUsedError;
   int get roundingInterval => throw _privateConstructorUsedError;
+  bool get useTimeOffRequest => throw _privateConstructorUsedError;
+  int get timeOffRequestNoticeDays => throw _privateConstructorUsedError;
 
   /// Serializes this WorkPlace to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -102,6 +104,8 @@ abstract class $WorkPlaceCopyWith<$Res> {
     AvailabilityReceiverSetting availabilityReceiverDefaultSetting,
     bool useShiftSignOut,
     int roundingInterval,
+    bool useTimeOffRequest,
+    int timeOffRequestNoticeDays,
   });
 
   $GooglePlaceModelCopyWith<$Res> get googlePlaceModel;
@@ -156,6 +160,8 @@ class _$WorkPlaceCopyWithImpl<$Res, $Val extends WorkPlace>
     Object? availabilityReceiverDefaultSetting = null,
     Object? useShiftSignOut = null,
     Object? roundingInterval = null,
+    Object? useTimeOffRequest = null,
+    Object? timeOffRequestNoticeDays = null,
   }) {
     return _then(
       _value.copyWith(
@@ -299,6 +305,16 @@ class _$WorkPlaceCopyWithImpl<$Res, $Val extends WorkPlace>
                     ? _value.roundingInterval
                     : roundingInterval // ignore: cast_nullable_to_non_nullable
                         as int,
+            useTimeOffRequest:
+                null == useTimeOffRequest
+                    ? _value.useTimeOffRequest
+                    : useTimeOffRequest // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            timeOffRequestNoticeDays:
+                null == timeOffRequestNoticeDays
+                    ? _value.timeOffRequestNoticeDays
+                    : timeOffRequestNoticeDays // ignore: cast_nullable_to_non_nullable
+                        as int,
           )
           as $Val,
     );
@@ -425,6 +441,8 @@ abstract class _$$WorkPlaceImplCopyWith<$Res>
     AvailabilityReceiverSetting availabilityReceiverDefaultSetting,
     bool useShiftSignOut,
     int roundingInterval,
+    bool useTimeOffRequest,
+    int timeOffRequestNoticeDays,
   });
 
   @override
@@ -484,6 +502,8 @@ class __$$WorkPlaceImplCopyWithImpl<$Res>
     Object? availabilityReceiverDefaultSetting = null,
     Object? useShiftSignOut = null,
     Object? roundingInterval = null,
+    Object? useTimeOffRequest = null,
+    Object? timeOffRequestNoticeDays = null,
   }) {
     return _then(
       _$WorkPlaceImpl(
@@ -619,6 +639,16 @@ class __$$WorkPlaceImplCopyWithImpl<$Res>
                 ? _value.roundingInterval
                 : roundingInterval // ignore: cast_nullable_to_non_nullable
                     as int,
+        useTimeOffRequest:
+            null == useTimeOffRequest
+                ? _value.useTimeOffRequest
+                : useTimeOffRequest // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        timeOffRequestNoticeDays:
+            null == timeOffRequestNoticeDays
+                ? _value.timeOffRequestNoticeDays
+                : timeOffRequestNoticeDays // ignore: cast_nullable_to_non_nullable
+                    as int,
       ),
     );
   }
@@ -660,6 +690,8 @@ class _$WorkPlaceImpl implements _WorkPlace {
         const AvailabilityReceiverSetting(),
     this.useShiftSignOut = false,
     this.roundingInterval = 15,
+    this.useTimeOffRequest = true,
+    this.timeOffRequestNoticeDays = 10,
   }) : _filters = filters,
        _positions = positions,
        _ordinals = ordinals;
@@ -762,10 +794,16 @@ class _$WorkPlaceImpl implements _WorkPlace {
   @override
   @JsonKey()
   final int roundingInterval;
+  @override
+  @JsonKey()
+  final bool useTimeOffRequest;
+  @override
+  @JsonKey()
+  final int timeOffRequestNoticeDays;
 
   @override
   String toString() {
-    return 'WorkPlace(id: $id, name: $name, createdAt: $createdAt, createdBy: $createdBy, updatedAt: $updatedAt, updatedBy: $updatedBy, filters: $filters, deleted: $deleted, placeOwnerId: $placeOwnerId, currentMembershipId: $currentMembershipId, startWeekDay: $startWeekDay, googlePlaceModel: $googlePlaceModel, addressModel: $addressModel, email1: $email1, email2: $email2, website: $website, defaultProfilePictureUrl: $defaultProfilePictureUrl, isOpened: $isOpened, isVerified: $isVerified, primaryPhoneNumber: $primaryPhoneNumber, secondaryPhoneNumber: $secondaryPhoneNumber, workPlaceTypeId: $workPlaceTypeId, timeZone: $timeZone, positions: $positions, ordinals: $ordinals, availabilityReceiverDefaultSetting: $availabilityReceiverDefaultSetting, useShiftSignOut: $useShiftSignOut, roundingInterval: $roundingInterval)';
+    return 'WorkPlace(id: $id, name: $name, createdAt: $createdAt, createdBy: $createdBy, updatedAt: $updatedAt, updatedBy: $updatedBy, filters: $filters, deleted: $deleted, placeOwnerId: $placeOwnerId, currentMembershipId: $currentMembershipId, startWeekDay: $startWeekDay, googlePlaceModel: $googlePlaceModel, addressModel: $addressModel, email1: $email1, email2: $email2, website: $website, defaultProfilePictureUrl: $defaultProfilePictureUrl, isOpened: $isOpened, isVerified: $isVerified, primaryPhoneNumber: $primaryPhoneNumber, secondaryPhoneNumber: $secondaryPhoneNumber, workPlaceTypeId: $workPlaceTypeId, timeZone: $timeZone, positions: $positions, ordinals: $ordinals, availabilityReceiverDefaultSetting: $availabilityReceiverDefaultSetting, useShiftSignOut: $useShiftSignOut, roundingInterval: $roundingInterval, useTimeOffRequest: $useTimeOffRequest, timeOffRequestNoticeDays: $timeOffRequestNoticeDays)';
   }
 
   @override
@@ -830,7 +868,14 @@ class _$WorkPlaceImpl implements _WorkPlace {
             (identical(other.useShiftSignOut, useShiftSignOut) ||
                 other.useShiftSignOut == useShiftSignOut) &&
             (identical(other.roundingInterval, roundingInterval) ||
-                other.roundingInterval == roundingInterval));
+                other.roundingInterval == roundingInterval) &&
+            (identical(other.useTimeOffRequest, useTimeOffRequest) ||
+                other.useTimeOffRequest == useTimeOffRequest) &&
+            (identical(
+                  other.timeOffRequestNoticeDays,
+                  timeOffRequestNoticeDays,
+                ) ||
+                other.timeOffRequestNoticeDays == timeOffRequestNoticeDays));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -865,6 +910,8 @@ class _$WorkPlaceImpl implements _WorkPlace {
     availabilityReceiverDefaultSetting,
     useShiftSignOut,
     roundingInterval,
+    useTimeOffRequest,
+    timeOffRequestNoticeDays,
   ]);
 
   /// Create a copy of WorkPlace
@@ -913,6 +960,8 @@ abstract class _WorkPlace implements WorkPlace {
     final AvailabilityReceiverSetting availabilityReceiverDefaultSetting,
     final bool useShiftSignOut,
     final int roundingInterval,
+    final bool useTimeOffRequest,
+    final int timeOffRequestNoticeDays,
   }) = _$WorkPlaceImpl;
 
   factory _WorkPlace.fromJson(Map<String, dynamic> json) =
@@ -977,6 +1026,10 @@ abstract class _WorkPlace implements WorkPlace {
   bool get useShiftSignOut;
   @override
   int get roundingInterval;
+  @override
+  bool get useTimeOffRequest;
+  @override
+  int get timeOffRequestNoticeDays;
 
   /// Create a copy of WorkPlace
   /// with the given fields replaced by the non-null parameter values.

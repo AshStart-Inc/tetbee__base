@@ -53,7 +53,7 @@ class HomeButton extends StatelessWidget {
                           child: Icon(
                             iconData,
                             size: size! * 0.6,
-                            color: iconColor,
+                            color: iconColor ?? Colors.black,
                           ),
                         ),
                       if (withContainer)
@@ -64,16 +64,14 @@ class HomeButton extends StatelessWidget {
                           decoration: BoxDecoration(
                             color:
                                 color ??
-                                Theme.of(context).cardColor.withOpacity(0.8),
+                                Theme.of(context).primaryColor.withOpacity(0.8),
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: Center(
                             child: Icon(
                               iconData,
                               size: size! * 0.6,
-                              color:
-                                  iconColor ??
-                                  Theme.of(context).colorScheme.secondary,
+                              color: iconColor ?? Colors.black,
                             ),
                           ),
                         ),

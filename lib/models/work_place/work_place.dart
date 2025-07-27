@@ -52,6 +52,8 @@ class WorkPlace with _$WorkPlace {
     AvailabilityReceiverSetting availabilityReceiverDefaultSetting,
     @Default(false) bool useShiftSignOut,
     @Default(15) int roundingInterval,
+    @Default(true) bool useTimeOffRequest,
+    @Default(10) int timeOffRequestNoticeDays,
   }) = _WorkPlace;
 
   factory WorkPlace.fromJson(Map<String, dynamic> json) =>

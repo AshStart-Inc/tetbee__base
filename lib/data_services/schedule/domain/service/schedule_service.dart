@@ -48,6 +48,21 @@ class ScheduleService with ApiServiceMixin {
     );
   }
 
+  Future<Either<Failure, bool>> deleteScheduleContainer(
+    String placeId,
+    String userId,
+    String scheduleContainerId,
+  ) async {
+    return execute(
+      () => ScheduleRepository().deleteScheduleContainer(
+        placeId,
+        userId,
+        scheduleContainerId,
+      ),
+      'Error while deleteScheduleContainer',
+    );
+  }
+
   Future<Either<Failure, String>> createWorkPlacePresetTime(
     String placeId,
     String userId,
@@ -105,6 +120,15 @@ class ScheduleService with ApiServiceMixin {
     return execute(
       () => ScheduleRepository().updateUserSchedule(userId, userSchedule),
       'Error while updateUserSchedule',
+    );
+  }
+
+  Future<Either<Failure, bool>> deleteUserSchedule(
+    UserSchedule userSchedule,
+  ) async {
+    return execute(
+      () => ScheduleRepository().deleteUserSchedule(userSchedule),
+      'Error while deleteUserSchedule',
     );
   }
 

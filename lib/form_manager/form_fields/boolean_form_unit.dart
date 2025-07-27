@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:tetbee__base/form_manager/form_unit/form_unit.dart';
 import 'package:tetbee__base/form_manager/widgets/form_field_wrapper.dart';
+import 'package:tetbee__base/tetbee__base.dart';
 
 class BooleanFormUnit extends StatefulWidget {
   final MapEntry<String, FormUnit> formUnit;
@@ -53,19 +54,36 @@ class BooleanFormUnitState extends State<BooleanFormUnit> {
       },
       key: widget.key,
       builder: (FormFieldState val) {
-        return InkWell(
-          onTap: () {
-            setState(() {
-              _initialValue = !_initialValue;
-            });
-          },
-          child: FormFieldWrapper(
-            label: formUnit.label,
-            formField: button,
-            errorText: val.errorText,
-            trailingWidget: formUnit.trailingWidget,
-          ),
+        return Row(
+          children: [
+            if (formUnit.headingWidget != null) formUnit.headingWidget!,
+            Expanded(
+              child: CustomSwitchWidget(
+                title: formUnit.titleWidget != null ? null : formUnit.label,
+                titleWidget: formUnit.titleWidget,
+                value: _initialValue,
+                onChange: (bool value) async {
+                  setState(() {
+                    _initialValue = !_initialValue;
+                  });
+                },
+              ),
+            ),
+          ],
         );
+        // return InkWell(
+        //   onTap: () {
+        //     setState(() {
+        //       _initialValue = !_initialValue;
+        //     });
+        //   },
+        //   child: FormFieldWrapper(
+        //     label: formUnit.label,
+        //     formField: button,
+        //     errorText: val.errorText,
+        //     trailingWidget: formUnit.trailingWidget,
+        //   ),
+        // );
       },
     );
   }
