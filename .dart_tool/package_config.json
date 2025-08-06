@@ -1137,8 +1137,8 @@
     }
   ],
   "generator": "pub",
-  "generatorVersion": "3.8.0",
+  "generatorVersion": "3.8.1",
   "flutterRoot": "file:///Users/daegilpyo/Developer/flutter",
-  "flutterVersion": "3.32.0",
+  "flutterVersion": "3.32.8",
   "pubCache": "file:///Users/daegilpyo/.pub-cache"
 }

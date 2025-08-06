@@ -5,6 +5,7 @@ import 'package:tetbee__base/models/availability/user_availabilities.dart';
 import 'package:tetbee__base/models/chat/message_model.dart';
 import 'package:tetbee__base/models/app_notification/app_notification.dart';
 import 'package:tetbee__base/models/chat/user_message_read.dart';
+import 'package:tetbee__base/models/common/activity_log.dart';
 import 'package:tetbee__base/models/common/notification_center.dart';
 import 'package:tetbee__base/models/common/stored_data.dart';
 import 'package:tetbee__base/models/user/temp_user_availabilities.dart';
@@ -166,6 +167,8 @@ Future<List<String>> getDataFilter(
       return [];
     case DataModel.userMessageReads:
       return [];
+    case DataModel.activitylog:
+      return [];
   }
 }
 
@@ -231,6 +234,8 @@ T parseData<T>(DocumentSnapshot<Object?> doc) {
       return {'id': doc.id, ...data} as T;
     case const (UserMessageRead):
       return UserMessageRead.fromJson(data).copyWith(id: doc.id) as T;
+    case const (ActivityLog):
+      return ActivityLog.fromJson(data).copyWith(id: doc.id) as T;
     default:
       throw Exception('Unknown type');
   }

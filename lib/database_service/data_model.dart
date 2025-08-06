@@ -27,4 +27,5 @@ enum DataModel {
   feedbackForm,
   userWorkPlaceRelation,
   myPresetAvailability,
+  activitylog,
 }

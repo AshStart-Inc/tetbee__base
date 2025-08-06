@@ -121,5 +121,8 @@ List<String> getDataTypes(
         dataModel.name,
         docId!, // userId
       ];
+
+    case DataModel.activitylog:
+      return [dataModel.name];
   }
 }

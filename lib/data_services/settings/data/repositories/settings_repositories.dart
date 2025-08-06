@@ -1,4 +1,5 @@
 import 'package:tetbee__base/data_services/settings/data/data_soruce/settings_data_soruce.dart';
+import 'package:tetbee__base/models/common/activity_log.dart';
 import 'package:tetbee__base/models/common/feedback_form.dart';
 
 class SettingsRepository {
@@ -7,5 +8,12 @@ class SettingsRepository {
     FeedbackForm feedbackForm,
   ) async {
     return await SettingsDataSource().submitFeedback(userId, feedbackForm);
+  }
+
+  Future<String> createActivityLog(
+    String userId,
+    ActivityLog activityLog,
+  ) async {
+    return await SettingsDataSource().createActivityLog(userId, activityLog);
   }
 }
