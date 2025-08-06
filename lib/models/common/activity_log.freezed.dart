@@ -28,7 +28,7 @@ mixin _$ActivityLog {
   @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
   DateTime? get updatedAt => throw _privateConstructorUsedError;
   String get updatedBy => throw _privateConstructorUsedError;
-  LogType get logType => throw _privateConstructorUsedError;
+  ActivityLogType get logType => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
 
@@ -57,7 +57,7 @@ abstract class $ActivityLogCopyWith<$Res> {
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     DateTime? updatedAt,
     String updatedBy,
-    LogType logType,
+    ActivityLogType logType,
     String? description,
     String? error,
   });
@@ -118,7 +118,7 @@ class _$ActivityLogCopyWithImpl<$Res, $Val extends ActivityLog>
                 null == logType
                     ? _value.logType
                     : logType // ignore: cast_nullable_to_non_nullable
-                        as LogType,
+                        as ActivityLogType,
             description:
                 freezed == description
                     ? _value.description
@@ -152,7 +152,7 @@ abstract class _$$ActivityLogImplCopyWith<$Res>
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     DateTime? updatedAt,
     String updatedBy,
-    LogType logType,
+    ActivityLogType logType,
     String? description,
     String? error,
   });
@@ -212,7 +212,7 @@ class __$$ActivityLogImplCopyWithImpl<$Res>
             null == logType
                 ? _value.logType
                 : logType // ignore: cast_nullable_to_non_nullable
-                    as LogType,
+                    as ActivityLogType,
         description:
             freezed == description
                 ? _value.description
@@ -262,7 +262,7 @@ class _$ActivityLogImpl implements _ActivityLog {
   @JsonKey()
   final String updatedBy;
   @override
-  final LogType logType;
+  final ActivityLogType logType;
   @override
   final String? description;
   @override
@@ -330,7 +330,7 @@ abstract class _ActivityLog implements ActivityLog {
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     final DateTime? updatedAt,
     final String updatedBy,
-    required final LogType logType,
+    required final ActivityLogType logType,
     final String? description,
     final String? error,
   }) = _$ActivityLogImpl;
@@ -351,7 +351,7 @@ abstract class _ActivityLog implements ActivityLog {
   @override
   String get updatedBy;
   @override
-  LogType get logType;
+  ActivityLogType get logType;
   @override
   String? get description;
   @override

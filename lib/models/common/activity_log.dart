@@ -4,7 +4,7 @@ import 'package:tetbee__base/utils/helper.dart';
 part 'activity_log.freezed.dart';
 part 'activity_log.g.dart';
 
-enum LogType { loginAttempt }
+enum ActivityLogType { loginAttempt }
 
 @freezed
 class ActivityLog with _$ActivityLog {
@@ -16,7 +16,7 @@ class ActivityLog with _$ActivityLog {
     @JsonKey(toJson: Helpers.dateToJson, fromJson: Helpers.dateFromJson)
     DateTime? updatedAt,
     @Default('') String updatedBy,
-    required LogType logType,
+    required ActivityLogType logType,
     String? description,
     String? error,
   }) = _ActivityLog;

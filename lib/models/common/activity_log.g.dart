@@ -13,7 +13,7 @@ _$ActivityLogImpl _$$ActivityLogImplFromJson(Map<String, dynamic> json) =>
       createdBy: json['createdBy'] as String? ?? '',
       updatedAt: Helpers.dateFromJson((json['updatedAt'] as num?)?.toInt()),
       updatedBy: json['updatedBy'] as String? ?? '',
-      logType: $enumDecode(_$LogTypeEnumMap, json['logType']),
+      logType: $enumDecode(_$ActivityLogTypeEnumMap, json['logType']),
       description: json['description'] as String?,
       error: json['error'] as String?,
     );
@@ -25,9 +25,9 @@ Map<String, dynamic> _$$ActivityLogImplToJson(_$ActivityLogImpl instance) =>
       'createdBy': instance.createdBy,
       'updatedAt': Helpers.dateToJson(instance.updatedAt),
       'updatedBy': instance.updatedBy,
-      'logType': _$LogTypeEnumMap[instance.logType]!,
+      'logType': _$ActivityLogTypeEnumMap[instance.logType]!,
       'description': instance.description,
       'error': instance.error,
     };
 
-const _$LogTypeEnumMap = {LogType.loginAttempt: 'loginAttempt'};
+const _$ActivityLogTypeEnumMap = {ActivityLogType.loginAttempt: 'loginAttempt'};
